@@ -1,0 +1,32 @@
+# Nome do executável
+EXEC = jogo
+
+# Compilador
+CXX = g++
+
+# Flags de compilação
+CXXFLAGS = -std=c++17 -Wall
+
+# Bibliotecas necessárias (SFML)
+LIBS = -lsfml-graphics -lsfml-window -lsfml-system
+
+# Coletar automaticamente todos os arquivos .cpp
+SRCS = $(wildcard *.cpp)
+
+# Gerar os nomes dos arquivos .o correspondentes
+OBJS = $(SRCS:.cpp=.o)
+
+# Regra padrão para compilar o projeto
+all: $(EXEC)
+
+# Regra para criar o executável a partir dos objetos
+$(EXEC): $(OBJS)
+	$(CXX) $(OBJS) -o $(EXEC) $(LIBS)
+
+# Regra para compilar cada arquivo .cpp em um .o
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# Limpar arquivos compilados
+clean:
+	rm -f $(OBJS) $(EXEC)
