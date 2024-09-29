@@ -13,4 +13,4 @@ PASTAS:
 /REFERENCES
     Pastas com exercícios e exemplos da utilização do SFML para auxílio do projeto oficial;
 /SRC
-    Classes, cabeçalhos e programa princiapl que rodam o Jogo -- Bem como o Makefile que compila corretamente todos presentes;
+    Classes, cabeçalhos e programa principal que roda o Jogo -- Bem como o Makefile que compila corretamente todos presentes;
