@@ -41,9 +41,9 @@ class Lista {
                 void setAnte(Elemento<TE>* pP) { this->pAnte = pP; }
                 void setInfo(TE* pI) { this->pInfo = pI; }
                 // GETTERS
-                Elemento<TE>* getAnte() { return pAnte; }
-                Elemento<TE>* getProx() { return pProx; }
-                TE* getInfo() { return pInfo; }
+                Elemento<TE>* getAnte() const { return pAnte; }
+                Elemento<TE>* getProx() const { return pProx; }
+                TE* getInfo() const { return pInfo; }
         };
 
         Elemento<TL>* pPrim;
@@ -60,8 +60,8 @@ class Lista {
         bool remove(TL* pTL);
     private:
         void setElemento(Elemento<TL>* pE);
-        Elemento<TL>* getPrim() { return pPrim; }
-        Elemento<TL>* getUltm() { return pUltm; } 
+        Elemento<TL>* getPrim() const { return pPrim; }
+        Elemento<TL>* getUltm() const { return pUltm; } 
 
 };
 
