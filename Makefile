@@ -1,21 +1,15 @@
-# all:
-# 	g++ -o Jogo ../src/*.cpp ../src/Entidades/*.cpp ../src/Fases/*.cpp -lsfml-graphics -lsfml-window -lsfml-system
-
-# Project Name
 PROJECT := Jogo
 
-# Source, Objects and Binaries folder
 SRC_DIR := src
-OBJ_DIR := obj
 BIN_DIR := bin
 
-SRC := $(wildcard $(SRC_DIR)/*.cpp)
-OBJ := $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
+# Captura todos os arquivos .cpp nas subpastas de src
+SRC := $(shell find $(SRC_DIR) -name '*.cpp')
+# Gera os objetos a partir dos .cpp, mantendo a estrutura de pastas
+OBJ := $(SRC:.cpp=.o)
 
-# Compiler
 CC := g++
 
-# Flags
 CPPFLAGS := -Iinclude -O2
 CFLAGS   := -Wall
 LDFLAGS  := -Llib 
@@ -29,19 +23,14 @@ $(PROJECT): $(OBJ)
 	@ $(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
 	@ echo '============================ Finished building ============================'
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
+# Compila cada arquivo .cpp em seu respectivo .o
+%.o: %.cpp
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
-$(BIN_DIR) $(OBJ_DIR):
-	@ mkdir -p $@
-
 build:
-	@ echo '=============== Started building project using g++ compiler ==============='
-	@ $(RM) $(OBJ_DIR)/main.o
+	@ echo '=============== Started building project using g++ compiler ===============' 
 
 clean:
-	@ $(RM) -r $(OBJ_DIR) $(PROJECT) $(BIN_DIR)
+	@ $(RM) -r $(PROJECT) $(BIN_DIR)
 
 rebuild: clean all
-
--include $(OBJ:.o=.d)
