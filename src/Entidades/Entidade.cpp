@@ -1,16 +1,17 @@
 #include "Entidade.hpp"
 using namespace Entidades;
 
-Entidade::Entidade(sf::Vector2f vPos, sf::Vector2f vCai) :
-Ente(vPos)
+/* Construtoras/Destrutoras */
+Entidade::Entidade(ID::ids idEntidade, sf::Vector2f vPos, sf::Vector2f vCorpo) :
+Ente(idEntidade, vPos)
 {
-    caixa = vCai;
+    corpo = vCorpo;
     velocidade = sf::Vector2f(0.0f, 0.0f);
 }
 
 Entidade::Entidade()
 {
-    caixa = sf::Vector2f(0.0f, 0.0f);
+    corpo = sf::Vector2f(0.0f, 0.0f);
     velocidade = sf::Vector2f(0.0f, 0.0f);
 }
 
@@ -18,13 +19,15 @@ Entidade::~Entidade()
 {
 }
 
+
+/* Métodos set e get*/
 void Entidade::setPosicao(sf::Vector2f vMudaP) {
     Ente::setPos(vMudaP);
 }
 
-void Entidades::Entidade::setCaixa(sf::Vector2f vMudaC)
+void Entidades::Entidade::setCorpo(sf::Vector2f vMudaC)
 {
-    caixa = vMudaC;
+    corpo = vMudaC;
 }
 
 void Entidade::setVelocidade(sf::Vector2f vMudaV) {

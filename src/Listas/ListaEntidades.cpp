@@ -19,6 +19,7 @@ void ListaEntidades::adiciona(Entidade *pE)
         exit(7); // testar
     }
     LE.insere(pE);
+    // cout << "Entidade adicionada com sucesso!" << endl;
 }
 
 void ListaEntidades::exclui(Entidade *pE)

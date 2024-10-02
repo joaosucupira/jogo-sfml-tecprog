@@ -9,6 +9,7 @@ namespace Entidades {
             Projetil();
             ~Projetil();
             void executar();
+            // void atualizar(float dt);
             void salvar();
     };
 

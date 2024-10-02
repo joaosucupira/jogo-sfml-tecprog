@@ -24,10 +24,8 @@ namespace Listas {
             void adiciona(Entidade* pE);
             void exclui(Entidade* pE);
             void excluiTodos();
-
             int getTamanho() const { return LE.getTamanho(); }
-            const Lista<Entidade>* getLista() { return &LE; }
-
+            Lista<Entidade>* getLista() { return &LE; }
             Entidade* operator[](int elem);
 
     };

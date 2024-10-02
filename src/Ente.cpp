@@ -1,34 +1,36 @@
 #include "Ente.hpp"
 
-// Gerenciadores::Gerenciador_Grafico* Ente::pGG = NULL;
-// Gerenciadores::Gerenciador_Eventos* Ente::pGE = NULL;
-
-int Ente::cont_Ente = 0;
-
-Ente::Ente(sf::Vector2f vP) : id(++cont_Ente), vPosicao(vP)
-{  
-    // vPosicao = vP
+/* Construtoras/Destrutoras */
+Ente::Ente(ID::ids idEnte, sf::Vector2f vP) : id(idEnte), vPosicao(vP)
+{ 
+    // Instanciar novo objeto animador
 }
 
-Ente::Ente() : id(++cont_Ente)
-
+Ente::Ente()
 {  
+    this->id = ID::empty;
+    // Aterrar ponteiro para sprite
 }
 
 Ente::~Ente()
 {
+    // deletar ponteiro para sprite
 }
 
 
-void Ente::desenhar()
+/* Métodos base */
+
+void Ente::carregar()
 {
+    // carregar sprite
 }
 
-void Ente::mover(const sf::Vector2f vMove)
+void Ente::moverSprite(const sf::Vector2f vMove)
 {
     vPosicao = sf::Vector2f(vPosicao.x + vMove.x, vPosicao.y + vMove.y);
 }
 
+/* Métodos set e get */
 void Ente::setPos(const sf::Vector2f vPos)
 {
     vPosicao = vPos;

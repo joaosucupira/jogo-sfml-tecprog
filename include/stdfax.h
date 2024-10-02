@@ -3,14 +3,23 @@
 
 #pragma once
 
+/* Includes */
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
 #include <stdlib.h>
 #include <string.h>
 #include <iostream>
+#include <fstream>
+
+/* Namespaces */
 using std::cout;
 using std::endl;
 using std::string;
 
-#include <fstream>
+/* Macros */
+#define TAXA_QUADROS 100
+#define LARGURA 1280
+#define ALTURA 720
+
+
