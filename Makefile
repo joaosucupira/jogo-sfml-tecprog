@@ -8,6 +8,8 @@ SRC := $(shell find $(SRC_DIR) -name '*.cpp')
 # Gera os objetos a partir dos .cpp, mantendo a estrutura de pastas
 OBJ := $(SRC:.cpp=.o)
 
+#OI CHEGUEI
+
 CC := g++
 
 CPPFLAGS := -Iinclude -O2
