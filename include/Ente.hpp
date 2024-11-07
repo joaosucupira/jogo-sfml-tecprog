@@ -10,17 +10,18 @@
 #pragma once
 #include "Id.h"
 #include "stdfax.h"
+#include "GerenciadorGrafico.hpp"
 
-class Animador;
+// class Animador;
 
 class Ente
 {
 protected:
 
-    Animador* sprite;
+    static GerenciadorGrafico* pGG;
     ID::ids id;
     sf::Vector2f vPosicao;
-    // static Gerenciador_Grafico* pGG;
+    // Animador* sprite;
     // static Gerenciador_Eventos* pGE;
     // Figura* sprite;
 
@@ -35,10 +36,10 @@ public:
     void moverSprite(const sf::Vector2f vMove);
 
     void setPos(const sf::Vector2f vPos);
-    ID::ids getID() const { return id; }
+    ID::ids getID() const { return id; } 
 
-    // void setGGrafico() { pGG = Gerenciadores::Gerenciador_Grafico::getGerenciador_Grafico(); }
-    // void setGEventos() { pGG = Gerenciadores::Gerenciador_Eventos::getGerenciador_Eventos(); }
+    void setGGrafico() { pGG = GerenciadorGrafico::getInstancia(); }
+    // void setGEventos() { pGE = Gerenciadores::Gerenciador_Eventos::getGerenciador_Eventos(); }
 
 
 

@@ -1,3 +1,4 @@
+#pragma once
 #include "stdfax.h"
 #include <map>
 
@@ -24,4 +25,4 @@ namespace Gerenciadores {
 
     };
 
-} // namespace Gerenciadores
+} using namespace Gerenciadores;

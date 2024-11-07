@@ -2,14 +2,14 @@
 #include "stdfax.h"
 using namespace Listas;
 
-ListaEntidades::ListaEntidades()
+ListaEntidades::ListaEntidades() : LE()
 {
-    // LE();
+    excluiTodos();
 }
 
 Listas::ListaEntidades::~ListaEntidades()
 {
-    // LE();
+    excluiTodos();
 }
 
 void ListaEntidades::adiciona(Entidade *pE)
@@ -34,7 +34,7 @@ void ListaEntidades::exclui(Entidade *pE)
 
 void ListaEntidades::excluiTodos()
 {
-    LE.limpaLista();
+    if (getLista()) LE.limpaLista();
 }
 
 Entidade* ListaEntidades::operator[](int elem) {

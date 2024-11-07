@@ -8,6 +8,7 @@
 #include <SFML/Window.hpp>
 
 #include <stdlib.h>
+#include <time.h>
 #include <string.h>
 #include <iostream>
 #include <fstream>

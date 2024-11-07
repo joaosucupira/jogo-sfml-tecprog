@@ -128,7 +128,8 @@ namespace Listas {
                 pUltm = pE;
             }
             tamanho++;
-        } else {
+        } 
+        else {
             std::cout << "Lista<TL>::setElemento impediu a inserção de um ponteiro nulo!" << std::endl;
         }
     }
