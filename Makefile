@@ -25,7 +25,7 @@ $(BIN): $(OBJs) | $(BIN_DIR)
 # Compila os arquivos .cpp em .o diretamente no obj/
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 	@echo '[Compiling] $< -> $@'
-	mkdir -p $(dir @)
+	mkdir -p $(dir $@)
 	$(CC) $(CPPFLAGS) -c $< -o $@
 
 $(BIN_DIR) $(OBJ_DIR):
