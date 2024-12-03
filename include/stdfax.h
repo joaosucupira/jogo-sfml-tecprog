@@ -14,9 +14,8 @@
 #include <fstream>
 
 /* Namespaces */
-using std::cout;
-using std::endl;
-using std::string;
+using namespace std;
+using namespace sf;
 
 /* Macros */
 #define TAXA_QUADROS 100

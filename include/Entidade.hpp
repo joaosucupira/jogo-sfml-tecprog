@@ -1,6 +1,5 @@
 #pragma once
 #include "Ente.hpp"
-#include "Id.h"
 #include "stdfax.h"
 
 namespace Entidades 
@@ -15,7 +14,6 @@ namespace Entidades
 
 
     public:
-        Entidade(ID::ids idEntidade, sf::Vector2f vPos, sf::Vector2f vCorpo);
         Entidade();
         virtual ~Entidade();
 

@@ -2,12 +2,6 @@
 using namespace Entidades;
 
 /* Construtoras/Destrutoras */
-Entidade::Entidade(ID::ids idEntidade, sf::Vector2f vPos, sf::Vector2f vCorpo) :
-Ente(idEntidade, vPos)
-{
-    corpo = vCorpo;
-    velocidade = sf::Vector2f(0.0f, 0.0f);
-}
 
 Entidade::Entidade()
 {

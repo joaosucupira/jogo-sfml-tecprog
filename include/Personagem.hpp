@@ -15,7 +15,7 @@ namespace Personagens {
         protected:
             int num_vidas;
         public:
-            Personagem(ID::ids id, sf::Vector2f vPos, sf::Vector2f vCorpo, int vidas);
+            Personagem();
             ~Personagem();
 
             int getVidas() const { return num_vidas; }

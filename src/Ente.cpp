@@ -1,15 +1,8 @@
 #include "Ente.hpp"
 
 /* Construtoras/Destrutoras */
-Ente::Ente(ID::ids idEnte, sf::Vector2f vP) : id(idEnte), vPosicao(vP)
-{ 
-    // Instanciar novo objeto animador
-}
 
-Ente::Ente()
-{  
-    this->id = ID::empty;
-    // Aterrar ponteiro para sprite
+Ente::Ente() {  
 }
 
 Ente::~Ente()

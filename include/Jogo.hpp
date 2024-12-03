@@ -1,5 +1,4 @@
 #pragma once
-#include "Coord2D.h"
 #include "ListaEntidades.hpp"
 #include "Projetil.hpp"
 #include "GerenciadorGrafico.hpp"
@@ -10,7 +9,6 @@
 class Jogo
 {
 private:
-    /* data */
 
 public:
     Jogo();
