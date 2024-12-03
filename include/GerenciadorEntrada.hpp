@@ -1,6 +1,6 @@
 #pragma once
 #include <list>
-using namespace std::list;
+using namespace std;
 
 #include "stdfax.h"
 
