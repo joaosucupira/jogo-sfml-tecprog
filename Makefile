@@ -1,39 +1,49 @@
-PROJECT := Jogo
+CC = g++
 
-SRC_DIR := src
-BIN_DIR := bin
-OBJ_DIR := obj
+BIN_DIR = bin
+SRC_DIR = src
+OBJ_DIR = obj
 
-# Captura todos os arquivos .cpp nas subpastas de src
-SRC := $(shell find $(SRC_DIR) -name '*.cpp')
-# Gera os objetos a partir dos .cpp, mantendo a estrutura de pastas
-OBJ := $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
+BIN = $(BIN_DIR)/Jogo
 
-#OI CHEGUEI
+INCLUDEs = -Iinclude
+CPPs = $(shell find $(SRC_DIR) -name '*.cpp')
+# Usamos apenas a parte final do caminho para os arquivos objetos
+OBJs = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(CPPs))
 
-CC := g++
-CPPFLAGS := -Iinclude -O2
-CFLAGS   := -Wall
-LDFLAGS  := -Llib 
-LDLIBS   := -lm -lsfml-graphics -lsfml-window -lsfml-system
+CPPFLAGS = -g -Wall $(INCLUDEs)
+LDFLAGS = -Llib
+LDLIBS = -lm -lsfml-graphics -lsfml-window -lsfml-system
 
-.PHONY: all clean build
+all: build $(BIN)
 
-all: build $(PROJECT)
+$(BIN): $(OBJs) | $(BIN_DIR)
+	@echo '[Linking] $(BIN)'
+	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
+	@echo '============================ Finished building ============================'
 
-$(PROJECT): $(OBJ)
-	@ $(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
-	@ echo '============================ Finished building ============================'
+# Compila os arquivos .cpp em .o diretamente no obj/
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
+	@echo '[Compiling] $< -> $@'
+	mkdir -p $(dir @)
+	$(CC) $(CPPFLAGS) -c $< -o $@
 
-# Compila cada arquivo .cpp em seu respectivo .o, criando o diretório se necessário
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
-	@ mkdir -p $(dir $@)  # Cria o diretório do objeto, se não existir
-	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+$(BIN_DIR) $(OBJ_DIR):
+	mkdir -p $@
 
 build:
-	@ echo '=============== Started building project using g++ compiler ==============='
+	@echo '=============== Started building project using g++ compiler ==============='
 
 clean:
-	@ $(RM) -r $(PROJECT) $(BIN_DIR) $(OBJ_DIR)
+	@echo '[Cleaning] Removing $(OBJ_DIR) and $(BIN_DIR)'
+	$(RM) -r $(OBJ_DIR) $(BIN_DIR)
 
 rebuild: clean all
+
+.PHONY: all clean build rebuild
+
+
+
+
+
+
