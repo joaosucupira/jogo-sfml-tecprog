@@ -3,7 +3,6 @@
 #include "ListaEntidades.hpp"
 #include "Projetil.hpp"
 #include "GerenciadorGrafico.hpp"
-#include "GerenciadorEntrada.hpp"
 #include "Jogador.hpp"
 #include "stdfax.h"
 
