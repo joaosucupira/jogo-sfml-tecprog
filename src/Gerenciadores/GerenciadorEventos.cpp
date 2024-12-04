@@ -3,6 +3,7 @@
 GerenciadorGrafico* GerenciadorEventos::pGG = GerenciadorGrafico::getInstancia();
 
 GerenciadorEventos::GerenciadorEventos() :
+GC(),
 janela(NULL),
 rodando(false),
 j1(true)
@@ -49,9 +50,13 @@ void GerenciadorEventos::eventoBase()
 
 void GerenciadorEventos::executar() {
     rodando = true;
+    Clock relogio;
+
     while (rodando && janela->isOpen()) {
-        eventoBase();
+        float dt = relogio.restart().asSeconds();
+        j1.moverSprite(Vector2f(0, 100.0f * dt));
         desenhar();
+        eventoBase();
 
     }
 }

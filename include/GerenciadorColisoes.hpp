@@ -1,12 +1,17 @@
 #pragma once
 #include "stdafx.h"
+#include "Entidade.hpp"
 
 class GerenciadorColisoes
 {
 private:
-    /* data */
+    Clock relogio;
+    Vector2f gravidade;
+    
 public:
-    GerenciadorColisoes(/* args */);
+    GerenciadorColisoes(const Vector2f grav = Vector2f(0.0f, 9.5f));
     ~GerenciadorColisoes();
+
+    void aplicarGravidade(Entidades::Entidade* pE);
 };
 

@@ -12,6 +12,7 @@ class Jogo
 private:
     static GerenciadorGrafico* pGG;
     GerenciadorEventos GE;
+    Jogador  J1;
 
 public:
     Jogo();

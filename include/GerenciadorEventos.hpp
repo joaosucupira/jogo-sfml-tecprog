@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include "GerenciadorGrafico.hpp"
+#include "GerenciadorColisoes.hpp"
 // #include "ListaEntidades.hpp"
 #include "Jogador.hpp"
 
@@ -9,6 +10,7 @@ class GerenciadorEventos
 {
 private:
     static GerenciadorGrafico* pGG;
+    GerenciadorColisoes GC;
     // Listas::ListaEntidades* entidades;
     Jogador j1;
     RenderWindow* janela;
