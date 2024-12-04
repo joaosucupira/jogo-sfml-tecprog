@@ -1,24 +1,22 @@
 #pragma once
-
-#include "stdfax.h"
+#include "stdafx.h"
 #include "Entidade.hpp"
+
 using namespace Entidades;
 
-/* Falta: GERENCIADOR GRAFICO; ANIMAÇÃO (OPCIONAL)*/
 
 namespace Personagens {
-    class Personagem : public Entidade
-    {
-        private:
-            /* data */
+class Personagem : public Entidades::Entidade
+{
+protected:
+    int num_vidas;
+public:
+    Personagem();
+    ~Personagem();
 
-        protected:
-            int num_vidas;
-        public:
-            Personagem();
-            ~Personagem();
+    void setVidas(const int vidas) { num_vidas = vidas; }
 
-            int getVidas() const { return num_vidas; }
-            virtual void executar() = 0;
-    };
+    int getVidas() const { return num_vidas; }
+    virtual void executar() = 0;
+};
 } using namespace Personagens;

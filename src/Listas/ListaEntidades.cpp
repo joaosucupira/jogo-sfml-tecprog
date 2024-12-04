@@ -1,5 +1,5 @@
 #include "ListaEntidades.hpp"
-#include "stdfax.h"
+#include "stdafx.h"
 using namespace Listas;
 
 ListaEntidades::ListaEntidades() : LE()

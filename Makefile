@@ -8,7 +8,6 @@ BIN = $(BIN_DIR)/Jogo
 
 INCLUDEs = -Iinclude
 CPPs = $(shell find $(SRC_DIR) -name '*.cpp')
-# Usamos apenas a parte final do caminho para os arquivos objetos
 OBJs = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(CPPs))
 
 CPPFLAGS = -g -Wall $(INCLUDEs)
@@ -22,11 +21,12 @@ $(BIN): $(OBJs) | $(BIN_DIR)
 	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
 	@echo '============================ Finished building ============================'
 
-# Compila os arquivos .cpp em .o diretamente no obj/
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@echo '[Compiling] $< -> $@'
-	mkdir -p $(dir @)
-	$(CC) $(CPPFLAGS) -c $< -o $@
+	mkdir -p $(dir $@)
+	$(CC) $(CPPFLAGS) -MMD -c $< -o $@
+
+-include $(OBJs:.o=.d)
 
 $(BIN_DIR) $(OBJ_DIR):
 	mkdir -p $@
@@ -36,14 +36,8 @@ build:
 
 clean:
 	@echo '[Cleaning] Removing $(OBJ_DIR) and $(BIN_DIR)'
-	$(RM) -r $(OBJ_DIR) $(BIN_DIR)
+	rm -r $(OBJ_DIR) $(BIN_DIR)
 
 rebuild: clean all
 
 .PHONY: all clean build rebuild
-
-
-
-
-
-

@@ -1,9 +1,11 @@
 #include "Personagem.hpp"
 
-Personagens::Personagem::Personagem()
+Personagem::Personagem() :
+Entidade(),
+num_vidas(1)
 {
 }
 
-Personagem::~Personagem()
-{
+Personagem::~Personagem() {
+    num_vidas = -1;
 }

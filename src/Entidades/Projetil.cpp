@@ -1,7 +1,7 @@
 #include "Projetil.hpp"
-using namespace Entidades;
 
-Entidades::Projetil::Projetil()
+
+Projetil::Projetil()
 {
 }
 

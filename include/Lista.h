@@ -12,7 +12,7 @@
 */// ! -> .h  ao invés de .hpp para identificar um arquivo biblioteca ou gabarito
 
 #pragma once
-#include "stdfax.h"
+#include "stdafx.h"
 
 
 namespace Listas {

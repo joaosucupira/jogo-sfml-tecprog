@@ -3,38 +3,41 @@
 * - Entidade
 * - Fase
 * - Menu
-* 
 */
 
 #pragma once
-#include "stdfax.h"
+#include "stdafx.h"
 #include "GerenciadorGrafico.hpp"
 
 class Ente
 {
 protected:
-
+    static int cont_id;
+    int id;
     static GerenciadorGrafico* pGG;
-    sf::Vector2f vPosicao;
-    // Animador* sprite;
-    // static Gerenciador_Eventos* pGE;
-    // Figura* sprite;
+
+    Vector2f posicao_inicial;
+    RectangleShape* corpo;
 
 public:
-    Ente();
+    Ente(
+        const float x = 0.0f,
+        const float y = 0.0f,
+        const float largura = 100.0f,
+        const float altura = 100.0f
+    );
     virtual ~Ente();
-
     virtual void executar() = 0;
-    // virtual void atualizar(float dt) = 0;
-    virtual void carregar();
+
     void moverSprite(const sf::Vector2f vMove);
+    void desenhar();
 
-    void setPos(const sf::Vector2f vPos);
-
+    void setId(const int i) { id = i; }
+    void setPos(const sf::Vector2f posicao);
     void setGGrafico() { pGG = GerenciadorGrafico::getInstancia(); }
-    // void setGEventos() { pGE = Gerenciadores::Gerenciador_Eventos::getGerenciador_Eventos(); }
 
-
+    const int getId() const { return id; }
+    RectangleShape getCorpo() const { return *corpo;}
 
 };
 

@@ -1,27 +1,27 @@
 #pragma once
-#include "stdfax.h"
-#include <map>
+#include "stdafx.h"
+
+class Ente;
 
 namespace Gerenciadores {
     class GerenciadorGrafico
     {
     private:
-        /* data */
         sf::RenderWindow* janela;
-        sf::View exibir;
-        std::map<const char*, sf::Texture*> mapaTexturas;
-        sf::Font* fonte;
 
-        static GerenciadorGrafico* instancia; // Ponteiro presente para toda instancia de gerenciador
-        GerenciadorGrafico(); // Construtora PRIVADA para que não seja instanciado nenhum gerenciador grafico por outro objeto
+        /* Singleton */
+        static GerenciadorGrafico* instancia; 
+        GerenciadorGrafico(); 
 
     public:
         ~GerenciadorGrafico();
-        static GerenciadorGrafico* getInstancia(); /* Método público por onde outras classes podem acessá-lo */
+        static GerenciadorGrafico* getInstancia(); 
         void limparJanela();
-        void desenhar(sf::RectangleShape* corpo);
+
+        void desenharEnte(Ente* pE);
         void mostrar();
         bool getJanelaAberta() const;
+        RenderWindow& getJanela() const { return *janela; }
 
     };
 
