@@ -9,17 +9,11 @@ namespace Gerenciadores {
 class GerenciadorEventos
 {
 private:
-    static GerenciadorGrafico* pGG;
-    GerenciadorColisoes GC;
-    // Listas::ListaEntidades* entidades;
-    Jogador j1;
-    RenderWindow* janela;
-    bool rodando;
+
 
 public:
     GerenciadorEventos();
     ~GerenciadorEventos();
-
     void setWindow(RenderWindow* pR);
     void setGraficos();
     void desenhar();
