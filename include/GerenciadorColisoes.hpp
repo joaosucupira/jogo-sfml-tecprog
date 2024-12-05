@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "Entidade.hpp"
 
+
 class GerenciadorColisoes
 {
 private:

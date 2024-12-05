@@ -1,5 +1,6 @@
 #include "Janela.hpp"
 
+/* CONSTRUTORA / DESTRUTORA */
 Janela::Janela() :
 janela(new RenderWindow(VideoMode(LARGURA, ALTURA), "Jogo++"))
 {
@@ -10,10 +11,13 @@ Janela::~Janela() {
     janela = NULL;
 }
 
-RenderWindow *Janela::getJanela() const {
+/* MÉTODOS PRINCIPAIS*/
+
+RenderWindow *Janela::getJanela() const
+{
     if (janela == NULL) {
         cout << "RenderWindow *Janela::getJanela() const -> ponteiro nulo." << endl;
         return (new RenderWindow());
     }
-    return janela; 
+    return janela;
 }
