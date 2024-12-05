@@ -18,10 +18,12 @@ GerenciadorGrafico* GerenciadorGrafico::getInstancia() {
 
 
 /* Tela do jogo*/
+
+/* CONSTRUTORA */
 GerenciadorGrafico::GerenciadorGrafico() :
-janela(new sf::RenderWindow(sf::VideoMode(LARGURA, ALTURA), "Jogo++"))
+janela()
 {
-    janela->setFramerateLimit(TAXA_QUADROS);
+    // janela->setFramerateLimit(TAXA_QUADROS);
 }
 
 GerenciadorGrafico::~GerenciadorGrafico()
@@ -36,7 +38,14 @@ void GerenciadorGrafico::limparJanela() {
 void Gerenciadores::GerenciadorGrafico::desenharEnte(Ente *pE) {
     if (pE) {
         janela->draw(pE->getCorpo());
+    
     } else { cout << "GerenciadorGrafico::desenharEnte(Ente *pE) -> Ponteiro nulo." << endl; }
+}
+
+void Gerenciadores::GerenciadorGrafico::desenharEnte(Ente *pE, Janela *pJ) {
+    if (pE && pJ) {
+        pJ->getJanela()->draw(pE->getCorpo());
+    }
 }
 
 bool GerenciadorGrafico::getJanelaAberta() const { return janela->isOpen(); }

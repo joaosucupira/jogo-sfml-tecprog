@@ -1,5 +1,6 @@
 #pragma once
 #include "stdafx.h"
+#include "Janela.hpp"
 
 class Ente;
 
@@ -19,7 +20,10 @@ namespace Gerenciadores {
         void limparJanela();
 
         void desenharEnte(Ente* pE);
+        void desenharEnte(Ente* pE, Janela* pJ);
         void mostrar();
+        void setJanela(RenderWindow& j) { janela = &j; }
+
         bool getJanelaAberta() const;
         RenderWindow& getJanela() const { return *janela; }
 
