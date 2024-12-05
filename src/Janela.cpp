@@ -1,5 +1,6 @@
 #include "Janela.hpp"
 
+/* CONSTRUTORA / DESTRUTORA */
 Janela::Janela() :
 janela(new RenderWindow(VideoMode(LARGURA, ALTURA), "Jogo++"))
 {
@@ -10,14 +11,7 @@ Janela::~Janela() {
     janela = NULL;
 }
 
-void Janela::processarEventos() {
-    Event e;
-    while (janela->pollEvent(e)) {
-        if (e.type == Event::Closed) {
-            fechar();
-        }
-    }
-}
+/* MÉTODOS PRINCIPAIS*/
 
 RenderWindow *Janela::getJanela() const
 {

@@ -2,13 +2,19 @@
 * Gerenciador gráfico criado sob padrão de projeto Singleton, ie, há apenas uma
 * instância da classe, acessível globalmente, tornando-se um ponto de controle
 * para os serviços imagéticos do sistema.
+*
+* Esta versão foi pensada para desacoplar o objeto RenderWindow e tê-lo agregado
+* a uma nova classe janela que existe para facilitar o manejo compartilhado dessa
+* janela do jogo.
 */
+
 #include "GerenciadorGrafico.hpp"
 #include "Ente.hpp"
 
 using namespace Gerenciadores;
 
-/* Instância singleton inicializada */
+/* SINGLETON */
+
 GerenciadorGrafico* GerenciadorGrafico::instancia = NULL;
 
 GerenciadorGrafico* GerenciadorGrafico::getInstancia() {
@@ -17,23 +23,19 @@ GerenciadorGrafico* GerenciadorGrafico::getInstancia() {
 }
 
 
-/* Tela do jogo*/
-
-/* CONSTRUTORA */
+/* CONSTRUTORA / DESTRUTORA */
 GerenciadorGrafico::GerenciadorGrafico() :
-janela()
+janela(NULL)
 {
-    // janela->setFramerateLimit(TAXA_QUADROS);
 }
 
 GerenciadorGrafico::~GerenciadorGrafico()
 {
+    janela = NULL;
 }
 
-void GerenciadorGrafico::limparJanela() {
-    if (janela->isOpen()) { janela->clear(); }
-}
 
+/* MÉTODOS PRINCIPAIS */
 
 void Gerenciadores::GerenciadorGrafico::desenharEnte(Ente *pE) {
     if (pE) {
@@ -42,15 +44,8 @@ void Gerenciadores::GerenciadorGrafico::desenharEnte(Ente *pE) {
     } else { cout << "GerenciadorGrafico::desenharEnte(Ente *pE) -> Ponteiro nulo." << endl; }
 }
 
-void Gerenciadores::GerenciadorGrafico::desenharEnte(Ente *pE, Janela *pJ) {
-    if (pE && pJ) {
-        pJ->getJanela()->draw(pE->getCorpo());
-    }
+void GerenciadorGrafico::setJanela(Janela *pJ) {
+    if (pJ) {
+        janela = pJ->getJanela();
+    } else { cout << "GerenciadorGrafico::setJanela(Janela *pJ) -> ponteiro nulo." << endl; }
 }
-
-bool GerenciadorGrafico::getJanelaAberta() const { return janela->isOpen(); }
-
-void GerenciadorGrafico::mostrar() {
-    if (getJanelaAberta()) { janela->display(); }    
-}
-

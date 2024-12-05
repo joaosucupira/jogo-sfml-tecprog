@@ -2,17 +2,19 @@
 
 GerenciadorGrafico* Jogo::pGG = GerenciadorGrafico::getInstancia();
 
-Jogo::Jogo() :
-pJ1(NULL)
+Jogo::Jogo() 
 {
-    pJ1 = new Jogador(true);
-    pGG->setJanela(*(janela.getJanela()));
+    distribuirJanela();
     executar();
 
 }
 
 Jogo::~Jogo()
 {
+}
+
+void Jogo::distribuirJanela() {
+    pGG->setJanela(&janela);
 }
 
 void Jogo::executar()
@@ -26,7 +28,6 @@ void Jogo::executar()
             }
         }
         janela.limpar();
-        pGG->desenharEnte(pJ1);
         janela.exibir();
     }
 }

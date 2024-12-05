@@ -8,7 +8,7 @@ namespace Gerenciadores {
     class GerenciadorGrafico
     {
     private:
-        sf::RenderWindow* janela;
+        RenderWindow* janela;
 
         /* Singleton */
         static GerenciadorGrafico* instancia; 
@@ -17,15 +17,11 @@ namespace Gerenciadores {
     public:
         ~GerenciadorGrafico();
         static GerenciadorGrafico* getInstancia(); 
-        void limparJanela();
 
         void desenharEnte(Ente* pE);
-        void desenharEnte(Ente* pE, Janela* pJ);
-        void mostrar();
-        void setJanela(RenderWindow& j) { janela = &j; }
 
-        bool getJanelaAberta() const;
-        RenderWindow& getJanela() const { return *janela; }
+        /* Compartilhamento da classe Janela*/
+        void setJanela(Janela* pJ);
 
     };
 
