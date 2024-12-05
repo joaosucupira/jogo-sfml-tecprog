@@ -1,5 +1,5 @@
 #include "Ente.hpp"
-int Ente::cont_id(1);
+int Ente::cont_id(0);
 GerenciadorGrafico* Ente::pGG = NULL;
 
 /* Construtoras/Destrutoras */
@@ -25,10 +25,11 @@ Ente::~Ente() {
 /* Métodos base */
 
 void Ente::moverSprite(const sf::Vector2f vMove) {
-    posicao_inicial = sf::Vector2f(
-        posicao_inicial.x + vMove.x, 
-        posicao_inicial.y + vMove.y
-    );
+    // posicao_inicial = sf::Vector2f(
+    //     posicao_inicial.x + vMove.x, 
+    //     posicao_inicial.y + vMove.y
+    // );
+    getCorpo().move(vMove);
 }
 
 void Ente::desenhar() {

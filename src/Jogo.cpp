@@ -1,11 +1,7 @@
 #include "Jogo.hpp"
-GerenciadorGrafico* Jogo::pGG = GerenciadorGrafico::getInstancia();
 
-Jogo::Jogo() :
-GE()
+Jogo::Jogo()
 {
-    GE.setWindow(&(pGG->getJanela()));
-    GE.executar();
 }
 
 Jogo::~Jogo()

@@ -6,7 +6,7 @@ using namespace Entidades;
 Entidade::Entidade(int dx, int dy) :
 Ente()
 {
-    setPos(Vector2f((float)dx, (float)dy));
+    // setPos(Vector2f((float)dx, (float)dy));
 }
 
 Entidade::~Entidade() {
