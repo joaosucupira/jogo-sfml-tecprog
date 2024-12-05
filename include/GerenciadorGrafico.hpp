@@ -1,5 +1,6 @@
 #pragma once
 #include "stdafx.h"
+#include "Janela.hpp"
 
 class Ente;
 
@@ -7,7 +8,7 @@ namespace Gerenciadores {
     class GerenciadorGrafico
     {
     private:
-        sf::RenderWindow* janela;
+        RenderWindow* janela;
 
         /* Singleton */
         static GerenciadorGrafico* instancia; 
@@ -16,12 +17,11 @@ namespace Gerenciadores {
     public:
         ~GerenciadorGrafico();
         static GerenciadorGrafico* getInstancia(); 
-        void limparJanela();
 
         void desenharEnte(Ente* pE);
-        void mostrar();
-        bool getJanelaAberta() const;
-        RenderWindow& getJanela() const { return *janela; }
+
+        /* Compartilhamento da classe Janela*/
+        void setJanela(Janela* pJ);
 
     };
 
