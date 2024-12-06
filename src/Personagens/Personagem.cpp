@@ -1,7 +1,7 @@
 #include "Personagem.hpp"
 
-Personagem::Personagem() :
-Entidade(),
+Personagem::Personagem(const int x_inicial, const int y_inicial) :
+Entidade(x_inicial, y_inicial),
 num_vidas(1),
 vivo(true)
 {
@@ -12,8 +12,10 @@ Personagem::~Personagem() {
     vivo = false;
 }
 
-void Personagem::mover() {
+void Personagem::mover(const int direcaoX, const int direcaoY) {
     if (vivo) {
-        corpo->move(velocidade);
+        float x = direcaoX * velocidade.x;
+        float y = direcaoY * velocidade.y; 
+        corpo->move(x, y);
     }
 }

@@ -8,7 +8,7 @@ Ente(),
 x(dx),
 y(dy)
 {
-    setPosicao((float)dx, (float)dy);
+    setPosicao(static_cast<float>(dx), static_cast<float>(dy));
     setTamanho(100.0f, 100.0f);
     setCor(Color::Yellow);
 }
@@ -33,4 +33,4 @@ void Entidade::setVelocidade(const float x, const float y) {
     velocidade = Vector2f(x,y);
 }
 
-/* Métodos set e get*/
+
