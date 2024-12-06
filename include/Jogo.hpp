@@ -2,6 +2,7 @@
 
 #include "GerenciadorGrafico.hpp"
 #include "Janela.hpp"
+#include "Jogador.hpp"
 #include "stdafx.h"
 
 
@@ -13,6 +14,9 @@ private:
 
     /* Janela que é passada por referência para objetos que irão a manipular */
     Janela janela;
+
+    Jogador* pJ1;
+    Jogador* pJ2;
     
 public:
     Jogo();

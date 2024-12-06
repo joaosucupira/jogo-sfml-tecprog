@@ -2,8 +2,9 @@
 
 GerenciadorGrafico* Jogo::pGG = GerenciadorGrafico::getInstancia();
 
-Jogo::Jogo() 
+Jogo::Jogo()
 {
+
     distribuirJanela();
     executar();
 
@@ -11,10 +12,12 @@ Jogo::Jogo()
 
 Jogo::~Jogo()
 {
+
 }
 
 void Jogo::distribuirJanela() {
     pGG->setJanela(&janela);
+    
 }
 
 void Jogo::executar()
@@ -28,6 +31,9 @@ void Jogo::executar()
             }
         }
         janela.limpar();
+
+        /* !!!DESENHOS AQUI!!!*/
+
         janela.exibir();
     }
 }

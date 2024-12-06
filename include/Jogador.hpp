@@ -6,16 +6,16 @@ namespace Personagens {
     class Jogador : public Personagem
     {
     private:
+        static int cont;
         int pontos;
-        const bool joga1;
+        bool joga1;
     public:
-        Jogador(const bool j1);
+        Jogador();
         ~Jogador();
 
         const int getPontos() const { return pontos; }
 
         void escolheCor();
-        void setCor(Color cor);
 
         void operator+=(int pts);
 

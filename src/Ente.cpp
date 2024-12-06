@@ -1,21 +1,18 @@
 #include "Ente.hpp"
 int Ente::cont_id(0);
-GerenciadorGrafico* Ente::pGG = NULL;
+GerenciadorGrafico* Ente::pGG = GerenciadorGrafico::getInstancia();
 
 /* Construtoras/Destrutoras */
 
-
-Ente::Ente(const float x, const float y, const float largura, const float altura) :
+Ente::Ente() :
 id(cont_id++),
-posicao_inicial(x, y),
-corpo(NULL)
+corpo(new RectangleShape())
 {
-    corpo = new RectangleShape(Vector2f(largura, altura));
     setGGrafico();
 }
 
-
-Ente::~Ente() {
+Ente::~Ente()
+{
     if (corpo != NULL) {
         delete corpo;
     }
@@ -24,21 +21,30 @@ Ente::~Ente() {
 
 /* Métodos base */
 
-void Ente::moverSprite(const sf::Vector2f vMove) {
-    // posicao_inicial = sf::Vector2f(
-    //     posicao_inicial.x + vMove.x, 
-    //     posicao_inicial.y + vMove.y
-    // );
-    getCorpo().move(vMove);
-}
-
 void Ente::desenhar() {
     pGG->desenharEnte(this);
+    // janela->draw(*(pE->getCorpo()))
+    
 }
 
-/* Métodos set e get */
-void Ente::setPos(const sf::Vector2f posicao)
-{
-    posicao_inicial = posicao;
+void Ente::setCorpo(RectangleShape *pC) {
+    if (pC) {
+        corpo = pC;
+    } else { cout << "Ente::setCorpo(RectangleShape *pC) -> ponteiro nulo." << endl; }
 }
+
+// void Ente::moverSprite(const sf::Vector2f vMove) {
+//     // posicao_inicial = sf::Vector2f(
+//     //     posicao_inicial.x + vMove.x, 
+//     //     posicao_inicial.y + vMove.y
+//     // );
+//     getCorpo().move(vMove);
+// }
+
+
+// /* Métodos set e get */
+// void Ente::setPos(const sf::Vector2f posicao)
+// {
+//     posicao_inicial = posicao;
+// }
 
