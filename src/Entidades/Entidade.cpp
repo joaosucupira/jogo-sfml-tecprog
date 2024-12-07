@@ -4,25 +4,33 @@ using namespace Entidades;
 /* Construtoras/Destrutoras */
 
 Entidade::Entidade(int dx, int dy) :
-Ente()
+Ente(),
+x(dx),
+y(dy)
 {
-    // setPos(Vector2f((float)dx, (float)dy));
+    setPosicao(static_cast<float>(dx), static_cast<float>(dy));
+    setTamanho(100.0f, 100.0f);
+    setCor(Color::Yellow);
 }
 
 Entidade::~Entidade() {
 }
 
+void Entidade::setPosicao(const float x, const float y) {
+    corpo->setPosition(x, y);
+}
 
-/* Métodos set e get*/
-// void Entidade::setPosicao(sf::Vector2f vMudaP) {
-//     Ente::setPos(vMudaP);
-// }
+void Entidade::setTamanho(const float x, const float y) {
+    Vector2f tamanho(x, y);
+    corpo->setSize(tamanho);
+}
 
-// void Entidades::Entidade::setCorpo(sf::Vector2f vMudaC)
-// {
-//     corpo = vMudaC;
-// }
+void Entidades::Entidade::setCor(const Color &cor) {
+    corpo->setFillColor(cor);
+}
 
-// void Entidade::setVelocidade(sf::Vector2f vMudaV) {
-//     velocidade = vMudaV;
-// }
+void Entidade::setVelocidade(const float x, const float y) {
+    velocidade = Vector2f(x,y);
+}
+
+

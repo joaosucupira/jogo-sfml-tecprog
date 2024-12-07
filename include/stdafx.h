@@ -12,6 +12,9 @@
 #include <string.h>
 #include <iostream>
 #include <fstream>
+#include <set>
+#include <list>
+#include <vector>
 
 /* Namespaces */
 using namespace std;
@@ -21,5 +24,7 @@ using namespace sf;
 #define TAXA_QUADROS 100
 #define LARGURA 1260
 #define ALTURA 580
+#define GRAVIDADE 340
+#define FORCA_PULO -150.0f
 
 

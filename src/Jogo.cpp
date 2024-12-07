@@ -2,32 +2,50 @@
 
 GerenciadorGrafico* Jogo::pGG = GerenciadorGrafico::getInstancia();
 
-Jogo::Jogo() 
+Jogo::Jogo() :
+GC(),
+relogio(new Clock())
 {
-    distribuirJanela();
+    distribuir();
     executar();
-
 }
 
-Jogo::~Jogo()
+Jogo::~Jogo() {
+    relogio = NULL;
+}
+
+void Jogo::distribuir() {
+    distribuirRelogio();
+    distribuirJanela();
+}
+
+void Jogo::distribuirRelogio() {
+    GC.setRelogio(relogio);
+}
+
+void Jogo::distribuirJanela()
 {
-}
-
-void Jogo::distribuirJanela() {
     pGG->setJanela(&janela);
 }
 
 void Jogo::executar()
-{
+{   
+
+    Jogador* pJ = GC.getJogador();
     while (janela.aberta()) {
-        Event e;
-        while (janela.getJanela()->pollEvent(e)) {
-            
-            if (e.type == Event::Closed) {
-                janela.fechar();
-            }
-        }
+
+        float dt = relogio->restart().asSeconds();
+
+        janela.eventoBase();
+
+        // GC.tratarEntradaJogador(dt);
+        // GC.aplicarGravidade(dt);
+        GC.executar();
+
         janela.limpar();
+        /* !!!DESENHOS AQUI!!!*/
+        pGG->desenharEnte(pJ);
+
         janela.exibir();
     }
 }
