@@ -52,12 +52,6 @@ namespace Entidades
         const float getPosX() const { return corpo->getPosition().x; }
         const float getPosY() const { return corpo->getPosition().y; }
         */
-
-        
-
-
-        
-
     };
 
 

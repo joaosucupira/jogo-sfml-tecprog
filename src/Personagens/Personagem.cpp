@@ -14,10 +14,12 @@ Personagem::~Personagem() {
 
 void Personagem::mover(){
 
-    x += velocidade.x * deltaTime * PIXEL_METRO;
-    y += velocidade.y * deltaTime * PIXEL_METRO;
+    x += velocidade.x *  PIXEL_METRO * deltaTime;
+    y += velocidade.y *  PIXEL_METRO * deltaTime;
 
     setPosicaoCorpo(x,y);
+    cout << "dt = " << deltaTime << endl;
+    
 }
 
 void Personagem::aplicarGravidade(){

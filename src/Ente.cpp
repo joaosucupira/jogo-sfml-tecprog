@@ -26,7 +26,6 @@ Ente::~Ente()
 
 void Ente::desenhar() {
     pGG->getRenderWindow()->draw(*corpo);
-    // janela->draw(*(pE->getCorpo()))
     
 }
 

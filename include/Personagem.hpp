@@ -31,7 +31,10 @@ public:
     Vector2f getVelocidade() const { return velocidade;}
     const bool getEstaPulando() const {return estaPulando;}
 
+    /* Adaptar valor de vida a ser retirado no proprio operador*/
     void operator--() { num_vidas--;}
+
+    /* Colocar na classe de gerenciador de colisões */
     void aplicarGravidade();
 
 };

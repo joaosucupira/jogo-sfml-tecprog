@@ -6,7 +6,7 @@
 /* Includes */
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
-
+ 
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
@@ -31,7 +31,8 @@ using namespace sf;
 #define PIXEL_METRO 100 // Conversão metros para pixels
 #define CHAO 570// Posição Y que representa o chão (pixels)
 #define ALTURA_PULO 2.5 // Altura máxima do pulo do jogador (m)
-#define VELOCIDADE_ANDAR 2.0 // Velocidade de andar do jogador (m/s)
+/* alterar para 2.0 antes do commit*/
+#define VELOCIDADE_ANDAR 8.0 // Velocidade de andar do jogador (m/s)
 #define COLISAO 10 
 
 

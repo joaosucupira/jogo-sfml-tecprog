@@ -58,6 +58,9 @@ void Jogador::salvaDataBuffer() {
 void Jogador::executar() {
 
     mover();
+    /* Colocar na classe gerenciador de colisoes */
     aplicarGravidade();
-    velocidade.x = 0;
+    // zerar a velocidade aqui faz o movimento travar
+    // precisa ser no keyrelease
+    // velocidade.x = 0;
 }
