@@ -1,13 +1,13 @@
 #include "GerenciadorColisoes.hpp"
 
 GerenciadorColisoes::GerenciadorColisoes() :
-pJog1(NULL),
-gravidade(GRAVIDADE),
-pRelogio(NULL)
+pJog1(NULL)
+//gravidade(GRAVIDADE),
+//pRelogio(NULL)
 {
     pJog1 = new Jogador(
-        static_cast<int>((LARGURA - 100.0f) / 2),
-        static_cast<int>((ALTURA + 100.0f) / 2)
+        (LARGURA - 100.0f) / 2,
+        (ALTURA + 100.0f) / 2
     );
 }
 
@@ -16,12 +16,43 @@ GerenciadorColisoes::~GerenciadorColisoes() {
 }
 
 void GerenciadorColisoes::executar() {
-    float dt = pRelogio->restart().asSeconds();
-    tratarEntradaJogador(dt);
-    aplicarGravidade(dt);
+    
 
 }
 
+
+Jogador *GerenciadorColisoes::getJogador() const {
+    if (pJog1 == NULL)
+        cout << "Jogador* GerenciadorColisoes::getJogador() const -> ponteiro nulo." << endl;
+    return pJog1;
+}
+
+void GerenciadorColisoes::colisaoJogadorChao(){
+    
+    Vector2f posicao(pJog1->getX(), pJog1->getY());
+    Vector2f tamanho(pJog1->getTamX(), pJog1->getTamY());
+
+    if (posicao.x + tamanho.x > LARGURA) { // Lado direito
+        pJog1->setXY(LARGURA - tamanho.x - COLISAO, posicao.y);
+        pJog1->setVelocidadeX(0);
+    } else if (posicao.x < 0) { // Lado esquerdo
+        pJog1->setXY(COLISAO, posicao.y);
+        pJog1->setVelocidadeX(0);
+    }
+
+    // Colisão com o chão
+    if (posicao.y + tamanho.y > CHAO) {
+        pJog1->setXY(posicao.x, CHAO - tamanho.y);
+        pJog1->setVelocidadeY(0);
+        pJog1->setEstaPulando(false);
+    }
+
+
+}
+
+
+
+/*
 void GerenciadorColisoes::setRelogio(Clock *pR) {
     if (pR) {
         pRelogio = pR;
@@ -36,14 +67,14 @@ void GerenciadorColisoes::tratarEntradaJogador(float dt) {
 
     if (pJog1) {
 
-        /* andar*/
+        //andar
         if (Keyboard::isKeyPressed(Keyboard::Right)) 
             pJog1->mover(100.0f * dt, 0.0f); 
 
         if (Keyboard::isKeyPressed(Keyboard::Left)) 
             pJog1->mover(-100.0f * dt, 0.0f); 
 
-        /* pular */
+        //pular 
         if (Keyboard::isKeyPressed(Keyboard::Up)) {
             if (pular && pJog1->getPosY() >= (ALTURA - pJog1->getTamY())) {
                 velocidadeVertical = FORCA_PULO; 
@@ -63,8 +94,6 @@ void GerenciadorColisoes::tratarEntradaJogador(float dt) {
         }
     }
 }
-
-
 void GerenciadorColisoes::aplicarGravidade(float dt) {
 
     RectangleShape* corpo = pJog1->getCorpo();
@@ -74,9 +103,5 @@ void GerenciadorColisoes::aplicarGravidade(float dt) {
         corpo->move(0.0f, dy);
     }
 }
+*/
 
-Jogador *GerenciadorColisoes::getJogador() const {
-    if (pJog1 == NULL)
-        cout << "Jogador* GerenciadorColisoes::getJogador() const -> ponteiro nulo." << endl;
-    return pJog1;
-}

@@ -1,7 +1,7 @@
 #include "Jogador.hpp"
 int Jogador::cont(0);
 
-Jogador::Jogador(const int x_inicial, const int y_inicial) :
+Jogador::Jogador(const float x_inicial, const float y_inicial) :
 Personagem(x_inicial, y_inicial),
 pontos(0),
 joga1(cont == 0)
@@ -57,7 +57,7 @@ void Jogador::salvaDataBuffer() {
 
 void Jogador::executar() {
 
-    aplicarVelocidade();
+    mover();
     aplicarGravidade();
     velocidade.x = 0;
 }

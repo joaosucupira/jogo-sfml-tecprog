@@ -1,6 +1,6 @@
 #include "Personagem.hpp"
 
-Personagem::Personagem(const int x,  const int y) :
+Personagem::Personagem(const float x,  const float y) :
 Entidade(x,y),
 num_vidas(1),
 velocidade(0.0,0.0),
@@ -12,24 +12,26 @@ Personagem::~Personagem() {
     num_vidas = -1;
 }
 
-void Personagem::aplicarVelocidade(){
+void Personagem::mover(){
 
-    x += velocidade.x * (*pDeltaTime) * PIXEL_METRO;
-    y += velocidade.y * (*pDeltaTime) * PIXEL_METRO;
+    x += velocidade.x * deltaTime * PIXEL_METRO;
+    y += velocidade.y * deltaTime * PIXEL_METRO;
 
-    moverSprite(Vector2f(x,y));
+    setPosicaoCorpo(x,y);
 }
 
 void Personagem::aplicarGravidade(){
 
     if(estaPulando)
-        velocidade.y += GRAVIDADE * (*pDeltaTime);
+        velocidade.y += GRAVIDADE * deltaTime;
 }
 
+
+/*
 void Personagem::mover(const int direcaoX, const int direcaoY) {
     if (vivo) {
         float x = direcaoX * velocidade.x;
         float y = direcaoY * velocidade.y; 
         corpo->move(x, y);
     }
-}
+}*/

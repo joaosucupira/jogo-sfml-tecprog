@@ -14,11 +14,11 @@ protected:
     bool estaPulando;
 
 public:
-    Personagem(const int x_inicial = 0, const int y_inicial = 0);
+    Personagem(const float x_inicial = 0, const float y_inicial = 0);
     ~Personagem();
     
     virtual void executar() = 0;
-    virtual void mover(const int direcaoX, const int direcaoY);
+    virtual void mover();
 
     void setVidas(const int vidas) { num_vidas = vidas; }
     void calcVivo() { vivo = (num_vidas > 0 ? true : false); }
@@ -32,8 +32,6 @@ public:
     const bool getEstaPulando() const {return estaPulando;}
 
     void operator--() { num_vidas--;}
-
-    void aplicarVelocidade();
     void aplicarGravidade();
 
 };

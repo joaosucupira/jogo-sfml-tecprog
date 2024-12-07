@@ -22,6 +22,11 @@ void GerenciadorEventos::setJanela(Janela* pJ){
         cout<< "GerenciadorEventos::setJanela(Janela* pJ) -> PONTEIRO NULO" << endl;
 }
 
+void GerenciadorEventos::setPJog(Jogador* pJ){
+    if(pJ)
+        pJog = pJ;
+}
+
 void GerenciadorEventos::monitorarJogador(){
 
     if (Keyboard::isKeyPressed(Keyboard::Left)){
@@ -40,6 +45,12 @@ void GerenciadorEventos::monitorarJogador(){
 }
 
 void GerenciadorEventos::executar() {
+
+    if(!pJanela){
+        cout<< "GerenciadorEventos::executar() -> PONTEIRO NULO" << endl;
+        return;
+    }
+
 
     while(pJanela->obterEvento(evento)){
 

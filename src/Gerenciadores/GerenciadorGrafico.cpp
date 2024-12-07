@@ -27,7 +27,7 @@ GerenciadorGrafico* GerenciadorGrafico::getInstancia() {
 
 /* CONSTRUTORA / DESTRUTORA */
 GerenciadorGrafico::GerenciadorGrafico() :
-janela(NULL),
+pJanela(NULL),
 relogio(),
 pGeventos(NULL),
 pGcolisoes(NULL)
@@ -36,7 +36,7 @@ pGcolisoes(NULL)
 
 GerenciadorGrafico::~GerenciadorGrafico()
 {
-    janela = NULL;
+    pJanela = NULL;
     pGeventos = NULL;
     pGcolisoes = NULL;
 }
@@ -46,16 +46,26 @@ GerenciadorGrafico::~GerenciadorGrafico()
 
 void Gerenciadores::GerenciadorGrafico::desenharEnte(Ente *pE) {
     if (pE) {
-        janela->getJanela()->draw(*(pE->getCorpo()));
-        // pE->desenhar();
+        //janela->getJanela()->draw(*(pE->getCorpo()));
+        pE->desenhar();
     
     } else { cout << "GerenciadorGrafico::desenharEnte(Ente *pE) -> Ponteiro nulo." << endl; }
 }
 
 void GerenciadorGrafico::setJanela(Janela *pJ) {
     if (pJ) {
-        janela = pJ;
+        pJanela = pJ;
     } else { cout << "GerenciadorGrafico::setJanela(Janela *pJ) -> ponteiro nulo." << endl; }
+}
+
+void GerenciadorGrafico::setGC(GerenciadorColisoes* pGC){
+    if(pGC)
+        pGcolisoes = pGC;
+}
+
+void GerenciadorGrafico::setGE(GerenciadorEventos* pGE){
+    if(pGE)
+        pGeventos = pGE;
 }
 
 void GerenciadorGrafico::incluiEnte(Ente* pE){
@@ -65,3 +75,34 @@ void GerenciadorGrafico::incluiEnte(Ente* pE){
     else { cout << "GerenciadorGrafico::incluiEnte(Ente *pE) -> Ponteiro nulo." << endl; }
 
 }
+
+//Gambiarra
+RenderWindow* GerenciadorGrafico::getRenderWindow() const {
+    if(pJanela){
+        return pJanela->getJanela();
+    }
+    cout << "GerenciadorGrafico::getRenderWindow() -> Ponteiro nulo." << endl;
+    return NULL;
+}
+
+void GerenciadorGrafico::executar(){
+
+    if(!pEnte || !pGeventos || !pGcolisoes){
+        cout<<"GerenciadorGrafico::executar() -> Ponteiro nulo"<< endl;
+        return;
+    }
+        
+
+    while(pJanela->aberta()){
+        pEnte->setDeltaTime(relogio.restart().asSeconds());
+        pGeventos->executar();
+        pGcolisoes->executar();
+
+        pJanela->limpar();
+        desenharEnte(pEnte);
+        pJanela->exibir();
+    }
+
+}
+
+

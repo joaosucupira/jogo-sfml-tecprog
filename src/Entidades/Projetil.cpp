@@ -1,7 +1,8 @@
 #include "Projetil.hpp"
 
 
-Projetil::Projetil()
+Projetil::Projetil(float dx, float dy):
+Entidade(dx, dy)
 {
 }
 

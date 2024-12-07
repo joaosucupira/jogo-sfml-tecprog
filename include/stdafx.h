@@ -32,5 +32,6 @@ using namespace sf;
 #define CHAO 570// Posição Y que representa o chão (pixels)
 #define ALTURA_PULO 2.5 // Altura máxima do pulo do jogador (m)
 #define VELOCIDADE_ANDAR 2.0 // Velocidade de andar do jogador (m/s)
+#define COLISAO 10 
 
 

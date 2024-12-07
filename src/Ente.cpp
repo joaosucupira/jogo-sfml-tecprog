@@ -9,7 +9,7 @@ GerenciadorGrafico* Ente::pGG = GerenciadorGrafico::getInstancia();
 Ente::Ente() :
 id(cont_id++),
 corpo(new RectangleShape()),
-pDeltaTime(NULL)
+deltaTime(0.0)
 {
     setGGrafico();
 }
@@ -25,7 +25,7 @@ Ente::~Ente()
 /* Métodos base */
 
 void Ente::desenhar() {
-    pGG->desenharEnte(this);
+    pGG->getRenderWindow()->draw(*corpo);
     // janela->draw(*(pE->getCorpo()))
     
 }

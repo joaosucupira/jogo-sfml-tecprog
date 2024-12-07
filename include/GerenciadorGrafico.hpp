@@ -12,7 +12,7 @@ namespace Gerenciadores {
     class GerenciadorGrafico
     {
     private:
-        Janela* janela;
+        Janela* pJanela;
         Ente *pEnte;
         Clock relogio;
 
@@ -31,6 +31,10 @@ namespace Gerenciadores {
 
         /* Compartilhamento da classe Janela*/
         void setJanela(Janela* pJ);
+        void setGE(GerenciadorEventos* pGE);
+        void setGC(GerenciadorColisoes* pGC);
+
+        RenderWindow* getRenderWindow() const;
 
         void incluiEnte(Ente *pE);
         void executar();

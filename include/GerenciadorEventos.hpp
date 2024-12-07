@@ -19,6 +19,7 @@ public:
     void executar();
     
     void setJanela(Janela* pJ);
+    void setPJog(Jogador* pJ);
 };
 
 } using namespace Gerenciadores;

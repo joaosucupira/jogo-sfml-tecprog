@@ -15,7 +15,7 @@ protected:
     static int cont_id;
     int id;
     RectangleShape* corpo;
-    float *pDeltaTime;
+    float deltaTime; //virar static
 
     static GerenciadorGrafico* pGG;
 public:
@@ -27,7 +27,7 @@ public:
     void setGGrafico() { pGG = GerenciadorGrafico::getInstancia(); }
     void setId(const int i) { id = i; }
     void setCorpo(RectangleShape* pC);
-    void setDeltaTime(float* pDt){ if(pDt) pDeltaTime = pDt;}
+    void setDeltaTime(float dt){ deltaTime = dt;}
 
 
     const int getId() const { return id; }
