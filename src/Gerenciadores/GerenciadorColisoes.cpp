@@ -2,8 +2,8 @@
 
 GerenciadorColisoes::GerenciadorColisoes() :
 pJog1(NULL),
-pRelogio(NULL),
-gravidade(GRAVIDADE)
+gravidade(GRAVIDADE),
+pRelogio(NULL)
 {
     pJog1 = new Jogador(
         static_cast<int>((LARGURA - 100.0f) / 2),

@@ -10,20 +10,31 @@ class Personagem : public Entidade
 protected:
     int num_vidas;
     bool vivo;
-    
+    Vector2f velocidade;
+    bool estaPulando;
+
 public:
     Personagem(const int x_inicial = 0, const int y_inicial = 0);
     ~Personagem();
+    
+    virtual void executar() = 0;
+    virtual void mover(const int direcaoX, const int direcaoY);
 
     void setVidas(const int vidas) { num_vidas = vidas; }
     void calcVivo() { vivo = (num_vidas > 0 ? true : false); }
+    void setVelocidadeX(float x){ velocidade.x = x;}
+    void setVelocidadeY(float y){ velocidade.y = y;}
+    void setEstaPulando(bool pulou){ estaPulando = pulou;}
+    
+    const int getVidas() const { return num_vidas;}
+    const bool getVivo() const { return vivo;}
+    Vector2f getVelocidade() const { return velocidade;}
+    const bool getEstaPulando() const {return estaPulando;}
 
-    virtual void mover(const int direcaoX, const int direcaoY);
-    virtual void executar() = 0;
+    void operator--() { num_vidas--;}
 
-    const int getVidas() const { return num_vidas; }
-    const bool getVivo() const { return vivo; }
+    void aplicarVelocidade();
+    void aplicarGravidade();
 
-    void operator--() { num_vidas--; }
 };
 } using namespace Personagens;

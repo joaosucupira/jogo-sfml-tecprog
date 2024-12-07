@@ -1,29 +1,52 @@
 #include "GerenciadorEventos.hpp"
 
-Gerenciadores::GerenciadorEventos::GerenciadorEventos()
+using namespace Gerenciadores;
+
+GerenciadorEventos::GerenciadorEventos():
+evento(),
+pJog(NULL),
+pJanela(NULL)
 {
 }
 
-Gerenciadores::GerenciadorEventos::~GerenciadorEventos()
+GerenciadorEventos::~GerenciadorEventos()
 {
+    pJanela = NULL;
+    pJog = NULL;
 }
 
-void GerenciadorEventos::setWindow(RenderWindow *pR) {
+void GerenciadorEventos::setJanela(Janela* pJ){
+    if(pJ)
+        pJanela = pJ;
+    else
+        cout<< "GerenciadorEventos::setJanela(Janela* pJ) -> PONTEIRO NULO" << endl;
 }
 
-void GerenciadorEventos::setGraficos() {
+void GerenciadorEventos::monitorarJogador(){
 
-}
+    if (Keyboard::isKeyPressed(Keyboard::Left)){
+        pJog->setVelocidadeX(-VELOCIDADE_ANDAR);
+    } else if (Keyboard::isKeyPressed(Keyboard::Right)) {
+        pJog->setVelocidadeX(VELOCIDADE_ANDAR);
+    }
 
-void GerenciadorEventos::desenhar() {
-
-}
-
-void GerenciadorEventos::eventoBase()
-{
+    if (Keyboard::isKeyPressed(Keyboard::Space)) {
+        if (!pJog->getEstaPulando()) {
+            pJog->setEstaPulando(true);
+            pJog->setVelocidadeY(-sqrt(2.0 * GRAVIDADE * ALTURA_PULO));
+        }
+    }
 
 }
 
 void GerenciadorEventos::executar() {
+
+    while(pJanela->obterEvento(evento)){
+
+        if(evento.type == Event::Closed)
+            pJanela->fechar();
+        
+        monitorarJogador();
+    }
 
 }

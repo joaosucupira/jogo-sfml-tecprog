@@ -34,9 +34,9 @@ void Jogo::executar()
     Jogador* pJ = GC.getJogador();
     while (janela.aberta()) {
 
-        float dt = relogio->restart().asSeconds();
+        //float dt = relogio->restart().asSeconds();
 
-        janela.eventoBase();
+        //janela.eventoBase();
 
         // GC.tratarEntradaJogador(dt);
         // GC.aplicarGravidade(dt);

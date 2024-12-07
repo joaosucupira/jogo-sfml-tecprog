@@ -10,6 +10,8 @@
 
 #include "GerenciadorGrafico.hpp"
 #include "Ente.hpp"
+#include "GerenciadorEventos.hpp"
+#include "GerenciadorColisoes.hpp"
 
 using namespace Gerenciadores;
 
@@ -25,13 +27,18 @@ GerenciadorGrafico* GerenciadorGrafico::getInstancia() {
 
 /* CONSTRUTORA / DESTRUTORA */
 GerenciadorGrafico::GerenciadorGrafico() :
-janela(NULL)
+janela(NULL),
+relogio(),
+pGeventos(NULL),
+pGcolisoes(NULL)
 {
 }
 
 GerenciadorGrafico::~GerenciadorGrafico()
 {
     janela = NULL;
+    pGeventos = NULL;
+    pGcolisoes = NULL;
 }
 
 
@@ -39,7 +46,7 @@ GerenciadorGrafico::~GerenciadorGrafico()
 
 void Gerenciadores::GerenciadorGrafico::desenharEnte(Ente *pE) {
     if (pE) {
-        janela->draw(*(pE->getCorpo()));
+        janela->getJanela()->draw(*(pE->getCorpo()));
         // pE->desenhar();
     
     } else { cout << "GerenciadorGrafico::desenharEnte(Ente *pE) -> Ponteiro nulo." << endl; }
@@ -47,6 +54,14 @@ void Gerenciadores::GerenciadorGrafico::desenharEnte(Ente *pE) {
 
 void GerenciadorGrafico::setJanela(Janela *pJ) {
     if (pJ) {
-        janela = pJ->getJanela();
+        janela = pJ;
     } else { cout << "GerenciadorGrafico::setJanela(Janela *pJ) -> ponteiro nulo." << endl; }
+}
+
+void GerenciadorGrafico::incluiEnte(Ente* pE){
+    if(pE){
+        pEnte = pE;
+    }
+    else { cout << "GerenciadorGrafico::incluiEnte(Ente *pE) -> Ponteiro nulo." << endl; }
+
 }

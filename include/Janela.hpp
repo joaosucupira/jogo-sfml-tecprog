@@ -21,6 +21,8 @@ public:
     void eventoBase();
 
     RenderWindow* getJanela() const;
+    
+    const bool obterEvento(Event &evento){ return janela->pollEvent(evento);}
     const bool aberta() const { return janela->isOpen(); }
 
 };

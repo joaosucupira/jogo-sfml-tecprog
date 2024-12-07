@@ -29,8 +29,8 @@ void Entidades::Entidade::setCor(const Color &cor) {
     corpo->setFillColor(cor);
 }
 
-void Entidade::setVelocidade(const float x, const float y) {
+/*void Entidade::setVelocidade(const float x, const float y) {
     velocidade = Vector2f(x,y);
-}
+}*/
 
 

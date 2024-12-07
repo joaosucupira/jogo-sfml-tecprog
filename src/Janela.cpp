@@ -13,7 +13,7 @@ Janela::~Janela() {
 
 /* MÉTODOS PRINCIPAIS*/
 
-void Janela::eventoBase() {
+/*void Janela::eventoBase() {
     Event e;
     while (getJanela()->pollEvent(e)) {
         
@@ -21,7 +21,7 @@ void Janela::eventoBase() {
             fechar();
         }
     }
-}
+}*/
 
 RenderWindow *Janela::getJanela() const
 {

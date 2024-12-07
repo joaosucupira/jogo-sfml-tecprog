@@ -1,24 +1,24 @@
 #pragma once
 #include "stdafx.h"
-#include "GerenciadorGrafico.hpp"
-#include "GerenciadorColisoes.hpp"
-// #include "ListaEntidades.hpp"
 #include "Jogador.hpp"
+#include "Janela.hpp"
 
 namespace Gerenciadores {
 class GerenciadorEventos
 {
 private:
-
+    Event evento;
+    Jogador *pJog;
+    Janela *pJanela;
 
 public:
     GerenciadorEventos();
     ~GerenciadorEventos();
-    void setWindow(RenderWindow* pR);
-    void setGraficos();
-    void desenhar();
-    void eventoBase();
+  
+    void monitorarJogador();
     void executar();
+    
+    void setJanela(Janela* pJ);
 };
 
 } using namespace Gerenciadores;

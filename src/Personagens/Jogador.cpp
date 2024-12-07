@@ -9,7 +9,7 @@ joga1(cont == 0)
     if (cont < 2) {
         escolheCor();
         cont++;
-        setVelocidade(20.0f, 20.0f);
+        //setVelocidade(20.0f, 20.0f);
     } else { cout << endl << "Jogador::Jogador() -> Apenas dois jogadores permitidos." << endl; }
 ;    
 }
@@ -24,7 +24,7 @@ void Personagens::Jogador::escolheCor() {
 
 void Jogador::operator+=(int pts) { pontos += pts; }
 
-void Jogador::andar(float dt) {
+/*void Jogador::andar(float dt) {
 
     if (Keyboard::isKeyPressed(Keyboard::Right)) 
         mover(velocidade.x * dt, 0.0f); 
@@ -50,10 +50,14 @@ void Jogador::pular(float dt) {
 
     velocidadeVertical += GRAVIDADE * dt;
     mover(0.0f, velocidadeVertical * dt);
-}
+}*/
 
 void Jogador::salvaDataBuffer() {
 }
 
 void Jogador::executar() {
+
+    aplicarVelocidade();
+    aplicarGravidade();
+    velocidade.x = 0;
 }

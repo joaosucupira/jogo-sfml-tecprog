@@ -1,4 +1,6 @@
 #include "Ente.hpp"
+
+
 int Ente::cont_id(0);
 GerenciadorGrafico* Ente::pGG = GerenciadorGrafico::getInstancia();
 
@@ -6,7 +8,8 @@ GerenciadorGrafico* Ente::pGG = GerenciadorGrafico::getInstancia();
 
 Ente::Ente() :
 id(cont_id++),
-corpo(new RectangleShape())
+corpo(new RectangleShape()),
+pDeltaTime(NULL)
 {
     setGGrafico();
 }
@@ -33,13 +36,13 @@ void Ente::setCorpo(RectangleShape *pC) {
     } else { cout << "Ente::setCorpo(RectangleShape *pC) -> ponteiro nulo." << endl; }
 }
 
-// void Ente::moverSprite(const sf::Vector2f vMove) {
+void Ente::moverSprite(Vector2f vMove) {
 //     // posicao_inicial = sf::Vector2f(
 //     //     posicao_inicial.x + vMove.x, 
 //     //     posicao_inicial.y + vMove.y
 //     // );
-//     getCorpo().move(vMove);
-// }
+    corpo->move(vMove);
+}
 
 
 // /* Métodos set e get */

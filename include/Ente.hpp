@@ -14,9 +14,10 @@ class Ente
 protected:
     static int cont_id;
     int id;
-    static GerenciadorGrafico* pGG;
     RectangleShape* corpo;
+    float *pDeltaTime;
 
+    static GerenciadorGrafico* pGG;
 public:
     Ente();
     virtual ~Ente();
@@ -26,10 +27,16 @@ public:
     void setGGrafico() { pGG = GerenciadorGrafico::getInstancia(); }
     void setId(const int i) { id = i; }
     void setCorpo(RectangleShape* pC);
+    void setDeltaTime(float* pDt){ if(pDt) pDeltaTime = pDt;}
+
 
     const int getId() const { return id; }
     RectangleShape* getCorpo() const { return corpo;}
-    // void moverSprite(const sf::Vector2f vMove);
+    
+
+    void moverSprite(Vector2f vMove);
+
+
     // void setPos(const sf::Vector2f posicao);
 
 };

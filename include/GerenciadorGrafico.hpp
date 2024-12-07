@@ -5,10 +5,19 @@
 class Ente;
 
 namespace Gerenciadores {
+
+    class GerenciadorEventos;
+    class GerenciadorColisoes;
+
     class GerenciadorGrafico
     {
     private:
-        RenderWindow* janela;
+        Janela* janela;
+        Ente *pEnte;
+        Clock relogio;
+
+        GerenciadorEventos *pGeventos;
+        GerenciadorColisoes *pGcolisoes;
 
         /* Singleton */
         static GerenciadorGrafico* instancia; 
@@ -22,6 +31,9 @@ namespace Gerenciadores {
 
         /* Compartilhamento da classe Janela*/
         void setJanela(Janela* pJ);
+
+        void incluiEnte(Ente *pE);
+        void executar();
 
     };
 
