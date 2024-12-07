@@ -1,16 +1,25 @@
-UTFPR - CURITIBA
+UTFPR-CT (CURITIBA)
+CURSO:
+    BACHARELADO EM SISTEMAS DE INFORMAÇÃPO
 ALUNOS:
-    JOAO ANTONIO TEIXEIRA SUCUPIRA (2609789)
-    ...
-DOCUMENTAÇÃO DO TRABALHO DE TÉCNICAS DE PROGRAMAÇÃO 2024.2
-PROF.: JEAN SIMAO
+    João Antonio Teixeira Sucupira
+    João Gabriel Klug Teixeira
+    
+DOCUMENTAÇÃO DO TRABALHO DE TÉCNICAS DE PROGRAMAÇÃO TURMA S73 2024.2
+PROF.: Jean Marcelo Simão
 
 PASTAS:
-/.VSCODE
-    Configurações de desenvolvimento, incluindo o include path para a biblioteca gráfica do SFML;
-/DEBUG
-    Arquivos dll voltado ao debug em relação aos pacotes SFML (Os dlls para depuração estão na raiz do projeot);
-/REFERENCES
-    Pastas com exercícios e exemplos da utilização do SFML para auxílio do projeto oficial;
-/SRC
-    Classes, cabeçalhos e programa principal que roda o Jogo -- Bem como o Makefile que compila corretamente todos presentes;
+    /.VSCODE
+        Configurações de desenvolvimento, incluindo o include path para a biblioteca gráfica do SFML; *
+    /SRC
+        Arquivos cpp das classes desenvolvidas para o projeto;
+    /INCLUDE
+        Cabeçalhos e templates utilizados pelo projeto;
+    /UML
+        Diagramas UML e detalhementos sobre a tabela de requisitos deste projeto;
+    
+INSTRUÇÕES DE EXECUÇÃO:
+    - Certifique-se de configurar corretamente o caminho da biblioteca em .vscode/ (*) e de utilizar um terminal linux de um WSL caso você esteja usando sistema windows.
+    (Caso sua IDE trate desses detalhes releve essa instrução);
+    - Rode o comando "make; ./bin/Jogo" para compilar e executar o Jogo;
+    
