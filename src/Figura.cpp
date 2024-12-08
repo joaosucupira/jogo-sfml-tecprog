@@ -28,6 +28,7 @@ void Figura::setSprite(string path_sprite)
         carregarTextura(path_sprite);
         pSprite->setTexture(*pTextura);
 
+        // Escolhendo a seção da sprite
         pSprite->setTextureRect(IntRect(24, 0, 24, 24));
         pSprite->setOrigin(12.0f, 12.0f);
         pSprite->setScale(Vector2f(7.0f, 7.0f));

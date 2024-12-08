@@ -29,9 +29,11 @@ Ente::~Ente()
 
 /* Métodos principais */
 
+// Gambiarra
 void Ente::desenhar() {
     // pGG->getRenderWindow()->draw(*corpo);
     pGG->getRenderWindow()->draw(*(figura->getSprite()));
+
 }
 
 void Ente::setCorpo(RectangleShape *pC) {
