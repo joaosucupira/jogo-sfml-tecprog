@@ -8,6 +8,7 @@
 #pragma once
 #include "stdafx.h"
 #include "GerenciadorGrafico.hpp"
+#include "Figura.hpp"
 
 class Ente
 {
@@ -15,6 +16,7 @@ protected:
     static int cont_id;
     int id;
     RectangleShape* corpo;
+    Figura* figura;
     float deltaTime; //virar static
 
     static GerenciadorGrafico* pGG;

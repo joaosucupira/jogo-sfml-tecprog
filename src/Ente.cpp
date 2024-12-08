@@ -8,6 +8,7 @@ GerenciadorGrafico* Ente::pGG = GerenciadorGrafico::getInstancia();
 Ente::Ente() :
 id(cont_id++),
 corpo(new RectangleShape()),
+figura(new Figura()),
 deltaTime(0.0)
 {
     setGGrafico();
@@ -19,6 +20,11 @@ Ente::~Ente()
         delete corpo;
     }
     corpo = NULL;
+
+    if (figura != NULL) {
+        delete figura;
+    }
+    figura = NULL;
 }
 
 /* Métodos principais */

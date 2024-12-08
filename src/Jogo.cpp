@@ -32,6 +32,6 @@ void Jogo::distribuirJanela()
 }
 
 void Jogo::executar()
-{   
+{
     pGG->executar();
 }
