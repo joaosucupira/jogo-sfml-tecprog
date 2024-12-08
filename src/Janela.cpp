@@ -11,18 +11,6 @@ Janela::~Janela() {
     janela = NULL;
 }
 
-/* MÉTODOS PRINCIPAIS*/
-
-/*void Janela::eventoBase() {
-    Event e;
-    while (getJanela()->pollEvent(e)) {
-        
-        if (e.type == Event::Closed) {
-            fechar();
-        }
-    }
-}*/
-
 RenderWindow *Janela::getJanela() const
 {
     if (janela == NULL) {
