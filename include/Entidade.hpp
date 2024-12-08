@@ -42,16 +42,8 @@ namespace Entidades
         const float getTamX() const { return corpo->getSize().x; }
         const float getTamY() const { return corpo->getSize().y; }
 
-        /*
-        void setVelocidade(const float x, const float y);
-        const Vector2f getVelocidade() const { return velocidade; }
-        
-        void setPosX(const float x) { corpo->setPosition(x, getPosY()); }
-        void setPosY(const float y) { corpo->setPosition(getPosX(), y); }
-
-        const float getPosX() const { return corpo->getPosition().x; }
-        const float getPosY() const { return corpo->getPosition().y; }
-        */
+        // Usar apenas nas classes que já carregam as texturas das sprites por enquanto
+        void ajustarSprite();
     };
 
 

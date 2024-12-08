@@ -2,7 +2,7 @@
 #include "stdafx.h"
 #include "Personagem.hpp"
 
-#define JOGADOR_PATH "../assets/Jogador/player.24x24.png"
+#define JOGADOR_PATH "./assets/Jogador/player.24x24.png"
 
 namespace Personagens {
     class Jogador : public Personagem

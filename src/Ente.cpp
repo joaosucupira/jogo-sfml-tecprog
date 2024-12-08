@@ -30,7 +30,8 @@ Ente::~Ente()
 /* Métodos principais */
 
 void Ente::desenhar() {
-    pGG->getRenderWindow()->draw(*corpo);
+    // pGG->getRenderWindow()->draw(*corpo);
+    pGG->getRenderWindow()->draw(*(figura->getSprite()));
 }
 
 void Ente::setCorpo(RectangleShape *pC) {

@@ -14,8 +14,8 @@ public:
     Figura();
     ~Figura();
 
+    void carregarTextura(string path_sprite);
     void setSprite(string path_sprite);
-    
     Sprite* getSprite() const { return pSprite; }
 };
 
