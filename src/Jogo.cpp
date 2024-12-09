@@ -6,24 +6,17 @@ Jogo::Jogo() :
 GC(),
 GE(),
 janela()
-//relogio(new Clock())
 {
     distribuir();
     executar();
 }
 
 Jogo::~Jogo() {
-    //relogio = NULL;
 }
 
 void Jogo::distribuir() {
-    //distribuirRelogio();
     distribuirJanela();
 }
-
-/*void Jogo::distribuirRelogio() {
-    GC.setRelogio(relogio);
-}*/
 
 void Jogo::distribuirJanela()
 {

@@ -1,5 +1,6 @@
 #include "Personagem.hpp"
 
+/* Construtoras/Destrutora */
 Personagem::Personagem(const float x,  const float y) :
 Entidade(x,y),
 num_vidas(1),
@@ -12,26 +13,19 @@ Personagem::~Personagem() {
     num_vidas = -1;
 }
 
+/* Métodos principais*/
 void Personagem::mover(){
 
-    x += velocidade.x * deltaTime * PIXEL_METRO;
-    y += velocidade.y * deltaTime * PIXEL_METRO;
+    x += velocidade.x *  PIXEL_METRO * deltaTime;
+    y += velocidade.y *  PIXEL_METRO * deltaTime;
 
-    setPosicaoCorpo(x,y);
+    setPosicaoCorpo(x,y);    
 }
 
+// Trocar para ser feita no gerenciador de colisões:: Dica do monitor
 void Personagem::aplicarGravidade(){
 
     if(estaPulando)
         velocidade.y += GRAVIDADE * deltaTime;
 }
 
-
-/*
-void Personagem::mover(const int direcaoX, const int direcaoY) {
-    if (vivo) {
-        float x = direcaoX * velocidade.x;
-        float y = direcaoY * velocidade.y; 
-        corpo->move(x, y);
-    }
-}*/

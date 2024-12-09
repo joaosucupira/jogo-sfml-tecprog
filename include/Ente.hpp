@@ -32,12 +32,9 @@ public:
 
     const int getId() const { return id; }
     RectangleShape* getCorpo() const { return corpo;}
-    
 
-    void moverSprite(Vector2f vMove);
-
-
-    // void setPos(const sf::Vector2f posicao);
+    const float getTamX() const { return corpo->getSize().x; }
+    const float getTamY() const { return corpo->getSize().y; }
 
 };
 

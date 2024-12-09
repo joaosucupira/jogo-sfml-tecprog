@@ -88,7 +88,7 @@ RenderWindow* GerenciadorGrafico::getRenderWindow() const {
 void GerenciadorGrafico::executar(){
 
     if(!pEnte || !pGeventos || !pGcolisoes){
-        cout<<"GerenciadorGrafico::executar() -> Ponteiro nulo"<< endl;
+        cout << "GerenciadorGrafico::executar() -> Ponteiro nulo" << endl;
         return;
     }
         

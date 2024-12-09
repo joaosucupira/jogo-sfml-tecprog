@@ -2,8 +2,6 @@
 
 GerenciadorColisoes::GerenciadorColisoes() :
 pJog1(NULL)
-//gravidade(GRAVIDADE),
-//pRelogio(NULL)
 {
     pJog1 = new Jogador(
         (LARGURA - 100.0f) / 2,
@@ -16,8 +14,9 @@ GerenciadorColisoes::~GerenciadorColisoes() {
 }
 
 void GerenciadorColisoes::executar() {
-    
-
+    /* chamei esses e o quadrado se move e pula */
+    colisaoJogadorChao();
+    pJog1->executar();
 }
 
 
@@ -35,6 +34,7 @@ void GerenciadorColisoes::colisaoJogadorChao(){
     if (posicao.x + tamanho.x > LARGURA) { // Lado direito
         pJog1->setXY(LARGURA - tamanho.x - COLISAO, posicao.y);
         pJog1->setVelocidadeX(0);
+
     } else if (posicao.x < 0) { // Lado esquerdo
         pJog1->setXY(COLISAO, posicao.y);
         pJog1->setVelocidadeX(0);
@@ -46,18 +46,11 @@ void GerenciadorColisoes::colisaoJogadorChao(){
         pJog1->setVelocidadeY(0);
         pJog1->setEstaPulando(false);
     }
-
-
 }
 
 
 
 /*
-void GerenciadorColisoes::setRelogio(Clock *pR) {
-    if (pR) {
-        pRelogio = pR;
-    } else cout << "GerenciadorColisoes::setRelogio(Clock *pR) -> ponteiro nulo" << endl;
-}
 
 void GerenciadorColisoes::tratarEntradaJogador(float dt) {
 

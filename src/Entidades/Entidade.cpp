@@ -17,7 +17,9 @@ Entidade::~Entidade() {
 }
 
 void Entidade::setPosicaoCorpo(const float x, const float y) {
-    corpo->setPosition(x, y);
+    if (corpo) {
+        corpo->setPosition(x, y);
+    } cout << "Entidade::setPosicaoCorpo(const float x, const float y) -> ponteiro nulo." << endl;
 }
 
 void Entidade::setXY(const float novoX, const float novoY){
@@ -27,15 +29,16 @@ void Entidade::setXY(const float novoX, const float novoY){
 
 void Entidade::setTamanho(const float x, const float y) {
     Vector2f tamanho(x, y);
-    corpo->setSize(tamanho);
+    if (corpo) {
+        corpo->setSize(tamanho);
+    } else { cout << "Entidade::setTamanho(const float x, const float y) -> ponteiro nulo." << endl; }
 }
 
-void Entidades::Entidade::setCor(const Color &cor) {
-    corpo->setFillColor(cor);
+void Entidade::setCor(const Color &cor) {
+    if (corpo) {
+        corpo->setFillColor(cor);
+    } else { cout << "Entidade::setCor(const Color &cor) -> ponteiro nulo." << endl; }
 }
 
-/*void Entidade::setVelocidade(const float x, const float y) {
-    velocidade = Vector2f(x,y);
-}*/
 
 
