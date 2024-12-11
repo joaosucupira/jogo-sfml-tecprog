@@ -53,15 +53,18 @@ void GerenciadorEventos::monitorarJogador() {
 
     // Tirei os else para possibilitar movimento suave
     if (Keyboard::isKeyPressed(Keyboard::Left)) {
+        pJog->getFigura()->getSprite()->setScale(-10.0f, 10.0f);
         pJog->setVelocidadeX(-VELOCIDADE_ANDAR);
         if (relogio.getElapsedTime().asMilliseconds() > 100) {
             pJog->atualizarSprite();
             relogio.restart();
         }
+        
 
     }
 
     if (Keyboard::isKeyPressed(Keyboard::Right)) {
+        pJog->getFigura()->getSprite()->setScale(10.0f, 10.0f);
         pJog->setVelocidadeX(VELOCIDADE_ANDAR);
         if (relogio.getElapsedTime().asMilliseconds() > 100) {
             pJog->atualizarSprite();

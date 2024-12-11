@@ -34,6 +34,8 @@ public:
 
     const int getId() const { return id; }
     const float getDeltaTime() const { return deltaTime; }
+    // tirar isso
+    Figura* getFigura() { return figura; }
     RectangleShape* getCorpo() const { return corpo;}
 
 };
