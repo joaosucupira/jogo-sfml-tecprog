@@ -18,7 +18,6 @@ Entidade::~Entidade() {
 
 void Entidade::setPosicaoCorpo(const float x, const float y) {
     corpo->setPosition(x, y);
-
     if (figura) figura->getSprite()->setPosition(x, y);
     else cout << "Entidade::setPosicaoCorpo(const float x, const float y) -> ponteiro nulo!" << endl;
 }
