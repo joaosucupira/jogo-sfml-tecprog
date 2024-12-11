@@ -92,7 +92,7 @@ void GerenciadorGrafico::executar(){
     }
         
 
-    while(pJanela->aberta()){
+    while (pJanela->aberta()) {
         pEnte->setDeltaTime(relogio.restart().asSeconds());
         pGeventos->executar();
         pGcolisoes->executar();
@@ -100,6 +100,8 @@ void GerenciadorGrafico::executar(){
         pJanela->limpar();
         desenharEnte(pEnte);
         pJanela->exibir();
+
+        
     }
 
 }

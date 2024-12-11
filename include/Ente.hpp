@@ -17,7 +17,7 @@ protected:
     int id;
     RectangleShape* corpo;
     Figura* figura;
-    float deltaTime; //virar static
+    float deltaTime; //virar static// ele perde a precisao
 
     static GerenciadorGrafico* pGG;
 public:
@@ -33,6 +33,7 @@ public:
 
 
     const int getId() const { return id; }
+    const float getDeltaTime() const { return deltaTime; }
     RectangleShape* getCorpo() const { return corpo;}
 
 };

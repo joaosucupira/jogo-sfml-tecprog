@@ -10,12 +10,16 @@ class Figura
 private:
     Texture* pTextura;
     Sprite* pSprite;
+    IntRect secao_atual;
 public:
     Figura();
     ~Figura();
 
     void carregarTextura(string path_sprite);
     void setSprite(string path_sprite);
+    void setProximaSecaoSprite();
+    void setSpriteInicial();
+
     Sprite* getSprite() const { return pSprite; }
 };
 

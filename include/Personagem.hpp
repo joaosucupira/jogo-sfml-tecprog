@@ -12,6 +12,7 @@ protected:
     bool vivo;
     Vector2f velocidade;
     bool estaPulando;
+    // Clock relogio;
 
 public:
     Personagem(const float x_inicial = 0, const float y_inicial = 0);
@@ -36,6 +37,10 @@ public:
 
     /* Colocar na classe de gerenciador de colisões */
     void aplicarGravidade();
+
+    void atualizarSprite();
+
+    void spriteInicial();
 
 };
 } using namespace Personagens;

@@ -12,7 +12,8 @@ using namespace Gerenciadores;
 GerenciadorEventos::GerenciadorEventos():
 evento(),
 pJog(NULL),
-pJanela(NULL)
+pJanela(NULL),
+relogio()
 {
 }
 
@@ -35,23 +36,37 @@ void GerenciadorEventos::setPJog(Jogador* pJ){
     if(pJ)
         pJog = pJ;
     else
-        cout << " GerenciadorEventos::setPJog(Jogador* pJ) -> PONTEIRO NULO" << endl;
+        cout << "GerenciadorEventos::setPJog(Jogador* pJ) -> PONTEIRO NULO" << endl;
 }
 
 /* Métodos principais*/
 
-void GerenciadorEventos::monitorarJogador(){
+void GerenciadorEventos::monitorarJogador() {
 
     /* Inicializar a posicao como 0 aqui impede que seja travada */
     pJog->setVelocidadeX(0.0f);
 
+    // if (evento.type == Event::KeyPressed && evento.type == Keyboard::Left) {
+    //     pJog->atualizarSprite();
+    //     relogio.restart();
+    // }
+
     // Tirei os else para possibilitar movimento suave
-    if (Keyboard::isKeyPressed(Keyboard::Left)){
+    if (Keyboard::isKeyPressed(Keyboard::Left)) {
         pJog->setVelocidadeX(-VELOCIDADE_ANDAR);
-    } 
-    
+        if (relogio.getElapsedTime().asMilliseconds() > 100) {
+            pJog->atualizarSprite();
+            relogio.restart();
+        }
+
+    }
+
     if (Keyboard::isKeyPressed(Keyboard::Right)) {
         pJog->setVelocidadeX(VELOCIDADE_ANDAR);
+        if (relogio.getElapsedTime().asMilliseconds() > 100) {
+            pJog->atualizarSprite();
+            relogio.restart();
+        }
     }
 
     if (Keyboard::isKeyPressed(Keyboard::Space)) {
@@ -60,6 +75,7 @@ void GerenciadorEventos::monitorarJogador(){
             pJog->setVelocidadeY(-sqrt(2.0 * GRAVIDADE * ALTURA_PULO));
         }
     }
+
 }
 
 void GerenciadorEventos::executar() {

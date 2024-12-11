@@ -42,6 +42,7 @@ void Jogador::salvaDataBuffer() {
 void Jogador::executar() {
 
     mover();
+    
 
     // Colocar na classe gerenciador de colisoes
     aplicarGravidade();

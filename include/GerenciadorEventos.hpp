@@ -10,6 +10,7 @@ private:
     Event evento;
     Jogador *pJog;
     Janela *pJanela;
+    Clock relogio;
 
 public:
     GerenciadorEventos();

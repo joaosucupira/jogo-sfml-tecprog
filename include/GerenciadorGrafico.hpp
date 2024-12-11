@@ -37,6 +37,10 @@ namespace Gerenciadores {
         RenderWindow* getRenderWindow() const;
 
         void incluiEnte(Ente *pE);
+
+        // usando para corrigir atualizarSprite()
+        float getDeltaTime() const { return relogio.getElapsedTime().asSeconds(); } 
+
         void executar();
 
     };
