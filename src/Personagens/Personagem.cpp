@@ -15,11 +15,10 @@ Personagem::~Personagem() {
 
 /* Métodos principais*/
 void Personagem::mover(){
-
     x += velocidade.x *  PIXEL_METRO * deltaTime;
     y += velocidade.y *  PIXEL_METRO * deltaTime;
 
-    setPosicaoCorpo(x,y);    
+    setPosicaoCorpo(x,y);
 }
 
 // Trocar para ser feita no gerenciador de colisões:: Dica do monitor
@@ -29,3 +28,10 @@ void Personagem::aplicarGravidade(){
         velocidade.y += GRAVIDADE * deltaTime;
 }
 
+void Personagens::Personagem::atualizarSprite() {
+    figura->setProximaSecaoSprite();
+}
+
+void Personagens::Personagem::spriteInicial() {
+    figura->setSpriteInicial();
+}

@@ -8,6 +8,7 @@
 #pragma once
 #include "stdafx.h"
 #include "GerenciadorGrafico.hpp"
+#include "Figura.hpp"
 
 class Ente
 {
@@ -15,7 +16,8 @@ protected:
     static int cont_id;
     int id;
     RectangleShape* corpo;
-    float deltaTime; //virar static
+    Figura* figura;
+    float deltaTime; //virar static// ele perde a precisao
 
     static GerenciadorGrafico* pGG;
 public:
@@ -31,6 +33,9 @@ public:
 
 
     const int getId() const { return id; }
+    const float getDeltaTime() const { return deltaTime; }
+    // tirar isso
+    Figura* getFigura() { return figura; }
     RectangleShape* getCorpo() const { return corpo;}
 
     const float getTamX() const { return corpo->getSize().x; }

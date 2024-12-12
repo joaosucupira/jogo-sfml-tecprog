@@ -16,10 +16,6 @@ namespace Gerenciadores{
         ~GerenciadorColisoes();
         void executar();
 
-        //void setRelogio(Clock* pR);
-        //void tratarEntradaJogador(float dt);
-        //void aplicarGravidade(float dt);
-
         void colisaoJogadorChao();
         void colisaoJogadorParede();
 

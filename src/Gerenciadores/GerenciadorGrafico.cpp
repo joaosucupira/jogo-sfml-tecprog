@@ -27,11 +27,12 @@ GerenciadorGrafico* GerenciadorGrafico::getInstancia() {
 
 /* CONSTRUTORA / DESTRUTORA */
 GerenciadorGrafico::GerenciadorGrafico() :
-pJanela(NULL),
+pJanela(new RenderWindow(VideoMode(LARGURA, ALTURA), "Anomalia++")),
 relogio(),
 pGeventos(NULL),
 pGcolisoes(NULL)
 {
+    pJanela->setFramerateLimit(TAXA_QUADROS);
 }
 
 GerenciadorGrafico::~GerenciadorGrafico()
@@ -46,16 +47,9 @@ GerenciadorGrafico::~GerenciadorGrafico()
 
 void Gerenciadores::GerenciadorGrafico::desenharEnte(Ente *pE) {
     if (pE) {
-        //janela->getJanela()->draw(*(pE->getCorpo()));
         pE->desenhar();
     
     } else { cout << "GerenciadorGrafico::desenharEnte(Ente *pE) -> Ponteiro nulo." << endl; }
-}
-
-void GerenciadorGrafico::setJanela(Janela *pJ) {
-    if (pJ) {
-        pJanela = pJ;
-    } else { cout << "GerenciadorGrafico::setJanela(Janela *pJ) -> ponteiro nulo." << endl; }
 }
 
 void GerenciadorGrafico::setGC(GerenciadorColisoes* pGC){
@@ -76,12 +70,13 @@ void GerenciadorGrafico::incluiEnte(Ente* pE){
 
 }
 
-//Gambiarra
-RenderWindow* GerenciadorGrafico::getRenderWindow() const {
+
+RenderWindow* GerenciadorGrafico::getPJanela() const {
+
     if(pJanela){
-        return pJanela->getJanela();
+        return pJanela;
     }
-    cout << "GerenciadorGrafico::getRenderWindow() -> Ponteiro nulo." << endl;
+    cout << "GerenciadorGrafico::getPJanela() -> Ponteiro nulo." << endl;
     return NULL;
 }
 
@@ -93,14 +88,25 @@ void GerenciadorGrafico::executar(){
     }
         
 
-    while(pJanela->aberta()){
+    while (pJanela->isOpen()) {
+
         pEnte->setDeltaTime(relogio.restart().asSeconds());
-        pGeventos->executar();
+
+        while(pJanela->pollEvent( *(pGeventos->getEvento()) )){
+
+            if(pGeventos->getEvento()->type == Event::Closed)
+                pJanela->close();
+
+            pGeventos->executar();
+        }
+            
+        
         pGcolisoes->executar();
 
-        pJanela->limpar();
+        pJanela->clear();
         desenharEnte(pEnte);
-        pJanela->exibir();
+        pJanela->display();
+        
     }
 
 }
