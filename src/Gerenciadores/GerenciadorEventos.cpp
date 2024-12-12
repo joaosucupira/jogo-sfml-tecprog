@@ -12,25 +12,16 @@ using namespace Gerenciadores;
 GerenciadorEventos::GerenciadorEventos():
 evento(),
 pJog(NULL),
-pJanela(NULL),
 relogio()
 {
 }
 
 GerenciadorEventos::~GerenciadorEventos()
 {
-    pJanela = NULL;
     pJog = NULL;
 }
 
 /* Métodos auxiliares */
-
-void GerenciadorEventos::setJanela(Janela* pJ){
-    if(pJ)
-        pJanela = pJ;
-    else
-        cout<< "GerenciadorEventos::setJanela(Janela* pJ) -> PONTEIRO NULO" << endl;
-}
 
 void GerenciadorEventos::setPJog(Jogador* pJ){
     if(pJ)
@@ -55,7 +46,7 @@ void GerenciadorEventos::monitorarJogador() {
     if (Keyboard::isKeyPressed(Keyboard::Left)) {
         pJog->getFigura()->getSprite()->setScale(-10.0f, 10.0f);
         pJog->setVelocidadeX(-VELOCIDADE_ANDAR);
-        if (relogio.getElapsedTime().asMilliseconds() > 100) {
+        if (relogio.getElapsedTime().asMilliseconds() > 100) { //vai sumir
             pJog->atualizarSprite();
             relogio.restart();
         }
@@ -66,7 +57,7 @@ void GerenciadorEventos::monitorarJogador() {
     if (Keyboard::isKeyPressed(Keyboard::Right)) {
         pJog->getFigura()->getSprite()->setScale(10.0f, 10.0f);
         pJog->setVelocidadeX(VELOCIDADE_ANDAR);
-        if (relogio.getElapsedTime().asMilliseconds() > 100) {
+        if (relogio.getElapsedTime().asMilliseconds() > 100) { //vai sumir
             pJog->atualizarSprite();
             relogio.restart();
         }
@@ -82,18 +73,7 @@ void GerenciadorEventos::monitorarJogador() {
 }
 
 void GerenciadorEventos::executar() {
-
-    if(!pJanela){
-        cout<< "GerenciadorEventos::executar() -> PONTEIRO NULO" << endl;
-        return;
-    }
-
-    while(pJanela->obterEvento(evento)){
-
-        if(evento.type == Event::Closed)
-            pJanela->fechar();
-        
-        monitorarJogador();
-    }
-
+    
+    monitorarJogador();
+    
 }

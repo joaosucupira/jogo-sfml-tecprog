@@ -3,7 +3,6 @@
 #include "GerenciadorGrafico.hpp"
 #include "GerenciadorColisoes.hpp"
 #include "GerenciadorEventos.hpp"
-#include "Janela.hpp"
 #include "stdafx.h"
 
 
@@ -16,13 +15,9 @@ private:
 
     /* Instancia singleton do Gerenciador Grafico */
     static GerenciadorGrafico* pGG;
-
-    /* Janela que é passada por referência para objetos que irão a manipular */
-    Janela janela;
+   
 
     Jogador jog1;
-
-
     
 public:
     Jogo();
@@ -31,7 +26,6 @@ public:
     void distribuir();
     
     //void distribuirRelogio();
-    void distribuirJanela();
 
     void executar();
 };

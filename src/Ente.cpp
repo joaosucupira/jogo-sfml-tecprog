@@ -32,7 +32,7 @@ Ente::~Ente()
 // Gambiarra
 void Ente::desenhar() {
     // pGG->getRenderWindow()->draw(*corpo);
-    pGG->getRenderWindow()->draw(*(figura->getSprite()));
+    pGG->getPJanela()->draw(*(figura->getSprite()));
 
 }
 

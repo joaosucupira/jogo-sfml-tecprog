@@ -1,15 +1,13 @@
 #pragma once
 #include "stdafx.h"
 #include "Jogador.hpp"
-#include "Janela.hpp"
 
 namespace Gerenciadores {
 class GerenciadorEventos
 {
 private:
-    Event evento;
+    Event evento; // fazer ponteiro e alocar na construtora
     Jogador *pJog;
-    Janela *pJanela;
     Clock relogio;
 
 public:
@@ -18,8 +16,9 @@ public:
   
     void monitorarJogador();
     void executar();
+
+    Event* getEvento() { return &evento; }
     
-    void setJanela(Janela* pJ);
     void setPJog(Jogador* pJ);
 };
 

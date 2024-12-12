@@ -1,6 +1,5 @@
 #pragma once
 #include "stdafx.h"
-#include "Janela.hpp"
 
 class Ente;
 
@@ -12,7 +11,7 @@ namespace Gerenciadores {
     class GerenciadorGrafico
     {
     private:
-        Janela* pJanela;
+        RenderWindow* pJanela;
         Ente *pEnte;
         Clock relogio;
 
@@ -30,11 +29,10 @@ namespace Gerenciadores {
         void desenharEnte(Ente* pE);
 
         /* Compartilhamento da classe Janela*/
-        void setJanela(Janela* pJ);
         void setGE(GerenciadorEventos* pGE);
         void setGC(GerenciadorColisoes* pGC);
 
-        RenderWindow* getRenderWindow() const;
+        RenderWindow* getPJanela() const;
 
         void incluiEnte(Ente *pE);
 
