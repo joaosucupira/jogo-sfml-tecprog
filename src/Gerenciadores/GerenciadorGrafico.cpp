@@ -28,7 +28,7 @@ GerenciadorGrafico* GerenciadorGrafico::getInstancia() {
 /* CONSTRUTORA / DESTRUTORA */
 GerenciadorGrafico::GerenciadorGrafico() :
 pJanela(new RenderWindow(VideoMode(LARGURA, ALTURA), "Anomalia++")),
-relogio(),
+deltaTime(0.0),
 pGeventos(NULL),
 pGcolisoes(NULL)
 {
@@ -55,11 +55,15 @@ void Gerenciadores::GerenciadorGrafico::desenharEnte(Ente *pE) {
 void GerenciadorGrafico::setGC(GerenciadorColisoes* pGC){
     if(pGC)
         pGcolisoes = pGC;
+    else
+        {cout << "GerenciadorGrafico::setGC(Ente *pE) -> Ponteiro nulo." << endl;}
 }
 
 void GerenciadorGrafico::setGE(GerenciadorEventos* pGE){
     if(pGE)
         pGeventos = pGE;
+    else
+        {cout << "GerenciadorGrafico::setGE(Ente *pE) -> Ponteiro nulo." << endl;}
 }
 
 void GerenciadorGrafico::incluiEnte(Ente* pE){
@@ -82,6 +86,8 @@ RenderWindow* GerenciadorGrafico::getPJanela() const {
 
 void GerenciadorGrafico::executar(){
 
+    Clock relogio;
+
     if(!pEnte || !pGeventos || !pGcolisoes){
         cout << "GerenciadorGrafico::executar() -> Ponteiro nulo" << endl;
         return;
@@ -90,7 +96,7 @@ void GerenciadorGrafico::executar(){
 
     while (pJanela->isOpen()) {
 
-        pEnte->setDeltaTime(relogio.restart().asSeconds());
+        deltaTime = relogio.restart().asSeconds();
 
         while(pJanela->pollEvent( *(pGeventos->getEvento()) )){
 
@@ -100,7 +106,7 @@ void GerenciadorGrafico::executar(){
             pGeventos->executar();
         }
             
-        
+        pEnte->executar();
         pGcolisoes->executar();
 
         pJanela->clear();

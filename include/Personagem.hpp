@@ -11,8 +11,8 @@ protected:
     int num_vidas;
     bool vivo;
     Vector2f velocidade;
+    bool estaAndando;
     bool estaPulando;
-    // Clock relogio;
 
 public:
     Personagem(const float x_inicial = 0, const float y_inicial = 0);
@@ -26,11 +26,13 @@ public:
     void setVelocidadeX(float x){ velocidade.x = x;}
     void setVelocidadeY(float y){ velocidade.y = y;}
     void setEstaPulando(bool pulou){ estaPulando = pulou;}
+    void setEstaAndando(bool andou){ estaAndando = andou;}
     
     const int getVidas() const { return num_vidas;}
     const bool getVivo() const { return vivo;}
     Vector2f getVelocidade() const { return velocidade;}
     const bool getEstaPulando() const {return estaPulando;}
+    const bool getEstaAndando() const {return estaAndando;}
 
     /* Adaptar valor de vida a ser retirado no proprio operador*/
     void operator--() { num_vidas--;}
@@ -39,7 +41,6 @@ public:
     void aplicarGravidade();
 
     void atualizarSprite();
-
     void spriteInicial();
 
 };

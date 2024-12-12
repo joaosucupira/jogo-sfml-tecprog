@@ -13,7 +13,7 @@ namespace Gerenciadores {
     private:
         RenderWindow* pJanela;
         Ente *pEnte;
-        Clock relogio;
+        float deltaTime;
 
         GerenciadorEventos *pGeventos;
         GerenciadorColisoes *pGcolisoes;
@@ -37,7 +37,7 @@ namespace Gerenciadores {
         void incluiEnte(Ente *pE);
 
         // usando para corrigir atualizarSprite()
-        float getDeltaTime() const { return relogio.getElapsedTime().asSeconds(); } 
+        const float getDeltaTime() const { return deltaTime; } 
 
         void executar();
 

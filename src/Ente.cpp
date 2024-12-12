@@ -8,8 +8,7 @@ GerenciadorGrafico* Ente::pGG = GerenciadorGrafico::getInstancia();
 Ente::Ente() :
 id(cont_id++),
 corpo(new RectangleShape()),
-figura(new Figura()),
-deltaTime(0.0)
+figura(new Figura())
 {
     setGGrafico();
 }

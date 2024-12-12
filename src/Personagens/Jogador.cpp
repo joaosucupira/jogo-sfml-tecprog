@@ -42,11 +42,7 @@ void Jogador::salvaDataBuffer() {
 void Jogador::executar() {
 
     mover();
-    
-
-    // Colocar na classe gerenciador de colisoes
     aplicarGravidade();
-
-    // zerar a velocidade aqui faz o movimento travar
-    /* velocidade.x = 0; */
+    
+    atualizarSprite();
 }

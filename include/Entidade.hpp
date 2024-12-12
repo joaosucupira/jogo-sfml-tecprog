@@ -37,10 +37,7 @@ namespace Entidades
 
         const float getX() const { return x; }
         const float getY() const { return y; }
-
-        //Na Ente faz mais sentido
-        const float getTamX() const { return corpo->getSize().x; }
-        const float getTamY() const { return corpo->getSize().y; }
+        
 
         // Usar apenas nas classes que já carregam as texturas das sprites por enquanto
         void ajustarSprite();

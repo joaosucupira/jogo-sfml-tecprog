@@ -11,6 +11,9 @@ private:
     Texture* pTextura;
     Sprite* pSprite;
     IntRect secao_atual;
+    
+    int contAtualizacoes;
+
 public:
     Figura();
     ~Figura();

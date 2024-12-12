@@ -36,31 +36,19 @@ void GerenciadorEventos::monitorarJogador() {
 
     /* Inicializar a posicao como 0 aqui impede que seja travada */
     pJog->setVelocidadeX(0.0f);
-
-    // if (evento.type == Event::KeyPressed && evento.type == Keyboard::Left) {
-    //     pJog->atualizarSprite();
-    //     relogio.restart();
-    // }
+    pJog->setEstaAndando(false);
 
     // Tirei os else para possibilitar movimento suave
     if (Keyboard::isKeyPressed(Keyboard::Left)) {
+        pJog->setEstaAndando(true);
         pJog->getFigura()->getSprite()->setScale(-10.0f, 10.0f);
         pJog->setVelocidadeX(-VELOCIDADE_ANDAR);
-        if (relogio.getElapsedTime().asMilliseconds() > 100) { //vai sumir
-            pJog->atualizarSprite();
-            relogio.restart();
-        }
-        
-
     }
 
     if (Keyboard::isKeyPressed(Keyboard::Right)) {
+        pJog->setEstaAndando(true);
         pJog->getFigura()->getSprite()->setScale(10.0f, 10.0f);
         pJog->setVelocidadeX(VELOCIDADE_ANDAR);
-        if (relogio.getElapsedTime().asMilliseconds() > 100) { //vai sumir
-            pJog->atualizarSprite();
-            relogio.restart();
-        }
     }
 
     if (Keyboard::isKeyPressed(Keyboard::Space)) {

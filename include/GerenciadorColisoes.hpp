@@ -8,18 +8,16 @@ namespace Gerenciadores{
     {
     private:
         Jogador* pJog1;
-        //const float gravidade;
-        //Clock* pRelogio;
         
     public:
         GerenciadorColisoes();
         ~GerenciadorColisoes();
+
         void executar();
 
-        void colisaoJogadorChao();
-        void colisaoJogadorParede();
+        void colisaoJogadorJanela();
 
-        Jogador* getJogador() const;
+        void setPJogador(Jogador *pJ1);
 
     };
 } using namespace Gerenciadores;

@@ -3,7 +3,8 @@
 Figura::Figura() :
 pTextura(new Texture()),
 pSprite(new Sprite()),
-secao_atual(IntRect(0, 0, 24, 24))
+secao_atual(IntRect(0, 0, 24, 24)),
+contAtualizacoes(0)
 {
 }
 
@@ -39,7 +40,22 @@ void Figura::setSprite(string path_sprite)
 }
 
 void Figura::setProximaSecaoSprite() {
-    if (pSprite) {
+
+
+    //O ideial é fazer esse contAtualizacoes antes de chamar essa funcao -> Coesao
+
+
+    contAtualizacoes++;
+
+    if(!pSprite){
+        cout << "void Figura::setProximaSecaoSprite() -> ponteiro nulo." << endl;
+        return;
+    }
+
+    if (contAtualizacoes == 10) {
+
+        contAtualizacoes = 0;
+
         if (secao_atual.left < 48) {
             secao_atual.left += 24;
 
@@ -54,7 +70,7 @@ void Figura::setProximaSecaoSprite() {
 
         }
         pSprite->setTextureRect(secao_atual);        
-    } else { cout << "void Figura::setProximaSecaoSprite() -> ponteiro nulo." << endl; }
+    }
 }
 
 void Figura::setSpriteInicial() {

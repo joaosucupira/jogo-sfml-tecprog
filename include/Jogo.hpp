@@ -3,6 +3,7 @@
 #include "GerenciadorGrafico.hpp"
 #include "GerenciadorColisoes.hpp"
 #include "GerenciadorEventos.hpp"
+#include "Jogador.hpp"
 #include "stdafx.h"
 
 
@@ -11,14 +12,11 @@ class Jogo
 private:
     GerenciadorColisoes GC;
     GerenciadorEventos GE;
-    //Clock* relogio;
+    Jogador jog1;
 
     /* Instancia singleton do Gerenciador Grafico */
     static GerenciadorGrafico* pGG;
-   
-
-    Jogador jog1;
-    
+  
 public:
     Jogo();
     ~Jogo();
