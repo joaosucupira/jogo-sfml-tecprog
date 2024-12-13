@@ -11,6 +11,7 @@ corpo(new RectangleShape()),
 figura(new Figura(10, 10))
 {
     setGGrafico();
+    figura->setEnte(this);
 }
 
 Ente::~Ente()

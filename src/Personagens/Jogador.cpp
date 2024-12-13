@@ -11,6 +11,8 @@ joga1(cont == 0)
         figura = new Figura(24, 24);
         carregarSprite();
         ajustarSprite();
+        figura->ajustarTamanho();
+        
         cont++;
         
     } else { cout << endl << "Jogador::Jogador() -> Apenas dois jogadores permitidos." << endl; }

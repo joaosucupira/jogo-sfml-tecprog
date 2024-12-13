@@ -41,13 +41,13 @@ void GerenciadorEventos::monitorarJogador() {
     // Tirei os else para possibilitar movimento suave
     if (Keyboard::isKeyPressed(Keyboard::Left)) {
         pJog->setEstaAndando(true);
-        pJog->getFigura()->getSprite()->setScale(-10.0f, 10.0f);
+        pJog->getFigura()->virar(-1);
         pJog->setVelocidadeX(-VELOCIDADE_ANDAR);
     }
 
     if (Keyboard::isKeyPressed(Keyboard::Right)) {
         pJog->setEstaAndando(true);
-        pJog->getFigura()->getSprite()->setScale(10.0f, 10.0f);
+        pJog->getFigura()->virar(1);
         pJog->setVelocidadeX(VELOCIDADE_ANDAR);
     }
 
