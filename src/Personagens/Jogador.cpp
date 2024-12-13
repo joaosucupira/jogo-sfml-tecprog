@@ -8,9 +8,9 @@ joga1(cont == 0)
 {
     if (cont < 2) {
         escolheCor();
+        figura = new Figura(24, 24);
         carregarSprite();
         ajustarSprite();
-        // figura->setSprite(JOGADOR_PATH);
         cont++;
         
     } else { cout << endl << "Jogador::Jogador() -> Apenas dois jogadores permitidos." << endl; }

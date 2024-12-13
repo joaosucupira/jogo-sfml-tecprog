@@ -58,6 +58,10 @@ void GerenciadorEventos::monitorarJogador() {
         }
     }
 
+    if (pJog->getVelocidade().x == 0) {
+        pJog->getFigura()->setSpriteInicial();
+    }
+
 }
 
 void GerenciadorEventos::executar() {

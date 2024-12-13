@@ -1,11 +1,13 @@
 #include "Figura.hpp"
 
-Figura::Figura() :
+Figura::Figura(const int spriteX, const int spriteY) :
 pTextura(new Texture()),
 pSprite(new Sprite()),
-secao_atual(IntRect(0, 0, 24, 24)),
-contAtualizacoes(0)
+secao_atual(IntRect(0, 0, 0, 0)),
+contAtualizacoes(0),
+secaoX(spriteX), secaoY(spriteY)
 {
+    secao_atual = IntRect(0, 0, secaoX, secaoY);
 }
 
 Figura::~Figura() {
@@ -29,14 +31,17 @@ void Figura::setSprite(string path_sprite)
         /* Carregamento de textura */
         carregarTextura(path_sprite);
         pSprite->setTexture(*pTextura);
-
-        // Escolhendo a seção da sprite
         pSprite->setTextureRect(secao_atual);
+        ajustarTamanho();
+    } else { cout << "Figura::setSprite(string path_sprite) -> ponteiro nulo." << endl; }
+}
+
+void Figura::ajustarTamanho() {
+    if (pronta()) {
         pSprite->setOrigin(12.0f, 12.0f);
         pSprite->setScale(Vector2f(7.0f, 7.0f));
-
-
-    } else { cout << "Figura::setSprite(string &path_sprite) -> ponteiro nulo." << endl; }
+    } else
+        cout << "Figura::ajustarTamanho() -> ponteiro nulo / textura nao carregada ainda" << endl;
 }
 
 void Figura::setProximaSecaoSprite() {
@@ -74,6 +79,8 @@ void Figura::setProximaSecaoSprite() {
 }
 
 void Figura::setSpriteInicial() {
-    secao_atual.left = 0;
+    secao_atual.left = 24;
     secao_atual.top = 0;
+    pSprite->setTextureRect(secao_atual);     
+    
 }

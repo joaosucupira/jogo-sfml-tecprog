@@ -8,7 +8,7 @@ GerenciadorGrafico* Ente::pGG = GerenciadorGrafico::getInstancia();
 Ente::Ente() :
 id(cont_id++),
 corpo(new RectangleShape()),
-figura(new Figura())
+figura(new Figura(10, 10))
 {
     setGGrafico();
 }
@@ -30,7 +30,7 @@ Ente::~Ente()
 
 // Gambiarra
 void Ente::desenhar() {
-    // pGG->getRenderWindow()->draw(*corpo);
+    pGG->getPJanela()->draw(*corpo);
     pGG->getPJanela()->draw(*(figura->getSprite()));
 
 }

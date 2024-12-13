@@ -11,18 +11,21 @@ private:
     Texture* pTextura;
     Sprite* pSprite;
     IntRect secao_atual;
-    
     int contAtualizacoes;
+    int secaoX;
+    int secaoY;
 
 public:
-    Figura();
+    Figura(const int spriteX, const int spriteY);
     ~Figura();
 
     void carregarTextura(string path_sprite);
     void setSprite(string path_sprite);
+    void ajustarTamanho();
     void setProximaSecaoSprite();
     void setSpriteInicial();
 
+    const bool pronta() const { return pTextura && pSprite; }
     Sprite* getSprite() const { return pSprite; }
 };
 
