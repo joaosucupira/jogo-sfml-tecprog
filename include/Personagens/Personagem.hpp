@@ -2,8 +2,6 @@
 #include "stdafx.h"
 #include "Entidade.hpp"
 
-using namespace Entidades;
-
 namespace Personagens {
 class Personagem : public Entidade
 {

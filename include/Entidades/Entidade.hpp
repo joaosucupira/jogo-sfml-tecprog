@@ -43,5 +43,4 @@ namespace Entidades
         void ajustarSprite();
     };
 
-
-}
+} using namespace Entidades;
