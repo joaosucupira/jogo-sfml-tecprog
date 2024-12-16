@@ -37,13 +37,8 @@ public:
     const float getTamY() const { return corpo->getSize().y; } //testar ponteiro ( só chamar o método getTamX da figura!!!)
 
 
-
     // tirar isso (colocar o RectangleShape na Figura)
     RectangleShape* getCorpo() const { return corpo;}
-
-    const float getTamX() const { return corpo->getSize().x; }
-    const float getTamY() const { return corpo->getSize().y; }
-
 };
 
 
