@@ -3,10 +3,7 @@
 GerenciadorColisoes::GerenciadorColisoes() :
 pJog1(NULL)
 {
-    pJog1 = new Jogador(
-        (LARGURA - 100.0f) / 2,
-        (ALTURA + 100.0f) / 2
-    );
+
 }
 
 GerenciadorColisoes::~GerenciadorColisoes() {
@@ -14,19 +11,18 @@ GerenciadorColisoes::~GerenciadorColisoes() {
 }
 
 void GerenciadorColisoes::executar() {
-    /* chamei esses e o quadrado se move e pula */
-    colisaoJogadorChao();
-    pJog1->executar();
+    colisaoJogadorJanela();
 }
 
 
-Jogador *GerenciadorColisoes::getJogador() const {
-    if (pJog1 == NULL)
-        cout << "Jogador* GerenciadorColisoes::getJogador() const -> ponteiro nulo." << endl;
-    return pJog1;
+void GerenciadorColisoes::setPJogador(Jogador *pJ1) {
+    if (pJ1)
+        pJog1 = pJ1;
+    else
+        { cout << "GerenciadorColisoes::setPJogador(Jogador *pJ1) -> ponteiro nulo." << endl; };
 }
 
-void GerenciadorColisoes::colisaoJogadorChao(){
+void GerenciadorColisoes::colisaoJogadorJanela(){
     
     Vector2f posicao(pJog1->getX(), pJog1->getY());
     Vector2f tamanho(pJog1->getTamX(), pJog1->getTamY());
@@ -47,54 +43,4 @@ void GerenciadorColisoes::colisaoJogadorChao(){
         pJog1->setEstaPulando(false);
     }
 }
-
-
-
-/*
-
-void GerenciadorColisoes::tratarEntradaJogador(float dt) {
-
-    static bool pular = true;
-    static float velocidadeVertical = 0.0f; 
- 
-
-    if (pJog1) {
-
-        //andar
-        if (Keyboard::isKeyPressed(Keyboard::Right)) 
-            pJog1->mover(100.0f * dt, 0.0f); 
-
-        if (Keyboard::isKeyPressed(Keyboard::Left)) 
-            pJog1->mover(-100.0f * dt, 0.0f); 
-
-        //pular 
-        if (Keyboard::isKeyPressed(Keyboard::Up)) {
-            if (pular && pJog1->getPosY() >= (ALTURA - pJog1->getTamY())) {
-                velocidadeVertical = FORCA_PULO; 
-
-                pular = false;
-            }
-        } else {
-            pular = true; 
-        }
-
-        velocidadeVertical += GRAVIDADE * dt;
-        pJog1->mover(0.0f, velocidadeVertical * dt);
-
-        if (pJog1->getPosY() > (ALTURA - pJog1->getTamY())) {
-            pJog1->setPosY(ALTURA - pJog1->getTamY()); // Define no chão
-            velocidadeVertical = 0.0f;                 // Zera a velocidade vertical
-        }
-    }
-}
-void GerenciadorColisoes::aplicarGravidade(float dt) {
-
-    RectangleShape* corpo = pJog1->getCorpo();
-
-    if (corpo->getPosition().y + corpo->getSize().y < ALTURA) {
-        float dy = gravidade * dt;
-        corpo->move(0.0f, dy);
-    }
-}
-*/
 

@@ -17,7 +17,6 @@ protected:
     int id;
     RectangleShape* corpo;
     Figura* figura;
-    float deltaTime; //virar static// ele perde a precisao
 
     static GerenciadorGrafico* pGG;
 public:
@@ -29,13 +28,17 @@ public:
     void setGGrafico() { pGG = GerenciadorGrafico::getInstancia(); }
     void setId(const int i) { id = i; }
     void setCorpo(RectangleShape* pC);
-    void setDeltaTime(float dt){ deltaTime = dt;}
 
 
     const int getId() const { return id; }
-    const float getDeltaTime() const { return deltaTime; }
-    // tirar isso
     Figura* getFigura() { return figura; }
+
+    const float getTamX() const { return corpo->getSize().x; } //testar ponteiro ( só chamar o método getTamX da figura!!!)
+    const float getTamY() const { return corpo->getSize().y; } //testar ponteiro ( só chamar o método getTamX da figura!!!)
+
+
+
+    // tirar isso (colocar o RectangleShape na Figura)
     RectangleShape* getCorpo() const { return corpo;}
 
     const float getTamX() const { return corpo->getSize().x; }

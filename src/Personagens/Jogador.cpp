@@ -11,9 +11,11 @@ joga1(cont == 0)
 {
     if (cont < 2) {
         escolheCor();
+        figura = new Figura(24, 24);
         carregarSprite();
         ajustarSprite();
-        // figura->setSprite(JOGADOR_PATH);
+        figura->ajustarTamanho();
+        
         cont++;
         
     } else { cout << endl << "Jogador::Jogador() -> Apenas dois jogadores permitidos." << endl; }
@@ -45,11 +47,7 @@ void Jogador::salvaDataBuffer() {
 void Jogador::executar() {
 
     mover();
-    
-
-    // Colocar na classe gerenciador de colisoes
     aplicarGravidade();
-
-    // zerar a velocidade aqui faz o movimento travar
-    /* velocidade.x = 0; */
+    
+    atualizarSprite();
 }

@@ -45,16 +45,6 @@ void Entidade::ajustarSprite() {
 void Entidade::setTamanho(const float x, const float y) {
     Vector2f tamanho(x, y);
     corpo->setSize(tamanho);
-
-    // if (figura && figura->getSprite() && figura->getSprite()->getTexture()) {
-    //     Vector2u tamanhoTex = figura->getSprite()->getTexture()->getSize();
-
-    //     figura->getSprite()->setScale(
-    //         tamanho.x / tamanhoTex.x,
-    //         tamanho.y / tamanhoTex.y
-    //     );
-
-    // } else { cout << "void Entidade::setTamanho(const float x, const float y) -> ponteiro nulo." << endl; }
 }
 
 void Entidade::setCor(const Color &cor) {
