@@ -7,8 +7,7 @@ GerenciadorGrafico* Ente::pGG = GerenciadorGrafico::getInstancia();
 
 Ente::Ente() :
 id(cont_id++),
-figura(NULL),
-pRect(NULL)
+figura(NULL)
 {
     setGGrafico();
 }
@@ -19,18 +18,13 @@ Ente::~Ente()
         delete figura;
     }
     figura = NULL;
-
-    if(pRect != NULL) delete pRect;
-    pRect = NULL;
 }
-
 /* Métodos principais */
 
-// Gambiarra
-void Ente::desenhar() {
-    //pGG->getPJanela()->draw(*corpo);
-    pGG->getPJanela()->draw(figura->getSprite());
 
+void Ente::desenhar() {
+    // Completo requisito de operador this e rel. bidirecional
+    pGG->desenharEnte(this);
 }
 
 FloatRect Ente::getLimites() const{

@@ -21,8 +21,6 @@ private:
 
     int contAtualizacoes;
 
-    Ente* pEnte; //talvez nao precise ser bidirecional (até agora dá pra fazer sem)
-
 public:
 
     /*Klug: Se todas as sprites que tem animacao tiverem um padrao na 
@@ -39,13 +37,11 @@ public:
     );
 
     ~Figura();
-
-    void setEnte(Ente* pE);
  
     void carregarTextura(string path_textura);
 
     void setPosicao(const float x, const float y){ sprite.setPosition(x,y); }
-    void setProximaSecao();
+    void atualizarSecao();
     void setSecaoInicial();
     void virar(const int sentido);
 

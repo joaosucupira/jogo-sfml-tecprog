@@ -15,9 +15,8 @@ class Ente
 protected:
     static int cont_id;
     int id;
-    Figura* figura;
-    FloatRect* pRect;
 
+    Figura* figura;
     static GerenciadorGrafico* pGG;
 public:
     Ente();
@@ -30,13 +29,7 @@ public:
 
     const int getId() const { return id; }
     Figura* getFigura() { return figura; }
-
     FloatRect getLimites() const;
-
-    /*
-    const float getTamX() const { return figura->getTamX(); } //testar ponteiro ( só chamar o método getTamX da figura!!!)
-    const float getTamY() const { return figura->getTamY(); } //testar ponteiro ( só chamar o método getTamX da figura!!!)
-    */
 
 };
 

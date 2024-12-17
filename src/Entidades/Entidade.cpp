@@ -3,12 +3,11 @@ using namespace Entidades;
 
 /* Construtoras/Destrutoras */
 
-Entidade::Entidade(float dx, float dy) :
+Entidade::Entidade(float x_inicial, float y_inicial) :
 Ente(),
-x(dx),
-y(dy)
+x(x_inicial),
+y(y_inicial)
 {
-    // setPosicaoFigura(dx, dy);
 }
 
 Entidade::~Entidade() {

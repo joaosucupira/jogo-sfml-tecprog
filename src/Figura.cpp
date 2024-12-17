@@ -13,20 +13,12 @@ secao(0, 0, tamSecaoX, tamSecaoY),
 qntdSecoes(qntdSecaoX,qntdSecaoY),
 secaoFinal(secaoFinalX, secaoFinalY),
 secaoInicial(secaoInicialX, secaoInicialY),
-contAtualizacoes(0),
-pEnte(NULL)
+contAtualizacoes(0)
+// pEnte(NULL)
 {
 }
 
 Figura::~Figura() {
-    if (pEnte != NULL) delete pEnte;
-    pEnte = NULL;
-}
-
-void Figura::setEnte(Ente *pE) {
-    if (pE) {
-        pEnte = pE;
-    } else cout << "Figura::setEnte(Ente *pE)" << endl;
 }
 
 void Figura::carregarTextura(string path_textura)
@@ -51,7 +43,7 @@ void Figura::setCor(const Color &cor){
     sprite.setColor(cor);
 }
 
-void Figura::setProximaSecao() {
+void Figura::atualizarSecao() {
 
     if (contAtualizacoes < 10){
         contAtualizacoes++;

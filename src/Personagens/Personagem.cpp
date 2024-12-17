@@ -32,7 +32,7 @@ void Personagem::aplicarGravidade(){  //testar ponteiro pGG
 void Personagem::atualizarFigura() { //testar ponteiro figura
 
     if(estaAndando)
-        figura->setProximaSecao();
+        figura->atualizarSecao();
 }
 
 void Personagem::figuraInicial() {//testar ponteiro figura e criar booleano para estaParado

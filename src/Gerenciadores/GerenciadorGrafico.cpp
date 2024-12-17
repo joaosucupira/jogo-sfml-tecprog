@@ -47,7 +47,7 @@ GerenciadorGrafico::~GerenciadorGrafico()
 
 void Gerenciadores::GerenciadorGrafico::desenharEnte(Ente *pE) {
     if (pE) {
-        pE->desenhar();
+        pJanela->draw(pE->getFigura()->getSprite());
     
     } else { cout << "GerenciadorGrafico::desenharEnte(Ente *pE) -> Ponteiro nulo." << endl; }
 }

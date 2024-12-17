@@ -22,7 +22,7 @@ namespace Entidades
         // ostream buffer;
 
     public:
-        Entidade(float dx = 0, float dy = 0);
+        Entidade(float x_inicial = 0, float y_inicial = 0);
         virtual ~Entidade();
 
     
