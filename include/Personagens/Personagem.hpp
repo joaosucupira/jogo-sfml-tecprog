@@ -35,11 +35,10 @@ public:
     /* Adaptar valor de vida a ser retirado no proprio operador*/
     void operator--() { num_vidas--;}
 
-    /* Colocar na classe de gerenciador de colisões */
     void aplicarGravidade();
 
-    void atualizarSprite();
-    void spriteInicial();
+    void atualizarFigura();
+    void figuraInicial();
 
 };
 } using namespace Personagens;

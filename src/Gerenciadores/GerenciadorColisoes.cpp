@@ -24,8 +24,10 @@ void GerenciadorColisoes::setPJogador(Jogador *pJ1) {
 
 void GerenciadorColisoes::colisaoJogadorJanela(){
     
-    Vector2f posicao(pJog1->getX(), pJog1->getY());
-    Vector2f tamanho(pJog1->getTamX(), pJog1->getTamY());
+    FloatRect limites = pJog1->getLimites();
+
+    Vector2f posicao(limites.left, limites.top);
+    Vector2f tamanho(limites.width, limites.height);
 
     if (posicao.x + tamanho.x > LARGURA) { // Lado direito
         pJog1->setXY(LARGURA - tamanho.x - COLISAO, posicao.y);
