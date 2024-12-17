@@ -15,8 +15,9 @@ joga1(cont == 0)
             SEC_INICIAL_X, SEC_INICIAL_Y
         );
         escolheCor();
-        setTamanhoFigura(100.0f, 100.0f);
         carregarFigura();
+        setTamanhoFigura(TAM_JOGADOR, TAM_JOGADOR);
+        setPosicaoFigura(x, y);
         cont++;
         
     } else { cout << endl << "Jogador::Jogador() -> Apenas dois jogadores permitidos." << endl; }

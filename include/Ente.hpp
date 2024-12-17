@@ -16,6 +16,7 @@ protected:
     static int cont_id;
     int id;
     Figura* figura;
+    FloatRect* pRect;
 
     static GerenciadorGrafico* pGG;
 public:

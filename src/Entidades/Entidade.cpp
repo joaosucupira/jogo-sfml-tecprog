@@ -8,7 +8,7 @@ Ente(),
 x(dx),
 y(dy)
 {
-    //setPosicaoFigura(dx, dy);
+    // setPosicaoFigura(dx, dy);
 }
 
 Entidade::~Entidade() {

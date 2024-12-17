@@ -25,10 +25,11 @@ private:
 
 public:
 
-    /*Se todas as sprites que tem animacao tiverem um padrao na 
+    /*Klug: Se todas as sprites que tem animacao tiverem um padrao na 
     secao final , inicial e qntd de secoes dá para usar macro em vez de 
     colocar parametro na construtora. Se for assim dá pra criar um booleano animacao
     na construtora para colocar os valores default, caso seja falso
+    Sucupira: Genial
     */
     Figura(
         const int tamSecaoX = 1, const int tamSecaoY = 1,
