@@ -66,6 +66,8 @@ void GerenciadorColisoes::coliJogObstaculo(){
             res.y = limiteEtd1.top - limiteEtd2.top;
 
             if(res.x < 0){
+                pJog1->setVelocidadeX(0);
+                
                 //Etd1 é movido para a direita
             }
             else{

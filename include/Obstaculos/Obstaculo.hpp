@@ -7,12 +7,12 @@
 namespace Obstaculos{
 
     class Obstaculo : public Entidade {
-
+        
         bool danoso;
 
     public: 
 
-        Obstaculo();
+        Obstaculo(const bool dano);
         ~Obstaculo();
 
         virtual void executar() = 0;

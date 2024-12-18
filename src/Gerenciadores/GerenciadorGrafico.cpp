@@ -106,8 +106,9 @@ void GerenciadorGrafico::executar(){
             pGeventos->executar();
         }
             
-        pEnte->executar();
+        // pEnte->executar();
         pGcolisoes->executar();
+        pEnte->executar();
 
         pJanela->clear();
         desenharEnte(pEnte);
