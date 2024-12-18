@@ -14,6 +14,7 @@ altura(a), largura(l)
     
 }
 
+
 Plataforma::~Plataforma()
 {
 }
