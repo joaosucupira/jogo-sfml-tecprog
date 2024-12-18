@@ -68,13 +68,12 @@ void GerenciadorGrafico::setGE(GerenciadorEventos* pGE){
 }
 
 void GerenciadorGrafico::incluiEnte(Ente* pE, int i) {
-    if(pE && listaEntes){
+    if(pE){
         listaEntes[i] = pE;
     }
     else { cout << "GerenciadorGrafico::incluiEnte(Ente *pE) -> Ponteiro nulo." << endl; }
 
 }
-
 
 
 RenderWindow* GerenciadorGrafico::getPJanela() const {
@@ -90,7 +89,7 @@ void GerenciadorGrafico::executar(){
 
     Clock relogio;
 
-    if(!listaEntes || !pGeventos || !pGcolisoes){
+    if(!pGeventos || !pGcolisoes){
         cout << "GerenciadorGrafico::executar() -> Ponteiro nulo" << endl;
         return;
     }

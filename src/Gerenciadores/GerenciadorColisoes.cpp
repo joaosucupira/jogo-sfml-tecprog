@@ -83,6 +83,7 @@ void ajustarPosicao(Personagem* pPersonagem, FloatRect lmEtd1, FloatRect lmEtd2,
     if(v[2]){
         pPersonagem->setXY(lmEtd1.left, lmEtd2.top - (lmEtd1.height + COLISAO));
         pPersonagem->setVelocidadeY(0);
+        pPersonagem->setEstaPulando(false);
     }
     //Colisao a cima do Personagem
     if(v[3]){

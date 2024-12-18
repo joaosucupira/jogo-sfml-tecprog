@@ -6,7 +6,7 @@ Jogo::Jogo() :
 GC(),
 GE(),
 jog1((LARGURA - TAM_JOGADOR)/2, (ALTURA + TAM_JOGADOR ) / 2),
-plat1(0.0f, ALTURA + ALT_PLATAFORMA)
+plat1(0.0f, ALTURA - ALT_PLATAFORMA)
 {
     distribuir();
     executar();

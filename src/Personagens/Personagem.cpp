@@ -8,6 +8,7 @@ velocidade(0.0,0.0),
 estaAndando(false),
 estaPulando(false)
 {
+    calcVivo();
 }
 
 Personagem::~Personagem() {
