@@ -15,15 +15,13 @@ namespace Gerenciadores{
         vector<Obstaculo*> obstaculos;
         list<Inimigo*> inimigos;
                 
-        FloatRect limiteEtd1;
-        FloatRect limiteEtd2;
+        //FloatRect limiteEtd1;
+        //FloatRect limiteEtd2;
         
     public:
         GerenciadorColisoes();
         ~GerenciadorColisoes();
         
-        //for(coliJogObst){ verifacaColisao(static_cast<Entidade*> Jog1, static_cast<Entidade*> Obst)}
-        //for (coliJogInim) .....
         void executar();
 
         const bool verificarColisao(Entidade* pEtd1, Entidade* pEtd2) const;
