@@ -12,10 +12,10 @@ namespace Obstaculos{
 
     public: 
 
-        Obstaculo(const bool dano);
+        Obstaculo(const float x, const float y);
         ~Obstaculo();
 
         virtual void executar() = 0;
         
     };
-}using namespace Obstaculos;
+} using namespace Obstaculos;

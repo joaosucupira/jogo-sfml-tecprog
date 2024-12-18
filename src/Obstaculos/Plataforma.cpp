@@ -2,17 +2,17 @@
 #include "Plataforma.hpp"
 
 Obstaculos::Plataforma::Plataforma(const int x_inicial, const int y_inicial) :
-Obstaculo(false),
+Obstaculo(x_inicial, y_inicial),
 altura(0)
 {
     figura = new Figura(
-        PLATAFORMA_LADO, PLATAFORMA_LADO,
-        PLATAFORMA_LADO, PLATAFORMA_LADO,
-        PLATAFORMA_LADO, PLATAFORMA_LADO,
-        PLATAFORMA_LADO, PLATAFORMA_LADO
+        PLATAFORMA_LARGURA, PLATAFORMA_ALTURA,
+        0, 0,
+        0, 0,
+        0, 0
     );
     carregarFigura();
-    setTamanhoFigura(PLATAFORMA_LADO, PLATAFORMA_LADO);
+    setTamanhoFigura(PLATAFORMA_LARGURA, PLATAFORMA_ALTURA);
     setPosicaoFigura(x_inicial, y_inicial);
     
 }

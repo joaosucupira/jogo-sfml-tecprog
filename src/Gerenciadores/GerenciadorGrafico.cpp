@@ -12,6 +12,7 @@
 #include "Ente.hpp"
 #include "GerenciadorEventos.hpp"
 #include "GerenciadorColisoes.hpp"
+#include "Plataforma.hpp"
 
 using namespace Gerenciadores;
 
@@ -66,13 +67,14 @@ void GerenciadorGrafico::setGE(GerenciadorEventos* pGE){
         {cout << "GerenciadorGrafico::setGE(Ente *pE) -> Ponteiro nulo." << endl;}
 }
 
-void GerenciadorGrafico::incluiEnte(Ente* pE){
-    if(pE){
-        pEnte = pE;
+void GerenciadorGrafico::incluiEnte(Ente* pE, int i) {
+    if(pE && listaEntes){
+        listaEntes[i] = pE;
     }
     else { cout << "GerenciadorGrafico::incluiEnte(Ente *pE) -> Ponteiro nulo." << endl; }
 
 }
+
 
 
 RenderWindow* GerenciadorGrafico::getPJanela() const {
@@ -88,7 +90,7 @@ void GerenciadorGrafico::executar(){
 
     Clock relogio;
 
-    if(!pEnte || !pGeventos || !pGcolisoes){
+    if(!listaEntes || !pGeventos || !pGcolisoes){
         cout << "GerenciadorGrafico::executar() -> Ponteiro nulo" << endl;
         return;
     }
@@ -108,10 +110,14 @@ void GerenciadorGrafico::executar(){
             
         // pEnte->executar();
         pGcolisoes->executar();
-        pEnte->executar();
+        listaEntes[0]->executar();
+        listaEntes[1]->executar();
+        // listaEntes[2]->executar();
 
         pJanela->clear();
-        desenharEnte(pEnte);
+        desenharEnte(listaEntes[0]);
+        desenharEnte(listaEntes[1]);
+        // desenharEnte(listaEntes[2]);
         pJanela->display();
         
     }

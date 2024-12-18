@@ -3,16 +3,22 @@
 
 class Ente;
 
-namespace Gerenciadores {
+namespace Obstaculos { class Plataforma; }
+// class Plataforma;
 
+
+namespace Gerenciadores {
+    
     class GerenciadorEventos;
     class GerenciadorColisoes;
 
     class GerenciadorGrafico
     {
     private:
+        Ente* listaEntes[3];
         RenderWindow* pJanela;
-        Ente *pEnte;
+        // Ente *pEnte;
+
         float deltaTime;
 
         GerenciadorEventos *pGeventos;
@@ -34,10 +40,12 @@ namespace Gerenciadores {
 
         RenderWindow* getPJanela() const;
 
-        void incluiEnte(Ente *pE);
+        // void incluiEnte(Ente *pE);
+        void incluiEnte(Ente* pE, int i);
 
         // usando para corrigir atualizarSprite()
         const float getDeltaTime() const { return deltaTime; } 
+        Ente* getListaEntes() const { return *(listaEntes); }
 
         void executar();
 
