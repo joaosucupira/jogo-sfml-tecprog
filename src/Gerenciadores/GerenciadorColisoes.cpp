@@ -34,12 +34,6 @@ void GerenciadorColisoes::setPJog1(Jogador *pJ1) {
         { cout << "GerenciadorColisoes::setPJogador(Jogador *pJ1) -> ponteiro nulo." << endl; };
 }
 
-void Gerenciadores::GerenciadorColisoes::incluirObst(Obstaculo *pObst) {
-    if (pObst) {
-        obstaculos.push_back(pObst);
-    } else { cout << "void Gerenciadores::GerenciadorColisoes::incluirObst(Obstaculo *pObst) -> ponteiro nulo." << endl; }
-}
-
 const bool GerenciadorColisoes::verificarColisao(Entidade* pEtd1, Entidade* pEtd2) const{
     return pEtd1->getLimites().intersects(pEtd2->getLimites());
 }
