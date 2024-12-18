@@ -43,6 +43,8 @@ void Figura::setCor(const Color &cor){
     sprite.setColor(cor);
 }
 
+
+//Quebrar essa funcao em AtualizarSecaoX e AtualizarSecaoY
 void Figura::atualizarSecao() {
 
     if (contAtualizacoes < 10){

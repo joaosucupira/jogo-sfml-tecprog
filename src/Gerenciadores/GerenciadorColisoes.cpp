@@ -1,33 +1,105 @@
 #include "GerenciadorColisoes.hpp"
 
 GerenciadorColisoes::GerenciadorColisoes() :
-pJog1(NULL)
+pJog1(NULL),
+pJog2(NULL),
+obstaculos(),
+inimigos(),
+limiteEtd1(),
+limiteEtd2()
 {
-
+    obstaculos.clear();
+    inimigos.clear();
 }
 
 GerenciadorColisoes::~GerenciadorColisoes() {
     pJog1 = NULL;
+    pJog2 = NULL;
+    obstaculos.clear();
+    inimigos.clear();
 }
 
 void GerenciadorColisoes::executar() {
-    colisaoJogadorJanela();
+    coliJogJanela();
+
+    coliJogObstaculo();
+    coliJogInimigo();
+    coliInimObstaculo();
 }
 
-
-void GerenciadorColisoes::setPJogador(Jogador *pJ1) {
+void GerenciadorColisoes::setPJog1(Jogador *pJ1) {
     if (pJ1)
         pJog1 = pJ1;
     else
         { cout << "GerenciadorColisoes::setPJogador(Jogador *pJ1) -> ponteiro nulo." << endl; };
 }
 
-void GerenciadorColisoes::colisaoJogadorJanela(){
-    
-    FloatRect limites = pJog1->getLimites();
+const bool GerenciadorColisoes::verificarColisao(Entidade* pEtd1, Entidade* pEtd2) const{
+    return pEtd1->getLimites().intersects(pEtd2->getLimites());
+}
 
-    Vector2f posicao(limites.left, limites.top);
-    Vector2f tamanho(limites.width, limites.height);
+void GerenciadorColisoes::coliJogObstaculo(){
+    
+    long unsigned int i;
+    Vector2f res;
+
+    //Acoplar jogador 2 depois
+
+    if(!pJog1){
+        cout << "GerenciadorColisoes::coliJogObstaculo() -> pJog1 nulo" << endl;
+        return;
+    }
+
+    if(obstaculos.empty()){
+        cout << "GerenciadorColisoes::coliJogObstaculo() -> vector obstaculos vazio" << endl;
+        return;
+    }
+
+    for(i = 0; i < obstaculos.size(); i++){
+        
+        if(verificarColisao( static_cast<Entidade*>(pJog1), static_cast<Entidade*>(obstaculos[i]) )){
+
+            limiteEtd1 = pJog1->getLimites();
+            limiteEtd2 = obstaculos[i]->getLimites();
+
+            res.x = limiteEtd1.left - limiteEtd2.left;
+            res.y = limiteEtd1.top - limiteEtd2.top;
+
+            if(res.x < 0){
+                //Etd1 é movido para a direita
+            }
+            else{
+                //Etd1 é movido para a esquerda
+            }
+               
+
+            if(res.y < 0){
+                //Etd1 é movido para cima
+            }
+            else{
+                //Etd1 é movido para baixo
+            }
+                
+        }
+}
+
+}
+
+void GerenciadorColisoes::coliJogInimigo(){
+
+}
+
+void GerenciadorColisoes::coliInimObstaculo(){
+
+}
+
+
+void GerenciadorColisoes::coliJogJanela(){
+    
+    limiteEtd1 = pJog1->getLimites();
+
+    Vector2f posicao(limiteEtd1.left, limiteEtd1.top);
+    Vector2f tamanho(limiteEtd1.width, limiteEtd1.height);
 
     if (posicao.x + tamanho.x > LARGURA) { // Lado direito
         pJog1->setXY(LARGURA - tamanho.x - COLISAO, posicao.y);

@@ -26,11 +26,11 @@ void Entidade::setXY(const float novoX, const float novoY){
     y = novoY;
 }
 
-void Entidade::setTamanhoFigura(const float tX, const float tY) {
+void Entidade::setTamanhoFigura(const float tX, const float tY) { //em Ente faz mais sentido
     figura->setTamanho(tX, tY);
 }
 
-void Entidades::Entidade::setCorFigura(const Color &cor) {
+void Entidades::Entidade::setCorFigura(const Color &cor) { //em Ente faz mais sentido
     figura->setCor(cor);
 }
 
