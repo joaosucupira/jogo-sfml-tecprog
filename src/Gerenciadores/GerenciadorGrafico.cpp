@@ -111,12 +111,12 @@ void GerenciadorGrafico::executar(){
         pGcolisoes->executar();
         listaEntes[0]->executar();
         listaEntes[1]->executar();
-        // listaEntes[2]->executar();
+        listaEntes[2]->executar();
 
         pJanela->clear();
         desenharEnte(listaEntes[0]);
         desenharEnte(listaEntes[1]);
-        // desenharEnte(listaEntes[2]);
+        desenharEnte(listaEntes[2]);
         pJanela->display();
         
     }

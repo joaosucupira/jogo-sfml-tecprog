@@ -5,6 +5,7 @@
 #include "GerenciadorEventos.hpp"
 #include "Jogador.hpp"
 #include "Plataforma.hpp"
+#include "Alienigena.hpp"
 // #include "Fase.hpp"
 #include "stdafx.h"
 
@@ -16,6 +17,7 @@ private:
     GerenciadorEventos GE;
     Jogador jog1;
     Plataforma plat1;
+    Alienigena ali1;
     // Fase fase1;
 
     /* Instancia singleton do Gerenciador Grafico */

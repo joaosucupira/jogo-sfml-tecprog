@@ -15,7 +15,7 @@ namespace Personagens {
     public:
 
         Inimigo(const float x_inicial, const float y_inicial);
-        ~Inimigo();
+        virtual ~Inimigo();
 
         void salvaDataBuffer() {}
         virtual void executar() = 0;

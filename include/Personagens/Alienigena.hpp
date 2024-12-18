@@ -29,7 +29,7 @@ namespace Personagens{
 
         void carregarFigura();
 
-        void danificar(Jogador* pJ) {}
+        void danificar(Jogador* pJ);
         void executar();
         void salvaDataBuffer();
     };

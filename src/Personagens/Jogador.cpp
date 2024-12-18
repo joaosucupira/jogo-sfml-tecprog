@@ -21,6 +21,8 @@ joga1(cont == 0)
         carregarFigura();
         setTamanhoFigura(TAM_JOGADOR, TAM_JOGADOR);
         setPosicaoFigura(x, y);
+
+        num_vidas = 1000;
         cont++;
         
     } else { cout << endl << "Jogador::Jogador() -> Apenas dois jogadores permitidos." << endl; }

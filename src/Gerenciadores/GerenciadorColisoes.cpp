@@ -125,6 +125,32 @@ void GerenciadorColisoes::coliJogObstaculo(){
 
 void GerenciadorColisoes::coliJogInimigo(){
 
+    long unsigned int i;
+
+    if(!pJog1){
+        cout << "GerenciadorColisoes::coliJogObstaculo() -> pJog1 nulo" << endl;
+        return;
+    }
+
+    if(inimigos.empty()){
+        cout << "GerenciadorColisoes::coliJogObstaculo() -> vector obstaculos vazio" << endl;
+        return;
+    }
+
+    if(!pJog1->getVivo()){
+        cout << "GerenciadorColisoes::coliJogObstaculo() -> jog1 morto" << endl;
+        return;
+    }
+
+    for(i=0; i<inimigos.size(); i++){
+        if( verificarColisao( static_cast<Entidade*>(pJog1), static_cast<Entidade*>(inimigos[i]) ) ){
+            inimigos[i]->danificar(pJog1);
+            cout << "Vida jogador 1: " << pJog1->getVidas() << endl;
+        }
+            
+    }
+
+
 }
 
 void GerenciadorColisoes::coliInimObstaculo(){
@@ -150,8 +176,10 @@ void GerenciadorColisoes::coliInimObstaculo(){
 
             for(j = 0; j < obstaculos.size(); j++){
 
-                if(verificarColisao( static_cast<Entidade*>(inimigos[i]), static_cast<Entidade*>(obstaculos[j]) ))
-                    ajustarPosicao(static_cast<Personagem*> (inimigos[i]), pJog1->getLimites(), obstaculos[j]->getLimites(), sentidos);
+                if(verificarColisao( static_cast<Entidade*>(inimigos[i]), static_cast<Entidade*>(obstaculos[j]) )){
+                    ajustarPosicao(static_cast<Personagem*> (inimigos[i]), inimigos[i]->getLimites(), obstaculos[j]->getLimites(), sentidos);
+                }
+                    
             }
 
         }
