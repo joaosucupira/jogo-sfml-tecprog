@@ -20,6 +20,7 @@ void Jogo::distribuir() {
     pGG->setGC(&GC);
 
     pGG->incluiEnte(static_cast<Ente*>(&jog1));
+
     GE.setPJog(&jog1);
     GC.setPJog1(&jog1);
 }

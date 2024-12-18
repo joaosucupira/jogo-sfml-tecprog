@@ -4,6 +4,7 @@
 #include "GerenciadorColisoes.hpp"
 #include "GerenciadorEventos.hpp"
 #include "Jogador.hpp"
+// #include "Fase.hpp"
 #include "stdafx.h"
 
 
@@ -13,6 +14,7 @@ private:
     GerenciadorColisoes GC;
     GerenciadorEventos GE;
     Jogador jog1;
+    // Fase fase1;
 
     /* Instancia singleton do Gerenciador Grafico */
     static GerenciadorGrafico* pGG;
