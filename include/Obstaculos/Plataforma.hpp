@@ -4,19 +4,22 @@
 #include "Obstaculo.hpp"
 
 #define PLATAFORMA_PATH "./assets/Obstaculo/plataforma.24x24.png"
-#define PLATAFORMA_LADO 24
+#define PLATAFORMA_LARGURA 1260
+#define PLATAFORMA_ALTURA 100
 
-namespace Obstaculos{
+namespace Obstaculos {
 
     class Plataforma : public Obstaculo{
 
-        int altura, largura;
+        int altura;
 
     public: 
 
-        Plataforma(const int a, const int l);
+        Plataforma(const int x_inicial, const int y_inicial);
         ~Plataforma();
 
+        void salvaDataBuffer();
+        void carregarFigura();
         void executar();
     };
 } using namespace Obstaculos;

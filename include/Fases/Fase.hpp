@@ -2,6 +2,7 @@
 #include "stdafx.h"
 
 #include "Ente.hpp"
+#include "Plataforma.hpp"
 #include "GerenciadorColisoes.hpp"
 
 namespace Fases {
@@ -16,7 +17,11 @@ namespace Fases {
         Fase();
         ~Fase();
 
-        virtual void criarInimigosMedios() = 0;
+        virtual void criarInimigosMedios() {}
+        virtual void executar();
+        void carregarFigura() {}
+
+        void criaPlataformas();
     };
 
 } using namespace Fases;

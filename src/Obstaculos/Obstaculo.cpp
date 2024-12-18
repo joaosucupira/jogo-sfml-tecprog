@@ -1,8 +1,8 @@
 #include "Obstaculo.hpp"
 
 
-Obstaculos::Obstaculo::Obstaculo(const bool dano) :
-danoso(dano)
+Obstaculos::Obstaculo::Obstaculo(const float x, const float y) :
+Entidade(x, y)
 {
 }
 

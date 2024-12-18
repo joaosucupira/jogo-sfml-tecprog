@@ -22,6 +22,7 @@ public:
     Ente();
     virtual ~Ente();
     virtual void executar() = 0;
+    virtual void carregarFigura() = 0;
 
     void desenhar();
     void setGGrafico() { pGG = GerenciadorGrafico::getInstancia(); }
