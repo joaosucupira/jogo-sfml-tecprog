@@ -13,7 +13,7 @@ namespace Gerenciadores{
         Jogador* pJog2;
 
         vector<Obstaculo*> obstaculos;
-        list<Inimigo*> inimigos;
+        vector<Inimigo*> inimigos;
                 
         //FloatRect limiteEtd1;
         //FloatRect limiteEtd2;

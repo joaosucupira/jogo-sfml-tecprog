@@ -45,6 +45,13 @@ void GerenciadorColisoes::incluirObst(Obstaculo* pObst){
         cout << "GerenciadorColisoes::incluirObst(Obstaculo* pObst) -> ponteiro nulo" << endl;
 }
 
+void GerenciadorColisoes::incluirInim(Inimigo* pInim){
+    if(pInim)
+        inimigos.push_back(pInim);
+    else
+        cout << "GerenciadorColisoes::incluirInim(Inimigo* pInim) -> ponteiro nulo" << endl;
+}
+
 void verificarSentido(Vector2f posEtd1, Vector2f posEtd2, int v[4]){
     
     Vector2f res = posEtd1 - posEtd2;
@@ -66,18 +73,12 @@ void ajustarPosicao(Personagem* pPersonagem, FloatRect lmEtd1, FloatRect lmEtd2,
     verificarSentido(Vector2f(lmEtd1.left, lmEtd1.top), Vector2f(lmEtd2.left, lmEtd2.top), v);
 
     //Colisao a esquerda do Personagem
-    if(v[0]){
-        
+    if(v[0])
         pPersonagem->setXY(lmEtd2.left + (lmEtd2.width + COLISAO), lmEtd1.top);
-        pPersonagem->setVelocidadeX(0);
-        
-    }
+    
     //Colisao a direita do Personagem
-    if(v[1]){
-        //jogador é movido para a esquerda
+    if(v[1])
         pPersonagem->setXY(lmEtd2.left - (lmEtd1.width + COLISAO), lmEtd1.top);
-        pPersonagem->setVelocidadeX(0);
-    }
     
     //Colisao a baixo do Personagem
     if(v[2]){
@@ -86,10 +87,9 @@ void ajustarPosicao(Personagem* pPersonagem, FloatRect lmEtd1, FloatRect lmEtd2,
         pPersonagem->setEstaPulando(false);
     }
     //Colisao a cima do Personagem
-    if(v[3]){
+    if(v[3])
         pPersonagem->setXY(lmEtd1.left, lmEtd2.top + (lmEtd2.height + COLISAO));
-        //Vy continua igual pois o personagem está no meio do pulo
-    }
+    
 
 }
 
@@ -117,11 +117,9 @@ void GerenciadorColisoes::coliJogObstaculo(){
 
     for(i = 0; i < obstaculos.size(); i++){
         
-        if(verificarColisao( static_cast<Entidade*>(pJog1), static_cast<Entidade*>(obstaculos[i]) )){
-
+        if(verificarColisao( static_cast<Entidade*>(pJog1), static_cast<Entidade*>(obstaculos[i]) ))
             ajustarPosicao(static_cast<Personagem*> (pJog1), pJog1->getLimites(), obstaculos[i]->getLimites(), sentidos);
-
-        }
+        
     }
 }
 
@@ -130,7 +128,34 @@ void GerenciadorColisoes::coliJogInimigo(){
 }
 
 void GerenciadorColisoes::coliInimObstaculo(){
+    
+    long unsigned int i, j;
+    int sentidos [4] = {0};
 
+    //Acoplar segundo jogador depois
+
+    if(inimigos.empty()){
+        cout << "GerenciadorColisoes::coliJogObstaculo() -> vector inimigos vazio" << endl;
+        return;
+    }
+
+    if(obstaculos.empty()){
+        cout << "GerenciadorColisoes::coliJogObstaculo() -> vector obstaculos vazio" << endl;
+        return;
+    }
+
+    for(i = 0; i < inimigos.size(); i++){
+        
+        if(inimigos[i]->getVivo()){
+
+            for(j = 0; j < obstaculos.size(); j++){
+
+                if(verificarColisao( static_cast<Entidade*>(inimigos[i]), static_cast<Entidade*>(obstaculos[j]) ))
+                    ajustarPosicao(static_cast<Personagem*> (inimigos[i]), pJog1->getLimites(), obstaculos[j]->getLimites(), sentidos);
+            }
+
+        }
+    }
 }
 
 
@@ -156,5 +181,6 @@ void GerenciadorColisoes::coliJogJanela(){
         pJog1->setVelocidadeY(0);
         pJog1->setEstaPulando(false);
     }
+    
 }
 
