@@ -15,9 +15,8 @@ class Ente
 protected:
     static int cont_id;
     int id;
-    RectangleShape* corpo;
-    Figura* figura;
 
+    Figura* figura;
     static GerenciadorGrafico* pGG;
 public:
     Ente();
@@ -27,18 +26,11 @@ public:
     void desenhar();
     void setGGrafico() { pGG = GerenciadorGrafico::getInstancia(); }
     void setId(const int i) { id = i; }
-    void setCorpo(RectangleShape* pC);
-
 
     const int getId() const { return id; }
     Figura* getFigura() { return figura; }
+    FloatRect getLimites() const;
 
-    const float getTamX() const { return corpo->getSize().x; } //testar ponteiro ( só chamar o método getTamX da figura!!!)
-    const float getTamY() const { return corpo->getSize().y; } //testar ponteiro ( só chamar o método getTamX da figura!!!)
-
-
-    // tirar isso (colocar o RectangleShape na Figura)
-    RectangleShape* getCorpo() const { return corpo;}
 };
 
 

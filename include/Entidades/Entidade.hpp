@@ -15,13 +15,14 @@ namespace Entidades
     class Entidade : public Ente {
 
     protected:
-        /* Coordenadas em que será desenhada a entidade inicialmente */
-        float x; // tem que ser float por causa do sfml
+        /* Coordenadas em que será desenhada a entidade */
+        float x;
         float y; 
+        
         // ostream buffer;
 
     public:
-        Entidade(float dx = 0, float dy = 0);
+        Entidade(float x_inicial = 0, float y_inicial = 0);
         virtual ~Entidade();
 
     
@@ -29,17 +30,15 @@ namespace Entidades
         virtual void salvaDataBuffer() = 0;
 
         /* Métodos set e get*/
-        void setPosicaoCorpo(const float x, const float y);
-        void setTamanho(const float x, const float y);
-        void setCor(const Color& cor);
-        void setXY(const float novoX, const float novoY);
 
+        void setPosicaoFigura(const float x, const float y);
+        void setTamanhoFigura(const float x, const float y);
+        void setCorFigura(const Color& cor);
+
+        void setXY(const float novoX, const float novoY);
         const float getX() const { return x; }
         const float getY() const { return y; }
         
-
-        // Usar apenas nas classes que já carregam as texturas das sprites por enquanto
-        void ajustarSprite();
     };
 
 } using namespace Entidades;

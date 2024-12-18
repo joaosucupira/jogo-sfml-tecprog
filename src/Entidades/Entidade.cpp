@@ -3,23 +3,22 @@ using namespace Entidades;
 
 /* Construtoras/Destrutoras */
 
-Entidade::Entidade(float dx, float dy) :
+Entidade::Entidade(float x_inicial, float y_inicial) :
 Ente(),
-x(dx),
-y(dy)
+x(x_inicial),
+y(y_inicial)
 {
-    setPosicaoCorpo(static_cast<float>(dx), static_cast<float>(dy));
-    setTamanho(100.0f, 100.0f);
-    setCor(Color::Yellow);
 }
 
 Entidade::~Entidade() {
 }
 
-void Entidade::setPosicaoCorpo(const float x, const float y) {
-    corpo->setPosition(x, y);
-    if (figura) figura->getSprite()->setPosition(x, y);
-    else cout << "Entidade::setPosicaoCorpo(const float x, const float y) -> ponteiro nulo!" << endl;
+void Entidade::setPosicaoFigura(const float x, const float y) {
+
+    if (figura) 
+        figura->setPosicao(x, y);
+    else 
+        cout << "Entidade::setPosicaoFigura(const float x, const float y) -> ponteiro figura nulo!" << endl;
 }
 
 void Entidade::setXY(const float novoX, const float novoY){
@@ -27,31 +26,14 @@ void Entidade::setXY(const float novoX, const float novoY){
     y = novoY;
 }
 
-void Entidade::ajustarSprite() {
-    Vector2f tamanho = corpo->getSize();
-    if (figura && figura->getSprite() && figura->getSprite()->getTexture()) {
-        Vector2u tamanhoTex = figura->getSprite()->getTexture()->getSize();
-
-        figura->getSprite()->setScale(
-            tamanho.x / tamanhoTex.x,
-            tamanho.y / tamanhoTex.y
-        );
-        // ficou pequeno, testando antes de tentar fazer ser automatico
-        figura->getSprite()->setScale(10.0f, 10.0f);
-
-    } else { cout << "void Entidade::ajustarSprite() -> ponteiro nulo / textura nao carregada" << endl; }
+void Entidade::setTamanhoFigura(const float tX, const float tY) { //em Ente faz mais sentido
+    figura->setTamanho(tX, tY);
 }
 
-void Entidade::setTamanho(const float x, const float y) {
-    Vector2f tamanho(x, y);
-    corpo->setSize(tamanho);
+void Entidades::Entidade::setCorFigura(const Color &cor) { //em Ente faz mais sentido
+    figura->setCor(cor);
 }
 
-void Entidade::setCor(const Color &cor) {
-    if (corpo) {
-        corpo->setFillColor(cor);
-    } else { cout << "Entidade::setCor(const Color &cor) -> ponteiro nulo." << endl; }
-}
 
 
 

@@ -5,7 +5,7 @@ GerenciadorGrafico* Jogo::pGG = GerenciadorGrafico::getInstancia();
 Jogo::Jogo() :
 GC(),
 GE(),
-jog1((LARGURA - 100.0f) / 2, (ALTURA + 100.0f) / 2)
+jog1((LARGURA - TAM_JOGADOR)/2, (ALTURA + TAM_JOGADOR ) / 2)
 {
     distribuir();
     executar();
@@ -21,7 +21,7 @@ void Jogo::distribuir() {
 
     pGG->incluiEnte(static_cast<Ente*>(&jog1));
     GE.setPJog(&jog1);
-    GC.setPJogador(&jog1);
+    GC.setPJog1(&jog1);
 }
 
 void Jogo::executar()

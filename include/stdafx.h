@@ -33,4 +33,7 @@ using namespace sf;
 #define VELOCIDADE_ANDAR 1.0 // Velocidade de andar do jogador (m/s)
 #define COLISAO 10 
 
+/* Macros - Tamanhos*/
+#define TAM_JOGADOR 200.0f
+
 

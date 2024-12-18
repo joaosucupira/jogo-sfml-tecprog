@@ -7,38 +7,34 @@ GerenciadorGrafico* Ente::pGG = GerenciadorGrafico::getInstancia();
 
 Ente::Ente() :
 id(cont_id++),
-corpo(new RectangleShape()),
-figura(new Figura(10, 10))
+figura(NULL)
 {
     setGGrafico();
-    figura->setEnte(this);
 }
 
 Ente::~Ente()
 {
-    if (corpo != NULL) {
-        delete corpo;
-    }
-    corpo = NULL;
-
     if (figura != NULL) {
         delete figura;
     }
     figura = NULL;
 }
-
 /* Métodos principais */
 
-// Gambiarra
-void Ente::desenhar() {
-    pGG->getPJanela()->draw(*corpo);
-    pGG->getPJanela()->draw(*(figura->getSprite()));
 
+void Ente::desenhar() {
+    // Completo requisito de operador this e rel. bidirecional
+    pGG->desenharEnte(this);
 }
 
-void Ente::setCorpo(RectangleShape *pC) {
-    if (pC) {
-        corpo = pC;
-    } else { cout << "Ente::setCorpo(RectangleShape *pC) -> ponteiro nulo." << endl; }
+FloatRect Ente::getLimites() const{
+
+    if(!figura){
+        cout << "Ente::getLimites() -> ponteir figura nulo" << endl;
+        return FloatRect();
+    }
+
+    return figura->getLimites();
+
 }
 

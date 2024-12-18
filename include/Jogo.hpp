@@ -22,9 +22,6 @@ public:
     ~Jogo();
 
     void distribuir();
-    
-    //void distribuirRelogio();
-
     void executar();
 };
 
