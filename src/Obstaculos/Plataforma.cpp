@@ -18,8 +18,6 @@ altura(0)
 }
 
 
-
-
 Plataforma::~Plataforma()
 {
 }

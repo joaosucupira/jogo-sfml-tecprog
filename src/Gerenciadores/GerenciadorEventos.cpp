@@ -33,7 +33,7 @@ void GerenciadorEventos::setPJog(Jogador* pJ){
 /* Métodos principais*/
 
 void GerenciadorEventos::monitorarJogador() {
-
+    // TEM QUE CORRIGIR O ERRO QUE ELE PARA DE ANDAR QUANDO PULA E COLIDE COM A PLATAFORMA
     /* Inicializar a posicao como 0 aqui impede que seja travada */
     pJog->setVelocidadeX(0.0f);
     pJog->setEstaAndando(false);

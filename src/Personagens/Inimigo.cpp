@@ -1,12 +1,10 @@
 #include "Inimigo.hpp"
 
-
-Inimigo::Inimigo(){
-
-
+Personagens::Inimigo::Inimigo(const float x_inicial, const float y_inicial) :
+Personagem(x_inicial, y_inicial)
+{
 }
 
-Inimigo::~Inimigo(){
-
-    
+Inimigo::~Inimigo()
+{
 }

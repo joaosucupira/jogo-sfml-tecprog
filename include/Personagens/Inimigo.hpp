@@ -14,10 +14,10 @@ namespace Personagens {
 
     public:
 
-        Inimigo();
+        Inimigo(const float x_inicial, const float y_inicial);
         ~Inimigo();
 
-        void salvaDataBuffer(){}
+        void salvaDataBuffer() {}
         virtual void executar() = 0;
         virtual void danificar(Jogador* pJ) = 0;
     };
