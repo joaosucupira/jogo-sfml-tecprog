@@ -32,6 +32,7 @@ void Figura::carregarTextura(string path_textura)
         
 }
 
+
 void Figura::setTamanho(const float tX, const float tY)
 {
     //sprite.setOrigin(secaoX / 2.0f, secaoY / 2.0f); //Acho q isso só complica as coisas !!!

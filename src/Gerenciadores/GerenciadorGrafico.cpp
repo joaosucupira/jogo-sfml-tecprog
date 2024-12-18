@@ -47,10 +47,28 @@ GerenciadorGrafico::~GerenciadorGrafico()
 /* MÉTODOS PRINCIPAIS */
 
 void Gerenciadores::GerenciadorGrafico::desenharEnte(Ente *pE) {
-    if (pE) {
-        pJanela->draw(pE->getFigura()->getSprite());
     
-    } else { cout << "GerenciadorGrafico::desenharEnte(Ente *pE) -> Ponteiro nulo." << endl; }
+    Personagem* pP = NULL;
+
+    if (pE == NULL) {
+        cout << "Gerenciadores::GerenciadorGrafico::desenharEnte(Ente *pE) -> ponteiro nulo" << endl;
+        return;
+    }
+
+    pP = dynamic_cast<Personagem*>(pE);
+
+    if (pP)
+    {
+        if (!pP->getVivo())
+            return;
+        
+        pJanela->draw(pP->getFigura()->getSprite());
+
+    } else {
+        pJanela->draw(pE->getFigura()->getSprite());
+    }
+    
+    
 }
 
 void GerenciadorGrafico::setGC(GerenciadorColisoes* pGC){

@@ -22,7 +22,7 @@ joga1(cont == 0)
         setTamanhoFigura(TAM_JOGADOR, TAM_JOGADOR);
         setPosicaoFigura(x, y);
 
-        num_vidas = 1000;
+        num_vidas = 500;
         cont++;
         
     } else { cout << endl << "Jogador::Jogador() -> Apenas dois jogadores permitidos." << endl; }

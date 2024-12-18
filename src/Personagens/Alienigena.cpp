@@ -26,6 +26,7 @@ void Personagens::Alienigena::carregarFigura() {
     } else { cout << "void Personagens::Alienigena::carregarFigura() -> ponteiro nulo." << endl; }
 }
 
+
 void Personagens::Alienigena::executar() {
     mover();
 }
