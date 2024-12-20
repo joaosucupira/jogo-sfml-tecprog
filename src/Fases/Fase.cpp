@@ -12,7 +12,7 @@ Fase::~Fase()
 }
 
 void Fases::Fase::executar() {
-    criaPlataformas();
+    criarPlataformas();
 }
 
 void Fases::Fase::criarPlataformas()
