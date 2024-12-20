@@ -15,6 +15,7 @@ public:
     ~GerenciadorEventos();
   
     void monitorarJogador();
+    void lerTeclado();
     void executar();
 
     Event* getEvento() { return &evento; }

@@ -21,7 +21,6 @@ GerenciadorColisoes::~GerenciadorColisoes() {
 
 void GerenciadorColisoes::executar() {
     coliJogJanela();
-
     coliJogObstaculo();
     coliJogInimigo();
     coliInimObstaculo();
@@ -185,7 +184,6 @@ void GerenciadorColisoes::coliInimObstaculo(){
         }
     }
 }
-
 
 void GerenciadorColisoes::coliJogJanela(){
     

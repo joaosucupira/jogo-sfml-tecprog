@@ -38,7 +38,16 @@ void GerenciadorEventos::monitorarJogador() {
     pJog->setVelocidadeX(0.0f);
     pJog->setEstaAndando(false);
 
-    // Tirei os else para possibilitar movimento suave
+    lerTeclado();
+
+    if (pJog->getVelocidade().x == 0) {
+        pJog->getFigura()->setSecaoInicial();
+    }
+
+}
+
+void Gerenciadores::GerenciadorEventos::lerTeclado() {
+
     if (Keyboard::isKeyPressed(Keyboard::Left)) {
         pJog->setEstaAndando(true);
         //pJog->getFigura()->virar(1);
@@ -57,11 +66,6 @@ void GerenciadorEventos::monitorarJogador() {
             pJog->setVelocidadeY(-sqrt(2.0 * GRAVIDADE * ALTURA_PULO));
         }
     }
-
-    if (pJog->getVelocidade().x == 0) {
-        pJog->getFigura()->setSecaoInicial();
-    }
-
 }
 
 void GerenciadorEventos::executar() {
