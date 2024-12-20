@@ -17,11 +17,12 @@ namespace Fases {
         Fase();
         ~Fase();
 
-        virtual void criarInimigosMedios() {}
+        virtual void criarViajantesMaus() {}
+        virtual void criarPortais() {}
         virtual void executar();
         void carregarFigura() {}
 
-        void criaPlataformas();
+        void criarPlataformas();
     };
 
 } using namespace Fases;

@@ -7,13 +7,13 @@ namespace Fases{
 
     class Lua : public Fase {
 
-        //const int maxInimMedios;
+        //const int maxViajantes;
 
     public:
         Lua();
         ~Lua();
 
-        void criarInimigosMedios(){}
+        void criarViajantesMaus(){}
 
     };
 

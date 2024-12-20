@@ -15,7 +15,7 @@ void Fases::Fase::executar() {
     criaPlataformas();
 }
 
-void Fases::Fase::criaPlataformas()
+void Fases::Fase::criarPlataformas()
 {
     Plataforma* pP = NULL;
     const int n = 1;
