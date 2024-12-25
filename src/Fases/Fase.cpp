@@ -3,7 +3,8 @@
 using namespace Fases;
 
 Fase::Fase() :
-GC()
+GC(),
+entidades()
 {
 }
 

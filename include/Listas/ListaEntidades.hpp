@@ -8,7 +8,7 @@
 /* MAPA:
 *  1-
 */// ! -> .hpp  ao invés de .h para identificar um arquivo de classe que possui um .cpp
-
+#pragma once
 #include "Entidade.hpp"
 #include "Lista.h"
 using namespace Entidades;
@@ -30,4 +30,4 @@ class ListaEntidades {
         Entidade* operator[](int elem);
 
 };
-} // namespace Listas
+} using namespace Listas;
