@@ -92,7 +92,6 @@ void GerenciadorGrafico::incluiEnte(Ente* pE, int i) {
 
 }
 
-
 RenderWindow* GerenciadorGrafico::getPJanela() const {
 
     if(pJanela){
