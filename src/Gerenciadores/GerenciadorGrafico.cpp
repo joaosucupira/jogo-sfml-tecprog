@@ -11,7 +11,6 @@
 #include "GerenciadorGrafico.hpp"
 #include "Ente.hpp"
 #include "GerenciadorEventos.hpp"
-#include "GerenciadorColisoes.hpp"
 #include "Plataforma.hpp"
 
 using namespace Gerenciadores;
@@ -30,8 +29,8 @@ GerenciadorGrafico* GerenciadorGrafico::getInstancia() {
 GerenciadorGrafico::GerenciadorGrafico() :
 pJanela(new RenderWindow(VideoMode(LARGURA, ALTURA), "Anomalia++")),
 deltaTime(0.0),
-pGeventos(NULL),
-pGcolisoes(NULL)
+pGeventos(NULL)
+// pGcolisoes(NULL) // desacoplar
 {
     pJanela->setFramerateLimit(TAXA_QUADROS);
 }
@@ -40,7 +39,7 @@ GerenciadorGrafico::~GerenciadorGrafico()
 {
     pJanela = NULL;
     pGeventos = NULL;
-    pGcolisoes = NULL;
+    // pGcolisoes = NULL; // desacoplar
 }
 
 
@@ -71,12 +70,12 @@ void Gerenciadores::GerenciadorGrafico::desenharEnte(Ente *pE) {
     
 }
 
-void GerenciadorGrafico::setGC(GerenciadorColisoes* pGC){
-    if(pGC)
-        pGcolisoes = pGC;
-    else
-        {cout << "GerenciadorGrafico::setGC(Ente *pE) -> Ponteiro nulo." << endl;}
-}
+// void GerenciadorGrafico::setGC(GerenciadorColisoes* pGC){
+//     if(pGC)
+//         pGcolisoes = pGC;
+//     else
+//         {cout << "GerenciadorGrafico::setGC(Ente *pE) -> Ponteiro nulo." << endl;}
+// } // desacoplar
 
 void GerenciadorGrafico::setGE(GerenciadorEventos* pGE){
     if(pGE)
@@ -87,7 +86,7 @@ void GerenciadorGrafico::setGE(GerenciadorEventos* pGE){
 
 void GerenciadorGrafico::incluiEnte(Ente* pE, int i) {
     if(pE){
-        listaEntes[i] = pE;
+        // listaEntes[i] = pE; // criar lista
     }
     else { cout << "GerenciadorGrafico::incluiEnte(Ente *pE) -> Ponteiro nulo." << endl; }
 
@@ -107,7 +106,7 @@ void GerenciadorGrafico::executar(){
 
     Clock relogio;
 
-    if(!pGeventos || !pGcolisoes){
+    if(!pGeventos){
         cout << "GerenciadorGrafico::executar() -> Ponteiro nulo" << endl;
         return;
     }
@@ -126,15 +125,15 @@ void GerenciadorGrafico::executar(){
         }
             
         // pEnte->executar();
-        pGcolisoes->executar();
-        listaEntes[0]->executar();
-        listaEntes[1]->executar();
-        listaEntes[2]->executar();
+        // pGcolisoes->executar();
+        // listaEntes[0]->executar();
+        // listaEntes[1]->executar();
+        // listaEntes[2]->executar();
 
         pJanela->clear();
-        desenharEnte(listaEntes[0]);
-        desenharEnte(listaEntes[1]);
-        desenharEnte(listaEntes[2]);
+        // desenharEnte(listaEntes[0]);
+        // desenharEnte(listaEntes[1]);
+        // desenharEnte(listaEntes[2]);
         pJanela->display();
         
     }

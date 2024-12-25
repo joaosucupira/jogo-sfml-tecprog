@@ -10,19 +10,19 @@ namespace Obstaculos { class Plataforma; }
 namespace Gerenciadores {
     
     class GerenciadorEventos;
-    class GerenciadorColisoes;
+    // class GerenciadorColisoes; // Removendo o gerenciador de colisões que deve estar desacoplado
 
     class GerenciadorGrafico
     {
     private:
-        Ente* listaEntes[3];
+        // Ente* listaEntes[3]; // deve ser lista de entidades
         RenderWindow* pJanela;
         // Ente *pEnte;
 
         float deltaTime;
 
         GerenciadorEventos *pGeventos;
-        GerenciadorColisoes *pGcolisoes;
+        // GerenciadorColisoes *pGcolisoes;
 
         /* Singleton */
         static GerenciadorGrafico* instancia; 
@@ -36,7 +36,7 @@ namespace Gerenciadores {
 
         /* Compartilhamento da classe Janela*/
         void setGE(GerenciadorEventos* pGE);
-        void setGC(GerenciadorColisoes* pGC);
+        // void setGC(GerenciadorColisoes* pGC);
 
         RenderWindow* getPJanela() const;
 
@@ -45,7 +45,7 @@ namespace Gerenciadores {
 
         // usando para corrigir atualizarSprite()
         const float getDeltaTime() const { return deltaTime; } 
-        Ente* getListaEntes() const { return *(listaEntes); }
+        // Ente* getListaEntes() const { return *(listaEntes); }
 
         void executar();
 

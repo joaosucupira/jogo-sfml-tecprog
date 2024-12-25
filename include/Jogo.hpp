@@ -6,19 +6,21 @@
 #include "Jogador.hpp"
 #include "Plataforma.hpp"
 #include "Alienigena.hpp"
-// #include "Fase.hpp"
+#include "Fase.hpp"
 #include "stdafx.h"
 
 
 class Jogo
 {
 private:
-    GerenciadorColisoes GC;
-    GerenciadorEventos GE;
+    // Primeiro passo: Adequar a classe principal ao modelo
+    // Desacoplar os gerenciadores exceto o gráfico
+    // GerenciadorColisoes GC;
+    // GerenciadorEventos GE;
     Jogador jog1;
-    Plataforma plat1;
-    Alienigena ali1;
-    // Fase fase1;
+    // Plataforma plat1;
+    // Alienigena ali1;
+    Fase fase1;
 
     /* Instancia singleton do Gerenciador Grafico */
     static GerenciadorGrafico* pGG;
