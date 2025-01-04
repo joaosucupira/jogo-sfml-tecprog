@@ -3,6 +3,7 @@
 #include "Jogador.hpp"
 
 namespace Gerenciadores {
+
 class GerenciadorEventos
 {
 private:

@@ -35,7 +35,7 @@ namespace Gerenciadores{
         void coliInimObstaculo();
 
         void setPJog1(Jogador *pJ1);
-        void setPJog2(Jogador *pJ2);
+        // void setPJog2(Jogador *pJ2);
 
         void incluirObst(Obstaculo* pObst);
         void incluirInim(Inimigo* pInim);

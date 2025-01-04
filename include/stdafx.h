@@ -38,3 +38,5 @@ using namespace sf;
 #define ALT_PLATAFORMA  100.0f
 
 
+
+

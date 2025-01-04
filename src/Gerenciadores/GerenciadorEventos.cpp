@@ -8,6 +8,7 @@
 
 using namespace Gerenciadores;
 
+
 /* Construtoras/Destrutora */
 GerenciadorEventos::GerenciadorEventos():
 evento(),
