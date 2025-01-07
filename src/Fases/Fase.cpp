@@ -70,7 +70,7 @@ void Fases::Fase::criarAlienigenas() {
     const int max = 1;
 
     for (int i = 0; i < max; i++) {
-        pA = new Alienigena((LARGURA - TAM_JOGADOR)/2.5, (ALTURA + TAM_JOGADOR ) / 2);
+        pA = new Alienigena(1, 1);
         entidades->adiciona(pA);
         GC.incluirInim(pA);
         pA = NULL;
