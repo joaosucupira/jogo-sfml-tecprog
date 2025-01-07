@@ -21,6 +21,8 @@ void Personagem::mover(){
     y += velocidade.y *  PIXEL_METRO * pGG->getDeltaTime();
 
     setPosicaoFigura(x,y);
+
+    // cout << pGG->getDeltaTime() << endl;
 }
 
 // Trocar para ser feita no gerenciador de colisões:: Dica do monitor -> Monitor é ruim kkkkk

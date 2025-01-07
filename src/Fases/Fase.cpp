@@ -3,28 +3,51 @@
 using namespace Fases;
 
 Fase::Fase() :
-GC(),
-entidades()
+GE(),
+GC()
+// entidades()
 {
+    entidades = new ListaEntidades();
+    entidades->excluiTodos();
     criarPlataformas();
     criarAlienigenas();
 }
 
-Fase::~Fase()
-{
+Fase::~Fase() {
+    entidades->excluiTodos();
+    if (entidades) delete entidades;
+    entidades = NULL; 
 }
 
-void Fase::gerenciarColisoes()
-{
-}
-
-void Fase::executar() {    
-    GC.executar();
-
-    for (int i = 0; i < entidades.getTamanho(); i++) {
-        entidades[i]->executar();
-        pGG->desenharEnte(entidades[i]);
+void Fase::renderizarEntidades() {
+    if (entidades->vazia()) {
+        cout << "void Fase::renderizarEntidades() -> Lista vazia." << endl;
+        return;
     }
+
+    for (int i = 0; i < (*entidades).getTamanho(); i++) {
+        (*entidades)[i]->executar();
+        pGG->desenharEnte((*entidades)[i]); // isso vai mudar
+    }
+}
+
+void Fase::gerenciarEventos()
+{
+    GE.executar();
+}
+
+void Fase::gerenciarColisoes() {
+    
+    GC.executar();
+}
+
+void Fase::executar() { 
+
+    gerenciarColisoes();
+
+    gerenciarEventos();
+
+    renderizarEntidades();
 
 }
 
@@ -34,7 +57,7 @@ void Fase::criarPlataformas() {
 
     for (int i = 0; i < max; i++) {
         pP = new Plataforma(0.0f, ALTURA - ALT_PLATAFORMA);
-        entidades.adiciona(pP);
+        entidades->adiciona(pP);
         GC.incluirObst(pP);
         pP = NULL;
     }
@@ -48,7 +71,7 @@ void Fases::Fase::criarAlienigenas() {
 
     for (int i = 0; i < max; i++) {
         pA = new Alienigena((LARGURA - TAM_JOGADOR)/2.5, (ALTURA + TAM_JOGADOR ) / 2);
-        entidades.adiciona(pA);
+        entidades->adiciona(pA);
         GC.incluirInim(pA);
         pA = NULL;
     }
@@ -58,6 +81,10 @@ void Fases::Fase::criarAlienigenas() {
 
 void Fase::setJogador(Jogador *pJ) {
     if (pJ) {
+        // Pensando pensamentos sobre isso
         GC.setPJog1(pJ);
+        GE.setPJog(pJ);
+        entidades->adiciona(static_cast<Entidade*>(pJ));
+
     } else { cout << "void Fase::setJogador(Jogador *pJ) -> ponteiro nulo." << endl; }
 }

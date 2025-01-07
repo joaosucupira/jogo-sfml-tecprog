@@ -24,7 +24,7 @@ GerenciadorEventos::~GerenciadorEventos()
 
 /* Métodos auxiliares */
 
-void GerenciadorEventos::setPJog(Jogador* pJ){
+void GerenciadorEventos::setPJog(Jogador* pJ) {
     if(pJ)
         pJog = pJ;
     else
@@ -34,6 +34,11 @@ void GerenciadorEventos::setPJog(Jogador* pJ){
 /* Métodos principais*/
 
 void GerenciadorEventos::monitorarJogador() {
+    
+    if (!pJog) {
+        cout << "void GerenciadorEventos::monitorarJogador() -> ponteiro nulo" << endl;
+        return; 
+    }
 
     /* Inicializar a posicao como 0 aqui impede que seja travada */
     pJog->setVelocidadeX(0.0f);

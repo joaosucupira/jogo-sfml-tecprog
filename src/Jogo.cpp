@@ -3,12 +3,10 @@
 GerenciadorGrafico* Jogo::pGG = GerenciadorGrafico::getInstancia();
 
 Jogo::Jogo() :
-// GC(),
+// tempo(),
 GE(),
-jog1((LARGURA - TAM_JOGADOR)/2, (ALTURA + TAM_JOGADOR ) / 2),
+jog1(new Jogador((LARGURA - TAM_JOGADOR)/2, (ALTURA + TAM_JOGADOR ) / 2)),
 fase1()
-// plat1(0.0f, ALTURA - ALT_PLATAFORMA),
-// ali1((LARGURA - TAM_JOGADOR)/2.5, (ALTURA + TAM_JOGADOR ) / 2)
 {
     distribuir();
     executar();
@@ -20,29 +18,29 @@ Jogo::~Jogo() {
 
 void Jogo::distribuir()
 {
-    GE.setPJog(&jog1);
-    fase1.setJogador(&jog1);
+    GE.setPJog(jog1);
+    fase1.setJogador(jog1);
 
 }
 
 void Jogo::executar() {
+    // pGG->setDeltaTime(0.0);
 
     while (pGG->getJanelaAberta()) {
+        
+        pGG->setDeltaTime(tempo.restart().asSeconds());
 
         // pollevents
         while(pGG->getPJanela()->pollEvent( *(GE.getEvento()))) {
             if (GE.getEvento()->type == Event::Closed) {
                 pGG->fecharJanela();
             }
-            GE.executar();
+            // GE.executar();
         }
-        
         pGG->limparJanela();
         // execucoes
 
         fase1.executar();
-        jog1.executar();
-        pGG->desenharEnte(&jog1);
         
         pGG->exibirNaJanela();
     }

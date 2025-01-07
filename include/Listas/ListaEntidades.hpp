@@ -28,6 +28,7 @@ class ListaEntidades {
         int getTamanho() const { return LE.getTamanho(); }
         Lista<Entidade>* getLista() { return &LE; }
         Entidade* operator[](int elem);
+        const bool vazia() const { return LE.getTamanho() <= 0; }
 
 };
 } using namespace Listas;

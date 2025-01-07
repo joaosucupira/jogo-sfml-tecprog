@@ -30,6 +30,7 @@ joga1(cont == 0)
 }
 
 Jogador::~Jogador() {
+    // cout << "estou sendo deletado" << endl;
 }
 
 void Personagens::Jogador::escolheCor() {

@@ -18,10 +18,8 @@ private:
     // GerenciadorColisoes GC;
     Clock tempo;
     GerenciadorEventos GE;
-    Jogador jog1;
+    Jogador* jog1;
     Fase fase1;
-    // Plataforma plat1;
-    // Alienigena ali1;
 
     /* Instancia singleton do Gerenciador Grafico */
     static GerenciadorGrafico* pGG;

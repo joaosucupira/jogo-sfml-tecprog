@@ -5,8 +5,6 @@ pJog1(NULL),
 pJog2(NULL),
 obstaculos(),
 inimigos()
-//limiteEtd1(),
-//limiteEtd2()
 {
     obstaculos.clear();
     inimigos.clear();
@@ -20,6 +18,7 @@ GerenciadorColisoes::~GerenciadorColisoes() {
 }
 
 void GerenciadorColisoes::executar() {
+
     coliJogJanela();
     coliJogObstaculo();
     coliJogInimigo();

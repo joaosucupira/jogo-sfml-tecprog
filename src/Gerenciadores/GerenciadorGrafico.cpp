@@ -179,4 +179,4 @@ void Gerenciadores::GerenciadorGrafico::fecharJanela() {
         return;
     }
     pJanela->close();
-}
+}   
