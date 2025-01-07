@@ -8,7 +8,7 @@
 /* MAPA:
 *  1-
 */// ! -> .hpp  ao invés de .h para identificar um arquivo de classe que possui um .cpp
-
+#pragma once
 #include "Entidade.hpp"
 #include "Lista.h"
 using namespace Entidades;
@@ -28,6 +28,7 @@ class ListaEntidades {
         int getTamanho() const { return LE.getTamanho(); }
         Lista<Entidade>* getLista() { return &LE; }
         Entidade* operator[](int elem);
+        const bool vazia() const { return LE.getTamanho() <= 0; }
 
 };
-} // namespace Listas
+} using namespace Listas;

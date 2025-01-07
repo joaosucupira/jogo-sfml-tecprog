@@ -14,6 +14,8 @@ Inimigo(x_inicial, y_inicial)
     setTamanhoFigura(TAM_JOGADOR, TAM_JOGADOR);
     setPosicaoFigura(x, y);
 
+    velocidade.x = VELOCIDADE_ANDAR - 0.3;
+
 }
 
 Alienigena::~Alienigena()
@@ -29,6 +31,7 @@ void Personagens::Alienigena::carregarFigura() {
 
 void Personagens::Alienigena::executar() {
     mover();
+    aplicarGravidade();
 }
 
 void Alienigena::danificar(Jogador* pJ) {

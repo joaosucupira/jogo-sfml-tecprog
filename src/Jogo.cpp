@@ -5,11 +5,10 @@ GerenciadorGrafico* Jogo::pGG = GerenciadorGrafico::getInstancia();
 
 
 Jogo::Jogo() :
-GC(),
+// tempo(),
 GE(),
-jog1((LARGURA - TAM_JOGADOR)/2, (ALTURA + TAM_JOGADOR ) / 2),
-plat1(0.0f, ALTURA - ALT_PLATAFORMA),
-ali1((LARGURA - TAM_JOGADOR)/2.5, (ALTURA + TAM_JOGADOR ) / 2)
+jog1(new Jogador((LARGURA - TAM_JOGADOR)/2, (ALTURA + TAM_JOGADOR ) / 2)),
+fase1()
 {
     distribuir();
     executar();
@@ -18,24 +17,35 @@ ali1((LARGURA - TAM_JOGADOR)/2.5, (ALTURA + TAM_JOGADOR ) / 2)
 Jogo::~Jogo() {
 }
 
-void Jogo::distribuir() {
-    
 
-    pGG->setGE(&GE);
-    pGG->setGC(&GC);
-
-    // pGG->incluiEnte(static_cast<Ente*>(&plat1));
-    pGG->incluiEnte(static_cast<Ente*>(&jog1), 0);
-    pGG->incluiEnte(static_cast<Ente*>(&plat1), 1);
-    pGG->incluiEnte(static_cast<Ente*>(&ali1), 2);
-
-    GE.setPJog(&jog1);
-    GC.setPJog1(&jog1);
-    GC.incluirObst(static_cast<Obstaculo*>(&plat1));
-    GC.incluirInim(static_cast<Inimigo*>(&ali1));
-}
-
-void Jogo::executar()
+void Jogo::distribuir()
 {
-    pGG->executar();
+    GE.setPJog(jog1);
+    fase1.setJogador(jog1);
+
 }
+
+void Jogo::executar() {
+    // pGG->setDeltaTime(0.0);
+
+    while (pGG->getJanelaAberta()) {
+        
+        pGG->setDeltaTime(tempo.restart().asSeconds());
+
+        // pollevents
+        while(pGG->getPJanela()->pollEvent( *(GE.getEvento()))) {
+            if (GE.getEvento()->type == Event::Closed) {
+                pGG->fecharJanela();
+            }
+            // GE.executar();
+        }
+        pGG->limparJanela();
+        // execucoes
+
+        fase1.executar();
+        
+        pGG->exibirNaJanela();
+    }
+}
+
+

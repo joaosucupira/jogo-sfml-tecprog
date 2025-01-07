@@ -8,11 +8,11 @@
 
 using namespace Gerenciadores;
 
+
 /* Construtoras/Destrutora */
 GerenciadorEventos::GerenciadorEventos():
 evento(),
-pJog(NULL),
-relogio()
+pJog(NULL)
 {
 }
 
@@ -23,7 +23,7 @@ GerenciadorEventos::~GerenciadorEventos()
 
 /* Métodos auxiliares */
 
-void GerenciadorEventos::setPJog(Jogador* pJ){
+void GerenciadorEventos::setPJog(Jogador* pJ) {
     if(pJ)
         pJog = pJ;
     else
@@ -33,21 +33,33 @@ void GerenciadorEventos::setPJog(Jogador* pJ){
 /* Métodos principais*/
 
 void GerenciadorEventos::monitorarJogador() {
+    
+    if (!pJog) {
+        cout << "void GerenciadorEventos::monitorarJogador() -> ponteiro nulo" << endl;
+        return; 
+    }
 
     /* Inicializar a posicao como 0 aqui impede que seja travada */
     pJog->setVelocidadeX(0.0f);
     pJog->setEstaAndando(false);
+    
+    lerTeclado();
 
-    // Tirei os else para possibilitar movimento suave
+    if (pJog->getVelocidade().x == 0) {
+        pJog->getFigura()->setSecaoInicial();
+    }
+
+}
+
+void Gerenciadores::GerenciadorEventos::lerTeclado() {
+
     if (Keyboard::isKeyPressed(Keyboard::Left)) {
         pJog->setEstaAndando(true);
-        //pJog->getFigura()->virar(1);
         pJog->setVelocidadeX(-VELOCIDADE_ANDAR);
     }
 
     if (Keyboard::isKeyPressed(Keyboard::Right)) {
         pJog->setEstaAndando(true);
-        //pJog->getFigura()->virar(1);
         pJog->setVelocidadeX(VELOCIDADE_ANDAR);
     }
 
@@ -57,11 +69,6 @@ void GerenciadorEventos::monitorarJogador() {
             pJog->setVelocidadeY(-sqrt(2.0 * GRAVIDADE * ALTURA_PULO));
         }
     }
-
-    if (pJog->getVelocidade().x == 0) {
-        pJog->getFigura()->setSecaoInicial();
-    }
-
 }
 
 void GerenciadorEventos::executar() {

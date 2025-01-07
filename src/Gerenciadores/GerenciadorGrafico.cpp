@@ -11,7 +11,6 @@
 #include "GerenciadorGrafico.hpp"
 #include "Ente.hpp"
 #include "GerenciadorEventos.hpp"
-#include "GerenciadorColisoes.hpp"
 #include "Plataforma.hpp"
 
 using namespace Gerenciadores;
@@ -29,18 +28,19 @@ GerenciadorGrafico* GerenciadorGrafico::getInstancia() {
 /* CONSTRUTORA / DESTRUTORA */
 GerenciadorGrafico::GerenciadorGrafico() :
 pJanela(new RenderWindow(VideoMode(LARGURA, ALTURA), "Anomalia++")),
-deltaTime(0.0),
-pGeventos(NULL),
-pGcolisoes(NULL)
+deltaTime(0.0)
+// pGeventos(NULL)
+// pGcolisoes(NULL) // desacoplar
 {
     pJanela->setFramerateLimit(TAXA_QUADROS);
 }
 
 GerenciadorGrafico::~GerenciadorGrafico()
 {
+    if (pJanela) delete pJanela;
     pJanela = NULL;
-    pGeventos = NULL;
-    pGcolisoes = NULL;
+    // pGeventos = NULL;
+    // pGcolisoes = NULL; // desacoplar
 }
 
 
@@ -71,28 +71,27 @@ void Gerenciadores::GerenciadorGrafico::desenharEnte(Ente *pE) {
     
 }
 
-void GerenciadorGrafico::setGC(GerenciadorColisoes* pGC){
-    if(pGC)
-        pGcolisoes = pGC;
-    else
-        {cout << "GerenciadorGrafico::setGC(Ente *pE) -> Ponteiro nulo." << endl;}
-}
+// void GerenciadorGrafico::setGC(GerenciadorColisoes* pGC){
+//     if(pGC)
+//         pGcolisoes = pGC;
+//     else
+//         {cout << "GerenciadorGrafico::setGC(Ente *pE) -> Ponteiro nulo." << endl;}
+// } // desacoplar
 
-void GerenciadorGrafico::setGE(GerenciadorEventos* pGE){
-    if(pGE)
-        pGeventos = pGE;
-    else
-        {cout << "GerenciadorGrafico::setGE(Ente *pE) -> Ponteiro nulo." << endl;}
-}
+// void GerenciadorGrafico::setGE(GerenciadorEventos* pGE){
+//     if(pGE)
+//         pGeventos = pGE;
+//     else
+//         {cout << "GerenciadorGrafico::setGE(Ente *pE) -> Ponteiro nulo." << endl;}
+// }
 
-void GerenciadorGrafico::incluiEnte(Ente* pE, int i) {
-    if(pE){
-        listaEntes[i] = pE;
-    }
-    else { cout << "GerenciadorGrafico::incluiEnte(Ente *pE) -> Ponteiro nulo." << endl; }
+// void GerenciadorGrafico::incluiEnte(Ente* pE, int i) {
+//     if(pE){
+//         // listaEntes[i] = pE; // criar lista
+//     }
+//     else { cout << "GerenciadorGrafico::incluiEnte(Ente *pE) -> Ponteiro nulo." << endl; }
 
-}
-
+// }
 
 RenderWindow* GerenciadorGrafico::getPJanela() const {
 
@@ -103,42 +102,81 @@ RenderWindow* GerenciadorGrafico::getPJanela() const {
     return NULL;
 }
 
-void GerenciadorGrafico::executar(){
+// void Gerenciadores::GerenciadorGrafico::incluiEnte(Ente *pE) {
+//     if (pE) {
+//         cout << "implementar incluiEnte()" << endl;
+//         // por na lista
+//     } else { cout << "void Gerenciadores::GerenciadorGrafico::incluiEnte(Ente *pE) -> ponteiro nulo" << endl; }
+// }
 
-    Clock relogio;
+void GerenciadorGrafico::executar() {
 
-    if(!pGeventos || !pGcolisoes){
-        cout << "GerenciadorGrafico::executar() -> Ponteiro nulo" << endl;
-        return;
-    }
+    // Clock relogio;
+
+    // if(!pGeventos){
+    //     cout << "GerenciadorGrafico::executar() -> Ponteiro nulo" << endl;
+    //     return;
+    // }
         
 
-    while (pJanela->isOpen()) {
+    // while (pJanela->isOpen()) {
 
-        deltaTime = relogio.restart().asSeconds();
+    //     deltaTime = relogio.restart().asSeconds();
 
-        while(pJanela->pollEvent( *(pGeventos->getEvento()) )){
+    //     while(pJanela->pollEvent( *(pGeventos->getEvento()) )){
 
-            if(pGeventos->getEvento()->type == Event::Closed)
-                pJanela->close();
+    //         if(pGeventos->getEvento()->type == Event::Closed)
+    //             pJanela->close();
 
-            pGeventos->executar();
-        }
+    //         pGeventos->executar();
+    //     }
             
         // pEnte->executar();
-        pGcolisoes->executar();
-        listaEntes[0]->executar();
-        listaEntes[1]->executar();
-        listaEntes[2]->executar();
+        // pGcolisoes->executar();
+        // listaEntes[0]->executar();
+        // listaEntes[1]->executar();
+        // listaEntes[2]->executar();
 
-        pJanela->clear();
-        desenharEnte(listaEntes[0]);
-        desenharEnte(listaEntes[1]);
-        desenharEnte(listaEntes[2]);
-        pJanela->display();
+        // pJanela->clear();
+        // desenharEnte(listaEntes[0]);
+        // desenharEnte(listaEntes[1]);
+        // desenharEnte(listaEntes[2]);
+        // pJanela->display();
         
-    }
+    // }
 
 }
 
 
+const bool GerenciadorGrafico::getJanelaAberta() const
+{
+    if (!pJanela) {
+        cout << "const bool GerenciadorGrafico::getJanelaAberta() const -> ponteiro nulo" << endl;
+        return NULL;
+    }
+    return (pJanela->isOpen() ? true : false);
+}
+
+void GerenciadorGrafico::limparJanela() {
+    if (!pJanela) {
+        cout << "GerenciadorGrafico::limparJanela() -> ponteiro nulo" << endl;
+        return;
+    }
+    pJanela->clear();
+}
+
+void Gerenciadores::GerenciadorGrafico::exibirNaJanela() {
+    if (!pJanela) {
+        cout << "GerenciadorGrafico::limparJanela() -> ponteiro nulo" << endl;
+        return;
+    }
+    pJanela->display();
+}
+
+void Gerenciadores::GerenciadorGrafico::fecharJanela() {
+    if (!pJanela) {
+        cout << "GerenciadorGrafico::fecharJanela() -> ponteiro nulo" << endl;
+        return;
+    }
+    pJanela->close();
+}   
