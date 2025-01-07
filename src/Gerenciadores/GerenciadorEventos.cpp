@@ -11,8 +11,7 @@ using namespace Gerenciadores;
 /* Construtoras/Destrutora */
 GerenciadorEventos::GerenciadorEventos():
 evento(),
-pJog(NULL),
-relogio()
+pJog(NULL)
 {
 }
 
@@ -37,7 +36,7 @@ void GerenciadorEventos::monitorarJogador() {
     /* Inicializar a posicao como 0 aqui impede que seja travada */
     pJog->setVelocidadeX(0.0f);
     pJog->setEstaAndando(false);
-
+    
     lerTeclado();
 
     if (pJog->getVelocidade().x == 0) {
@@ -50,13 +49,11 @@ void Gerenciadores::GerenciadorEventos::lerTeclado() {
 
     if (Keyboard::isKeyPressed(Keyboard::Left)) {
         pJog->setEstaAndando(true);
-        //pJog->getFigura()->virar(1);
         pJog->setVelocidadeX(-VELOCIDADE_ANDAR);
     }
 
     if (Keyboard::isKeyPressed(Keyboard::Right)) {
         pJog->setEstaAndando(true);
-        //pJog->getFigura()->virar(1);
         pJog->setVelocidadeX(VELOCIDADE_ANDAR);
     }
 

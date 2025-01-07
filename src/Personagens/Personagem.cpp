@@ -6,7 +6,7 @@ Entidade(x,y),
 num_vidas(1),
 velocidade(0.0,0.0),
 estaAndando(false),
-estaPulando(false)
+estaPulando(true)
 {
     calcVivo();
 }
@@ -25,8 +25,6 @@ void Personagem::mover(){
 
 // Trocar para ser feita no gerenciador de colisões:: Dica do monitor -> Monitor é ruim kkkkk
 void Personagem::aplicarGravidade(){  //testar ponteiro pGG
-
-    if(estaPulando)
         velocidade.y += GRAVIDADE * pGG->getDeltaTime();
 }
 

@@ -7,7 +7,7 @@ GC(),
 GE(),
 jog1((LARGURA - TAM_JOGADOR)/2, (ALTURA + TAM_JOGADOR ) / 2),
 plat1(0.0f, ALTURA - ALT_PLATAFORMA),
-ali1((LARGURA - TAM_JOGADOR)/2.5, (ALTURA + TAM_JOGADOR ) / 2)
+ali1(1,1)
 {
     distribuir();
     executar();

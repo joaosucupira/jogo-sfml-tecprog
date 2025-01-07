@@ -8,7 +8,6 @@ class GerenciadorEventos
 private:
     Event evento; // fazer ponteiro e alocar na construtora
     Jogador *pJog;
-    Clock relogio;
 
 public:
     GerenciadorEventos();

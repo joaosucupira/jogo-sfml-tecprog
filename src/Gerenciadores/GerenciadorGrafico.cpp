@@ -126,10 +126,13 @@ void GerenciadorGrafico::executar(){
         }
             
         // pEnte->executar();
-        pGcolisoes->executar();
+        
         listaEntes[0]->executar();
         listaEntes[1]->executar();
         listaEntes[2]->executar();
+
+        pGcolisoes->executar();
+
 
         pJanela->clear();
         desenharEnte(listaEntes[0]);

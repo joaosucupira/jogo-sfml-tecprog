@@ -22,7 +22,7 @@ joga1(cont == 0)
         setTamanhoFigura(TAM_JOGADOR, TAM_JOGADOR);
         setPosicaoFigura(x, y);
 
-        num_vidas = 500;
+        num_vidas = 20;
         cont++;
         
     } else { cout << endl << "Jogador::Jogador() -> Apenas dois jogadores permitidos." << endl; }
@@ -49,7 +49,6 @@ void Jogador::salvaDataBuffer() {
 }
 
 void Jogador::executar() {
-
     mover();
     aplicarGravidade();
     atualizarFigura();

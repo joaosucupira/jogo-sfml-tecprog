@@ -20,11 +20,12 @@ public:
     virtual void mover();
 
     void setVidas(const int vidas) { num_vidas = vidas; }
-    void calcVivo() { vivo = (num_vidas > 0 ? true : false); }
+    void calcVivo() { vivo = (num_vidas >= 0 ? true : false); }
     void setVelocidadeX(float x){ velocidade.x = x;}
     void setVelocidadeY(float y){ velocidade.y = y;}
     void setEstaPulando(bool pulou){ estaPulando = pulou;}
     void setEstaAndando(bool andou){ estaAndando = andou;}
+    void atualizaVelocidade(Vector2f num){velocidade.x *= num.x; velocidade.y *= num.y;}
     
     const int getVidas() const { return num_vidas;}
     const bool getVivo() const { return vivo;}
