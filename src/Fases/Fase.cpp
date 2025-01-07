@@ -67,13 +67,16 @@ void Fase::criarPlataformas() {
 
 void Fases::Fase::criarAlienigenas() {
     Alienigena* pA = NULL;
-    const int max = 1;
+    const int max = 3;
+    int pos = 1;
 
     for (int i = 0; i < max; i++) {
-        pA = new Alienigena(1, 1);
+        pA = new Alienigena(pos, 1);      
         entidades->adiciona(pA);
         GC.incluirInim(pA);
         pA = NULL;
+
+        pos+= TAM_JOGADOR;
     }
     if (pA) delete pA;
     pA = NULL;
