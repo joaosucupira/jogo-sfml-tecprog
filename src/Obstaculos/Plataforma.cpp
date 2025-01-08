@@ -22,6 +22,10 @@ Plataforma::~Plataforma()
 {
 }
 
+void Obstaculos::Plataforma::obstacular(Jogador *pJ) {
+
+}
+
 void Obstaculos::Plataforma::salvaDataBuffer() {
 }
 

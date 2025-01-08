@@ -18,6 +18,7 @@ namespace Obstaculos {
         Plataforma(const int x_inicial, const int y_inicial);
         ~Plataforma();
 
+        void obstacular(Jogador* pJ);
         void salvaDataBuffer();
         void carregarFigura();
         void executar();
