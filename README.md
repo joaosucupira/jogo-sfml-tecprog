@@ -1,6 +1,6 @@
-UTFPR-CT (CURITIBA)
+UTFPR-CT (CURITIBA)</br>
 CURSO:
-    BACHARELADO EM SISTEMAS DE INFORMAÇÃPO
+    BACHARELADO EM SISTEMAS DE INFORMAÇÃO
 ALUNOS:
     João Antonio Teixeira Sucupira
     João Gabriel Klug Teixeira
