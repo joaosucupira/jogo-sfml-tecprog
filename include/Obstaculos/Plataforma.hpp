@@ -4,8 +4,8 @@
 #include "Obstaculo.hpp"
 
 #define PLATAFORMA_PATH "./assets/Obstaculo/plataforma.24x24.png"
-#define PLATAFORMA_LARGURA 1260
-#define PLATAFORMA_ALTURA 100
+#define PLATAFORMA_LARGURA 24
+#define PLATAFORMA_ALTURA 24
 
 namespace Obstaculos {
 

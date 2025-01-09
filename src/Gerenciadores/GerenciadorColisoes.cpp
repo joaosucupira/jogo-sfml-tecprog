@@ -104,7 +104,7 @@ void GerenciadorColisoes::coliJogObstaculo(){
     }
 
     if(obstaculos.empty()){
-        cout << "GerenciadorColisoes::coliJogObstaculo() -> vector obstaculos vazio" << endl;
+        // cout << "GerenciadorColisoes::coliJogObstaculo() -> vector obstaculos vazio" << endl;
         return;
     }
 
@@ -114,6 +114,7 @@ void GerenciadorColisoes::coliJogObstaculo(){
     }
 
     for(i = 0; i < obstaculos.size(); i++){
+
         
         lim1 = ajusteHitBoxPerso(pJog1->getLimites());
         lim2 = obstaculos[i]->getLimites();
@@ -122,6 +123,7 @@ void GerenciadorColisoes::coliJogObstaculo(){
             verificarSentido(Vector2f(lim1.left, lim1.top), Vector2f(lim2.left, lim2.top));
             restauraHitBoxPerso(lim1);
             jogadorPlataforma(pJog1);
+            obstaculos[i]->obstacular(pJog1);
         }
     }
 }
@@ -136,7 +138,7 @@ void GerenciadorColisoes::coliJogInimigo(){
     }
 
     if(inimigos.empty()){
-        cout << "GerenciadorColisoes::coliJogObstaculo() -> vector obstaculos vazio" << endl;
+        // cout << "GerenciadorColisoes::coliJogObstaculo() -> vector obstaculos vazio" << endl;
         return;
     }
 
@@ -175,12 +177,12 @@ void GerenciadorColisoes::coliInimObstaculo(){
     //Acoplar segundo jogador depois
 
     if(inimigos.empty()){
-        cout << "GerenciadorColisoes::coliJogObstaculo() -> vector inimigos vazio" << endl;
+        // cout << "GerenciadorColisoes::coliJogObstaculo() -> vector inimigos vazio" << endl;
         return;
     }
 
     if(obstaculos.empty()){
-        cout << "GerenciadorColisoes::coliJogObstaculo() -> vector obstaculos vazio" << endl;
+        // cout << "GerenciadorColisoes::coliJogObstaculo() -> vector obstaculos vazio" << endl;
         return;
     }
 
@@ -228,7 +230,7 @@ void GerenciadorColisoes::coliInimJanela(){
     long unsigned int i, tam;
 
     if(inimigos.empty()){
-        cout << "GerenciadorColisoes::coliJogObstaculo() -> vector inimigos vazio" << endl;
+        // cout << "GerenciadorColisoes::coliJogObstaculo() -> vector inimigos vazio" << endl;
         return;
     }
 

@@ -35,7 +35,7 @@ using namespace sf;
 #define ALTURA_COLI 0.3 //Altura da colisao do jogador com alienigena
 
 /* Macros - Tamanhos*/
-#define TAM_JOGADOR 200.0f
+#define TAM_JOGADOR 100.0f
 #define ALT_PLATAFORMA  40.0f
 
 

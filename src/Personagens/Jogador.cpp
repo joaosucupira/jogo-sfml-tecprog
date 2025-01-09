@@ -53,4 +53,5 @@ void Jogador::executar() {
     mover();
     aplicarGravidade();
     atualizarFigura();
+    pGG->desenharEnte(this);
 }

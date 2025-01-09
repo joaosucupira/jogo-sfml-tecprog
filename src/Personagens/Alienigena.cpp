@@ -32,6 +32,7 @@ void Personagens::Alienigena::carregarFigura() {
 void Personagens::Alienigena::executar() {
     mover();
     aplicarGravidade();
+    pGG->desenharEnte(this);
 }
 
 void Alienigena::danificar(Jogador* pJ) {
