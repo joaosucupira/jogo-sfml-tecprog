@@ -38,6 +38,7 @@ namespace Entidades
         void setXY(const float novoX, const float novoY);
         const float getX() const { return x; }
         const float getY() const { return y; }
+        void posicionar(const float x, const float y);
         
     };
 

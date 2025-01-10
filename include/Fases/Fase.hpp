@@ -22,11 +22,13 @@ namespace Fases {
         Fase();
         ~Fase();
 
+        // void posicionarEntidade(Entidade* pE, const float x, const float y);
         void renderizarEntidades();
         void gerenciarEventos();
         void gerenciarColisoes();
         virtual void executar();
         void criarPlataformas();
+        void construirPlano(const int tamanho, Vector2f inicio);
         void criarAlienigenas();
         // TODO
 

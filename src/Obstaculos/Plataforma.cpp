@@ -37,6 +37,6 @@ void Obstaculos::Plataforma::carregarFigura()
 }
 
 void Obstaculos::Plataforma::executar() {
-    // Não tenho certeza
     pGG->desenharEnte(this);
+    
 }

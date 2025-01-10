@@ -14,7 +14,7 @@ Inimigo(x_inicial, y_inicial)
     setTamanhoFigura(TAM_JOGADOR, TAM_JOGADOR);
     setPosicaoFigura(x, y);
 
-    velocidade.x = VELOCIDADE_ANDAR - 0.3;
+    velocidade.x = -(VELOCIDADE_ANDAR - 0.3);
 
 }
 

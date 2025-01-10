@@ -26,6 +26,11 @@ void Entidade::setXY(const float novoX, const float novoY){
     y = novoY;
 }
 
+void Entidades::Entidade::posicionar(const float x, const float y) {
+    setXY(x, y);
+    setPosicaoFigura(x, y);
+}
+
 void Entidade::setTamanhoFigura(const float tX, const float tY) { //em Ente faz mais sentido
     figura->setTamanho(tX, tY);
 }

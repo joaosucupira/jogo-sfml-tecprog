@@ -5,11 +5,11 @@ GerenciadorGrafico* Jogo::pGG = GerenciadorGrafico::getInstancia();
 
 
 Jogo::Jogo() :
-// tempo(),
 GE(),
-jog1(new Jogador((LARGURA - TAM_JOGADOR)/2, (ALTURA + TAM_JOGADOR ) / 2)),
+jog1(new Jogador()),
 fase1()
 {
+
     distribuir();
     executar();
 }
@@ -26,7 +26,6 @@ void Jogo::distribuir()
 }
 
 void Jogo::executar() {
-    // pGG->setDeltaTime(0.0);
 
     while (pGG->getJanelaAberta()) {
         
@@ -37,7 +36,7 @@ void Jogo::executar() {
             if (GE.getEvento()->type == Event::Closed) {
                 pGG->fecharJanela();
             }
-            // GE.executar();
+
         }
         pGG->limparJanela();
         // execucoes
