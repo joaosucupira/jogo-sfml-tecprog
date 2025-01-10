@@ -29,6 +29,7 @@ namespace Fases {
         virtual void executar();
         void criarPlataformas();
         void construirPlano(const int tamanho, Vector2f inicio);
+        void construirParede(const int tamanho, Vector2f inicio);
         void criarAlienigenas();
         // TODO
 

@@ -39,3 +39,4 @@ void Personagem::atualizarFigura() { //testar ponteiro figura
 void Personagem::figuraInicial() {//testar ponteiro figura e criar booleano para estaParado
     figura->setSecaoInicial();
 }
+

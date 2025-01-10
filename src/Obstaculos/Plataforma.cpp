@@ -39,4 +39,5 @@ void Obstaculos::Plataforma::carregarFigura()
 void Obstaculos::Plataforma::executar() {
     pGG->desenharEnte(this);
     
+    
 }

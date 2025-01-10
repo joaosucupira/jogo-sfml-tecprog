@@ -179,4 +179,19 @@ void Gerenciadores::GerenciadorGrafico::fecharJanela() {
         return;
     }
     pJanela->close();
-}   
+}
+
+// !- ALERTA GAMBIARRA
+void Gerenciadores::GerenciadorGrafico::exibirHitBox(FloatRect lim) {
+    // 10/1 - Verificando o que pode estar comprometendo detecção de colisões
+
+    RectangleShape hitbox;
+
+    hitbox.setPosition(lim.left, lim.top);
+    hitbox.setSize(sf::Vector2f(lim.width, lim.height));
+    hitbox.setFillColor(sf::Color::Transparent); // Sem preenchimento
+    hitbox.setOutlineColor(sf::Color::Red);      // Cor da borda
+    hitbox.setOutlineThickness(1.0f); 
+
+    pJanela->draw(hitbox);
+}

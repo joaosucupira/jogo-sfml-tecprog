@@ -39,6 +39,8 @@ namespace Entidades
         const float getX() const { return x; }
         const float getY() const { return y; }
         void posicionar(const float x, const float y);
+
+        void exibirHitbox(FloatRect& lim);
         
     };
 

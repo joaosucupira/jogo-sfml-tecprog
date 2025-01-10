@@ -69,6 +69,8 @@ void Gerenciadores::GerenciadorEventos::lerTeclado() {
             pJog->setVelocidadeY(-sqrt(2.0 * GRAVIDADE * ALTURA_PULO));
         }
     }
+
+
 }
 
 void GerenciadorEventos::executar() {

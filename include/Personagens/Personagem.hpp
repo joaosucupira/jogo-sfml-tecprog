@@ -40,6 +40,7 @@ public:
 
     void atualizarFigura();
     void figuraInicial();
+    
 
 };
 } using namespace Personagens;

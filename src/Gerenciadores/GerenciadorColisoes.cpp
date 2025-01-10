@@ -7,7 +7,8 @@ obstaculos(),
 inimigos(),
 lim1(),
 lim2(),
-ajustePerso(TAM_JOGADOR/5)
+ajustePerso(TAM_JOGADOR / 5),
+ajusteObst(ALT_PLATAFORMA / 10)
 {
     obstaculos.clear();
     inimigos.clear();
@@ -54,40 +55,63 @@ const bool GerenciadorColisoes::verificarColisao(FloatRect lim1, FloatRect lim2)
     return lim1.intersects(lim2);
 }
 
-void GerenciadorColisoes::verificarSentido(Vector2f pos1, Vector2f pos2){
-    
-    Vector2f res;
+void GerenciadorColisoes::verificarSentido(Vector2f pos1, Vector2f pos2) {
 
-    for(int i = 0; i < 4; i++){
+    Vector2f res = pos1 - pos2;
+    const int margem = 10;
+
+    for (int i = 0; i < 4; i++) {
         sentidos[i] = 0;
     }
 
-    res = pos1 - pos2;
-
-    if(res.x > 10 ) {
-        sentidos[0] = 1; //esquerda
+    if (std::abs(res.x) > std::abs(res.y)) {
+        if (res.x > margem) {
+            sentidos[0] = 1; // Esquerda
+        } else {
+            sentidos[1] = 1; // Direita
+        }
     }
 
-    else if(res.x < -10 ) {
-        sentidos[1] = 1; //direita
+    else {
+        if (res.y > margem) {
+            sentidos[3] = 1; // Baixo
+        } else {
+            sentidos[2] = 1; // Cima
+        }
     }
+}    
+    // Vector2f res;
 
-    if(res.y < -10) {
-        sentidos[2] = 1; //cima
+    // for(int i = 0; i < 4; i++){
+    //     sentidos[i] = 0;
+    // }
 
-    }
+    // res = pos1 - pos2;
 
-    else if(res.y > 10) {
-        sentidos[3] = 1; //baixo
-    }
+    // if(res.x > 10 ) {
+    //     sentidos[0] = 1; //esquerda
+    // }
+
+    // else if(res.x < -10 ) {
+    //     sentidos[1] = 1; //direita
+    // }
+
+    // if(res.y < -10) {
+    //     sentidos[2] = 1; //cima
+
+    // }
+
+    // else if(res.y > 10) {
+    //     sentidos[3] = 1; //baixo
+    // }
 
     
-}
+// }
 
 FloatRect GerenciadorColisoes::ajusteHitBoxPerso(FloatRect lim){
     
     lim.left += ajustePerso;
-    lim.width -= 2*ajustePerso;
+    lim.width -= 2 * ajustePerso;
     lim.top += ajustePerso;
     lim.height -= ajustePerso;
 
@@ -99,6 +123,24 @@ void GerenciadorColisoes::restauraHitBoxPerso(FloatRect &lim){
     lim.width += 2 * ajustePerso;
     lim.top -= ajustePerso;
     lim.height += ajustePerso;
+    
+    pJog1->exibirHitbox(lim);
+}
+
+FloatRect Gerenciadores::GerenciadorColisoes::ajusteHitBoxObst(FloatRect lim) {
+    lim.left -= ajusteObst;
+    lim.width += 2 * ajusteObst;
+    lim.top -= ajusteObst;
+    lim.height += ajusteObst;
+    return lim;
+}
+
+void Gerenciadores::GerenciadorColisoes::restauraHitBoxObst(FloatRect &lim) {
+
+    lim.left += ajusteObst;
+    lim.width -= 2 * ajusteObst;
+    lim.top += ajusteObst;
+    lim.height -= ajusteObst;
 }
 
 void GerenciadorColisoes::coliJogObstaculo(){
@@ -123,15 +165,25 @@ void GerenciadorColisoes::coliJogObstaculo(){
 
     for(i = 0; i < obstaculos.size(); i++){
 
-        
         lim1 = ajusteHitBoxPerso(pJog1->getLimites());
+        pJog1->exibirHitbox(lim1);
 
-        lim2 = obstaculos[i]->getLimites();
+        // Talvez precise ajustar a hit box do obstaculo
+        lim2 = ajusteHitBoxObst(obstaculos[i]->getLimites());
+        // lim2 = (obstaculos[i]->getLimites());
+        obstaculos[i]->exibirHitbox(lim2);
+
 
         if(verificarColisao(lim1, lim2)){
             verificarSentido(Vector2f(lim1.left, lim1.top), Vector2f(lim2.left, lim2.top));
             restauraHitBoxPerso(lim1);
+            restauraHitBoxObst(lim2);
             jogadorPlataforma(pJog1);
+
+            obstaculos[i]->exibirHitbox(lim2);
+
+
+
             // obstaculos[i]->obstacular(pJog1);
         }
     }
@@ -202,12 +254,14 @@ void GerenciadorColisoes::coliInimObstaculo(){
             for(j = 0; j < obstaculos.size(); j++){
 
                 lim1 = ajusteHitBoxPerso(inimigos[i]->getLimites());
-                lim2 = obstaculos[j]->getLimites();
+                lim2 = ajusteHitBoxObst(obstaculos[j]->getLimites());
 
                 if(verificarColisao( lim1 , lim2 )){
                     verificarSentido(Vector2f(lim1.left, lim1.top), Vector2f(lim2.left, lim2.top));
                     restauraHitBoxPerso(lim1);
+                    restauraHitBoxObst(lim2);
                     inimigoPlataforma(inimigos[i]);
+
                 }
                     
             }
@@ -268,18 +322,25 @@ void GerenciadorColisoes::coliInimJanela(){
 
 }
 
+void Gerenciadores::GerenciadorColisoes::exibirColisoes() {
+    // pJog1->exibirHitbox(lim1);
+    // pJog2->exibirHitbox(lim2);
+}
+
 void GerenciadorColisoes::jogadorPlataforma(Jogador* pJog){
 
     //Colisao a esquerda do Personagem
     if (sentidos[0]) {
-        pJog->setXY(lim2.left + (lim2.width + COLISAO), lim1.top);
+        pJog->setXY(lim1.left + (lim2.width ), lim1.top);
+        pJog->setVelocidadeX(0);
   
     }
-    
     //Colisao a direita do Personagem
     else if (sentidos[1]) {
-        pJog->setXY(lim2.left - (lim1.width + COLISAO), lim1.top);
+        pJog->setXY(lim1.left - (lim2.width ), lim1.top);
+        pJog->setVelocidadeX(0);
     }
+    
         
     //Colisao a baixo do Personagem
     if(sentidos[2]) {
@@ -288,8 +349,10 @@ void GerenciadorColisoes::jogadorPlataforma(Jogador* pJog){
         pJog->setEstaPulando(false);
     }
     //Colisao a cima do Personagem
-    if(sentidos[3]) {
-        pJog->setXY(lim1.left, lim2.top + (lim2.height));
+    else if(sentidos[3]) {
+        pJog->setXY(lim1.left, lim2.top + (lim2.height + COLISAO));
+        
+        
     }
 
     for (int i = 0; i < 4; i++) {
@@ -337,12 +400,17 @@ void GerenciadorColisoes::jogadorAlienigena(Jogador* pJog, Inimigo* pInim){
 void GerenciadorColisoes::inimigoPlataforma(Inimigo* pInim){
 
     //Colisao a esquerda do Personagem
-    if(sentidos[0])
+    if(sentidos[0]) {
         pInim->setXY(lim2.left + (lim2.width + COLISAO), lim1.top);
+        pInim->atualizaVelocidade(Vector2f(-1.0, 1.0));
+    }
+        
     
     //Colisao a direita do Personagem
-    else if(sentidos[1])
+    else if(sentidos[1]) {
         pInim->setXY(lim2.left - (lim1.width + COLISAO), lim1.top);
+        pInim->atualizaVelocidade(Vector2f(-1.0, 1));
+    }
     
     //Colisao a baixo do Personagem
     if(sentidos[2]){
@@ -353,6 +421,7 @@ void GerenciadorColisoes::inimigoPlataforma(Inimigo* pInim){
     //Colisao a cima do Personagem
     if(sentidos[3])
         pInim->setXY(lim1.left, lim2.top + (lim2.height));
+
 
 }
 
