@@ -48,7 +48,8 @@ void Figura::setCor(const Color &cor){
 //Quebrar essa funcao em AtualizarSecaoX e AtualizarSecaoY
 void Figura::atualizarSecao() {
 
-    if (contAtualizacoes < 10){
+    // alterei porque ficou lerdo depois de acrescentar entidades
+    if (contAtualizacoes < 5){
         contAtualizacoes++;
         return;
     }

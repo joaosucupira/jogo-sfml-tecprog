@@ -22,7 +22,7 @@ using namespace std;
 using namespace sf;
 
 /* Macros */
-#define TAXA_QUADROS 100
+#define TAXA_QUADROS 60
 #define LARGURA 1260
 #define ALTURA 680
 
