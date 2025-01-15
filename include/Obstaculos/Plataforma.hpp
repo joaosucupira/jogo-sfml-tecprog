@@ -5,7 +5,7 @@
 
 #define PLATAFORMA_PATH "./assets/Obstaculo/plataforma.24x24.png"
 #define PLATAFORMA_LARGURA 72
-#define PLATAFORMA_ALTURA 72
+#define PLATAFORMA_ALTURA 72 
 
 namespace Obstaculos {
 

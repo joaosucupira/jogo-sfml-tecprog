@@ -58,7 +58,7 @@ namespace Gerenciadores{
         void coliInimObstaculo();
         void coliInimJanela();
 
-        void exibirColisoes();
+
 
     };
 } using namespace Gerenciadores;

@@ -25,6 +25,12 @@ void Personagem::mover(){
     // cout << pGG->getDeltaTime() << endl;
 }
 
+void Personagens::Personagem::atualizaParaFiguraInicial() {
+    if (figura) {
+        figura->setSecaoInicial();
+    } else { cout << "Personagem::atualizaParaFiguraInicial() -> figura nula" << endl; }
+}
+
 // Trocar para ser feita no gerenciador de colisões:: Dica do monitor -> Monitor é ruim kkkkk
 void Personagem::aplicarGravidade(){  //testar ponteiro pGG
         velocidade.y += GRAVIDADE * pGG->getDeltaTime();

@@ -15,6 +15,7 @@ Inimigo(x_inicial, y_inicial)
     setPosicaoFigura(x, y);
 
     velocidade.x = -(VELOCIDADE_ANDAR - 0.3);
+    setEstaAndando(true);
 
 }
 
@@ -32,6 +33,7 @@ void Personagens::Alienigena::carregarFigura() {
 void Personagens::Alienigena::executar() {
     mover();
     aplicarGravidade();
+    atualizarFigura();
     pGG->desenharEnte(this);
 }
 

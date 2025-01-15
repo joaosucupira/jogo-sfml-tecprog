@@ -26,6 +26,7 @@ public:
     void setEstaPulando(bool pulou){ estaPulando = pulou;}
     void setEstaAndando(bool andou){ estaAndando = andou;}
     void atualizaVelocidade(Vector2f num) {velocidade.x *= num.x; velocidade.y *= num.y;}
+    void atualizaParaFiguraInicial();
     
     const int getVidas() const { return num_vidas;}
     const bool getVivo() const { return vivo;}

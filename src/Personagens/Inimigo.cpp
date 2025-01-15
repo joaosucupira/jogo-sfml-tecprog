@@ -8,3 +8,9 @@ Personagem(x_inicial, y_inicial)
 Inimigo::~Inimigo()
 {
 }
+
+void Personagens::Inimigo::parar() {
+    setVelocidadeX(0);
+    setEstaAndando(false);
+    atualizaParaFiguraInicial();
+}

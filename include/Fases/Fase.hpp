@@ -8,6 +8,8 @@
 #include "ListaEntidades.hpp"
 #include "GerenciadorEventos.hpp"
 
+#define AJUSTE_CENTRO 250.0f
+
 namespace Fases {
     
     class Fase : public Ente
@@ -28,13 +30,19 @@ namespace Fases {
         void gerenciarColisoes();
         virtual void executar();
         void criarPlataformas();
+        void criarPlataformasA();
+
         void construirPlano(const int tamanho, Vector2f inicio);
         void construirParede(const int tamanho, Vector2f inicio);
+
         void criarAlienigenas();
-        // TODO
+        void criarAlienigenasA();
+        void criarAlienigenasB();
+        
 
         // virtual void criarViajantesMaus() {}
         // virtual void criarPortais() {}
+        
         void carregarFigura() {}
         void setJogador(Jogador* pJ);
         // void criarCenario() {}
