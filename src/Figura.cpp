@@ -1,6 +1,7 @@
 #include "Figura.hpp"
 #include "Ente.hpp"
 
+
 Figura::Figura(
 const int tamSecaoX, const int tamSecaoY,
 const int qntdSecaoX, const int qntdSecaoY,
@@ -44,6 +45,9 @@ void Figura::setCor(const Color &cor){
     sprite.setColor(cor);
 }
 
+void Figura::mostrarDano() {
+
+}
 
 //Quebrar essa funcao em AtualizarSecaoX e AtualizarSecaoY
 void Figura::atualizarSecao() {

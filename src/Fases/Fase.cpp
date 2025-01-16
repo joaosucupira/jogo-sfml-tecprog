@@ -11,6 +11,7 @@ GC()
     entidades->excluiTodos();
     criarPlataformas();
     criarAlienigenas();
+    criarPortais();
 }
 
 Fase::~Fase() {
@@ -27,10 +28,16 @@ void Fase::renderizarEntidades()
         return;
     }
 
+    Entidade* pE = NULL;
     for (int i = 0; i < (*entidades).getTamanho(); i++) {
-        (*entidades)[i]->executar();
-
+        pE = (*entidades)[i];
+        if (pE) {
+           pE->executar();
+        } else { cout << "void Fase::renderizarEntidades() -> ponteiro nulo" << endl; }
+        pE = NULL;
     }
+    if (pE) delete pE;
+    pE = NULL;
 }
 
 void Fase::gerenciarEventos()
@@ -153,6 +160,14 @@ void Fases::Fase::criarAlienigenasB() {
     // pA = NULL;
 }
 
+void Fases::Fase::criarPortais() {
+    Portal* pP = NULL;
+    pP = new Portal(750.0f, 350.0f);
+    if (pP) {
+        entidades->adiciona(static_cast<Entidade*>(pP));
+        GC.incluirObst(static_cast<Obstaculo*>(pP));
+    }
+}
 
 void Fase::setJogador(Jogador *pJ)
 {

@@ -4,6 +4,7 @@
 #include "Ente.hpp"
 #include "Plataforma.hpp"
 #include "Alienigena.hpp"
+#include "Portal.hpp"
 #include "GerenciadorColisoes.hpp"
 #include "ListaEntidades.hpp"
 #include "GerenciadorEventos.hpp"
@@ -41,7 +42,7 @@ namespace Fases {
         
 
         // virtual void criarViajantesMaus() {}
-        // virtual void criarPortais() {}
+        void criarPortais();
         
         void carregarFigura() {}
         void setJogador(Jogador* pJ);

@@ -41,6 +41,7 @@ namespace Entidades
         void posicionar(const float x, const float y);
 
         void exibirHitbox(FloatRect& lim);
+        virtual void atualizarFigura() = 0;
         
     };
 

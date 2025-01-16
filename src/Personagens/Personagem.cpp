@@ -31,6 +31,11 @@ void Personagens::Personagem::atualizaParaFiguraInicial() {
     } else { cout << "Personagem::atualizaParaFiguraInicial() -> figura nula" << endl; }
 }
 
+void Personagens::Personagem::operator--() {
+    (num_vidas > 0) ? num_vidas-- : vivo = false;
+    figura->mostrarDano();
+}
+
 // Trocar para ser feita no gerenciador de colisões:: Dica do monitor -> Monitor é ruim kkkkk
 void Personagem::aplicarGravidade(){  //testar ponteiro pGG
         velocidade.y += GRAVIDADE * pGG->getDeltaTime();

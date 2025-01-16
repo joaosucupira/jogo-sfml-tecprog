@@ -32,6 +32,7 @@ namespace Personagens{
         void danificar(Jogador* pJ);
         void executar();
         void salvaDataBuffer();
+        
     };
 
 } using namespace Personagens;

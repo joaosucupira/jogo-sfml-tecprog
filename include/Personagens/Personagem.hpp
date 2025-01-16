@@ -35,7 +35,7 @@ public:
     const bool getEstaAndando() const {return estaAndando;}
 
     /* Adaptar valor de vida a ser retirado no proprio operador*/
-    void operator--() { (num_vidas > 0) ? num_vidas-- : vivo = false;}
+    void operator--();
 
     void aplicarGravidade();
 

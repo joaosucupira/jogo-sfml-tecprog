@@ -152,13 +152,13 @@ void GerenciadorColisoes::coliJogObstaculo(){
             verificarSentido(Vector2f(lim1.left, lim1.top), Vector2f(lim2.left, lim2.top));
             restauraHitBoxPerso(lim1);
             restauraHitBoxObst(lim2);
-            jogadorPlataforma(pJog1);
 
+            
+            // jogadorPlataforma(pJog1);
+
+            obstaculos[i]->setSentidos(sentidos);
+            obstaculos[i]->obstacular(pJog1);
             obstaculos[i]->exibirHitbox(lim2);
-
-
-
-            // obstaculos[i]->obstacular(pJog1);
         }
     }
 }

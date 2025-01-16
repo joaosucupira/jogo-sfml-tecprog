@@ -22,5 +22,6 @@ namespace Obstaculos {
         void salvaDataBuffer();
         void carregarFigura();
         void executar();
+        void atualizarFigura() {}
     };
 } using namespace Obstaculos;
