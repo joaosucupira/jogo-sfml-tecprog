@@ -10,8 +10,8 @@ GC()
     entidades = new ListaEntidades();
     entidades->excluiTodos();
     criarPlataformas();
-    // criarAlienigenas();
-    // criarPortais();
+    criarAlienigenas();
+    criarPortais();
     criarBuracosNegros();
 }
 
@@ -152,7 +152,7 @@ void Fases::Fase::criarAlienigenasB() {
     //     TAM_JOGADOR - 450.0f
     // );
     Alienigena* pA = new Alienigena(
-        650.0f,
+        450.0f,
         50.0f
     );
 
@@ -174,7 +174,7 @@ void Fases::Fase::criarPortais() {
 
 void Fases::Fase::criarBuracosNegros() {
     BuracoNegro* pB = NULL;
-    pB = new BuracoNegro(550.0f, 350.0f);
+    pB = new BuracoNegro(450.0f, 250.0f);
     if (pB) {
         entidades->adiciona(static_cast<Entidade*>(pB));
         GC.incluirObst(static_cast<Obstaculo*>(pB));

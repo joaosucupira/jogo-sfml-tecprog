@@ -41,9 +41,9 @@ void BuracoNegro::obstacular(Jogador *pJ) {
     float dt = pGG->getDeltaTime();
     float resultante = dt * forca;
 
-    // pJ->atualizaVelocidade(Vector2f(1.2f * dt, 1.0f));
+
     int fX = 0, fY = 0;
-    if (pJ->getLimites().getPosition().x < getLimites().getPosition().x) {
+    if (pJ->getLimites().getPosition().x < getLimites().getPosition().x + TAM_BURACO_NEGRO / 3.0f) {
         fX += resultante;
     } else {
         fX -= resultante;
@@ -58,7 +58,7 @@ void BuracoNegro::obstacular(Jogador *pJ) {
 
     // Temporizador acumulado para controlar o dano
     static float tempoAcumulado = 0.0f; // Mantém o tempo entre chamadas
-    float cadencia = 0.5f;              // Tempo entre danos (em segundos)
+    float cadencia = 0.3f;              // Tempo entre danos (em segundos)
     tempoAcumulado += dt;
 
     // Reduzir a vida do jogador apenas se o tempo acumulado ultrapassar a cadência
