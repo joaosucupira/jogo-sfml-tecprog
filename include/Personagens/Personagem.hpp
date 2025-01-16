@@ -38,6 +38,7 @@ public:
     void operator--();
 
     void aplicarGravidade();
+    void aplicarGravidadeAnomola();
 
     void atualizarFigura();
     void figuraInicial();

@@ -79,6 +79,7 @@ void GerenciadorColisoes::verificarSentido(Vector2f pos1, Vector2f pos2) {
             sentidos[2] = 1; // Cima
         }
     }
+
 }    
 
 
@@ -267,7 +268,7 @@ void GerenciadorColisoes::coliInimJanela(){
     long unsigned int i, tam;
 
     if(inimigos.empty()){
-        cout << "GerenciadorColisoes::coliJogObstaculo() -> vector inimigos vazio" << endl;
+        // cout << "GerenciadorColisoes::coliJogObstaculo() -> vector inimigos vazio" << endl;
         return;
     }
 

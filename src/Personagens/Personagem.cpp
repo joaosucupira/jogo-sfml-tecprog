@@ -41,6 +41,10 @@ void Personagem::aplicarGravidade(){  //testar ponteiro pGG
         velocidade.y += GRAVIDADE * pGG->getDeltaTime();
 }
 
+void Personagens::Personagem::aplicarGravidadeAnomola() {
+        velocidade.x += GRAVIDADE * pGG->getDeltaTime();
+}
+
 void Personagem::atualizarFigura() { //testar ponteiro figura
 
     if(estaAndando)

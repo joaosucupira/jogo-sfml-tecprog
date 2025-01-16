@@ -5,6 +5,7 @@
 #include "Plataforma.hpp"
 #include "Alienigena.hpp"
 #include "Portal.hpp"
+#include "BuracoNegro.hpp"
 #include "GerenciadorColisoes.hpp"
 #include "ListaEntidades.hpp"
 #include "GerenciadorEventos.hpp"
@@ -32,6 +33,7 @@ namespace Fases {
         virtual void executar();
         void criarPlataformas();
         void criarPlataformasA();
+        void criarPlataformasB();
 
         void construirPlano(const int tamanho, Vector2f inicio);
         void construirParede(const int tamanho, Vector2f inicio);
@@ -43,6 +45,7 @@ namespace Fases {
 
         // virtual void criarViajantesMaus() {}
         void criarPortais();
+        void criarBuracosNegros();
         
         void carregarFigura() {}
         void setJogador(Jogador* pJ);

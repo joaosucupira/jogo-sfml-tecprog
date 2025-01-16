@@ -7,7 +7,8 @@ int Jogador::cont(0);
 Jogador::Jogador(const float x_inicial, const float y_inicial) :
 Personagem(x_inicial, y_inicial),
 pontos(0),
-joga1(cont == 0)
+joga1(cont == 0),
+lentidao(0.0f)
 {
     //A verificação é feita na hora de construir o objeto?
     if (cont < 2) {

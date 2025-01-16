@@ -38,6 +38,7 @@ using namespace sf;
 #define TAM_JOGADOR 100.0f
 #define ALT_PLATAFORMA  40.0f
 #define TAM_PORTAL 150.0f
+#define TAM_BURACO_NEGRO 160.0f
 
 
 

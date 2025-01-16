@@ -20,6 +20,7 @@ namespace Personagens {
         static int cont;
         int pontos;
         bool joga1;
+        float lentidao;
 
     public:
         Jogador(const float x_inicial = 0, const float y_inicial = 0);

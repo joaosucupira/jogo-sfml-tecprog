@@ -21,6 +21,11 @@ Portal::~Portal()
 }
 
 void Portal::obstacular(Jogador *pJ) {
+    if (!pJ) {
+        cout << "void Portal::obstacular(Jogador *pJ) -> ponteiro nulo" << endl;
+        return;
+    }
+    
     if (abs(getLimites().left - pJ->getLimites().left) <= raio &&
         abs(getLimites().top - pJ->getLimites().top <= raio)) {
         pJ->operator--();
