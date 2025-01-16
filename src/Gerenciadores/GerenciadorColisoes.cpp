@@ -353,6 +353,7 @@ void GerenciadorColisoes::jogadorAlienigena(Jogador* pJog, Inimigo* pInim){
         pJog->setVelocidadeY(-sqrt(2.0 * GRAVIDADE * ALTURA_COLI));
         pJog->setEstaPulando(true);
         pInim->operator--();
+        pInim->parar();
         
         pJog->setXY(lim1.left, lim2.top - (lim1.height - ajustePerso));
 

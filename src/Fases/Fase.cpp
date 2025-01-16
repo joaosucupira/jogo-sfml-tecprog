@@ -61,12 +61,16 @@ void Fase::criarPlataformas() {
 void Fases::Fase::criarPlataformasA() {
     // chao
     for (int i = 0; i < 2; i++) {
-        construirPlano(20, Vector2f(0.0f, ALTURA - PLATAFORMA_ALTURA * i));
+        construirPlano(5, Vector2f(0.0f, ALTURA - PLATAFORMA_ALTURA * i));
+    }
+    for (int i = 0; i < 2; i++) {
+        construirPlano(5, Vector2f(900.0f, ALTURA - PLATAFORMA_ALTURA * i));
     }
     // teto
     for (int i = 0; i < 1; i++) {
         construirPlano(20, Vector2f(0.0f, 0.0f));
     }
+
     // // parede esquerda
     // for (int i = 0; i < 20; i ++) {
     //     construirPlano(1, Vector2f(0.0f, ALTURA - PLATAFORMA_ALTURA * i));
@@ -115,6 +119,7 @@ void Fases::Fase::construirParede(const int tamanho, Vector2f inicio) {
 
 void Fases::Fase::criarAlienigenas() {
     criarAlienigenasB();
+    // criarAlienigenasA();
 }
 
 void Fases::Fase::criarAlienigenasA() {
@@ -124,7 +129,7 @@ void Fases::Fase::criarAlienigenasA() {
     for (int i = 0; i < max; i++) {
         pA = new Alienigena(
             LARGURA - (PLATAFORMA_LARGURA + TAM_JOGADOR) - i * 500.0f,
-            ALTURA - (TAM_JOGADOR + ALT_PLATAFORMA + 10.0f)
+            ALTURA - (TAM_JOGADOR + ALT_PLATAFORMA)
         );
 
         entidades->adiciona(static_cast<Entidade*>(pA));
@@ -138,7 +143,7 @@ void Fases::Fase::criarAlienigenasA() {
 void Fases::Fase::criarAlienigenasB() {
     Alienigena* pA = new Alienigena(
         LARGURA - (PLATAFORMA_LARGURA + TAM_JOGADOR) - 500.0f,
-        TAM_JOGADOR + 10.0f
+        TAM_JOGADOR - 100.0f
     );
 
     entidades->adiciona(static_cast<Entidade*>(pA));

@@ -13,8 +13,8 @@ namespace Obstaculos{
 
     public: 
 
-        Obstaculo(const float x, const float y);
-        ~Obstaculo();
+        Obstaculo(const float x = 0.0f, const float y = 0.0f);
+        virtual ~Obstaculo();
 
         // 8/1 - Inclusao do metodo virtual da linhagem de obstaculos
         virtual void obstacular(Jogador* pJ) = 0;
