@@ -62,7 +62,7 @@ void Fase::executar() {
 }
 
 void Fase::criarPlataformas() {
-    criarPlataformasB();
+    criarPlataformasA();
 
 }
 
@@ -77,6 +77,10 @@ void Fases::Fase::criarPlataformasA() {
     // teto
     for (int i = 0; i < 1; i++) {
         construirPlano(20, Vector2f(0.0f, 0.0f));
+    }
+
+    for (int i = 0; i < 20; i++) {
+        construirPlano(1, Vector2f(0.0f, ALTURA - PLATAFORMA_ALTURA * i));
     }
     
     for (int i = 0; i < 1; i++) {

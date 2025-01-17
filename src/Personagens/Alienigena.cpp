@@ -5,11 +5,11 @@ Inimigo(x_inicial, y_inicial)
 {
     figura = new Figura(
         TAM_SECAO, TAM_SECAO, 
-        QNTD_SECAO, QNTD_SECAO, 
+        QNTD_SECAO_X, QNTD_SECAO_Y, 
         SEC_FINAL_X, SEC_FINAL_Y,
         SEC_INICIAL_X, SEC_INICIAL_Y
     );
-    figura->setCor(Color::Red);
+    // figura->setCor(Color::Red);
     carregarFigura();
     setTamanhoFigura(TAM_JOGADOR, TAM_JOGADOR);
     setPosicaoFigura(x, y);

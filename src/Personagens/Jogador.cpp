@@ -18,7 +18,7 @@ lentidao(0.0f)
             SEC_FINAL_X, SEC_FINAL_Y,
             SEC_INICIAL_X, SEC_INICIAL_Y
         );
-        escolheCor();
+        // escolheCor();
         carregarFigura();
         setTamanhoFigura(TAM_JOGADOR, TAM_JOGADOR);
         setPosicaoFigura(x, y);

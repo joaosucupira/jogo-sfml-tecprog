@@ -64,8 +64,22 @@ void GerenciadorColisoes::verificarSentido(Vector2f pos1, Vector2f pos2) {
         sentidos[i] = 0;
     }
 
+    // Estudando
+    // if (lim1.getPosition().x < lim2.getPosition().x) {
+    //     sentidos[0] = 1;
+    // }
+    // else if (lim1.getPosition().x > lim2.getPosition().x) {
+    //     sentidos[1] = 1; 
+    // }
+    // if (lim1.getPosition().y < lim2.getPosition().y) {
+    //     sentidos[3] = 1;
+    // }
+    // else if (lim1.getPosition().y > lim2.getPosition().y) {
+    //     sentidos[2] = 1; 
+    // }
+
     if (std::abs(res.x) > std::abs(res.y)) {
-        if (res.x > margem) {
+        if (res.x > margem ) {
             sentidos[0] = 1; // Esquerda
         } else {
             sentidos[1] = 1; // Direita
