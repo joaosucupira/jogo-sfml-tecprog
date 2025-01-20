@@ -43,7 +43,7 @@ namespace Entidades
         void exibirHitbox(FloatRect& lim);
         virtual void atualizarFigura() = 0;
         
-        //virtual FloatRect hitBox() = 0 //entidade
+        virtual FloatRect hitBox() const = 0; //entidade
         //sentidos[4]
         
     };

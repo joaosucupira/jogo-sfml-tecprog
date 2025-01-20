@@ -23,6 +23,7 @@ Plataforma::~Plataforma()
 }
 
 
+// obstacular não consideram o ajuste pois ele nao se aplica ao deslocamento pós colisão
 
 void Obstaculos::Plataforma::obstacular(Jogador *pJ)
 {
@@ -31,20 +32,24 @@ void Obstaculos::Plataforma::obstacular(Jogador *pJ)
         return;
     }
 
+    const float ajusteColisao = 0.25f;
+
     FloatRect lim1 = pJ->getLimites();
+    // FloatRect lim1 = pJ->hitBox();
     FloatRect lim2 = this->getLimites();
+    // FloatRect lim2 = hitBox();
 
 
     //Colisao a esquerda do Personagem
     if (sentidos[0]) {
-        pJ->setXY(lim1.left + (lim2.width ), lim1.top);
+        pJ->setXY(lim1.left + (lim2.width * ajusteColisao), lim1.top);
         pJ->setVelocidadeX(0);
         // cout << "ESQUERDA" << endl;
   
     }
     //Colisao a direita do Personagem
     else if (sentidos[1]) {
-        pJ->setXY(lim1.left - (lim2.width ), lim1.top);
+        pJ->setXY(lim1.left - (lim2.width * ajusteColisao), lim1.top);
         pJ->setVelocidadeX(0);
         // cout << "DIREITA" << endl;
     }
@@ -64,6 +69,47 @@ void Obstaculos::Plataforma::obstacular(Jogador *pJ)
         
         
     }
+}
+
+void Obstaculos::Plataforma::obstacular(Inimigo *pI) {
+
+    if (!pI) {
+        cout << "void Obstaculos::Plataforma::obstacular(Inimigo *pI) -> ponteiro nulo " << endl;
+        return;
+    }
+
+    // cout << "BATEU" << endl;
+
+    FloatRect lim1 = pI->getLimites();
+    // FloatRect lim1 = pI->hitBox();
+    FloatRect lim2 = this->getLimites();
+    // FloatRect lim2 = this->hitBox();
+
+    if(sentidos[0]) {
+        pI->setXY(lim1.left + (lim2.width + COLISAO), lim1.top);
+        // pI->setVelocidadeX(0);
+        // pI->setXY(lim2.left + (lim2.width + COLISAO), lim1.top);
+        pI->atualizaVelocidade(Vector2f(-1.0, 1.0));
+    }
+        
+    
+    //Colisao a direita do Personagem
+    else if(sentidos[1]) {
+        pI->setXY(lim1.left - (lim2.width + COLISAO), lim1.top);
+        // pI->setVelocidadeX(0);
+        // pI->setXY(lim2.left - (lim1.width + COLISAO), lim1.top);
+        pI->atualizaVelocidade(Vector2f(-1.0, 1));
+    }
+    
+    //Colisao a baixo do Personagem
+    if(sentidos[2]){
+        pI->setXY(lim1.left, lim2.top - (lim1.height));
+        pI->setVelocidadeY(0);
+        pI->setEstaPulando(false);
+    }
+    //Colisao a cima do Personagem
+    if(sentidos[3])
+        pI->setXY(lim1.left, lim2.top + (lim2.height));
 }
 
 void Obstaculos::Plataforma::salvaDataBuffer() {

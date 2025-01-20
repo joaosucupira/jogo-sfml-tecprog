@@ -11,8 +11,8 @@ GC()
     entidades->excluiTodos();
     criarPlataformas();
     criarAlienigenas();
-    criarPortais();
-    criarBuracosNegros();
+    // criarPortais();
+    // criarBuracosNegros();
 }
 
 Fase::~Fase() {
@@ -20,7 +20,6 @@ Fase::~Fase() {
     if (entidades) delete entidades;
     entidades = NULL; 
 }
-
 
 void Fase::renderizarEntidades()
 {
@@ -100,13 +99,17 @@ void Fases::Fase::criarPlataformasB() {
         construirPlano(16, Vector2f(i, ALTURA - ALT_PLATAFORMA * i));
     }
 
-    // parede
-    for (int i = 0; i < 5; i++) {
-        construirPlano(1, Vector2f((LARGURA - LARG_PLATAFORMA)/ 2, ALTURA - (i * ALT_PLATAFORMA)));
+    for (int i = 0; i < 1; i++) {
+        construirPlano(3, Vector2f(i, 320.0f));
     }
-    for (int i = 0; i < 5; i++) {
-        construirPlano(1, Vector2f((LARGURA - LARG_PLATAFORMA)/ 4, ALTURA - (i * ALT_PLATAFORMA)));
-    }
+
+    // // parede
+    // for (int i = 0; i < 5; i++) {
+    //     construirPlano(1, Vector2f((LARGURA - LARG_PLATAFORMA)/ 2, ALTURA - (i * ALT_PLATAFORMA)));
+    // }
+    // for (int i = 0; i < 5; i++) {
+    //     construirPlano(1, Vector2f((LARGURA - LARG_PLATAFORMA)/ 4, ALTURA - (i * ALT_PLATAFORMA)));
+    // }
 }
 
 void Fases::Fase::construirPlano(const int tamanho, Vector2f inicio) {
@@ -124,8 +127,8 @@ void Fases::Fase::construirPlano(const int tamanho, Vector2f inicio) {
 }
 
 void Fases::Fase::criarAlienigenas() {
-    // criarAlienigenasB();
-    criarAlienigenasA();
+    criarAlienigenasB();
+    // criarAlienigenasA();
 }
 
 void Fases::Fase::criarAlienigenasA() {
@@ -151,21 +154,28 @@ void Fases::Fase::criarAlienigenasB() {
     //     LARGURA - (PLATAFORMA_LARGURA + TAM_JOGADOR) - 400.0f,
     //     TAM_JOGADOR - 450.0f
     // );
-    Alienigena* pA = new Alienigena(
-        450.0f,
-        50.0f
-    );
+    Alienigena* pA = NULL;
+    const int max = 1; 
+    // const int distancia = 90.0f;
 
-    entidades->adiciona(static_cast<Entidade*>(pA));
-    GC.incluirInim(static_cast<Inimigo*>(pA));
+    for (int i = 2; i < max + 2; i++) {
+        pA = new Alienigena(
+            LARGURA - (PLATAFORMA_LARGURA + TAM_JOGADOR) - i * 100.0f,
+            ALTURA - (TAM_JOGADOR + ALT_PLATAFORMA)
+        );
+        entidades->adiciona(static_cast<Entidade*>(pA));
+        GC.incluirInim(static_cast<Inimigo*>(pA));
 
-    // delete pA;
-    // pA = NULL;
+        pA = NULL;
+    }
+
+    if (pA) delete pA;
+    pA = NULL;
 }
 
 void Fases::Fase::criarPortais() {
     Portal* pP = NULL;
-    pP = new Portal(300.0f, 200.0f);
+    pP = new Portal(400.0f, ALTURA - 2 * ALT_PLATAFORMA - 100.0f);
     if (pP) {
         entidades->adiciona(static_cast<Entidade*>(pP));
         GC.incluirObst(static_cast<Obstaculo*>(pP));

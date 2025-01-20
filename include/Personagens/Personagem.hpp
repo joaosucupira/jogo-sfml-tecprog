@@ -41,6 +41,7 @@ public:
     void aplicarGravidade();
     void atualizarFigura();
     void figuraInicial();
+    FloatRect hitBox() const;
     
 
 };

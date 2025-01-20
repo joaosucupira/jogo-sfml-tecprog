@@ -12,6 +12,7 @@ public:
     Portal(const float x_inicial = 0.0f, const float y_inicial = 0.0f);
     ~Portal();
     void obstacular(Jogador* pJ);
+    void obstacular(Inimigo* pI) {}
     void carregarFigura();
     void atualizarFigura();
     void executar();

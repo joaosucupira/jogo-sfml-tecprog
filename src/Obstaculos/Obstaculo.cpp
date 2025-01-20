@@ -17,3 +17,14 @@ void Obstaculos::Obstaculo::setSentidos(int *s) {
     }
 }
 
+FloatRect Obstaculo::hitBox() const {
+    // Alterando uma cópia, logo, não é necessario restaurar a hitbox
+    FloatRect lim = getLimites();
+    const float ajuste = ALT_PLATAFORMA / 10.0f;
+
+    lim.left -= ajuste;
+    lim.width += 2 * ajuste;
+    lim.top -= ajuste;
+    lim.height += ajuste;
+    return lim;
+}
