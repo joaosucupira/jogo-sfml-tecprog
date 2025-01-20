@@ -30,7 +30,10 @@ public:
 
     const int getId() const { return id; }
     Figura* getFigura() { return figura; }
-    FloatRect getLimites() const;
+    FloatRect getLimites() const; //sprite
+    
+    //virtual FloatRect hitBox() = 0 //entidade
+    //sentidos[4]
 
 };
 
