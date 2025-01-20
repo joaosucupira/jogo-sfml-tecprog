@@ -7,12 +7,12 @@ altura(0)
 {
     figura = new Figura(
         PLATAFORMA_LARGURA, PLATAFORMA_ALTURA,
-        0, 0,
+        1, 1,
         0, 0,
         0, 0
     );
     carregarFigura();
-    setTamanhoFigura(PLATAFORMA_LARGURA, PLATAFORMA_ALTURA);
+    setTamanhoFigura(LARG_PLATAFORMA, ALT_PLATAFORMA);
     setPosicaoFigura(x_inicial, y_inicial);
 
 }

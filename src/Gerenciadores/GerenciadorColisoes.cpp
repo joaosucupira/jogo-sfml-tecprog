@@ -64,6 +64,32 @@ void GerenciadorColisoes::verificarSentido(Vector2f pos1, Vector2f pos2) {
         sentidos[i] = 0;
     }
 
+    // Verificação do sentido de colisão mais relevante
+
+    if (std::abs(res.x) > std::abs(res.y)) {
+        if (res.x > margem) {
+            sentidos[0] = 1; // Esquerda
+        } else if (res.x < -margem) {
+        // } else {
+            sentidos[1] = 1; // Direita
+        }
+    }
+
+    else {
+        if (res.y > margem) {
+            sentidos[3] = 1; // Baixo
+        } else {
+            sentidos[2] = 1; // Cima
+        }
+    }
+
+    cout << "esquerda direita cima baixo" << endl;
+    for (int i = 0; i < 4; i++) {
+        cout << sentidos[i] << "        ";
+    }
+    cout << endl;
+
+
     // Estudando
     // if (lim1.getPosition().x < lim2.getPosition().x) {
     //     sentidos[0] = 1;
@@ -77,25 +103,7 @@ void GerenciadorColisoes::verificarSentido(Vector2f pos1, Vector2f pos2) {
     // else if (lim1.getPosition().y > lim2.getPosition().y) {
     //     sentidos[2] = 1; 
     // }
-
-    if (std::abs(res.x) > std::abs(res.y)) {
-        if (res.x > margem ) {
-            sentidos[0] = 1; // Esquerda
-        } else {
-            sentidos[1] = 1; // Direita
-        }
-    }
-
-    else {
-        if (res.y > margem) {
-            sentidos[3] = 1; // Baixo
-        } else {
-            sentidos[2] = 1; // Cima
-        }
-    }
-
 }    
-
 
 FloatRect GerenciadorColisoes::ajusteHitBoxPerso(FloatRect lim){
     
@@ -138,7 +146,7 @@ void GerenciadorColisoes::coliJogObstaculo(){
     //Acoplar segundo jogador depois
 
     if(!pJog1){
-        cout << "GerenciadorColisoes::coliJogObstaculo() -> pJog1 nulo" << endl;
+        // cout << "GerenciadorColisoes::coliJogObstaculo() -> pJog1 nulo" << endl;
         return;
     }
 
@@ -148,7 +156,7 @@ void GerenciadorColisoes::coliJogObstaculo(){
     }
 
     if(!pJog1->getVivo()){
-        cout << "GerenciadorColisoes::coliJogObstaculo() -> jog1 morto" << endl;
+        // cout << "GerenciadorColisoes::coliJogObstaculo() -> jog1 morto" << endl;
         return;
     }
 
@@ -188,7 +196,7 @@ void GerenciadorColisoes::coliJogInimigo(){
     }
 
     if(inimigos.empty()){
-        // cout << "GerenciadorColisoes::coliJogObstaculo() -> vector obstaculos vazio" << endl;
+        cout << "GerenciadorColisoes::coliJogObstaculo() -> vector obstaculos vazio" << endl;
         return;
     }
 
@@ -384,7 +392,9 @@ void GerenciadorColisoes::inimigoPlataforma(Inimigo* pInim){
 
     //Colisao a esquerda do Personagem
     if(sentidos[0]) {
-        pInim->setXY(lim2.left + (lim2.width + COLISAO), lim1.top);
+        pInim->setXY(lim1.left + (lim2.width ), lim1.top);
+        // pInim->setVelocidadeX(0);
+        // pInim->setXY(lim2.left + (lim2.width + COLISAO), lim1.top);
         pInim->atualizaVelocidade(Vector2f(-1.0, 1.0));
         // cout << "BATEU" << endl;
     }
@@ -392,7 +402,9 @@ void GerenciadorColisoes::inimigoPlataforma(Inimigo* pInim){
     
     //Colisao a direita do Personagem
     else if(sentidos[1]) {
-        pInim->setXY(lim2.left - (lim1.width + COLISAO), lim1.top);
+        pInim->setXY(lim1.left - (lim2.width ), lim1.top);
+        // pInim->setVelocidadeX(0);
+        // pInim->setXY(lim2.left - (lim1.width + COLISAO), lim1.top);
         pInim->atualizaVelocidade(Vector2f(-1.0, 1));
     }
     

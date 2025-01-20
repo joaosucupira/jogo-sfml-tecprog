@@ -28,9 +28,10 @@ void Fase::renderizarEntidades()
         cout << "void Fase::renderizarEntidades() -> Lista vazia." << endl;
         return;
     }
+    int tamanho = (*entidades).getTamanho();
 
     Entidade* pE = NULL;
-    for (int i = 0; i < (*entidades).getTamanho(); i++) {
+    for (int i = 0; i < tamanho; i++) {
         pE = (*entidades)[i];
         if (pE) {
            pE->executar();
@@ -62,17 +63,18 @@ void Fase::executar() {
 }
 
 void Fase::criarPlataformas() {
-    criarPlataformasA();
+    // criarPlataformasA();
+    criarPlataformasB();
 
 }
 
 void Fases::Fase::criarPlataformasA() {
     // chao
     for (int i = 0; i < 2; i++) {
-        construirPlano(5, Vector2f(0.0f, ALTURA - PLATAFORMA_ALTURA * i));
+        construirPlano(5, Vector2f(0.0f, ALTURA - (LARG_PLATAFORMA) * i));
     }
     for (int i = 0; i < 2; i++) {
-        construirPlano(5, Vector2f(900.0f, ALTURA - PLATAFORMA_ALTURA * i));
+        construirPlano(5, Vector2f(900.0f, ALTURA - (LARG_PLATAFORMA) * i));
     }
     // teto
     for (int i = 0; i < 1; i++) {
@@ -80,7 +82,7 @@ void Fases::Fase::criarPlataformasA() {
     }
 
     for (int i = 0; i < 20; i++) {
-        construirPlano(1, Vector2f(0.0f, ALTURA - PLATAFORMA_ALTURA * i));
+        construirPlano(1, Vector2f(0.0f, ALTURA - (ALT_PLATAFORMA) * i));
     }
     
     for (int i = 0; i < 1; i++) {
@@ -95,7 +97,15 @@ void Fases::Fase::criarPlataformasA() {
 void Fases::Fase::criarPlataformasB() {
     // chao
     for (int i = 0; i < 2; i++) {
-        construirPlano(20, Vector2f(0.0f, ALTURA - PLATAFORMA_ALTURA * i));
+        construirPlano(16, Vector2f(i, ALTURA - ALT_PLATAFORMA * i));
+    }
+
+    // parede
+    for (int i = 0; i < 5; i++) {
+        construirPlano(1, Vector2f((LARGURA - LARG_PLATAFORMA)/ 2, ALTURA - (i * ALT_PLATAFORMA)));
+    }
+    for (int i = 0; i < 5; i++) {
+        construirPlano(1, Vector2f((LARGURA - LARG_PLATAFORMA)/ 4, ALTURA - (i * ALT_PLATAFORMA)));
     }
 }
 
@@ -103,21 +113,7 @@ void Fases::Fase::construirPlano(const int tamanho, Vector2f inicio) {
     Plataforma* pP = NULL;
 
     for (int i = 0; i < tamanho; i++) {
-        pP = new Plataforma(i * (PLATAFORMA_LARGURA) + inicio.x, inicio.y);
-        entidades->adiciona(static_cast<Entidade*>(pP));
-        GC.incluirObst(static_cast<Obstaculo*>(pP));
-        pP = NULL;
-    }
-
-    if (pP) delete pP;
-    pP = NULL;
-}
-
-void Fases::Fase::construirParede(const int tamanho, Vector2f inicio) {
-    Plataforma* pP = NULL;
-
-    for (int i = 0; i < tamanho; i++) {
-        pP = new Plataforma(inicio.x, i * PLATAFORMA_ALTURA + inicio.y);
+        pP = new Plataforma(i * (LARG_PLATAFORMA) + inicio.x, inicio.y);
         entidades->adiciona(static_cast<Entidade*>(pP));
         GC.incluirObst(static_cast<Obstaculo*>(pP));
         pP = NULL;
@@ -128,8 +124,8 @@ void Fases::Fase::construirParede(const int tamanho, Vector2f inicio) {
 }
 
 void Fases::Fase::criarAlienigenas() {
-    criarAlienigenasB();
-    // criarAlienigenasA();
+    // criarAlienigenasB();
+    criarAlienigenasA();
 }
 
 void Fases::Fase::criarAlienigenasA() {
@@ -169,7 +165,7 @@ void Fases::Fase::criarAlienigenasB() {
 
 void Fases::Fase::criarPortais() {
     Portal* pP = NULL;
-    pP = new Portal(750.0f, 350.0f);
+    pP = new Portal(300.0f, 200.0f);
     if (pP) {
         entidades->adiciona(static_cast<Entidade*>(pP));
         GC.incluirObst(static_cast<Obstaculo*>(pP));
@@ -178,7 +174,7 @@ void Fases::Fase::criarPortais() {
 
 void Fases::Fase::criarBuracosNegros() {
     BuracoNegro* pB = NULL;
-    pB = new BuracoNegro(450.0f, 250.0f);
+    pB = new BuracoNegro(900.0f, 350.0f);
     if (pB) {
         entidades->adiciona(static_cast<Entidade*>(pB));
         GC.incluirObst(static_cast<Obstaculo*>(pB));
@@ -190,7 +186,7 @@ void Fase::setJogador(Jogador *pJ)
     if (pJ) {
         pJ->posicionar(
             PLATAFORMA_LARGURA + 10.0f,
-            ALTURA - (TAM_JOGADOR + ALT_PLATAFORMA + 10.0f)
+            ALTURA - (TAM_JOGADOR + ALT_PLATAFORMA + 1.0f)
         );
         // pJ->posicionar(100.0f, 100.0f);
         GC.setPJog1(pJ);

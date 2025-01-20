@@ -36,7 +36,6 @@ namespace Fases {
         void criarPlataformasB();
 
         void construirPlano(const int tamanho, Vector2f inicio);
-        void construirParede(const int tamanho, Vector2f inicio);
 
         void criarAlienigenas();
         void criarAlienigenasA();

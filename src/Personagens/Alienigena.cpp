@@ -46,3 +46,13 @@ void Alienigena::danificar(Jogador* pJ) {
 
 void Personagens::Alienigena::salvaDataBuffer() {
 }
+
+void Personagens::Alienigena::mover() {
+    static int sentido = 1;
+    if (pGG->getDeltaTime() > 0.1) {
+        sentido *= -1;
+    }
+    x += velocidade.x *  PIXEL_METRO * pGG->getDeltaTime() * sentido;
+    y += velocidade.y *  PIXEL_METRO * pGG->getDeltaTime() * sentido;
+    setPosicaoFigura(x,y);
+}

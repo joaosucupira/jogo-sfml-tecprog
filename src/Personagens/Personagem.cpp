@@ -21,8 +21,6 @@ void Personagem::mover(){
     y += velocidade.y *  PIXEL_METRO * pGG->getDeltaTime();
 
     setPosicaoFigura(x,y);
-
-    // cout << pGG->getDeltaTime() << endl;
 }
 
 void Personagens::Personagem::atualizaParaFiguraInicial() {
@@ -33,25 +31,27 @@ void Personagens::Personagem::atualizaParaFiguraInicial() {
 
 void Personagens::Personagem::operator--() {
     (num_vidas > 0) ? num_vidas-- : vivo = false;
-    figura->mostrarDano();
+}
+
+void Personagens::Personagem::operator--(const int dano) {
+    if (num_vidas > 0) {
+        num_vidas -= dano;
+    } else {
+        vivo = false;
+    }
 }
 
 // Trocar para ser feita no gerenciador de colisões:: Dica do monitor -> Monitor é ruim kkkkk
-void Personagem::aplicarGravidade(){  //testar ponteiro pGG
+void Personagem::aplicarGravidade() {  //testar ponteiro pGG
         velocidade.y += GRAVIDADE * pGG->getDeltaTime();
 }
 
-void Personagens::Personagem::aplicarGravidadeAnomola() {
-        velocidade.x += GRAVIDADE * pGG->getDeltaTime();
-}
-
 void Personagem::atualizarFigura() { //testar ponteiro figura
-
-    if(estaAndando)
+    if(estaAndando && figura)
         figura->atualizarSecao();
 }
 
-void Personagem::figuraInicial() {//testar ponteiro figura e criar booleano para estaParado
+void Personagem::figuraInicial() { //testar ponteiro figura e criar booleano para estaParado
     figura->setSecaoInicial();
 }
 
