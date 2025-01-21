@@ -9,10 +9,10 @@ GC()
 {
     entidades = new ListaEntidades();
     entidades->excluiTodos();
-    criarPlataformas();
-    criarAlienigenas();
-    criarPortais();
-    criarBuracosNegros();
+    // criarPlataformas();
+    // criarAlienigenas();
+    // criarPortais();
+    // criarBuracosNegros();
 }
 
 Fase::~Fase() {

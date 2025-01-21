@@ -6,7 +6,8 @@
 #include "Jogador.hpp"
 #include "Plataforma.hpp"
 #include "Alienigena.hpp"
-#include "Fase.hpp"
+// #include "Fase.hpp"
+#include "Lua.hpp"
 #include "stdafx.h"
 
 
@@ -19,7 +20,8 @@ private:
     Clock tempo;
     GerenciadorEventos GE;
     Jogador* jog1;
-    Fase fase1;
+    Lua faseLua;
+    // Fase fase1;
 
     /* Instancia singleton do Gerenciador Grafico */
     static GerenciadorGrafico* pGG;

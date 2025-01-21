@@ -13,7 +13,7 @@ namespace Fases{
         Lua();
         ~Lua();
 
-        void criarViajantesMaus(){}
+        void criarViajantesMaus() {}
 
     };
 

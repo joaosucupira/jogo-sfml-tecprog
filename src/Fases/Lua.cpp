@@ -1,7 +1,7 @@
 #include "Lua.hpp"
 
-Lua::Lua(){
-
+Lua::Lua() : Fase()
+{
 }
 
 Lua::~Lua(){
