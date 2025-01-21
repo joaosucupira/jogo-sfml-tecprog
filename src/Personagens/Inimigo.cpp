@@ -11,6 +11,7 @@ Inimigo::~Inimigo()
 
 void Personagens::Inimigo::parar() {
     setVelocidadeX(0);
+    setVelocidadeY(0);
     setEstaAndando(false);
     atualizaParaFiguraInicial();
 }

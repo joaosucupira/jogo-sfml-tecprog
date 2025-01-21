@@ -13,6 +13,7 @@ GC()
     criarAlienigenas();
     criarPortais();
     criarBuracosNegros();
+    criarViajantesMaus();
 }
 
 Fase::~Fase() {
@@ -182,6 +183,17 @@ void Fases::Fase::criarBuracosNegros() {
     }
 }
 
+void Fase::criarViajantesMaus(){
+    ViajanteMau* pVM = NULL;
+    pVM = new ViajanteMau(LARGURA-TAM_JOGADOR,0);
+    if(pVM){
+        entidades->adiciona(static_cast<Entidade*>(pVM));
+        GC.incluirInim(static_cast<Inimigo*>(pVM));
+    }
+    else
+        cout<< "Fase::criarViajantesMaus() -> Erro na alocacao dinamica" << endl;
+}
+
 void Fase::setJogador(Jogador *pJ)
 {
     if (pJ) {
@@ -193,6 +205,6 @@ void Fase::setJogador(Jogador *pJ)
         GC.setPJog1(pJ);
         GE.setPJog(pJ);
         entidades->adiciona(static_cast<Entidade*>(pJ));
-
+        ViajanteMau::setPJog(pJ);
     } else { cout << "void Fase::setJogador(Jogador *pJ) -> ponteiro nulo." << endl; }
 }

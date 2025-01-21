@@ -9,6 +9,7 @@
 #include "GerenciadorColisoes.hpp"
 #include "ListaEntidades.hpp"
 #include "GerenciadorEventos.hpp"
+#include "ViajanteMau.hpp"
 
 #define AJUSTE_CENTRO 250.0f
 
@@ -42,7 +43,7 @@ namespace Fases {
         void criarAlienigenasB();
         
 
-        // virtual void criarViajantesMaus() {}
+        virtual void criarViajantesMaus();
         void criarPortais();
         void criarBuracosNegros();
         

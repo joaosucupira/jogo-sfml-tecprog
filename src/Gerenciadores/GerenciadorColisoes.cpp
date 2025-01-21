@@ -82,13 +82,14 @@ void GerenciadorColisoes::verificarSentido(Vector2f pos1, Vector2f pos2) {
             sentidos[2] = 1; // Cima
         }
     }
-
+    
+    /*
     cout << "esquerda direita cima baixo" << endl;
     for (int i = 0; i < 4; i++) {
         cout << sentidos[i] << "        ";
     }
     cout << endl;
-
+    */
 
     // Estudando
     // if (lim1.getPosition().x < lim2.getPosition().x) {
@@ -218,7 +219,7 @@ void GerenciadorColisoes::coliJogInimigo(){
                 restauraHitBoxPerso(lim1);
                 restauraHitBoxPerso(lim2);
 
-                if(dynamic_cast<Alienigena*>(inimigos[i]))
+                //if(dynamic_cast<Alienigena*>(inimigos[i]))
                     jogadorAlienigena(pJog1, inimigos[i]);
 
                 cout << "Vida jogador 1: " << pJog1->getVidas() << endl;
@@ -381,6 +382,11 @@ void GerenciadorColisoes::jogadorAlienigena(Jogador* pJog, Inimigo* pInim){
         pJog->setXY(lim1.left, lim2.top - (lim1.height - ajustePerso));
 
         danifica = false;
+    }
+
+    if(sentidos[3]){
+        pJog->setXY(lim1.left, lim2.top + lim2.height + COLISAO);
+        pInim->parar();
     }
 
     if(danifica)
