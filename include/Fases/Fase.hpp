@@ -4,9 +4,13 @@
 #include "Ente.hpp"
 #include "Plataforma.hpp"
 #include "Alienigena.hpp"
+#include "Portal.hpp"
+#include "BuracoNegro.hpp"
 #include "GerenciadorColisoes.hpp"
 #include "ListaEntidades.hpp"
 #include "GerenciadorEventos.hpp"
+
+#define AJUSTE_CENTRO 250.0f
 
 namespace Fases {
     
@@ -22,16 +26,26 @@ namespace Fases {
         Fase();
         ~Fase();
 
+        // void posicionarEntidade(Entidade* pE, const float x, const float y);
         void renderizarEntidades();
         void gerenciarEventos();
         void gerenciarColisoes();
         virtual void executar();
         void criarPlataformas();
+        void criarPlataformasA();
+        void criarPlataformasB();
+
+        void construirPlano(const int tamanho, Vector2f inicio);
+
         void criarAlienigenas();
-        // TODO
+        void criarAlienigenasA();
+        void criarAlienigenasB();
+        
 
         // virtual void criarViajantesMaus() {}
-        // virtual void criarPortais() {}
+        void criarPortais();
+        void criarBuracosNegros();
+        
         void carregarFigura() {}
         void setJogador(Jogador* pJ);
         // void criarCenario() {}

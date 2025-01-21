@@ -5,12 +5,13 @@
 #include "Jogador.hpp"
 
 // TROCAR PARA SPRITE DE ALIENIGENA
-#define ALIENIGENA_PATH "./assets/Jogador/player.24x24.png"
+#define ALIENIGENA_PATH "./assets/Inimigo/Alienigena-24x24.png"
 
 #define TAM_SECAO 24
-#define QNTD_SECAO 3
+#define QNTD_SECAO_X 2
+#define QNTD_SECAO_Y 3
 
-#define SEC_INICIAL_X 24
+#define SEC_INICIAL_X 0
 #define SEC_INICIAL_Y 0
 
 #define SEC_FINAL_X 24
@@ -32,6 +33,8 @@ namespace Personagens{
         void danificar(Jogador* pJ);
         void executar();
         void salvaDataBuffer();
+        void mover(); // Para adaptar o andar de inimigo facil
+        
     };
 
 } using namespace Personagens;

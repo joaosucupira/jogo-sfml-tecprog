@@ -25,7 +25,12 @@ public:
     void setVelocidadeY(float y){ velocidade.y = y;}
     void setEstaPulando(bool pulou){ estaPulando = pulou;}
     void setEstaAndando(bool andou){ estaAndando = andou;}
-    void atualizaVelocidade(Vector2f num){velocidade.x *= num.x; velocidade.y *= num.y;}
+    void atualizaVelocidade(Vector2f num) {velocidade.x *= num.x; velocidade.y *= num.y;}
+    void atualizaParaFiguraInicial();
+
+    /* Adaptar valor de vida a ser retirado no proprio operador*/
+    void operator--();
+    void operator--(const int dano);
     
     const int getVidas() const { return num_vidas;}
     const bool getVivo() const { return vivo;}
@@ -33,13 +38,10 @@ public:
     const bool getEstaPulando() const {return estaPulando;}
     const bool getEstaAndando() const {return estaAndando;}
 
-    /* Adaptar valor de vida a ser retirado no proprio operador*/
-    void operator--() { (num_vidas > 0) ? num_vidas-- : vivo = false;}
-
     void aplicarGravidade();
-
     void atualizarFigura();
     void figuraInicial();
+    
 
 };
 } using namespace Personagens;

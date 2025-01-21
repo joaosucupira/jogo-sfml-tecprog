@@ -20,6 +20,7 @@ namespace Gerenciadores{
         FloatRect lim2;
         int sentidos[4] = {0};
         const float ajustePerso;
+        const float ajusteObst;
         
     public:
         GerenciadorColisoes();
@@ -40,6 +41,9 @@ namespace Gerenciadores{
         FloatRect ajusteHitBoxPerso(FloatRect lim);
         void restauraHitBoxPerso(FloatRect &lim);
 
+        FloatRect ajusteHitBoxObst(FloatRect lim);
+        void restauraHitBoxObst(FloatRect &lim);
+
         void jogadorPlataforma(Jogador* pJog);
         void inimigoPlataforma(Inimigo* pInim);
         void inimigoJanela(Inimigo* pInim);
@@ -53,6 +57,8 @@ namespace Gerenciadores{
 
         void coliInimObstaculo();
         void coliInimJanela();
+
+
 
     };
 } using namespace Gerenciadores;

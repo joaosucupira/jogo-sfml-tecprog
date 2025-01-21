@@ -26,6 +26,11 @@ void Entidade::setXY(const float novoX, const float novoY){
     y = novoY;
 }
 
+void Entidades::Entidade::posicionar(const float x, const float y) {
+    setXY(x, y);
+    setPosicaoFigura(x, y);
+}
+
 void Entidade::setTamanhoFigura(const float tX, const float tY) { //em Ente faz mais sentido
     figura->setTamanho(tX, tY);
 }
@@ -34,6 +39,19 @@ void Entidades::Entidade::setCorFigura(const Color &cor) { //em Ente faz mais se
     figura->setCor(cor);
 }
 
+void Entidades::Entidade::exibirHitbox(FloatRect &lim) {
+    // 10/1 - Verificando o que pode estar comprometendo detecção de colisões
+
+    RectangleShape hitbox;
+
+    hitbox.setPosition(lim.left, lim.top);
+    hitbox.setSize(sf::Vector2f(lim.width, lim.height));
+    hitbox.setFillColor(sf::Color::Transparent); // Sem preenchimento
+    hitbox.setOutlineColor(sf::Color::Red);      // Cor da borda
+    hitbox.setOutlineThickness(1.0f); 
+
+    pGG->getPJanela()->draw(hitbox);
+}
 
 
 

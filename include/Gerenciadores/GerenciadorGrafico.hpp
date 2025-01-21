@@ -46,6 +46,8 @@ namespace Gerenciadores {
         void fecharJanela();
         void setDeltaTime(const float dt) { deltaTime = dt; }
 
+        void exibirHitBox(FloatRect lim);
+
     };
 
 } using namespace Gerenciadores;

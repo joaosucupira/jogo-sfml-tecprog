@@ -7,7 +7,8 @@ int Jogador::cont(0);
 Jogador::Jogador(const float x_inicial, const float y_inicial) :
 Personagem(x_inicial, y_inicial),
 pontos(0),
-joga1(cont == 0)
+joga1(cont == 0),
+lentidao(0.0f)
 {
     //A verificação é feita na hora de construir o objeto?
     if (cont < 2) {
@@ -17,7 +18,7 @@ joga1(cont == 0)
             SEC_FINAL_X, SEC_FINAL_Y,
             SEC_INICIAL_X, SEC_INICIAL_Y
         );
-        escolheCor();
+        // escolheCor();
         carregarFigura();
         setTamanhoFigura(TAM_JOGADOR, TAM_JOGADOR);
         setPosicaoFigura(x, y);
@@ -53,4 +54,5 @@ void Jogador::executar() {
     mover();
     aplicarGravidade();
     atualizarFigura();
+    pGG->desenharEnte(this);
 }

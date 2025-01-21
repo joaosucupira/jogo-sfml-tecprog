@@ -38,6 +38,13 @@ namespace Entidades
         void setXY(const float novoX, const float novoY);
         const float getX() const { return x; }
         const float getY() const { return y; }
+        void posicionar(const float x, const float y);
+
+        void exibirHitbox(FloatRect& lim);
+        virtual void atualizarFigura() = 0;
+        
+        //virtual FloatRect hitBox() = 0 //entidade
+        //sentidos[4]
         
     };
 

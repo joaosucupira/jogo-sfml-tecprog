@@ -22,7 +22,7 @@ using namespace std;
 using namespace sf;
 
 /* Macros */
-#define TAXA_QUADROS 100
+#define TAXA_QUADROS 60
 #define LARGURA 1260
 #define ALTURA 680
 
@@ -31,12 +31,15 @@ using namespace sf;
 #define CHAO 570// Posição Y que representa o chão (pixels)
 #define ALTURA_PULO 0.8 // Altura máxima do pulo do jogador (m)
 #define VELOCIDADE_ANDAR 1.0 // Velocidade de andar do jogador (m/s)
-#define COLISAO 10 //Sempre Positiva
+#define COLISAO 1 //Sempre Positiva
 #define ALTURA_COLI 0.3 //Altura da colisao do jogador com alienigena
 
 /* Macros - Tamanhos*/
-#define TAM_JOGADOR 200.0f
-#define ALT_PLATAFORMA  40.0f
+#define TAM_JOGADOR 100.0f
+#define LARG_PLATAFORMA 80.0f
+#define ALT_PLATAFORMA 40.0f
+#define TAM_PORTAL 150.0f
+#define TAM_BURACO_NEGRO 300.0f
 
 
 

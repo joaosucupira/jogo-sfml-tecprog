@@ -11,6 +11,7 @@
         "xstring": "cpp",
         "xtree": "cpp",
         "cmath": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "new": "cpp"
     }
 }

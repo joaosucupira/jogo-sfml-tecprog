@@ -42,11 +42,13 @@ public:
 
     void setPosicao(const float x, const float y){ sprite.setPosition(x,y); }
     void atualizarSecao();
+
     void setSecaoInicial();
     void virar(const int sentido);
 
     void setTamanho(const float tX, const float tY);
     void setCor(const Color &cor);
+    void mostrarDano();
 
     FloatRect getLimites() const{ return sprite.getGlobalBounds();}
     Sprite getSprite() const {return sprite;}
