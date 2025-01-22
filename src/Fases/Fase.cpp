@@ -9,7 +9,7 @@ GC()
 {
     entidades = new ListaEntidades();
     entidades->excluiTodos();
-    // criarPlataformas();
+    criarPlataformas();
     // criarAlienigenas();
     // criarPortais();
     // criarBuracosNegros();

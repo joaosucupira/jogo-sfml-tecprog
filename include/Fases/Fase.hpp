@@ -24,7 +24,7 @@ namespace Fases {
 
     public:
         Fase();
-        ~Fase();
+        virtual ~Fase();
 
         // void posicionarEntidade(Entidade* pE, const float x, const float y);
         void renderizarEntidades();
@@ -42,13 +42,15 @@ namespace Fases {
         void criarAlienigenasB();
         
 
-        // virtual void criarViajantesMaus() {}
+        // virtual void criarInimigos() = 0;
+        // virtual void criarObstaculos() = 0;
         void criarPortais();
         void criarBuracosNegros();
         
-        void carregarFigura() {}
+        virtual void carregarFigura() = 0; 
+        void criarCenario() {} // chamar carregar figura
         void setJogador(Jogador* pJ);
-        // void criarCenario() {}
+
     };
 
 } using namespace Fases;
