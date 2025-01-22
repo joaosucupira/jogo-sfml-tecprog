@@ -17,7 +17,9 @@ namespace Entidades
     protected:
         /* Coordenadas em que será desenhada a entidade */
         float x;
-        float y; 
+        float y;
+
+        Vector2f velocidade;
         
         // ostream buffer;
 
@@ -31,20 +33,18 @@ namespace Entidades
 
         /* Métodos set e get*/
 
-        void setPosicaoFigura(const float x, const float y);
-        void setTamanhoFigura(const float x, const float y);
-        void setCorFigura(const Color& cor);
-
         void setXY(const float novoX, const float novoY);
         const float getX() const { return x; }
         const float getY() const { return y; }
         void posicionar(const float x, const float y);
 
+        void setVelocidadeX(float x){ velocidade.x = x;}
+        void setVelocidadeY(float y){ velocidade.y = y;}
+        void atualizaVelocidade(Vector2f num) {velocidade.x *= num.x; velocidade.y *= num.y;}
+
+        Vector2f getVelocidade() const { return velocidade;}
+
         void exibirHitbox(FloatRect& lim);
-        virtual void atualizarFigura() = 0;
-        
-        //virtual FloatRect hitBox() = 0 //entidade
-        //sentidos[4]
         
     };
 

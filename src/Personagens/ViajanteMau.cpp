@@ -14,11 +14,13 @@ lerdeza(50)
     );
 
     figura->setCor(Color::Red);
-    carregarFigura();
+    carregarFigura(VIAJANTE_MAU_PATH);
     setTamanhoFigura(TAM_JOGADOR, TAM_JOGADOR);
     setPosicaoFigura(x, y);
+
     estaAndando = true;
-    
+    num_vidas = 0;
+    maldade = 1;
 
 }
 
@@ -33,12 +35,6 @@ void ViajanteMau::setPJog(Jogador *pJ){
         cout << "void ViajanteMau::setPJog() -> ponteiro nulo." << endl;
 }
 
-void ViajanteMau::carregarFigura() {
-    if (figura) {
-        figura->carregarTextura(ViajanteMau_PATH);
-    } else { cout << "void ViajanteMau::carregarFigura() -> ponteiro nulo." << endl; }
-}
-
 
 void ViajanteMau::executar() {
     seguirJogador();
@@ -50,8 +46,15 @@ void ViajanteMau::executar() {
 }
 
 void ViajanteMau::danificar(Jogador* pJ) {
-    if(pJ)
-        pJ->operator--();
+    
+    int i;
+
+    if(pJ){
+
+        for(i=0; i<maldade; i++)
+            pJ->operator--();
+    }
+        
     else
         cout << "ViajanteMau::danificar(Jogador* pJ) -> ponteiro nulo jogador" << endl;
 }
@@ -61,42 +64,48 @@ void ViajanteMau::salvaDataBuffer() {
 
 void ViajanteMau::seguirJogador(){
 
+    Vector2f posViaMau, posJog, velocidadeRes;
+    float moduloVelocidade;
+
     if(!pJog){
         cout << "ViajanteMau::seguirJogador() -> ponteiro nulo Jogador" << endl;
         return;
     }
 
     if(!pJog->getVivo()){
-        cout << "ViajanteMau::seguirJogador() -> Jogador" << endl;
+        cout << "ViajanteMau::seguirJogador() -> Jogador morto" << endl;
         return;
     }
 
     if(!estaAndando)
         return;
 
-    Vector2f viaMau(x,y), jog(pJog->getX() + lerdeza , pJog->getY() + lerdeza), res;
-    float modulo;
+    //Aplicando relação bionivica de ponto e vetor
+    posViaMau = Vector2f(x,y);
+    posJog = Vector2f(pJog->getX() - lerdeza , pJog->getY() - lerdeza);
 
-    res = jog - viaMau;
-    modulo = sqrt(res.x*res.x + res.y*res.y);
+    velocidadeRes = posJog - posViaMau; //vetor com direcao e sentido da velocidade do viajante mau
 
-    if(modulo > 0)
-        res /= modulo;
+    //normalizando o vetor velocidade, calculando o versor
+    moduloVelocidade = sqrt(velocidadeRes.x*velocidadeRes.x + velocidadeRes.y*velocidadeRes.y);
+    if(moduloVelocidade > 0)
+        velocidadeRes /= moduloVelocidade;
     else{
         cout << "Divisao por zero ou modulo negativo" << endl;
         return;
     }
 
-    res *= (float)V_VIAJANTE;
+    velocidadeRes *= (float)V_VIAJANTE; //aplicando o módulo correto para a velocidade
 
-    velocidade.x = res.x;
-    velocidade.y += res.y;
+    //atualizando velocidade
+    velocidade.x = velocidadeRes.x;
+    velocidade.y += velocidadeRes.y;
 
-    
 }
 
 void ViajanteMau::planar(){
 
+    //aplicando a velocidade para superar a gravidade (voar)
     velocidade.y = - (GRAVIDADE * pGG->getDeltaTime());
         
 }

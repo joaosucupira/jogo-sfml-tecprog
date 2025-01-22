@@ -10,7 +10,7 @@ Inimigo(x_inicial, y_inicial)
         SEC_INICIAL_X, SEC_INICIAL_Y
     );
     // figura->setCor(Color::Red);
-    carregarFigura();
+    carregarFigura(ALIENIGENA_PATH);
     setTamanhoFigura(TAM_JOGADOR, TAM_JOGADOR);
     setPosicaoFigura(x, y);
 
@@ -21,12 +21,6 @@ Inimigo(x_inicial, y_inicial)
 
 Alienigena::~Alienigena()
 {
-}
-
-void Personagens::Alienigena::carregarFigura() {
-    if (figura) {
-        figura->carregarTextura(ALIENIGENA_PATH);
-    } else { cout << "void Personagens::Alienigena::carregarFigura() -> ponteiro nulo." << endl; }
 }
 
 

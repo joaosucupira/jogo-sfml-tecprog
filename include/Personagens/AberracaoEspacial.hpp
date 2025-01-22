@@ -3,9 +3,10 @@
 
 #include "Inimigo.hpp"
 #include "Jogador.hpp"
+#include "Plasma.hpp"
 
-// TROCAR PARA SPRITE DE ViajanteMau
-#define VIAJANTE_MAU_PATH "./assets/Inimigo/Alienigena-24x24.png"
+// TROCAR PARA SPRITE DE AberracaoEspacial
+#define ABERRACAO_ESPACIAL_PATH "./assets/Inimigo/Alienigena-24x24.png"
 
 #define TAM_SECAO 24
 #define QNTD_SECAO_X 2
@@ -21,23 +22,29 @@
 
 namespace Personagens{
 
-    class ViajanteMau : public Inimigo {
+    class AberracaoEspacial : public Inimigo {
 
         static Jogador* pJog;
-        const int lerdeza;
+        Plasma* pPlasma;
+        
 
     public:
 
-        ViajanteMau(const float x_inicial, const float y_inicial);
-        ~ViajanteMau();
+        AberracaoEspacial(const float x_inicial, const float y_inicial);
+        ~AberracaoEspacial();
+
+        
 
         void danificar(Jogador* pJ);
         void executar();
         void salvaDataBuffer();
+        void mover();
         
-        void seguirJogador();
         static void setPJog(Jogador* pJ);
+        void setPPlasma(Plasma* pP);
+
         void planar();
+        void atirar();
         
     };
 

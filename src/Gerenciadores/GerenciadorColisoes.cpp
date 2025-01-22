@@ -177,11 +177,10 @@ void GerenciadorColisoes::coliJogObstaculo(){
             restauraHitBoxPerso(lim1);
             restauraHitBoxObst(lim2);
 
-            
-            // jogadorPlataforma(pJog1);
-
             obstaculos[i]->setSentidos(sentidos);
+
             obstaculos[i]->obstacular(pJog1);
+           
             obstaculos[i]->exibirHitbox(lim2);
         }
     }
@@ -385,7 +384,7 @@ void GerenciadorColisoes::jogadorAlienigena(Jogador* pJog, Inimigo* pInim){
     }
 
     if(sentidos[3]){
-        pJog->setXY(lim1.left, lim2.top + lim2.height + COLISAO);
+        pJog->setXY(lim1.left, lim2.top + lim2.height);
         pInim->parar();
     }
 
@@ -431,13 +430,13 @@ void GerenciadorColisoes::inimigoJanela(Inimigo *pInim){
     //Esquerda do Inim
     if(sentidos[0]){
         pInim->setXY(lim2.left + (lim2.width), lim1.top);
-        pInim->atualizaVelocidade(Vector2f(-1.2,1));
+        pInim->atualizaVelocidade(Vector2f(-1,1));
     }
 
     //Direita do Inim
     else if(sentidos[1]){
         pInim->setXY(lim2.left - (lim1.width), lim1.top);
-        pInim->atualizaVelocidade(Vector2f(-1.2,1));
+        pInim->atualizaVelocidade(Vector2f(-1,1));
     }
 
 }

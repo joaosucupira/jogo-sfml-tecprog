@@ -28,7 +28,6 @@ namespace Personagens{
         Alienigena(const float x_inicial, const float y_inicial);
         ~Alienigena();
 
-        void carregarFigura();
 
         void danificar(Jogador* pJ);
         void executar();

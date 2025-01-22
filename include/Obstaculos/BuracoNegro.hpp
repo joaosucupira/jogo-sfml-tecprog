@@ -12,8 +12,7 @@ class BuracoNegro : public Obstaculo {
     public:
         BuracoNegro(const float x_inicial, const float y_inicial);
         ~BuracoNegro();
-        void carregarFigura();
-        void atualizarFigura();
+        
         void obstacular(Jogador* pJ);
         void executar();
         void salvaDataBuffer() {}

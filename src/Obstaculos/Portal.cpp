@@ -11,7 +11,7 @@ raio(100.0f)
         0, 0
     );
 
-    carregarFigura();
+    carregarFigura(PORTAL_PATH);
     setTamanhoFigura(TAM_PORTAL, TAM_PORTAL),
     setPosicaoFigura(x_inicial, y_inicial);
 }
@@ -32,18 +32,6 @@ void Portal::obstacular(Jogador *pJ) {
         cout << "Vida Jogador:" << pJ->getVidas() << endl;
         pJ->posicionar(TAM_JOGADOR + 10.0f, TAM_JOGADOR + ALT_PLATAFORMA);
     }
-}
-
-void Portal::carregarFigura() {
-    if (figura) {
-        figura->carregarTextura(PORTAL_PATH);
-    } else { cout << "void Portal::carregarFigura() -> figura nula" << endl; }
-}
-
-void Portal::atualizarFigura() {
-    if (figura) {
-        figura->atualizarSecao();
-    } else { cout << "void Portal::atualizarFigura() -> figura nula" << endl; }
 }
 
 void Portal::executar() {

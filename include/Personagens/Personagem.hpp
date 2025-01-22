@@ -8,7 +8,7 @@ class Personagem : public Entidade
 protected:
     int num_vidas;
     bool vivo;
-    Vector2f velocidade;
+    
     bool estaAndando;
     bool estaPulando;
 
@@ -21,12 +21,8 @@ public:
 
     void setVidas(const int vidas) { num_vidas = vidas; }
     void calcVivo() { vivo = (num_vidas >= 0 ? true : false); }
-    void setVelocidadeX(float x){ velocidade.x = x;}
-    void setVelocidadeY(float y){ velocidade.y = y;}
     void setEstaPulando(bool pulou){ estaPulando = pulou;}
     void setEstaAndando(bool andou){ estaAndando = andou;}
-    void atualizaVelocidade(Vector2f num) {velocidade.x *= num.x; velocidade.y *= num.y;}
-    void atualizaParaFiguraInicial();
 
     /* Adaptar valor de vida a ser retirado no proprio operador*/
     void operator--();
@@ -34,13 +30,12 @@ public:
     
     const int getVidas() const { return num_vidas;}
     const bool getVivo() const { return vivo;}
-    Vector2f getVelocidade() const { return velocidade;}
     const bool getEstaPulando() const {return estaPulando;}
     const bool getEstaAndando() const {return estaAndando;}
 
     void aplicarGravidade();
-    void atualizarFigura();
     void figuraInicial();
+    void atualizarFigura();
     
 
 };

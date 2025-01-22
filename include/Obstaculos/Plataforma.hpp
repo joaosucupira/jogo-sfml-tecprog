@@ -20,8 +20,8 @@ namespace Obstaculos {
 
         void obstacular(Jogador* pJ);
         void salvaDataBuffer();
-        void carregarFigura();
+        
         void executar();
-        void atualizarFigura() {}
+        
     };
 } using namespace Obstaculos;

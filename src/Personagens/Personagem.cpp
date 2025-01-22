@@ -4,7 +4,6 @@
 Personagem::Personagem(const float x,  const float y) :
 Entidade(x,y),
 num_vidas(1),
-velocidade(0.0,0.0),
 estaAndando(false),
 estaPulando(true)
 {
@@ -21,12 +20,6 @@ void Personagem::mover(){
     y += velocidade.y *  PIXEL_METRO * pGG->getDeltaTime();
 
     setPosicaoFigura(x,y);
-}
-
-void Personagens::Personagem::atualizaParaFiguraInicial() {
-    if (figura) {
-        figura->setSecaoInicial();
-    } else { cout << "Personagem::atualizaParaFiguraInicial() -> figura nula" << endl; }
 }
 
 void Personagens::Personagem::operator--() {
@@ -46,12 +39,16 @@ void Personagem::aplicarGravidade() {  //testar ponteiro pGG
     velocidade.y += GRAVIDADE * pGG->getDeltaTime();
 }
 
-void Personagem::atualizarFigura() { //testar ponteiro figura
-    if(estaAndando && figura)
-        figura->atualizarSecao();
-}
+void Personagem::atualizarFigura() {
 
-void Personagem::figuraInicial() { //testar ponteiro figura e criar booleano para estaParado
-    figura->setSecaoInicial();
+    if(!figura){
+        cout << "Personagem::atualizarFigura() -> ponteiro figura nulo!";
+        return;
+    }
+    
+    if(estaAndando)
+        figura->atualizarSecao();
+    else
+        atualizaParaFiguraInicial();
 }
 

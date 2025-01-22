@@ -28,7 +28,7 @@ namespace Personagens {
 
         void escolheCor();
         void operator+=(int pts);
-        void carregarFigura();
+        
         void salvaDataBuffer();
         void executar();
 

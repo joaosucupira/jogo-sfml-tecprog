@@ -11,7 +11,7 @@ altura(0)
         0, 0,
         0, 0
     );
-    carregarFigura();
+    carregarFigura(PLATAFORMA_PATH);
     setTamanhoFigura(LARG_PLATAFORMA, ALT_PLATAFORMA);
     setPosicaoFigura(x_inicial, y_inicial);
 
@@ -67,13 +67,6 @@ void Obstaculos::Plataforma::obstacular(Jogador *pJ)
 }
 
 void Obstaculos::Plataforma::salvaDataBuffer() {
-}
-
-void Obstaculos::Plataforma::carregarFigura()
-{
-    if (figura) {
-        figura->carregarTextura(PLATAFORMA_PATH);
-    } else { cout << "void Obstaculos::Plataforma::carregarFigura() -> ponteiro nulo" << endl; }
 }
 
 void Obstaculos::Plataforma::executar() {

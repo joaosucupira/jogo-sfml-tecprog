@@ -10,6 +10,7 @@
 #include "ListaEntidades.hpp"
 #include "GerenciadorEventos.hpp"
 #include "ViajanteMau.hpp"
+#include "AberracaoEspacial.hpp"
 
 #define AJUSTE_CENTRO 250.0f
 
@@ -41,13 +42,13 @@ namespace Fases {
         void criarAlienigenas();
         void criarAlienigenasA();
         void criarAlienigenasB();
-        
-
         virtual void criarViajantesMaus();
+        virtual void criarAberracoesEspaciais();
+
+
         void criarPortais();
         void criarBuracosNegros();
         
-        void carregarFigura() {}
         void setJogador(Jogador* pJ);
         // void criarCenario() {}
     };
