@@ -46,6 +46,7 @@ namespace Entidades
         
         virtual FloatRect hitBox() const = 0; //entidade
         void verificarSentido(Entidade* pE);
+        void setSentidos(int* s);
         // virtual FloatRect getHitBoxAjustada(const float ajuste) const = 0;
 
         

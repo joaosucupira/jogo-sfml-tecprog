@@ -114,6 +114,7 @@ void Obstaculos::Plataforma::carregarFigura()
 
 void Obstaculos::Plataforma::executar() {
     pGG->desenharEnte(this);
+    // aplicarGravidade(); // Descomentar quando o método estiver no nível de entidade
     
     
 }

@@ -93,3 +93,9 @@ void Entidades::Entidade::verificarSentido(Entidade *pE) {
     } 
 
 }
+
+void Entidades::Entidade::setSentidos(int *s) {
+    if (s) {
+        sentidos = s;
+    }
+}

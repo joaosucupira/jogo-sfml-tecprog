@@ -2,20 +2,18 @@
 
 
 Obstaculos::Obstaculo::Obstaculo(const float x, const float y) :
-Entidade(x, y),
-sentidos(NULL)
+Entidade(x, y)
 {
 }
 
 Obstaculo::~Obstaculo() {
-    sentidos = NULL;
 }
 
-void Obstaculos::Obstaculo::setSentidos(int *s) {
-    if (s) {
-        sentidos = s;
-    }
-}
+// void Obstaculos::Obstaculo::setSentidos(int *s) {
+//     if (s) {
+//         sentidos = s;
+//     }
+// }
 
 FloatRect Obstaculo::hitBox() const {
     // Alterando uma cópia, logo, não é necessario restaurar a hitbox
@@ -29,3 +27,4 @@ FloatRect Obstaculo::hitBox() const {
     lim.height += ajuste;
     return lim;
 }
+

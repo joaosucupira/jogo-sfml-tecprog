@@ -10,7 +10,7 @@ namespace Obstaculos{
 
     class Obstaculo : public Entidade {
     protected:
-        int* sentidos;
+        // int* sentidos;
         bool danoso;
 
     public: 
@@ -22,7 +22,8 @@ namespace Obstaculos{
         virtual void obstacular(Jogador* pJ) = 0;
         virtual void obstacular(Inimigo* pI) = 0;
         virtual void executar() = 0;
-        void setSentidos(int* s);
+        // void setSentidos(int* s);
+
         FloatRect hitBox() const;
 
         
