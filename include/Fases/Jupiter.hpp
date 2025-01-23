@@ -10,6 +10,11 @@ namespace Fases {
         public:
             Jupiter();
             ~Jupiter();
+            void criarObstaculos();
+            void criarPortais();
+            void carregarFigura() {}
+            void criarBuracosNegros();
+            
 
             // void criaAberracoesEspaciais();
             // void criarBuracosNegros();

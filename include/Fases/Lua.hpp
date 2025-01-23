@@ -12,6 +12,8 @@ namespace Fases{
     public:
         Lua();
         ~Lua();
+        void criarObstaculos();
+        void criarPortais();
 
         void criarViajantesMaus() {}
         void carregarFigura() {}

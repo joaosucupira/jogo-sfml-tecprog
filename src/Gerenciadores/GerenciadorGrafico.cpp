@@ -111,40 +111,6 @@ RenderWindow* GerenciadorGrafico::getPJanela() const {
 
 void GerenciadorGrafico::executar() {
 
-    // Clock relogio;
-
-    // if(!pGeventos){
-    //     cout << "GerenciadorGrafico::executar() -> Ponteiro nulo" << endl;
-    //     return;
-    // }
-        
-
-    // while (pJanela->isOpen()) {
-
-    //     deltaTime = relogio.restart().asSeconds();
-
-    //     while(pJanela->pollEvent( *(pGeventos->getEvento()) )){
-
-    //         if(pGeventos->getEvento()->type == Event::Closed)
-    //             pJanela->close();
-
-    //         pGeventos->executar();
-    //     }
-            
-        // pEnte->executar();
-        // pGcolisoes->executar();
-        // listaEntes[0]->executar();
-        // listaEntes[1]->executar();
-        // listaEntes[2]->executar();
-
-        // pJanela->clear();
-        // desenharEnte(listaEntes[0]);
-        // desenharEnte(listaEntes[1]);
-        // desenharEnte(listaEntes[2]);
-        // pJanela->display();
-        
-    // }
-
 }
 
 

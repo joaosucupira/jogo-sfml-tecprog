@@ -3,6 +3,7 @@
 using namespace Fases;
 
 Fase::Fase() :
+gravidade(1.0),
 GE(),
 GC()
 // entidades()
@@ -13,6 +14,7 @@ GC()
     // criarAlienigenas();
     // criarPortais();
     // criarBuracosNegros();
+    
 }
 
 Fase::~Fase() {
@@ -60,12 +62,17 @@ void Fase::executar() {
 
     renderizarEntidades();
 
+
 }
 
 void Fase::criarPlataformas() {
-    // criarPlataformasA();
-    criarPlataformasB();
-
+    for (int i = 0; i < 2; i++) {
+        construirPlano(16, Vector2f(0.0f, ALTURA - (LARG_PLATAFORMA) * i));
+    }
+    for (int i = 0; i < 20; i++) {
+        construirPlano(1, Vector2f(0.0f - LARG_PLATAFORMA / 2, ALTURA - (ALT_PLATAFORMA) * i));
+        construirPlano(1, Vector2f(LARGURA - LARG_PLATAFORMA / 2, ALTURA - (ALT_PLATAFORMA) * i));
+    }
 }
 
 void Fases::Fase::criarPlataformasA() {
@@ -163,23 +170,6 @@ void Fases::Fase::criarAlienigenasB() {
     // pA = NULL;
 }
 
-void Fases::Fase::criarPortais() {
-    Portal* pP = NULL;
-    pP = new Portal(300.0f, 200.0f);
-    if (pP) {
-        entidades->adiciona(static_cast<Entidade*>(pP));
-        GC.incluirObst(static_cast<Obstaculo*>(pP));
-    }
-}
-
-void Fases::Fase::criarBuracosNegros() {
-    BuracoNegro* pB = NULL;
-    pB = new BuracoNegro(900.0f, 350.0f);
-    if (pB) {
-        entidades->adiciona(static_cast<Entidade*>(pB));
-        GC.incluirObst(static_cast<Obstaculo*>(pB));
-    }
-}
 
 void Fase::setJogador(Jogador *pJ)
 {

@@ -16,8 +16,8 @@ namespace Fases {
     
     class Fase : public Ente
     {
-    private:
-        
+    protected:
+        float gravidade;
         GerenciadorEventos GE;
         GerenciadorColisoes GC;
         ListaEntidades* entidades;
@@ -30,7 +30,7 @@ namespace Fases {
         void renderizarEntidades();
         void gerenciarEventos();
         void gerenciarColisoes();
-        virtual void executar();
+        void executar();
         void criarPlataformas();
         void criarPlataformasA();
         void criarPlataformasB();
@@ -43,9 +43,8 @@ namespace Fases {
         
 
         // virtual void criarInimigos() = 0;
-        // virtual void criarObstaculos() = 0;
-        void criarPortais();
-        void criarBuracosNegros();
+        virtual void criarObstaculos() = 0;
+        virtual void criarPortais() = 0;
         
         virtual void carregarFigura() = 0; 
         void criarCenario() {} // chamar carregar figura
