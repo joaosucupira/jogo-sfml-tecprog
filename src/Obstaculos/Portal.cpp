@@ -28,9 +28,10 @@ void Portal::obstacular(Jogador *pJ) {
     
     if (abs(getLimites().left - pJ->getLimites().left) <= raio &&
         abs(getLimites().top - pJ->getLimites().top <= raio)) {
+
         pJ->operator--();
-        cout << "Vida Jogador:" << pJ->getVidas() << endl;
         pJ->posicionar(TAM_JOGADOR + 10.0f, TAM_JOGADOR + ALT_PLATAFORMA);
+        cout << "Vida Jogador:" << pJ->getVidas() << endl;
     }
 }
 

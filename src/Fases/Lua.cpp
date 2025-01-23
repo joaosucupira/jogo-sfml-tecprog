@@ -3,7 +3,15 @@
 Lua::Lua() : Fase(),
 maxViajantesMaus(0)
 {
+    figura = new Figura(
+        1309, 736, 
+        1, 1, 
+        0, 0,
+        0, 0
+    );
+    carregarFigura();
     criarObstaculos();
+    criarAlienigenas();
 }
 
 Lua::~Lua()
@@ -25,11 +33,12 @@ void Fases::Lua::criarPortais() {
 
 void Fases::Lua::criarAlienigenas() {
     Alienigena* pA = NULL;
-    const int max = 2;
+    const int max = rand() % 5 + 1;
+    cout << max << endl;
 
-    for (int i = 0; i < max; i++) {
+    for (int i = 1; i < max + 1; i++) {
         pA = new Alienigena(
-            LARGURA - (PLATAFORMA_LARGURA + TAM_JOGADOR) - i * 500.0f,
+            LARGURA - (PLATAFORMA_LARGURA + TAM_JOGADOR) - i * 200.0f,
             ALTURA - (TAM_JOGADOR + ALT_PLATAFORMA)
         );
 
@@ -39,4 +48,14 @@ void Fases::Lua::criarAlienigenas() {
     }
     if (pA) delete pA;
     pA = NULL;
+}
+
+void Fases::Lua::carregarFigura() {
+    if (!figura) {
+        cout << "void Fases::Lua::carregarFigura() -> ponteiro nulo" << endl;
+        return;
+    }
+
+    figura->carregarTextura(LUA_PATH);
+
 }

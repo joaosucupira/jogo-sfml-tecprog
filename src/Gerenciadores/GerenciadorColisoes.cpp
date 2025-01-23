@@ -83,11 +83,6 @@ void GerenciadorColisoes::verificarSentido(Vector2f pos1, Vector2f pos2) {
         }
     }
 
-    cout << "esquerda direita cima baixo" << endl;
-    for (int i = 0; i < 4; i++) {
-        cout << sentidos[i] << "        ";
-    }
-    cout << endl;
 
 
     // Estudando
@@ -163,12 +158,12 @@ void GerenciadorColisoes::coliJogObstaculo(){
     for(i = 0; i < obstaculos.size(); i++){
 
         lim1 = ajusteHitBoxPerso(pJog1->getLimites());
-        pJog1->exibirHitbox(lim1);
+        // pJog1->exibirHitbox(lim1);
 
         // Talvez precise ajustar a hit box do obstaculo
         lim2 = ajusteHitBoxObst(obstaculos[i]->getLimites());
         // lim2 = (obstaculos[i]->getLimites());
-        obstaculos[i]->exibirHitbox(lim2);
+        // obstaculos[i]->exibirHitbox(lim2);
 
 
         if(verificarColisao(lim1, lim2)){
@@ -181,7 +176,7 @@ void GerenciadorColisoes::coliJogObstaculo(){
 
             obstaculos[i]->setSentidos(sentidos);
             obstaculos[i]->obstacular(pJog1);
-            obstaculos[i]->exibirHitbox(lim2);
+            // obstaculos[i]->exibirHitbox(lim2);
         }
     }
 }

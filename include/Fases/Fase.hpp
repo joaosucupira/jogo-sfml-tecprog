@@ -17,6 +17,7 @@ namespace Fases {
     class Fase : public Ente
     {
     protected:
+        bool ativa;
         float gravidade;
         GerenciadorEventos GE;
         GerenciadorColisoes GC;
@@ -41,7 +42,7 @@ namespace Fases {
         virtual void criarAlienigenas() = 0;
         
         virtual void carregarFigura() = 0; 
-        void criarCenario() {} // chamar carregar figura
+        void criarCenario();
         void setJogador(Jogador* pJ);
 
     };

@@ -159,5 +159,6 @@ void Gerenciadores::GerenciadorGrafico::exibirHitBox(FloatRect lim) {
     hitbox.setOutlineColor(sf::Color::Red);      // Cor da borda
     hitbox.setOutlineThickness(1.0f); 
 
-    pJanela->draw(hitbox);
+    // pJanela->draw(hitbox);
 }
+

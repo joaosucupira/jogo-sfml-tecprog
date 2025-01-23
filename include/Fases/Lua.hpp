@@ -2,8 +2,9 @@
 #include "stdafx.h"
 
 #include "Fase.hpp"
+#define LUA_PATH "./assets/Fase/cenario_fase_lua.png"
 
-namespace Fases{
+namespace Fases {
 
     class Lua : public Fase {
 
@@ -17,7 +18,7 @@ namespace Fases{
         void criarAlienigenas();
 
         void criarViajantesMaus() {}
-        void carregarFigura() {}
+        void carregarFigura();
 
     };
 

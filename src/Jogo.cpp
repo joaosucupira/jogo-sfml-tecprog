@@ -2,8 +2,6 @@
 
 GerenciadorGrafico* Jogo::pGG = GerenciadorGrafico::getInstancia();
 
-
-
 Jogo::Jogo() :
 GE(),
 jog1(new Jogador()),

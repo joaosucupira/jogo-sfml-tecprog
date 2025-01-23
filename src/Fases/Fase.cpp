@@ -3,14 +3,16 @@
 using namespace Fases;
 
 Fase::Fase() :
+ativa(false),
 gravidade(1.0),
 GE(),
 GC()
 // entidades()
 {
+    srand(time(NULL));
     entidades = new ListaEntidades();
     entidades->excluiTodos();
-    criarPlataformas();
+    criarCenario();
     
 }
 
@@ -18,6 +20,7 @@ Fase::~Fase() {
     entidades->excluiTodos();
     if (entidades) delete entidades;
     entidades = NULL; 
+    ativa = false;
 }
 
 
@@ -53,6 +56,9 @@ void Fase::gerenciarColisoes() {
 
 void Fase::executar() { 
 
+    ativa = true;
+    pGG->desenharEnte(this);
+
     gerenciarColisoes();
 
     gerenciarEventos();
@@ -63,8 +69,8 @@ void Fase::executar() {
 }
 
 void Fase::criarPlataformas() {
-    for (int i = 0; i < 2; i++) {
-        construirPlano(16, Vector2f(0.0f, ALTURA - (LARG_PLATAFORMA) * i));
+    for (int i = 1; i < 3; i++) {
+        construirPlano(16, Vector2f(0.0f, ALTURA - (ALT_PLATAFORMA) * i));
     }
     for (int i = 0; i < 20; i++) {
         construirPlano(1, Vector2f(0.0f - LARG_PLATAFORMA / 2, ALTURA - (ALT_PLATAFORMA) * i));
@@ -86,6 +92,10 @@ void Fases::Fase::construirPlano(const int tamanho, Vector2f inicio) {
     pP = NULL;
 }
 
+void Fases::Fase::criarCenario() {
+
+    criarPlataformas();
+}
 
 void Fase::setJogador(Jogador *pJ)
 {
