@@ -32,19 +32,13 @@ namespace Fases {
         void gerenciarColisoes();
         void executar();
         void criarPlataformas();
-        void criarPlataformasA();
-        void criarPlataformasB();
 
         void construirPlano(const int tamanho, Vector2f inicio);
-
-        void criarAlienigenas();
-        void criarAlienigenasA();
-        void criarAlienigenasB();
-        
-
+    
         // virtual void criarInimigos() = 0;
         virtual void criarObstaculos() = 0;
         virtual void criarPortais() = 0;
+        virtual void criarAlienigenas() = 0;
         
         virtual void carregarFigura() = 0; 
         void criarCenario() {} // chamar carregar figura

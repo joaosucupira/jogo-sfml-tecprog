@@ -14,6 +14,7 @@ namespace Fases {
             void criarPortais();
             void carregarFigura() {}
             void criarBuracosNegros();
+            void criarAlienigenas();
             
 
             // void criaAberracoesEspaciais();

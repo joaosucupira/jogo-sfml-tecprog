@@ -7,8 +7,8 @@ GerenciadorGrafico* Jogo::pGG = GerenciadorGrafico::getInstancia();
 Jogo::Jogo() :
 GE(),
 jog1(new Jogador()),
-// faseLua()
-faseJupiter()
+faseLua()
+// faseJupiter()
 {
     distribuir();
     executar();
@@ -21,8 +21,8 @@ Jogo::~Jogo() {
 void Jogo::distribuir()
 {
     GE.setPJog(jog1);
-    // faseLua.setJogador(jog1);
-    faseJupiter.setJogador(jog1);
+    faseLua.setJogador(jog1);
+    // faseJupiter.setJogador(jog1);
 
 }
 
@@ -46,8 +46,8 @@ void Jogo::executar() {
         pGG->limparJanela();
         // execucoes
 
-        // faseLua.executar();
-        faseJupiter.executar();
+        faseLua.executar();
+        // faseJupiter.executar();
         
         pGG->exibirNaJanela();
     }
