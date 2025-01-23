@@ -10,9 +10,9 @@ GC()
     entidades = new ListaEntidades();
     entidades->excluiTodos();
     criarPlataformas();
+    criarPortais();
+    criarBuracosNegros();
     criarAlienigenas();
-    // criarPortais();
-    // criarBuracosNegros();
 }
 
 Fase::~Fase() {
@@ -103,13 +103,13 @@ void Fases::Fase::criarPlataformasB() {
         construirPlano(3, Vector2f(i, 320.0f));
     }
 
-    // // parede
-    // for (int i = 0; i < 5; i++) {
-    //     construirPlano(1, Vector2f((LARGURA - LARG_PLATAFORMA)/ 2, ALTURA - (i * ALT_PLATAFORMA)));
-    // }
-    // for (int i = 0; i < 5; i++) {
-    //     construirPlano(1, Vector2f((LARGURA - LARG_PLATAFORMA)/ 4, ALTURA - (i * ALT_PLATAFORMA)));
-    // }
+    // parede
+    for (int i = 0; i < 5; i++) {
+        construirPlano(1, Vector2f((LARGURA - LARG_PLATAFORMA)/ 2, ALTURA - (i * ALT_PLATAFORMA)));
+    }
+    for (int i = 0; i < 5; i++) {
+        construirPlano(1, Vector2f((LARGURA - LARG_PLATAFORMA)/ 4, ALTURA - (i * ALT_PLATAFORMA)));
+    }
 }
 
 void Fases::Fase::construirPlano(const int tamanho, Vector2f inicio) {
@@ -127,8 +127,8 @@ void Fases::Fase::construirPlano(const int tamanho, Vector2f inicio) {
 }
 
 void Fases::Fase::criarAlienigenas() {
-    criarAlienigenasB();
-    // criarAlienigenasA();
+    // criarAlienigenasB();
+    criarAlienigenasA();
 }
 
 void Fases::Fase::criarAlienigenasA() {

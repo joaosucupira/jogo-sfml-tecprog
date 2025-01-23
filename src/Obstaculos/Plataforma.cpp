@@ -35,9 +35,7 @@ void Obstaculos::Plataforma::obstacular(Jogador *pJ)
     const float ajusteColisao = 0.25f;
 
     FloatRect lim1 = pJ->getLimites();
-    // FloatRect lim1 = pJ->hitBox();
     FloatRect lim2 = this->getLimites();
-    // FloatRect lim2 = hitBox();
 
 
     //Colisao a esquerda do Personagem
@@ -78,26 +76,18 @@ void Obstaculos::Plataforma::obstacular(Inimigo *pI) {
         return;
     }
 
-    // cout << "BATEU" << endl;
 
     FloatRect lim1 = pI->getLimites();
-    // FloatRect lim1 = pI->hitBox();
     FloatRect lim2 = this->getLimites();
-    // FloatRect lim2 = this->hitBox();
 
     if(sentidos[0]) {
         pI->setXY(lim1.left + (lim2.width + COLISAO), lim1.top);
-        // pI->setVelocidadeX(0);
-        // pI->setXY(lim2.left + (lim2.width + COLISAO), lim1.top);
         pI->atualizaVelocidade(Vector2f(-1.0, 1.0));
-    }
-        
+    } 
     
     //Colisao a direita do Personagem
     else if(sentidos[1]) {
         pI->setXY(lim1.left - (lim2.width + COLISAO), lim1.top);
-        // pI->setVelocidadeX(0);
-        // pI->setXY(lim2.left - (lim1.width + COLISAO), lim1.top);
         pI->atualizaVelocidade(Vector2f(-1.0, 1));
     }
     

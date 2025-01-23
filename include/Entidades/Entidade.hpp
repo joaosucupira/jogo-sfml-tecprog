@@ -44,7 +44,8 @@ namespace Entidades
         virtual void atualizarFigura() = 0;
         
         virtual FloatRect hitBox() const = 0; //entidade
-        //sentidos[4]
+        // virtual FloatRect getHitBoxAjustada(const float ajuste) const = 0;
+
         
     };
 
