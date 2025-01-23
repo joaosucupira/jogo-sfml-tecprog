@@ -38,10 +38,12 @@ void Personagens::Alienigena::executar() {
 }
 
 void Alienigena::danificar(Jogador* pJ) {
-    if(pJ)
-        pJ->operator--();
-    else
+    if(!pJ) {
         cout << "Alienigena::danificar(Jogador* pJ) -> ponteiro nulo jogador" << endl;
+        return;
+    }
+    pJ->operator--();
+    
 }
 
 void Personagens::Alienigena::salvaDataBuffer() {

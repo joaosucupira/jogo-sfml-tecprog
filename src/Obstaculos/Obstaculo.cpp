@@ -8,7 +8,7 @@ sentidos(NULL)
 }
 
 Obstaculo::~Obstaculo() {
-    
+    sentidos = NULL;
 }
 
 void Obstaculos::Obstaculo::setSentidos(int *s) {
