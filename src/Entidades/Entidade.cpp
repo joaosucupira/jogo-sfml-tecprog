@@ -5,9 +5,9 @@ using namespace Entidades;
 
 Entidade::Entidade(float x_inicial, float y_inicial) :
 Ente(),
-sentidos(NULL),
 x(x_inicial),
-y(y_inicial)
+y(y_inicial),
+sentidos(NULL)
 {
 }
 
@@ -53,45 +53,6 @@ void Entidades::Entidade::exibirHitbox(FloatRect &lim) {
     hitbox.setOutlineThickness(1.0f); 
 
     pGG->getPJanela()->draw(hitbox);
-}
-
-void Entidades::Entidade::verificarSentido(Entidade *pE) {
-    if (!pE) {
-        cout << "void Entidades::Entidade::verificarSentido(Entidade *pE) -> ponteiro nulo" << endl;
-        return;
-    }
-    
-    FloatRect lim1 = this->getLimites();
-    FloatRect lim2 = pE->getLimites();
-
-    Vector2f pos1(lim1.left, lim1.top);
-    Vector2f pos2(lim2.left, lim2.top);
-
-    Vector2f res = pos1 - pos2;
-
-    for (int i = 0; i < 4; i++) {
-        sentidos[i] = 0;
-    }
-    const int margem = 10;
-
-    // Verificação do sentido de colisão mais relevante
-    if (std::abs(res.x) > std::abs(res.y)) {
-        if (res.x > margem) {
-            sentidos[0] = 1; // Esquerda
-        } else if (res.x < -margem) {
-        // } else {
-            sentidos[1] = 1; // Direita
-        }
-    }
-
-    else {
-        if (res.y > margem) {
-            sentidos[3] = 1; // Baixo
-        } else {
-            sentidos[2] = 1; // Cima
-        }
-    } 
-
 }
 
 void Entidades::Entidade::setSentidos(int *s) {

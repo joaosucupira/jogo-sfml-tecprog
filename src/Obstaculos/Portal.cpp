@@ -47,6 +47,6 @@ void Portal::atualizarFigura() {
 }
 
 void Portal::executar() {
-    pGG->desenharEnte(this);
+    desenhar();
     atualizarFigura();
 }

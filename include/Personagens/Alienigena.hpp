@@ -33,7 +33,6 @@ namespace Personagens{
         void danificar(Jogador* pJ);
         void executar();
         void salvaDataBuffer();
-        void mover(); // Para adaptar o andar de inimigo facil
         
     };
 

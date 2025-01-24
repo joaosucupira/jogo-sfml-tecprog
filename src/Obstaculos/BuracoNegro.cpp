@@ -71,6 +71,6 @@ void BuracoNegro::obstacular(Jogador *pJ) {
 }
 
 void BuracoNegro::executar() {
-    pGG->desenharEnte(this);
+    desenhar();
     atualizarFigura();
 }
