@@ -141,13 +141,12 @@ void AberracaoEspacial::atirar(){
 
     distancia = posJog - posPlasma;
 
-    distancia *= (float)PIXEL_METRO;
+    distancia /= (float)PIXEL_METRO;
 
     tempo = sqrt(2*distancia.y / GRAVIDADE);
 
-    //pPlasma->setVelocidadeX(distancia.x/tempo);
+    pPlasma->setVelocidadeX(distancia.x/tempo);
     pPlasma->setAtivo(true);
     recarregando = 0;
-    
 
 }
