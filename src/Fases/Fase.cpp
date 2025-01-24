@@ -104,7 +104,8 @@ void Fase::setJogador(Jogador *pJ)
             PLATAFORMA_LARGURA + 10.0f,
             ALTURA - (TAM_JOGADOR + ALT_PLATAFORMA + 1.0f)
         );
-        // pJ->posicionar(100.0f, 100.0f);
+        pJ->setModificadorGravidade(gravidade);
+        
         GC.setPJog1(pJ);
         GE.setPJog(pJ);
         entidades->adiciona(static_cast<Entidade*>(pJ));

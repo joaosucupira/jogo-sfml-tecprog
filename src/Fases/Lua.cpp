@@ -3,6 +3,7 @@
 Lua::Lua() : Fase(),
 maxViajantesMaus(0)
 {
+    gravidade = 0.65f;
     figura = new Figura(
         1309, 736, 
         1, 1, 

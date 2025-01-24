@@ -4,6 +4,7 @@
 Jupiter::Jupiter() : Fase(),
 maxAberracoesEspaciais(0)
 {
+    gravidade = 1.2f;
     figura = new Figura(
         2819, 1589,
         1,1,

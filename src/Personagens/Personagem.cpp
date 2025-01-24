@@ -43,7 +43,7 @@ void Personagens::Personagem::operator--(const int dano) {
 
 // Trocar para ser feita no gerenciador de colisões:: Dica do monitor -> Monitor é ruim kkkkk
 void Personagem::aplicarGravidade() {  //testar ponteiro pGG
-        velocidade.y += GRAVIDADE * pGG->getDeltaTime();
+        velocidade.y += GRAVIDADE * pGG->getDeltaTime() * modificadorGravidade;
 }
 
 void Personagem::atualizarFigura() { //testar ponteiro figura

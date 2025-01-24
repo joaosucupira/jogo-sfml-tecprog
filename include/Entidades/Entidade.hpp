@@ -18,6 +18,7 @@ namespace Entidades
         /* Coordenadas em que será desenhada a entidade */
         float x;
         float y; 
+        float modificadorGravidade;
         
         // ostream buffer;
 
@@ -30,7 +31,7 @@ namespace Entidades
         virtual void salvaDataBuffer() = 0;
 
         /* Métodos set e get*/
-
+        void setModificadorGravidade(const float mod) { modificadorGravidade = mod; }
         void setPosicaoFigura(const float x, const float y);
         void setTamanhoFigura(const float x, const float y);
         void setCorFigura(const Color& cor);

@@ -6,7 +6,8 @@ using namespace Entidades;
 Entidade::Entidade(float x_inicial, float y_inicial) :
 Ente(),
 x(x_inicial),
-y(y_inicial)
+y(y_inicial),
+modificadorGravidade(1.0f)
 {
 }
 
