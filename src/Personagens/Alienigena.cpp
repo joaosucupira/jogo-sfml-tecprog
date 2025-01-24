@@ -25,10 +25,10 @@ Alienigena::~Alienigena()
 
 
 void Personagens::Alienigena::executar() {
-    mover();
     aplicarGravidade();
+    mover();
     atualizarFigura();
-    pGG->desenharEnte(this);
+    desenhar();
 }
 
 void Alienigena::danificar(Jogador* pJ) {

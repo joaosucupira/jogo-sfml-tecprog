@@ -14,13 +14,20 @@ velocidade(0.0,0.0)
 Entidade::~Entidade() {
 }
 
-/*void Entidade::setPosicaoFigura(const float x, const float y) {
+void Entidade::aplicarGravidade() {
 
-    if (figura) 
-        figura->setPosicao(x, y);
-    else 
-        cout << "Entidade::setPosicaoFigura(const float x, const float y) -> ponteiro figura nulo!" << endl;
-}*/
+    float aux;
+
+    if(!pGG){
+        cout << "Personagem::aplicarGravidade() -> ponteiro gGrafico nulo" << endl;
+        return;
+    }
+
+    aux = GRAVIDADE * pGG->getDeltaTime();
+
+    velocidade.y += aux;
+
+}
 
 void Entidade::setXY(const float novoX, const float novoY){
     x = novoX;
@@ -31,16 +38,6 @@ void Entidade::posicionar(const float x, const float y) {
     setXY(x, y);
     setPosicaoFigura(x, y);
 }
-
-/*
-void Entidade::setTamanhoFigura(const float tX, const float tY) { //em Ente faz mais sentido
-    figura->setTamanho(tX, tY);
-}
-
-void Entidades::Entidade::setCorFigura(const Color &cor) { //em Ente faz mais sentido
-    figura->setCor(cor);
-}
-*/
 
 void Entidade::exibirHitbox(FloatRect &lim) {
     // 10/1 - Verificando o que pode estar comprometendo detecção de colisões

@@ -3,7 +3,7 @@
 #include "Jogador.hpp"
 #include "Obstaculo.hpp"
 #include "Inimigo.hpp"
-#include "Alienigena.hpp"
+#include "Plasma.hpp"
 
 namespace Gerenciadores{
     class GerenciadorColisoes
@@ -15,6 +15,7 @@ namespace Gerenciadores{
 
         vector<Obstaculo*> obstaculos;
         vector<Inimigo*> inimigos;
+        vector<Plasma*> plasmas;
                 
         FloatRect lim1;
         FloatRect lim2;
@@ -33,6 +34,7 @@ namespace Gerenciadores{
 
         void incluirObst(Obstaculo* pObst);
         void incluirInim(Inimigo* pInim);
+        void incluirPlas(Plasma* pPlas);
 
     private:
 
@@ -47,18 +49,17 @@ namespace Gerenciadores{
         void jogadorPlataforma(Jogador* pJog);
         void inimigoPlataforma(Inimigo* pInim);
         void inimigoJanela(Inimigo* pInim);
-        void jogadorAlienigena(Jogador* pJog, Inimigo* pInim);
+        void jogadorInimigo(Jogador* pJog, Inimigo* pInim);
 
         //Janela vai se tornar uma plataforma
         
         void coliJogJanela();
         void coliJogObstaculo();
         void coliJogInimigo();
+        void coliJogPlasma();
 
         void coliInimObstaculo();
         void coliInimJanela();
-
-
 
     };
 } using namespace Gerenciadores;

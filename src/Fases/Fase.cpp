@@ -15,6 +15,7 @@ GC()
     criarBuracosNegros();
     criarViajantesMaus();
     criarAberracoesEspaciais();
+    criarPlasmas();
 }
 
 Fase::~Fase() {
@@ -205,6 +206,22 @@ void Fase::criarAberracoesEspaciais(){
     }
     else
         cout<< "Fase::criarAberracoesEspaciais() -> Erro na alocacao dinamica" << endl;
+
+}
+
+void Fase::criarPlasmas() {
+    Plasma* pPla = NULL;
+
+    pPla = new Plasma(0,0);
+
+    if(pPla){
+        entidades->adiciona(static_cast<Entidade*>(pPla));
+        GC.incluirPlas(pPla);
+        AberracaoEspacial::setPPlasma(pPla);
+    }
+    else
+        cout<< "Fase::criarAberracoesEspaciais() -> Erro na alocacao dinamica" << endl;
+
 
 }
 

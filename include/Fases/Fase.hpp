@@ -11,6 +11,7 @@
 #include "GerenciadorEventos.hpp"
 #include "ViajanteMau.hpp"
 #include "AberracaoEspacial.hpp"
+#include "Plasma.hpp"
 
 #define AJUSTE_CENTRO 250.0f
 
@@ -43,7 +44,8 @@ namespace Fases {
         void criarAlienigenasA();
         void criarAlienigenasB();
         virtual void criarViajantesMaus();
-        virtual void criarAberracoesEspaciais();
+        void criarAberracoesEspaciais();
+        void criarPlasmas();
 
 
         void criarPortais();

@@ -33,8 +33,6 @@ public:
     const bool getEstaPulando() const {return estaPulando;}
     const bool getEstaAndando() const {return estaAndando;}
 
-    void aplicarGravidade();
-    void figuraInicial();
     void atualizarFigura();
     
 

@@ -37,12 +37,10 @@ void ViajanteMau::setPJog(Jogador *pJ){
 
 
 void ViajanteMau::executar() {
-    seguirJogador();
-    mover();
-    planar();
     aplicarGravidade();
+    mover();  
     atualizarFigura();
-    pGG->desenharEnte(this);
+    desenhar();
 }
 
 void ViajanteMau::danificar(Jogador* pJ) {
@@ -98,15 +96,43 @@ void ViajanteMau::seguirJogador(){
     velocidadeRes *= (float)V_VIAJANTE; //aplicando o módulo correto para a velocidade
 
     //atualizando velocidade
-    velocidade.x = velocidadeRes.x;
+    velocidade.x += velocidadeRes.x;
     velocidade.y += velocidadeRes.y;
 
 }
 
 void ViajanteMau::planar(){
 
-    //aplicando a velocidade para superar a gravidade (voar)
-    velocidade.y = - (GRAVIDADE * pGG->getDeltaTime());
+    float aux;
+
+    if(!pGG){
+        cout << "ViajanteMau::planar() -> ponteiro gGrafico nulo" << endl;
+        return;
+    }
+
+    aux = GRAVIDADE * pGG->getDeltaTime();
+
+    velocidade.y -= aux;
         
+}
+
+void ViajanteMau::mover(){
+
+    if(!pGG){
+        cout<< "ViajanteMau::mover()-> ponteiro gGrafico nulo" << endl;
+        return;
+    }
+
+    planar();
+
+    seguirJogador();
+
+    x += velocidade.x *  PIXEL_METRO * pGG->getDeltaTime();
+    y += velocidade.y *  PIXEL_METRO * pGG->getDeltaTime();
+
+    setPosicaoFigura(x,y);
+
+    velocidade.y = 0;
+    velocidade.x = 0;
 }
 

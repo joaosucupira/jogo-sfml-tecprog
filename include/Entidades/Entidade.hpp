@@ -38,11 +38,14 @@ namespace Entidades
         const float getY() const { return y; }
         void posicionar(const float x, const float y);
 
+        void setVelocidade (Vector2f v) { velocidade = v;}
         void setVelocidadeX(float x){ velocidade.x = x;}
         void setVelocidadeY(float y){ velocidade.y = y;}
         void atualizaVelocidade(Vector2f num) {velocidade.x *= num.x; velocidade.y *= num.y;}
 
         Vector2f getVelocidade() const { return velocidade;}
+
+        void aplicarGravidade();
 
         void exibirHitbox(FloatRect& lim);
         

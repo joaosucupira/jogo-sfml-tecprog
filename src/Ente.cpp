@@ -24,7 +24,10 @@ Ente::~Ente()
 
 void Ente::desenhar() {
     // Completo requisito de operador this e rel. bidirecional
-    pGG->desenharEnte(this);
+    if(pGG)
+        pGG->desenharEnte(this);
+    else
+        cout << "Ente::desenhar() -> ponteiro gGrafico nulo" << endl;
 }
 
 FloatRect Ente::getLimites() const{

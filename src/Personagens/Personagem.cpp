@@ -16,6 +16,12 @@ Personagem::~Personagem() {
 
 /* Métodos principais*/
 void Personagem::mover(){
+
+    if(!pGG){
+        cout<< "Personagem::mover() -> ponteiro gGrafico nulo" << endl;
+        return;
+    }
+
     x += velocidade.x *  PIXEL_METRO * pGG->getDeltaTime();
     y += velocidade.y *  PIXEL_METRO * pGG->getDeltaTime();
 
@@ -27,16 +33,8 @@ void Personagens::Personagem::operator--() {
 }
 
 void Personagens::Personagem::operator--(const int dano) {
-    if (num_vidas > 0) {
-        num_vidas -= dano;
-    } else {
-        vivo = false;
-    }
-}
-
-// Trocar para ser feita no gerenciador de colisões:: Dica do monitor -> Monitor é ruim kkkkk
-void Personagem::aplicarGravidade() {  //testar ponteiro pGG
-    velocidade.y += GRAVIDADE * pGG->getDeltaTime();
+    (num_vidas > 0) ? num_vidas -= dano : vivo = false;
+  
 }
 
 void Personagem::atualizarFigura() {

@@ -5,8 +5,10 @@
 #define PLASMA_TAM_SEC 24
 #define PLASMA_ALTURA 24
 
-#define LARG_PLASMA 1.5
-#define ALT_PLASMA 4
+#define LARG_PLASMA 10
+#define ALT_PLASMA 20
+
+#define V_PLASMA 15
 
 namespace Entidades {
 
@@ -14,13 +16,21 @@ namespace Entidades {
     {
         
         bool ativo;
+        const float rapidez;
 
     public:
         Plasma(float dx, float dy);
         ~Plasma();
+
         void executar();
-        // void atualizar(float dt);
-        void salvar();
+        void salvaDataBuffer(){}
+
+        void setAtivo(bool ativou){ativo = ativou;}
+        const bool getAtivo(){return ativo;}
+
+        const float getRapidez(){return rapidez;}
+
+        void deslocar();
         
     };
 

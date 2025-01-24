@@ -17,7 +17,7 @@
 #define SEC_FINAL_X 24
 #define SEC_FINAL_Y 48
 
-#define V_VIAJANTE 0.8
+#define V_VIAJANTE 0.7
 
 namespace Personagens{
 
@@ -38,6 +38,7 @@ namespace Personagens{
         void seguirJogador();
         static void setPJog(Jogador* pJ);
         void planar();
+        void mover();
         
     };
 

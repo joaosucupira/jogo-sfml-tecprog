@@ -25,15 +25,14 @@ namespace Personagens{
     class AberracaoEspacial : public Inimigo {
 
         static Jogador* pJog;
-        Plasma* pPlasma;
-        
+        static Plasma* pPlasma;
+        const int tempRecarregar;
+        int recarregando;
 
     public:
 
         AberracaoEspacial(const float x_inicial, const float y_inicial);
         ~AberracaoEspacial();
-
-        
 
         void danificar(Jogador* pJ);
         void executar();
@@ -41,7 +40,7 @@ namespace Personagens{
         void mover();
         
         static void setPJog(Jogador* pJ);
-        void setPPlasma(Plasma* pP);
+        static void setPPlasma(Plasma* pPlas);
 
         void planar();
         void atirar();

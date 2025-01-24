@@ -5,6 +5,7 @@ pJog1(NULL),
 pJog2(NULL),
 obstaculos(),
 inimigos(),
+plasmas(),
 lim1(),
 lim2(),
 ajustePerso(TAM_JOGADOR / 5),
@@ -12,6 +13,7 @@ ajusteObst(ALT_PLATAFORMA / 10)
 {
     obstaculos.clear();
     inimigos.clear();
+    plasmas.clear();
 }
 
 GerenciadorColisoes::~GerenciadorColisoes() {
@@ -28,6 +30,7 @@ void GerenciadorColisoes::executar() {
     coliJogInimigo();
     coliInimObstaculo();
     coliInimJanela();
+    coliJogPlasma();
 }
 
 void GerenciadorColisoes::setPJog1(Jogador *pJ1) {
@@ -49,6 +52,13 @@ void GerenciadorColisoes::incluirInim(Inimigo* pInim){
         inimigos.push_back(pInim);
     else
         cout << "GerenciadorColisoes::incluirInim(Inimigo* pInim) -> ponteiro nulo" << endl;
+}
+
+void GerenciadorColisoes::incluirPlas(Plasma* pPlas){
+    if(pPlas)
+        plasmas.push_back(pPlas);
+    else
+        cout << "GerenciadorColisoes::incluirPlas(Plasma* pPlas) -> ponteiro plasma nulo" << endl;
 }
 
 const bool GerenciadorColisoes::verificarColisao(FloatRect lim1, FloatRect lim2) const{
@@ -218,8 +228,45 @@ void GerenciadorColisoes::coliJogInimigo(){
                 restauraHitBoxPerso(lim1);
                 restauraHitBoxPerso(lim2);
 
-                //if(dynamic_cast<Alienigena*>(inimigos[i]))
-                    jogadorAlienigena(pJog1, inimigos[i]);
+                
+                jogadorInimigo(pJog1, inimigos[i]);
+
+                cout << "Vida jogador 1: " << pJog1->getVidas() << endl;
+                //danificar ficou dentro da colisao especifica de cada inimigo
+            }   
+        }
+    }
+}
+
+void GerenciadorColisoes::coliJogPlasma(){
+    
+    long unsigned int i;
+
+    if(!pJog1){
+        cout << "GerenciadorColisoes::coliJogObstaculo() -> pJog1 nulo" << endl;
+        return;
+    }
+
+    if(plasmas.empty()){
+        cout << "GerenciadorColisoes::coliJogObstaculo() -> vector obstaculos vazio" << endl;
+        return;
+    }
+
+    if(!pJog1->getVivo()){
+        cout << "GerenciadorColisoes::coliJogObstaculo() -> jog1 morto" << endl;
+        return;
+    }
+
+    for(i=0; i<inimigos.size(); i++){
+
+        if(inimigos[i]->getVivo()){
+
+            lim1 = ajusteHitBoxPerso(pJog1->getLimites());
+
+            if(verificarColisao( lim1, lim2 ) ){
+                
+                verificarSentido(Vector2f(lim1.left, lim1.top), Vector2f(lim2.left, lim2.top));
+                restauraHitBoxPerso(lim1);
 
                 cout << "Vida jogador 1: " << pJog1->getVidas() << endl;
                 //danificar ficou dentro da colisao especifica de cada inimigo
@@ -353,7 +400,7 @@ void GerenciadorColisoes::jogadorPlataforma(Jogador* pJog){
     
 }
 
-void GerenciadorColisoes::jogadorAlienigena(Jogador* pJog, Inimigo* pInim){
+void GerenciadorColisoes::jogadorInimigo(Jogador* pJog, Inimigo* pInim){
 
     bool danifica = true;
 
