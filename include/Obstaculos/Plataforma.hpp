@@ -19,9 +19,10 @@ namespace Obstaculos {
         ~Plataforma();
 
         void obstacular(Jogador* pJ);
+        void obstacular(Inimigo* pI);
         void salvaDataBuffer();
-        void carregarFigura();
+        
         void executar();
-        void atualizarFigura() {}
+        
     };
 } using namespace Obstaculos;

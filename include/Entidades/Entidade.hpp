@@ -19,6 +19,8 @@ namespace Entidades
         float x;
         float y; 
         float modificadorGravidade;
+        int* sentidos;
+        Vector2f velocidade;
         
         // ostream buffer;
 
@@ -31,21 +33,27 @@ namespace Entidades
         virtual void salvaDataBuffer() = 0;
 
         /* Métodos set e get*/
-        void setModificadorGravidade(const float mod) { modificadorGravidade = mod; }
-        void setPosicaoFigura(const float x, const float y);
-        void setTamanhoFigura(const float x, const float y);
-        void setCorFigura(const Color& cor);
 
         void setXY(const float novoX, const float novoY);
         const float getX() const { return x; }
         const float getY() const { return y; }
         void posicionar(const float x, const float y);
 
+        void setVelocidade (Vector2f v) { velocidade = v;}
+        void setVelocidadeX(float x){ velocidade.x = x;}
+        void setVelocidadeY(float y){ velocidade.y = y;}
+        void atualizaVelocidade(Vector2f num) {velocidade.x *= num.x; velocidade.y *= num.y;}
+
+        Vector2f getVelocidade() const { return velocidade;}
+
+        void aplicarGravidade();
+
         void exibirHitbox(FloatRect& lim);
-        virtual void atualizarFigura() = 0;
         
-        //virtual FloatRect hitBox() = 0 //entidade
-        //sentidos[4]
+        virtual FloatRect hitBox() const = 0; //entidade
+        void setSentidos(int* s);
+        // virtual FloatRect getHitBoxAjustada(const float ajuste) const = 0;
+
         
     };
 

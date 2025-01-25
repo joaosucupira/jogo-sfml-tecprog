@@ -29,8 +29,6 @@ GerenciadorGrafico* GerenciadorGrafico::getInstancia() {
 GerenciadorGrafico::GerenciadorGrafico() :
 pJanela(new RenderWindow(VideoMode(LARGURA, ALTURA), "Anomalia++")),
 deltaTime(0.0)
-// pGeventos(NULL)
-// pGcolisoes(NULL) // desacoplar
 {
     pJanela->setFramerateLimit(TAXA_QUADROS);
 }
@@ -39,8 +37,6 @@ GerenciadorGrafico::~GerenciadorGrafico()
 {
     if (pJanela) delete pJanela;
     pJanela = NULL;
-    // pGeventos = NULL;
-    // pGcolisoes = NULL; // desacoplar
 }
 
 
@@ -71,28 +67,6 @@ void Gerenciadores::GerenciadorGrafico::desenharEnte(Ente *pE) {
     
 }
 
-// void GerenciadorGrafico::setGC(GerenciadorColisoes* pGC){
-//     if(pGC)
-//         pGcolisoes = pGC;
-//     else
-//         {cout << "GerenciadorGrafico::setGC(Ente *pE) -> Ponteiro nulo." << endl;}
-// } // desacoplar
-
-// void GerenciadorGrafico::setGE(GerenciadorEventos* pGE){
-//     if(pGE)
-//         pGeventos = pGE;
-//     else
-//         {cout << "GerenciadorGrafico::setGE(Ente *pE) -> Ponteiro nulo." << endl;}
-// }
-
-// void GerenciadorGrafico::incluiEnte(Ente* pE, int i) {
-//     if(pE){
-//         // listaEntes[i] = pE; // criar lista
-//     }
-//     else { cout << "GerenciadorGrafico::incluiEnte(Ente *pE) -> Ponteiro nulo." << endl; }
-
-// }
-
 RenderWindow* GerenciadorGrafico::getPJanela() const {
 
     if(pJanela){
@@ -101,13 +75,6 @@ RenderWindow* GerenciadorGrafico::getPJanela() const {
     cout << "GerenciadorGrafico::getPJanela() -> Ponteiro nulo." << endl;
     return NULL;
 }
-
-// void Gerenciadores::GerenciadorGrafico::incluiEnte(Ente *pE) {
-//     if (pE) {
-//         cout << "implementar incluiEnte()" << endl;
-//         // por na lista
-//     } else { cout << "void Gerenciadores::GerenciadorGrafico::incluiEnte(Ente *pE) -> ponteiro nulo" << endl; }
-// }
 
 void GerenciadorGrafico::executar() {
 

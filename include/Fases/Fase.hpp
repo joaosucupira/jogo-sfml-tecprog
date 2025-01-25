@@ -9,6 +9,9 @@
 #include "GerenciadorColisoes.hpp"
 #include "ListaEntidades.hpp"
 #include "GerenciadorEventos.hpp"
+#include "ViajanteMau.hpp"
+#include "AberracaoEspacial.hpp"
+#include "Plasma.hpp"
 
 #define AJUSTE_CENTRO 250.0f
 

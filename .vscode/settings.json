@@ -12,6 +12,7 @@
         "xtree": "cpp",
         "cmath": "cpp",
         "utility": "cpp",
-        "new": "cpp"
+        "new": "cpp",
+        "*.tcc": "cpp"
     }
 }

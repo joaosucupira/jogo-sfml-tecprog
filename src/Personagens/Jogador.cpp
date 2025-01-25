@@ -19,7 +19,7 @@ lentidao(0.0f)
             SEC_INICIAL_X, SEC_INICIAL_Y
         );
         // escolheCor();
-        carregarFigura();
+        carregarFigura(JOGADOR_PATH);
         setTamanhoFigura(TAM_JOGADOR, TAM_JOGADOR);
         setPosicaoFigura(x, y);
 
@@ -41,12 +41,6 @@ void Personagens::Jogador::escolheCor() {
 
 void Jogador::operator+=(int pts) { pontos += pts; }
 
-void Jogador::carregarFigura() {
-    if (figura) {
-        figura->carregarTextura(JOGADOR_PATH);
-    } else { cout << "Jogador::carregarSprite() -> Ponteiro nulo." << endl; }
-}
-
 void Jogador::salvaDataBuffer() {
 }
 
@@ -54,5 +48,5 @@ void Jogador::executar() {
     mover();
     aplicarGravidade();
     atualizarFigura();
-    pGG->desenharEnte(this);
+    desenhar();
 }

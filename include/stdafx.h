@@ -27,19 +27,21 @@ using namespace sf;
 #define ALTURA 680
 
 #define GRAVIDADE 9.8 //(m/s^2)
-#define PIXEL_METRO 300 // Conversão metros para pixels
+#define PIXEL_METRO 300.0 // Conversão metros para pixels
 #define CHAO 570// Posição Y que representa o chão (pixels)
 #define ALTURA_PULO 0.8 // Altura máxima do pulo do jogador (m)
 #define VELOCIDADE_ANDAR 1.0 // Velocidade de andar do jogador (m/s)
 #define COLISAO 1 //Sempre Positiva
 #define ALTURA_COLI 0.3 //Altura da colisao do jogador com alienigena
+#define KNOCK_BACK 30
 
 /* Macros - Tamanhos*/
 #define TAM_JOGADOR 100.0f
 #define LARG_PLATAFORMA 80.0f
 #define ALT_PLATAFORMA 40.0f
-#define TAM_PORTAL 120.0f
+#define TAM_PORTAL 100.0f
 #define TAM_BURACO_NEGRO 300.0f
+
 
 
 

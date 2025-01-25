@@ -11,7 +11,7 @@ forca(200.0f)
         0, 0
     );
 
-    carregarFigura();
+    carregarFigura(BURACO_NEGRO_PATH);
     setTamanhoFigura(TAM_BURACO_NEGRO, TAM_BURACO_NEGRO);
     setPosicaoFigura(x_inicial, y_inicial);
     figura->setCor(Color::Magenta);
@@ -19,18 +19,6 @@ forca(200.0f)
 
 BuracoNegro::~BuracoNegro() 
 {
-}
-
-void BuracoNegro::carregarFigura() {
-    if (figura) {
-        figura->carregarTextura(BURACO_NEGRO_PATH);
-    }
-}
-
-void BuracoNegro::atualizarFigura() {
-    if (figura) {
-        figura->atualizarSecao();
-    } else { cout << "void BuracoNegro::atualizarFigura()  -> figura nula" << endl; }
 }
 
 void BuracoNegro::obstacular(Jogador *pJ) {
@@ -71,6 +59,6 @@ void BuracoNegro::obstacular(Jogador *pJ) {
 }
 
 void BuracoNegro::executar() {
-    pGG->desenharEnte(this);
+    desenhar();
     atualizarFigura();
 }

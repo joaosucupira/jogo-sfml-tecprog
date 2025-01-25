@@ -23,7 +23,6 @@ Fase::~Fase() {
     ativa = false;
 }
 
-
 void Fase::renderizarEntidades()
 {
     if (entidades->vazia()) {
@@ -97,6 +96,46 @@ void Fases::Fase::criarCenario() {
     criarPlataformas();
 }
 
+void Fase::criarViajantesMaus(){
+    ViajanteMau* pVM = NULL;
+    pVM = new ViajanteMau(LARGURA-TAM_JOGADOR,0);
+    if(pVM){
+        entidades->adiciona(static_cast<Entidade*>(pVM));
+        GC.incluirInim(static_cast<Inimigo*>(pVM));
+    }
+    else
+        cout<< "Fase::criarViajantesMaus() -> Erro na alocacao dinamica" << endl;
+}
+
+void Fase::criarAberracoesEspaciais(){
+    AberracaoEspacial* pAB = NULL;
+
+    pAB = new AberracaoEspacial(1,1);
+    if(pAB){
+        entidades->adiciona(static_cast<Entidade*>(pAB));
+        GC.incluirInim(static_cast<Inimigo*>(pAB));
+    }
+    else
+        cout<< "Fase::criarAberracoesEspaciais() -> Erro na alocacao dinamica" << endl;
+
+}
+
+void Fase::criarPlasmas() {
+    Plasma* pPla = NULL;
+
+    pPla = new Plasma(0,0);
+
+    if(pPla){
+        entidades->adiciona(static_cast<Entidade*>(pPla));
+        GC.incluirPlas(pPla);
+        AberracaoEspacial::setPPlasma(pPla);
+    }
+    else
+        cout<< "Fase::criarAberracoesEspaciais() -> Erro na alocacao dinamica" << endl;
+
+
+}
+
 void Fase::setJogador(Jogador *pJ)
 {
     if (pJ) {
@@ -109,6 +148,7 @@ void Fase::setJogador(Jogador *pJ)
         GC.setPJog1(pJ);
         GE.setPJog(pJ);
         entidades->adiciona(static_cast<Entidade*>(pJ));
-
+        ViajanteMau::setPJog(pJ);
+        AberracaoEspacial::setPJog(pJ);
     } else { cout << "void Fase::setJogador(Jogador *pJ) -> ponteiro nulo." << endl; }
 }
