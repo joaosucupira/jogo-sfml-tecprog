@@ -29,6 +29,7 @@ namespace Entidades {
         const bool getAtivo(){return ativo;}
 
         const float getRapidez(){return rapidez;}
+        FloatRect hitBox() const {return getLimites();}
 
         void deslocar();
         

@@ -13,8 +13,6 @@ public:
     ~Portal();
     void obstacular(Jogador* pJ);
     void obstacular(Inimigo* pI) {}
-    void carregarFigura();
-    void atualizarFigura();
     void executar();
     void salvaDataBuffer() {}
 };

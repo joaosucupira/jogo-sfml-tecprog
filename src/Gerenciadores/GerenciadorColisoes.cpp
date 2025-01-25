@@ -55,44 +55,10 @@ void GerenciadorColisoes::incluirPlas(Plasma* pPlas){
         cout << "GerenciadorColisoes::incluirPlas(Plasma* pPlas) -> ponteiro plasma nulo" << endl;
 }
 
-const bool GerenciadorColisoes::verificarColisao(FloatRect lim1, FloatRect lim2) const{
-    return lim1.intersects(lim2);
-}
-
 const bool Gerenciadores::GerenciadorColisoes::verificarColisao(Entidade *pE1, Entidade *pE2) const {
     if (pE1 && pE2) {
         return pE1->hitBox().intersects(pE2->hitBox());
     } else cout << "const bool Gerenciadores::GerenciadorColisoes::verificarColisao(Entidade *pE1, Entidade *pE2) const -> ponteiro nulo" << endl;
-}
-
-void GerenciadorColisoes::verificarSentido(Vector2f pos1, Vector2f pos2) {
-
-    Vector2f res = pos1 - pos2;
-    const int margem = 10;
-
-    for (int i = 0; i < 4; i++) {
-        sentidos[i] = 0;
-    }
-
-    // Verificação do sentido de colisão mais relevante
-
-    if (std::abs(res.x) > std::abs(res.y)) {
-        if (res.x > margem) {
-            sentidos[0] = 1; // Esquerda
-        } else if (res.x < -margem) {
-        // } else {
-            sentidos[1] = 1; // Direita
-        }
-    }
-
-    else {
-        if (res.y > margem) {
-            sentidos[3] = 1; // Baixo
-        } else {
-            sentidos[2] = 1; // Cima
-        }
-    }
-
 }
 
 void Gerenciadores::GerenciadorColisoes::verificarSentido(Entidade *pE1, Entidade *pE2) {

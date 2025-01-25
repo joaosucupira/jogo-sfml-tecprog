@@ -7,8 +7,7 @@ Entidade::Entidade(float x_inicial, float y_inicial) :
 Ente(),
 x(x_inicial),
 y(y_inicial),
-sentidos(NULL)
-y(y_inicial),
+sentidos(NULL),
 velocidade(0.0,0.0)
 {
 }

@@ -35,10 +35,7 @@ namespace Gerenciadores{
 
     private:
 
-        const bool verificarColisao(FloatRect lim1, FloatRect lim2) const;
         const bool verificarColisao(Entidade* pE1, Entidade* pE2) const;
-        
-        void verificarSentido(Vector2f pos1, Vector2f pos2);
         void verificarSentido(Entidade* pE1, Entidade* pE2);
 
         void coliJogObstaculo();

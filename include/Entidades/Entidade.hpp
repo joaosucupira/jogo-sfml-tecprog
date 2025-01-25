@@ -19,6 +19,7 @@ namespace Entidades
         float x;
         float y; 
         int* sentidos;
+        Vector2f velocidade;
         
         // ostream buffer;
 
@@ -47,7 +48,6 @@ namespace Entidades
         void aplicarGravidade();
 
         void exibirHitbox(FloatRect& lim);
-        virtual void atualizarFigura() = 0;
         
         virtual FloatRect hitBox() const = 0; //entidade
         void setSentidos(int* s);
