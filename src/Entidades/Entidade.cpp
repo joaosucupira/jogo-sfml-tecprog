@@ -7,11 +7,14 @@ Entidade::Entidade(float x_inicial, float y_inicial) :
 Ente(),
 x(x_inicial),
 y(y_inicial),
+sentidos(NULL)
+y(y_inicial),
 velocidade(0.0,0.0)
 {
 }
 
 Entidade::~Entidade() {
+    sentidos = NULL;
 }
 
 void Entidade::aplicarGravidade() {
@@ -54,5 +57,8 @@ void Entidade::exibirHitbox(FloatRect &lim) {
 }
 
 
-
-
+void Entidades::Entidade::setSentidos(int *s) {
+    if (s) {
+        sentidos = s;
+    }
+}

@@ -33,13 +33,15 @@ using namespace sf;
 #define VELOCIDADE_ANDAR 1.0 // Velocidade de andar do jogador (m/s)
 #define COLISAO 1 //Sempre Positiva
 #define ALTURA_COLI 0.3 //Altura da colisao do jogador com alienigena
+#define KNOCK_BACK 30
 
 /* Macros - Tamanhos*/
 #define TAM_JOGADOR 100.0f
 #define LARG_PLATAFORMA 80.0f
 #define ALT_PLATAFORMA 40.0f
-#define TAM_PORTAL 150.0f
+#define TAM_PORTAL 100.0f
 #define TAM_BURACO_NEGRO 300.0f
+
 
 
 

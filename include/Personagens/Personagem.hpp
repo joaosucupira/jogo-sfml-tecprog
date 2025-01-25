@@ -34,6 +34,8 @@ public:
     const bool getEstaAndando() const {return estaAndando;}
 
     void atualizarFigura();
+    void figuraInicial();
+    virtual FloatRect hitBox() const;
     
 
 };

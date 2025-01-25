@@ -35,6 +35,6 @@ void Portal::obstacular(Jogador *pJ) {
 }
 
 void Portal::executar() {
-    pGG->desenharEnte(this);
+    desenhar();
     atualizarFigura();
 }

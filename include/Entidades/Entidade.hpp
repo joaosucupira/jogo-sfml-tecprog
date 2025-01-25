@@ -17,9 +17,8 @@ namespace Entidades
     protected:
         /* Coordenadas em que será desenhada a entidade */
         float x;
-        float y;
-
-        Vector2f velocidade;
+        float y; 
+        int* sentidos;
         
         // ostream buffer;
 
@@ -48,6 +47,12 @@ namespace Entidades
         void aplicarGravidade();
 
         void exibirHitbox(FloatRect& lim);
+        virtual void atualizarFigura() = 0;
+        
+        virtual FloatRect hitBox() const = 0; //entidade
+        void setSentidos(int* s);
+        // virtual FloatRect getHitBoxAjustada(const float ajuste) const = 0;
+
         
     };
 

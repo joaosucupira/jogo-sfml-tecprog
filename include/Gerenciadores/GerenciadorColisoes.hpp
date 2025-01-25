@@ -17,11 +17,8 @@ namespace Gerenciadores{
         vector<Inimigo*> inimigos;
         vector<Plasma*> plasmas;
                 
-        FloatRect lim1;
-        FloatRect lim2;
         int sentidos[4] = {0};
-        const float ajustePerso;
-        const float ajusteObst;
+
         
     public:
         GerenciadorColisoes();
@@ -39,27 +36,17 @@ namespace Gerenciadores{
     private:
 
         const bool verificarColisao(FloatRect lim1, FloatRect lim2) const;
-        void verificarSentido(Vector2f pos1, Vector2f pos2);
-        FloatRect ajusteHitBoxPerso(FloatRect lim);
-        void restauraHitBoxPerso(FloatRect &lim);
-
-        FloatRect ajusteHitBoxObst(FloatRect lim);
-        void restauraHitBoxObst(FloatRect &lim);
-
-        void jogadorPlataforma(Jogador* pJog);
-        void inimigoPlataforma(Inimigo* pInim);
-        void inimigoJanela(Inimigo* pInim);
-        void jogadorInimigo(Jogador* pJog, Inimigo* pInim);
-
-        //Janela vai se tornar uma plataforma
+        const bool verificarColisao(Entidade* pE1, Entidade* pE2) const;
         
-        void coliJogJanela();
+        void verificarSentido(Vector2f pos1, Vector2f pos2);
+        void verificarSentido(Entidade* pE1, Entidade* pE2);
+
         void coliJogObstaculo();
         void coliJogInimigo();
-        void coliJogPlasma();
-
         void coliInimObstaculo();
-        void coliInimJanela();
+
+
+
 
     };
 } using namespace Gerenciadores;

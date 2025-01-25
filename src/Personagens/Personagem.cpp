@@ -50,3 +50,16 @@ void Personagem::atualizarFigura() {
         atualizaParaFiguraInicial();
 }
 
+FloatRect Personagem::hitBox() const {
+    // Alterando uma cópia, logo, não é necessario restaurar a hitbox
+    FloatRect lim = getLimites();
+    const float ajuste = TAM_JOGADOR / 5.0f;
+    // const float ajuste = lim.width / 5.0f;
+
+    lim.left += ajuste;
+    lim.width -= 2 * ajuste;
+    lim.top += ajuste;
+    lim.height -= ajuste;
+
+    return lim;
+}
