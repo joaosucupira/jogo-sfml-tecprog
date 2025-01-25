@@ -118,17 +118,21 @@ void ViajanteMau::planar(){
 
 void ViajanteMau::mover(){
 
+    float aux;
+
     if(!pGG){
         cout<< "ViajanteMau::mover()-> ponteiro gGrafico nulo" << endl;
         return;
     }
 
     planar();
-
     seguirJogador();
 
-    x += velocidade.x *  PIXEL_METRO * pGG->getDeltaTime();
-    y += velocidade.y *  PIXEL_METRO * pGG->getDeltaTime();
+    aux = pGG->getDeltaTime();
+    aux *= PIXEL_METRO;
+
+    x += velocidade.x * aux;
+    y += velocidade.y * aux;
 
     setPosicaoFigura(x,y);
 

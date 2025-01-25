@@ -58,6 +58,8 @@ void AberracaoEspacial::executar() {
 
 void AberracaoEspacial::mover(){
 
+    float aux;
+
     if(!pGG){
         cout<< "AberracaoEspacial::mover()-> ponteiro gGrafico nulo" << endl;
         return;
@@ -65,8 +67,11 @@ void AberracaoEspacial::mover(){
 
     planar();
 
-    x += velocidade.x *  PIXEL_METRO * pGG->getDeltaTime();
-    y += velocidade.y *  PIXEL_METRO * pGG->getDeltaTime();
+    aux = pGG->getDeltaTime();
+    aux *= PIXEL_METRO;
+
+    x += velocidade.x * aux;
+    y += velocidade.y * aux;
 
     setPosicaoFigura(x,y);
 
@@ -88,7 +93,7 @@ void AberracaoEspacial::salvaDataBuffer() {
 
 void AberracaoEspacial::planar(){
 
-     float aux;
+    float aux;
 
     if(!pGG){
         cout << "AberracaoEspacial::planar() -> ponteiro gGrafico nulo" << endl;
@@ -143,7 +148,7 @@ void AberracaoEspacial::atirar(){
 
     distancia /= (float)PIXEL_METRO;
 
-    tempo = sqrt(2*distancia.y / GRAVIDADE);
+    tempo = sqrt(2*distancia.y / (GRAVIDADE - pPlasma->getRapidez()));
 
     pPlasma->setVelocidadeX(distancia.x/tempo);
     pPlasma->setAtivo(true);

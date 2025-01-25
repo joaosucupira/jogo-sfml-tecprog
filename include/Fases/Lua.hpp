@@ -16,8 +16,7 @@ namespace Fases {
         void criarObstaculos();
         void criarPortais();
         void criarAlienigenas();
-
-        void criarViajantesMaus() {}
+        void criarViajantesMaus();
         void carregarFigura();
 
     };

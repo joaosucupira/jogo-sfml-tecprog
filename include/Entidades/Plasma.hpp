@@ -16,7 +16,7 @@ namespace Entidades {
     {
         
         bool ativo;
-        const float rapidez;
+        const float rapidez; //trocar nome -> aceleracao contraria a gravidade
 
     public:
         Plasma(float dx, float dy);
@@ -30,6 +30,8 @@ namespace Entidades {
 
         const float getRapidez(){return rapidez;}
         FloatRect hitBox() const {return getLimites();}
+
+        void planar();
 
         void deslocar();
         

@@ -81,14 +81,14 @@ void Obstaculos::Plataforma::obstacular(Inimigo *pI) {
     FloatRect lim2 = this->getLimites();
 
     if(sentidos[0]) {
-        pI->setXY(lim1.left + (lim2.width + COLISAO), lim1.top);
+        pI->setXY(lim1.left + (lim2.width), lim1.top);
         pI->atualizaVelocidade(Vector2f(-1.0, 1.0));
     } 
     
     //Colisao a direita do Personagem
     else if(sentidos[1]) {
-        pI->setXY(lim1.left - (lim2.width + COLISAO), lim1.top);
-        pI->atualizaVelocidade(Vector2f(-1.0, 1));
+        pI->setXY(lim1.left - (lim2.width), lim1.top);
+        pI->atualizaVelocidade(Vector2f(-1.0, 1.0));
     }
     
     //Colisao a baixo do Personagem
@@ -96,10 +96,11 @@ void Obstaculos::Plataforma::obstacular(Inimigo *pI) {
         pI->setXY(lim1.left, lim2.top - (lim1.height));
         pI->setVelocidadeY(0);
         pI->setEstaPulando(false);
-    }
+    } 
     //Colisao a cima do Personagem
     if(sentidos[3])
         pI->setXY(lim1.left, lim2.top + (lim2.height));
+
 }
 
 void Obstaculos::Plataforma::salvaDataBuffer() {

@@ -18,6 +18,9 @@ namespace Fases {
             void criarBuracosNegros();
             void criarAlienigenas();
             void criarPilares();
+            void criarAberracoesEspaciais();
+            void criarPlasmas();
+            void criarViajantesMaus();
 
             // void criaAberracoesEspaciais();
     };

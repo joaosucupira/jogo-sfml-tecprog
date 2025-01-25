@@ -19,7 +19,7 @@ Jogo::~Jogo() {
 void Jogo::distribuir()
 {
     GE.setPJog(jog1);
-    // faseLua.setJogador(jog1);
+    //faseLua.setJogador(jog1);
     faseJupiter.setJogador(jog1);
 
 }
@@ -44,7 +44,7 @@ void Jogo::executar() {
         pGG->limparJanela();
         // execucoes
 
-        // faseLua.executar();
+        //faseLua.executar();
         faseJupiter.executar();
         
         pGG->exibirNaJanela();

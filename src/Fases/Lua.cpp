@@ -13,6 +13,7 @@ maxViajantesMaus(0)
     carregarFigura();
     criarObstaculos();
     criarAlienigenas();
+    criarViajantesMaus();
 }
 
 Lua::~Lua()
@@ -50,6 +51,18 @@ void Fases::Lua::criarAlienigenas() {
     if (pA) delete pA;
     pA = NULL;
 }
+
+void Lua::criarViajantesMaus(){
+    ViajanteMau* pVM = NULL;
+    pVM = new ViajanteMau(LARGURA-TAM_JOGADOR,0);
+    if(pVM){
+        entidades->adiciona(static_cast<Entidade*>(pVM));
+        GC.incluirInim(static_cast<Inimigo*>(pVM));
+    }
+    else
+        cout<< "Fase::criarViajantesMaus() -> Erro na alocacao dinamica" << endl;
+}
+
 
 void Fases::Lua::carregarFigura() {
     if (!figura) {

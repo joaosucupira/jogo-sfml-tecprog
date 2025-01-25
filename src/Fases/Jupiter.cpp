@@ -25,6 +25,9 @@ void Fases::Jupiter::criarObstaculos() {
     criarPilares();
     criarPortais();
     criarBuracosNegros();
+    criarViajantesMaus();
+    criarAberracoesEspaciais();
+    criarPlasmas();
 }
 
 void Fases::Jupiter::criarPortais() {
@@ -78,7 +81,7 @@ void Fases::Jupiter::criarAlienigenas() {
 
     for (int i = 0; i < max; i++) {
         pA = new Alienigena(
-            LARGURA - (PLATAFORMA_LARGURA + TAM_JOGADOR) - i * 470.0f,
+            LARGURA - (PLATAFORMA_LARGURA + TAM_JOGADOR) - i * 400.0f,
             10.0f
         );
 
@@ -89,6 +92,47 @@ void Fases::Jupiter::criarAlienigenas() {
     if (pA) delete pA;
     pA = NULL;
 }
+
+void Jupiter::criarAberracoesEspaciais(){
+    AberracaoEspacial* pAB = NULL;
+
+    pAB = new AberracaoEspacial(1,1);
+    if(pAB){
+        entidades->adiciona(static_cast<Entidade*>(pAB));
+        GC.incluirInim(static_cast<Inimigo*>(pAB));
+    }
+    else
+        cout<< "Fase::criarAberracoesEspaciais() -> Erro na alocacao dinamica" << endl;
+
+}
+
+void Jupiter::criarPlasmas() {
+    Plasma* pPla = NULL;
+
+    pPla = new Plasma(0,0);
+
+    if(pPla){
+        entidades->adiciona(static_cast<Entidade*>(pPla));
+        GC.incluirPlas(pPla);
+        AberracaoEspacial::setPPlasma(pPla);
+    }
+    else
+        cout<< "Fase::criarAberracoesEspaciais() -> Erro na alocacao dinamica" << endl;
+
+
+}
+
+void Jupiter::criarViajantesMaus(){
+    ViajanteMau* pVM = NULL;
+    pVM = new ViajanteMau(LARGURA/2,0);
+    if(pVM){
+        entidades->adiciona(static_cast<Entidade*>(pVM));
+        GC.incluirInim(static_cast<Inimigo*>(pVM));
+    }
+    else
+        cout<< "Fase::criarViajantesMaus() -> Erro na alocacao dinamica" << endl;
+}
+
 
 void Fases::Jupiter::criarPilares()
 {

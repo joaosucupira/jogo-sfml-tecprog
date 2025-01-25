@@ -17,13 +17,18 @@ Personagem::~Personagem() {
 /* Métodos principais*/
 void Personagem::mover(){
 
+    float aux;
+
     if(!pGG){
         cout<< "Personagem::mover() -> ponteiro gGrafico nulo" << endl;
         return;
     }
 
-    x += velocidade.x *  PIXEL_METRO * pGG->getDeltaTime();
-    y += velocidade.y *  PIXEL_METRO * pGG->getDeltaTime();
+    aux = pGG->getDeltaTime();
+    aux *= PIXEL_METRO;
+
+    x += velocidade.x * aux;
+    y += velocidade.y * aux;
 
     setPosicaoFigura(x,y);
 }
@@ -51,10 +56,10 @@ void Personagem::atualizarFigura() {
 }
 
 FloatRect Personagem::hitBox() const {
-    // Alterando uma cópia, logo, não é necessario restaurar a hitbox
+    
     FloatRect lim = getLimites();
     const float ajuste = TAM_JOGADOR / 5.0f;
-    // const float ajuste = lim.width / 5.0f;
+    
 
     lim.left += ajuste;
     lim.width -= 2 * ajuste;
