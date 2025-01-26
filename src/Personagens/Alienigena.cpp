@@ -25,8 +25,8 @@ Alienigena::~Alienigena()
 
 
 void Personagens::Alienigena::executar() {
-    aplicarGravidade();
     mover();
+    aplicarGravidade();
     atualizarFigura();
     desenhar();
 }

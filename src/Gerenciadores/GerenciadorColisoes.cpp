@@ -121,17 +121,17 @@ void GerenciadorColisoes::coliJogObstaculo(){
     //Acoplar segundo jogador depois
 
     if(!pJog1){
-        cout << "GerenciadorColisoes::coliJogObstaculo() -> pJog1 nulo" << endl;
+        // cout << "GerenciadorColisoes::coliJogObstaculo() -> pJog1 nulo" << endl;
         return;
     }
 
     if(obstaculos.empty()){
-        cout << "GerenciadorColisoes::coliJogObstaculo() -> vector obstaculos vazio" << endl;
+        // cout << "GerenciadorColisoes::coliJogObstaculo() -> vector obstaculos vazio" << endl;
         return;
     }
 
     if(!pJog1->getVivo()){
-        cout << "GerenciadorColisoes::coliJogObstaculo() -> jog1 morto" << endl;
+        // cout << "GerenciadorColisoes::coliJogObstaculo() -> jog1 morto" << endl;
         return;
     }
 
@@ -155,12 +155,12 @@ void GerenciadorColisoes::coliJogInimigo(){
     long unsigned int i;
 
     if(!pJog1){
-        cout << "GerenciadorColisoes::coliJogInimigo() -> pJog1 nulo" << endl;
+        // cout << "GerenciadorColisoes::coliJogInimigo() -> pJog1 nulo" << endl;
         return;
     }
 
     if(inimigos.empty()){
-        cout << "GerenciadorColisoes::coliJogInimigo() -> vector inimigos vazio" << endl;
+        // cout << "GerenciadorColisoes::coliJogInimigo() -> vector inimigos vazio" << endl;
         return;
     }
 

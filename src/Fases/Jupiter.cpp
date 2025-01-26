@@ -136,12 +136,4 @@ void Jupiter::criarViajantesMaus(){
 
 void Fases::Jupiter::criarPilares()
 {
-    const int max = 5;
-    for (int i = 3; i < max + 3; i++) {
-        construirPlano(1, Vector2f(150.0f, ALTURA - ALT_PLATAFORMA * i));
-        construirPlano(1, Vector2f(400.0f, ALTURA - ALT_PLATAFORMA * i));
-        construirPlano(1, Vector2f(650.0f, ALTURA - ALT_PLATAFORMA * i));
-        construirPlano(1, Vector2f(900.0f, ALTURA - ALT_PLATAFORMA * i));
-        
-    }
 }

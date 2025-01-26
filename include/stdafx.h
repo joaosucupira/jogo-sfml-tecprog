@@ -38,7 +38,7 @@ using namespace sf;
 /* Macros - Tamanhos*/
 #define TAM_JOGADOR 100.0f
 #define LARG_PLATAFORMA 80.0f
-#define ALT_PLATAFORMA 40.0f
+#define ALT_PLATAFORMA 80.0f
 #define TAM_PORTAL 100.0f
 #define TAM_BURACO_NEGRO 300.0f
 
