@@ -32,7 +32,7 @@ void Obstaculos::Plataforma::obstacular(Jogador *pJ)
         return;
     }
 
-    const float ajusteColisao = 0.25f;
+    //const float ajusteColisao = 0.25f;
 
     FloatRect lim1 = pJ->getLimites();
     FloatRect lim2 = this->getLimites();
@@ -40,16 +40,16 @@ void Obstaculos::Plataforma::obstacular(Jogador *pJ)
 
     //Colisao a esquerda do Personagem
     if (sentidos[0]) {
-        pJ->setXY(lim1.left + (lim2.width * ajusteColisao), lim1.top);
+        pJ->setXY(lim2.left + (lim2.width), lim1.top);
         pJ->setVelocidadeX(0);
-        // cout << "ESQUERDA" << endl;
+        cout << "ESQUERDA" << endl;
   
     }
     //Colisao a direita do Personagem
     else if (sentidos[1]) {
-        pJ->setXY(lim1.left - (lim2.width * ajusteColisao), lim1.top);
+        pJ->setXY(lim2.left - (lim1.width), lim1.top);
         pJ->setVelocidadeX(0);
-        // cout << "DIREITA" << endl;
+        cout << "DIREITA" << endl;
     }
     
         
@@ -61,9 +61,9 @@ void Obstaculos::Plataforma::obstacular(Jogador *pJ)
     }
     //Colisao a cima do Personagem
     else if(sentidos[3]) {
-        pJ->setXY(lim1.left, lim2.top + (lim2.height + COLISAO));
+        pJ->setXY(lim1.left, lim2.top + (lim2.height));
         pJ->setVelocidadeY(0);
-        // cout << "CIMA" << endl;
+        cout << "CIMA" << endl;
         
         
     }
@@ -81,13 +81,13 @@ void Obstaculos::Plataforma::obstacular(Inimigo *pI) {
     FloatRect lim2 = this->getLimites();
 
     if(sentidos[0]) {
-        pI->setXY(lim1.left + (lim2.width), lim1.top);
+        pI->setXY(lim2.left + (lim2.width) , lim1.top);
         pI->atualizaVelocidade(Vector2f(-1.0, 1.0));
     } 
     
     //Colisao a direita do Personagem
     else if(sentidos[1]) {
-        pI->setXY(lim1.left - (lim2.width), lim1.top);
+        pI->setXY(lim2.left - (lim1.width), lim1.top);
         pI->atualizaVelocidade(Vector2f(-1.0, 1.0));
     }
     

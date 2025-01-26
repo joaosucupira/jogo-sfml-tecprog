@@ -35,7 +35,7 @@ void Fases::Lua::criarPortais() {
 
 void Fases::Lua::criarAlienigenas() {
     Alienigena* pA = NULL;
-    const int max = rand() % 5 + 1;
+    const int max = 1;
     cout << max << endl;
 
     for (int i = 1; i < max + 1; i++) {

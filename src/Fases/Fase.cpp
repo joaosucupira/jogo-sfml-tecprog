@@ -100,8 +100,8 @@ void Fase::setJogador(Jogador *pJ)
 {
     if (pJ) {
         pJ->posicionar(
-            PLATAFORMA_LARGURA + 10.0f,
-            ALTURA - (TAM_JOGADOR + ALT_PLATAFORMA + 1.0f)
+            PLATAFORMA_LARGURA + 100.0f,
+            ALTURA - (TAM_JOGADOR + ALT_PLATAFORMA + 100.0f)
         );
         pJ->setModificadorGravidade(gravidade);
         

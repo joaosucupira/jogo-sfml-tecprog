@@ -23,7 +23,7 @@ lentidao(0.0f)
         setTamanhoFigura(TAM_JOGADOR, TAM_JOGADOR);
         setPosicaoFigura(x, y);
 
-        num_vidas = 20;
+        num_vidas = 5;
         cont++;
         
     } else { cout << endl << "Jogador::Jogador() -> Apenas dois jogadores permitidos." << endl; }
