@@ -12,6 +12,7 @@ namespace Fases {
         public:
             Jupiter();
             ~Jupiter();
+            void criarInimigos();
             void criarObstaculos();
             void criarPortais();
             void carregarFigura();

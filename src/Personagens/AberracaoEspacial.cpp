@@ -9,10 +9,10 @@ tempRecarregar(60),
 recarregando(0)
 {
     figura = new Figura(
-        TAM_SECAO, TAM_SECAO, 
-        QNTD_SECAO_X, QNTD_SECAO_Y, 
-        SEC_FINAL_X, SEC_FINAL_Y,
-        SEC_INICIAL_X, SEC_INICIAL_Y
+        TAM_SECAO_AE, TAM_SECAO_AE, 
+        QNTD_SECAO_X_AE, QNTD_SECAO_Y_AE, 
+        SEC_FINAL_X_AE, SEC_FINAL_Y_AE,
+        SEC_INICIAL_X_AE, SEC_INICIAL_Y_AE
     );
 
 

@@ -40,7 +40,7 @@ namespace Fases {
         void construirPlano(const float tamanho, Vector2f inicio);
         void construirParede(const float tamanho, Vector2f inicio);
     
-        // virtual void criarInimigos() = 0;
+        virtual void criarInimigos() = 0;
         virtual void criarObstaculos() = 0;
         virtual void criarPortais() = 0;
         virtual void criarAlienigenas() = 0;

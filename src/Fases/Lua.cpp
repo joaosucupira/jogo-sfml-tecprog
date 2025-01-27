@@ -12,8 +12,7 @@ maxViajantesMaus(0)
     );
     carregarFigura();
     criarObstaculos();
-    criarAlienigenas();
-    criarViajantesMaus();
+    criarInimigos();
 }
 
 Lua::~Lua()
@@ -25,12 +24,17 @@ void Fases::Lua::criarObstaculos() {
     criarSuportes();
 }
 
+void Fases::Lua::criarInimigos() {
+    criarAlienigenas();
+    criarViajantesMaus();
+}
+
 void Fases::Lua::criarSuportes() {
     const float largura_plataforma = LARGURA / 4.0f;
 
 
 
-    if (false) {
+    if (rand() % 2) {
         Vector2f inicio(0.0f, ALTURA - ALT_PLATAFORMA * 5);
         construirPlano(largura_plataforma, inicio);
 

@@ -69,9 +69,8 @@ void Fase::executar() {
 }
 
 void Fase::criarPlataformas() {
-    const float largura_plataforma = LARGURA / 5.0f;
     
-    // planos
+    // chao e teto
     Vector2f inicio(0.0f, ALTURA - ALT_PLATAFORMA);
     construirPlano(LARGURA, inicio);
 
@@ -120,17 +119,12 @@ void Fases::Fase::construirParede(const float tamanho, Vector2f inicio) {
 }
 
 void Fases::Fase::criarCenario() {
-
     criarPlataformas();
 }
 
 void Fase::setJogador(Jogador *pJ)
 {
     if (pJ) {
-        // pJ->posicionar(
-        //     PLATAFORMA_LARGURA + 100.0f,
-        //     ALTURA - (TAM_JOGADOR + ALT_PLATAFORMA + 100.0f)
-        // );
         pJ->posicionar(LARG_PLATAFORMA * 4, ALTURA - (LARG_PLATAFORMA * 2));
         pJ->setModificadorGravidade(gravidade);
         

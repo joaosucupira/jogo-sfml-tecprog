@@ -8,17 +8,17 @@
 // TROCAR PARA SPRITE DE AberracaoEspacial
 #define ABERRACAO_ESPACIAL_PATH "./assets/Inimigo/fly-eye_48x48.png"
 
-#define TAM_SECAO 48
-#define QNTD_SECAO_X 4
-#define QNTD_SECAO_Y 1
+#define TAM_SECAO_AE 48
+#define QNTD_SECAO_X_AE 4
+#define QNTD_SECAO_Y_AE 1
 
-#define SEC_INICIAL_X 0
-#define SEC_INICIAL_Y 0
+#define SEC_INICIAL_X_AE 0
+#define SEC_INICIAL_Y_AE 0
 
-#define SEC_FINAL_X 144
-#define SEC_FINAL_Y 0
+#define SEC_FINAL_X_AE 144
+#define SEC_FINAL_Y_AE 0
 
-#define V_VIAJANTE 0.8
+#define V_ABERRACAO 0.8
 
 namespace Personagens{
 

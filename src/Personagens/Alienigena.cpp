@@ -4,10 +4,10 @@ Personagens::Alienigena::Alienigena(const float x_inicial, const float y_inicial
 Inimigo(x_inicial, y_inicial)
 {
     figura = new Figura(
-        TAM_SECAO, TAM_SECAO, 
-        QNTD_SECAO_X, QNTD_SECAO_Y, 
-        SEC_FINAL_X, SEC_FINAL_Y,
-        SEC_INICIAL_X, SEC_INICIAL_Y
+        TAM_SECAO_ALI, TAM_SECAO_ALI, 
+        QNTD_SECAO_X_ALI, QNTD_SECAO_Y_ALI, 
+        SEC_FINAL_X_ALI, SEC_FINAL_Y_ALI,
+        SEC_INICIAL_X_ALI, SEC_INICIAL_Y_ALI
     );
     // figura->setCor(Color::Red);
     carregarFigura(ALIENIGENA_PATH);

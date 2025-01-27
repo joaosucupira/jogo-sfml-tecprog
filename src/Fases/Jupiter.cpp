@@ -14,20 +14,22 @@ maxAberracoesEspaciais(0)
     carregarFigura();
     figura->setTamanho(1309, 736);
     criarObstaculos();
-    // criarAlienigenas();
+    criarInimigos();
 }
 
 Fases::Jupiter::~Jupiter()
 {
 }
 
-void Fases::Jupiter::criarObstaculos() {
-    criarSuportes();
-    // criarPortais();
-    criarBuracosNegros();
+void Fases::Jupiter::criarInimigos() {
     criarViajantesMaus();
     criarAberracoesEspaciais();
     criarPlasmas();
+}
+
+void Fases::Jupiter::criarObstaculos() {
+    criarSuportes();
+    criarBuracosNegros();
     colorirPlataformas();
 }
 
@@ -165,10 +167,10 @@ void Fases::Jupiter::colorirPlataformas() {
 }
 
 void Fases::Jupiter::criarSuportes() {
-    const int max = rand() % 2 + 2;
+    const int max = rand() % 2 + 1;
     const float tamanho_plano = LARGURA / 10.0f;
 
-    for (int i = 1; i < max; i++) {
+    for (int i = 1; i < max + 1; i++) {
         for(int j = 0; j < 5; j++) {
             construirPlano(tamanho_plano, Vector2f(i * 380.0f, ALTURA - (ALT_PLATAFORMA) * j));
         }
