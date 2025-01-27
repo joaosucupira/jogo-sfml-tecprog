@@ -12,20 +12,29 @@ using namespace Gerenciadores;
 /* Construtoras/Destrutora */
 GerenciadorEventos::GerenciadorEventos():
 evento(),
-pJog(NULL)
+pJog(NULL),
+pJog2(NULL)
 {
 }
 
 GerenciadorEventos::~GerenciadorEventos()
 {
     pJog = NULL;
+    pJog2 = NULL;
 }
 
 /* Métodos auxiliares */
 
 void GerenciadorEventos::setPJog(Jogador* pJ) {
     if(pJ)
-        pJog = pJ;
+        if (!pJog) {
+            pJog = pJ;
+        } else if (!pJog2) {
+            pJog2 = pJ;
+        } else {
+            cout << "void GerenciadorEventos::setPJog(Jogador* pJ) -> Impossivel criar 3 jogadores" << endl;
+            return;
+        }
     else
         cout << "GerenciadorEventos::setPJog(Jogador* pJ) -> PONTEIRO NULO" << endl;
 }

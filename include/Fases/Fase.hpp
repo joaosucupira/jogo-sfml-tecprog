@@ -12,6 +12,7 @@
 #include "ViajanteMau.hpp"
 #include "AberracaoEspacial.hpp"
 #include "Plasma.hpp"
+#include "Jogador.hpp"
 
 #define AJUSTE_CENTRO 250.0f
 
@@ -20,6 +21,9 @@ namespace Fases {
     class Fase : public Ente
     {
     protected:
+        Jogador* pJog1;
+        Jogador* pJog2;
+
         bool ativa;
         GerenciadorEventos GE;
         GerenciadorColisoes GC;
@@ -29,7 +33,6 @@ namespace Fases {
         Fase();
         virtual ~Fase();
 
-        // void posicionarEntidade(Entidade* pE, const float x, const float y);
         void renderizarEntidades();
         void gerenciarEventos();
         void gerenciarColisoes();
@@ -39,15 +42,17 @@ namespace Fases {
         void construirPlano(const float tamanho, Vector2f inicio);
         void construirParede(const float tamanho, Vector2f inicio);
     
-        // virtual void criarInimigos() = 0;
+        virtual void criarInimigos() = 0;
         virtual void criarObstaculos() = 0;
         virtual void criarPortais() = 0;
         virtual void criarAlienigenas() = 0;
         virtual void criarViajantesMaus() = 0;
+        virtual void criarSuportes() = 0;
         
         virtual void carregarFigura() = 0; 
         void criarCenario();
-        void setJogador(Jogador* pJ);
+        void setJogador(Jogador* pJ, const int num_jogador);
+        void configurarJogador(const int num_jogador);
 
     };
 

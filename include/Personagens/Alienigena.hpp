@@ -7,15 +7,15 @@
 // TROCAR PARA SPRITE DE ALIENIGENA
 #define ALIENIGENA_PATH "./assets/Inimigo/Alienigena-24x24.png"
 
-#define TAM_SECAO 24
-#define QNTD_SECAO_X 2
-#define QNTD_SECAO_Y 3
+#define TAM_SECAO_ALI 24
+#define QNTD_SECAO_X_ALI 2
+#define QNTD_SECAO_Y_ALI 3
 
-#define SEC_INICIAL_X 0
-#define SEC_INICIAL_Y 0
+#define SEC_INICIAL_X_ALI 0
+#define SEC_INICIAL_Y_ALI 0
 
-#define SEC_FINAL_X 24
-#define SEC_FINAL_Y 48
+#define SEC_FINAL_X_ALI 24
+#define SEC_FINAL_Y_ALI 48
 
 namespace Personagens{
 

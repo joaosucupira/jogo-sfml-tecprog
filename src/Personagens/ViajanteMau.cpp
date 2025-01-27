@@ -7,13 +7,13 @@ Inimigo(x_inicial, y_inicial),
 lerdeza(50)
 {
     figura = new Figura(
-        TAM_SECAO, TAM_SECAO, 
-        QNTD_SECAO_X, QNTD_SECAO_Y, 
-        SEC_FINAL_X, SEC_FINAL_Y,
-        SEC_INICIAL_X, SEC_INICIAL_Y
+        TAM_SECAO_VM, TAM_SECAO_VM, 
+        QNTD_SECAO_X_VM, QNTD_SECAO_Y_VM, 
+        SEC_FINAL_X_VM, SEC_FINAL_Y_VM,
+        SEC_INICIAL_X_VM, SEC_INICIAL_Y_VM
     );
 
-    figura->setCor(Color::Red);
+    // figura->setCor(Color::Red);
     carregarFigura(VIAJANTE_MAU_PATH);
     setTamanhoFigura(TAM_JOGADOR, TAM_JOGADOR);
     setPosicaoFigura(x, y);

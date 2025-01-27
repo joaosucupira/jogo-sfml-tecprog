@@ -10,15 +10,15 @@ recarregando(0),
 nucleo(0,0)
 {
     figura = new Figura(
-        TAM_SECAO, TAM_SECAO, 
-        QNTD_SECAO_X, QNTD_SECAO_Y, 
-        SEC_FINAL_X, SEC_FINAL_Y,
-        SEC_INICIAL_X, SEC_INICIAL_Y
+        TAM_SECAO_AE, TAM_SECAO_AE, 
+        QNTD_SECAO_X_AE, QNTD_SECAO_Y_AE, 
+        SEC_FINAL_X_AE, SEC_FINAL_Y_AE,
+        SEC_INICIAL_X_AE, SEC_INICIAL_Y_AE
     );
 
-    figura->setCor(Color::Yellow);
+
     carregarFigura(ABERRACAO_ESPACIAL_PATH);
-    setTamanhoFigura(TAM_JOGADOR + 50, TAM_JOGADOR + 50);
+    setTamanhoFigura(TAM_JOGADOR + 150, TAM_JOGADOR + 150);
     setPosicaoFigura(x, y);
 
     velocidade.x = -(VELOCIDADE_ANDAR + 0.5);

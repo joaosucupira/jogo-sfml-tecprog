@@ -3,7 +3,7 @@
 Lua::Lua() : Fase(),
 maxViajantesMaus(0)
 {
-    gravidade = 1.62f;
+    gravidade = 0.75f;
     figura = new Figura(
         1309, 736, 
         1, 1, 
@@ -11,9 +11,8 @@ maxViajantesMaus(0)
         0, 0
     );
     carregarFigura();
-    // criarObstaculos();
-    criarAlienigenas();
-    criarViajantesMaus();
+    criarObstaculos();
+    criarInimigos();
 }
 
 Lua::~Lua()
@@ -22,25 +21,62 @@ Lua::~Lua()
 
 void Fases::Lua::criarObstaculos() {
     criarPortais();
+    criarSuportes();
+}
+
+void Fases::Lua::criarInimigos() {
+    criarAlienigenas();
+    criarViajantesMaus();
+}
+
+void Fases::Lua::criarSuportes() {
+    const float largura_plataforma = LARGURA / 4.0f;
+
+
+
+    if (rand() % 2) {
+        Vector2f inicio(0.0f, ALTURA - ALT_PLATAFORMA * 5);
+        construirPlano(largura_plataforma, inicio);
+
+        Vector2f inicio2(LARGURA - largura_plataforma, ALTURA - ALT_PLATAFORMA * 5);
+        construirPlano(largura_plataforma, inicio2);
+
+    } else {
+        Vector2f inicio( LARGURA / 2.5f, ALTURA - ALT_PLATAFORMA * 5);
+        construirPlano( largura_plataforma, inicio);
+
+        Vector2f inicio2((LARGURA) / 2.0f, ALTURA - ALT_PLATAFORMA * 4);
+        construirParede(largura_plataforma, inicio2);
+    }
+
+
 }
 
 void Fases::Lua::criarPortais() {
     Portal* pP = NULL;
-    pP = new Portal(300.0f, 200.0f);
-    if (pP) {
-        entidades->adiciona(static_cast<Entidade*>(pP));
-        GC.incluirObst(static_cast<Obstaculo*>(pP));
+    const int max = rand() % 3 + 3;
+    const float distancia = 150.0f;
+
+    for (int i = 1; i < max + 1; i++) {
+        pP = new Portal(distancia * i, 80.0f);
+        if (pP) {
+            entidades->adiciona(static_cast<Entidade*>(pP));
+            GC.incluirObst(static_cast<Obstaculo*>(pP));
+        }
+        pP = NULL;
     }
+
+    if (pP) delete pP;
+    pP = NULL;
 }
 
 void Fases::Lua::criarAlienigenas() {
     Alienigena* pA = NULL;
-    const int max = 1;
-    cout << max << endl;
+    const int max = rand() % 5 + 3;
 
     for (int i = 1; i < max + 1; i++) {
         pA = new Alienigena(
-            LARGURA - (PLATAFORMA_LARGURA + TAM_JOGADOR) - i * 200.0f,
+            LARGURA - (PLATAFORMA_LARGURA + TAM_JOGADOR) - i * 60.0f,
             ALTURA - (TAM_JOGADOR + ALT_PLATAFORMA)
         );
 
@@ -54,13 +90,23 @@ void Fases::Lua::criarAlienigenas() {
 
 void Lua::criarViajantesMaus(){
     ViajanteMau* pVM = NULL;
-    pVM = new ViajanteMau(LARGURA-TAM_JOGADOR,0);
-    if(pVM){
+    const int max = rand() % 3 + 3;
+
+
+    for (int i = 1; i < max + 1; i++) {
+        pVM = new ViajanteMau(
+            LARGURA - (PLATAFORMA_LARGURA + TAM_JOGADOR) - i * 60.0f,
+            (TAM_JOGADOR + ALT_PLATAFORMA)
+            
+        );
+
+
         entidades->adiciona(static_cast<Entidade*>(pVM));
         GC.incluirInim(static_cast<Inimigo*>(pVM));
+        pVM = NULL;
     }
-    else
-        cout<< "Fase::criarViajantesMaus() -> Erro na alocacao dinamica" << endl;
+    if (pVM) delete pVM;
+    pVM = NULL;
 }
 
 

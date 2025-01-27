@@ -3,6 +3,8 @@
 using namespace Fases;
 
 Fase::Fase() :
+pJog1(NULL),
+pJog2(NULL),
 ativa(false),
 GE(),
 GC()
@@ -16,6 +18,8 @@ GC()
 }
 
 Fase::~Fase() {
+    pJog1 = NULL;
+    pJog2 = NULL;
     entidades->excluiTodos();
     if (entidades) delete entidades;
     entidades = NULL; 
@@ -55,7 +59,8 @@ void Fase::gerenciarColisoes() {
 void Fase::executar() { 
 
     ativa = true;
-    pGG->desenharEnte(this);
+    // pGG->desenharEnte(this);
+    desenhar();
 
     gerenciarColisoes();
 
@@ -67,20 +72,14 @@ void Fase::executar() {
 }
 
 void Fase::criarPlataformas() {
-    const float largura_plataforma = LARGURA / 5.0f;
     
-    // planos
+    // chao e teto
     Vector2f inicio(0.0f, ALTURA - ALT_PLATAFORMA);
     construirPlano(LARGURA, inicio);
 
     Vector2f inicio6(0.0f, -ALT_PLATAFORMA);
     construirPlano(LARGURA, inicio6);
 
-    // Vector2f inicio4( LARG_PLATAFORMA * 0, ALTURA - ALT_PLATAFORMA * 5);
-    // construirPlano( largura_plataforma, inicio4);
-
-    // Vector2f inicio5(LARGURA - (LARG_PLATAFORMA * 0 + largura_plataforma), ALTURA - ALT_PLATAFORMA * 5);
-    // construirPlano( largura_plataforma, inicio5);
     
     // paredes
     Vector2f inicio2(0.0f - LARG_PLATAFORMA / 2.0f, 0.0f);
@@ -123,24 +122,53 @@ void Fases::Fase::construirParede(const float tamanho, Vector2f inicio) {
 }
 
 void Fases::Fase::criarCenario() {
-
     criarPlataformas();
 }
 
-void Fase::setJogador(Jogador *pJ)
+void Fase::setJogador(Jogador *pJ, const int num_jogador)
 {
     if (pJ) {
-        // pJ->posicionar(
-        //     PLATAFORMA_LARGURA + 100.0f,
-        //     ALTURA - (TAM_JOGADOR + ALT_PLATAFORMA + 100.0f)
-        // );
-        pJ->posicionar(100.0f, 100.0f);
-        //pJ->setModificadorGravidade(gravidade);
+        if (num_jogador == 1) {
+            pJog1 = pJ;
+        } else {
+            pJog2 = pJ;
+        }
+        configurarJogador(num_jogador);
         
-        GC.setPJog1(pJ);
-        GE.setPJog(pJ);
-        entidades->adiciona(static_cast<Entidade*>(pJ));
-        ViajanteMau::setPJog(pJ);
-        AberracaoEspacial::setPJog(pJ);
     } else { cout << "void Fase::setJogador(Jogador *pJ) -> ponteiro nulo." << endl; }
+}
+
+void Fase::configurarJogador(const int num_jogador) {
+
+    Jogador* pJog = NULL;
+    if (num_jogador == 1) {
+        if (!pJog1) {
+            cout << "void Fase::configurarJogador(const int num_jogador, Vector2f posicao) -> jogador 1 nao configurado" << endl;
+            return;
+        }
+        pJog = pJog1;
+
+    } else {
+        if(!pJog2) {
+            cout << "void Fase::configurarJogador(const int num_jogador, Vector2f posicao) -> jogador 2 nao configurado" << endl;
+            return;
+        }
+        pJog = pJog2;
+    }
+
+
+    if (num_jogador == 1) {
+        pJog->posicionar(LARG_PLATAFORMA * 4, ALTURA - (LARG_PLATAFORMA * 2));
+    } else {
+        pJog->posicionar(LARG_PLATAFORMA * 5, ALTURA - (LARG_PLATAFORMA * 2));
+    }
+
+    pJog->setModificadorGravidade(gravidade);
+    
+    GC.setPJog1(pJog);
+    GE.setPJog(pJog);
+    entidades->adiciona(static_cast<Entidade*>(pJog));
+    ViajanteMau::setPJog(pJog);
+    AberracaoEspacial::setPJog(pJog);
+    
 }

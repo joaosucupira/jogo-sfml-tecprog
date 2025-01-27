@@ -14,20 +14,23 @@ maxAberracoesEspaciais(0)
     carregarFigura();
     figura->setTamanho(1309, 736);
     criarObstaculos();
-    criarAlienigenas();
+    criarInimigos();
 }
 
 Fases::Jupiter::~Jupiter()
 {
 }
 
-void Fases::Jupiter::criarObstaculos() {
-    criarPilares();
-    criarPortais();
-    criarBuracosNegros();
+void Fases::Jupiter::criarInimigos() {
     criarViajantesMaus();
     criarAberracoesEspaciais();
     criarPlasmas();
+}
+
+void Fases::Jupiter::criarObstaculos() {
+    criarSuportes();
+    criarBuracosNegros();
+    colorirPlataformas();
 }
 
 void Fases::Jupiter::criarPortais() {
@@ -59,14 +62,26 @@ void Fases::Jupiter::carregarFigura() {
 
 void Fases::Jupiter::criarBuracosNegros(){
     BuracoNegro* pB = NULL;
+    int max = 3;  
 
-    for (int i = 1; i < 4; i++) {
-        pB = new BuracoNegro(215.0f * i, ALTURA - ALT_PLATAFORMA * 2 - 240.0f);
+    for (int i = 0; i < max; i++) {
+        pB = new BuracoNegro((LARGURA / 2.5f) * i, ALTURA - ALT_PLATAFORMA * 2 - 150.0f);
         if (pB) {
-            if (i == 2) {
-                entidades->adiciona(static_cast<Entidade*>(pB));
-                GC.incluirObst(static_cast<Obstaculo*>(pB));
-            }
+            entidades->adiciona(static_cast<Entidade*>(pB));
+            GC.incluirObst(static_cast<Obstaculo*>(pB));
+        
+
+        }
+        pB = NULL;
+    }
+
+    max = rand() % 4;
+    for (int i = 0; i < max; i++) {
+        pB = new BuracoNegro((LARGURA / 2.5f) * i, ALT_PLATAFORMA * 2 - 150.0f);
+        if (pB) {
+            entidades->adiciona(static_cast<Entidade*>(pB));
+            GC.incluirObst(static_cast<Obstaculo*>(pB));
+        
 
         }
         pB = NULL;
@@ -96,7 +111,7 @@ void Fases::Jupiter::criarAlienigenas() {
 void Jupiter::criarAberracoesEspaciais(){
     AberracaoEspacial* pAB = NULL;
 
-    pAB = new AberracaoEspacial(LARGURA/2,1);
+    pAB = new AberracaoEspacial(1, 80.0f);
     if(pAB){
         entidades->adiciona(static_cast<Entidade*>(pAB));
         GC.incluirInim(static_cast<Inimigo*>(pAB));
@@ -124,16 +139,40 @@ void Jupiter::criarPlasmas() {
 
 void Jupiter::criarViajantesMaus(){
     ViajanteMau* pVM = NULL;
-    pVM = new ViajanteMau(LARGURA/2,0);
-    if(pVM){
-        entidades->adiciona(static_cast<Entidade*>(pVM));
-        GC.incluirInim(static_cast<Inimigo*>(pVM));
+    const int max = rand() % 5 + 3;
+    const float distancia = 80.0f;
+
+    for (int i = 1; i < max + 1; i++) {
+        pVM = new ViajanteMau(LARGURA - LARG_PLATAFORMA, (i * distancia));
+        if(pVM) {
+            entidades->adiciona(static_cast<Entidade*>(pVM));
+            GC.incluirInim(static_cast<Inimigo*>(pVM));
+        }
+        pVM = NULL;
     }
-    else
-        cout<< "Fase::criarViajantesMaus() -> Erro na alocacao dinamica" << endl;
+
+    if (pVM) delete pVM;
+    pVM = NULL;
+
 }
 
+void Fases::Jupiter::colorirPlataformas() {
+    Entidade* pE = NULL;
+    for (int i = 0; i < entidades->getTamanho(); i++) {
+        pE = (*entidades)[i];
+        if (pE && dynamic_cast<Plataforma*>(pE)) {
+            pE->setCorFigura(Color::Red);
+        } 
+    }
+}
 
-void Fases::Jupiter::criarPilares()
-{
+void Fases::Jupiter::criarSuportes() {
+    const int max = rand() % 2 + 1;
+    const float tamanho_plano = LARGURA / 10.0f;
+
+    for (int i = 1; i < max + 1; i++) {
+        for(int j = 0; j < 5; j++) {
+            construirPlano(tamanho_plano, Vector2f(i * 380.0f, ALTURA - (ALT_PLATAFORMA) * j));
+        }
+    }
 }

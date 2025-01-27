@@ -16,6 +16,7 @@ dano(3)
     carregarFigura(PLASMA_PATH);
     setTamanhoFigura(LARG_PLASMA, ALT_PLASMA);
     setPosicaoFigura(x_inicial, y_inicial);
+    setCorFigura(Color::Green);
     
 }
 
@@ -25,8 +26,9 @@ Plasma::~Plasma()
 
 void Plasma::executar()
 {
-    if(ativo){
+    if (ativo) {
         aplicarGravidade();
+        atualizarFigura();
         deslocar();
         desenhar();
     }
