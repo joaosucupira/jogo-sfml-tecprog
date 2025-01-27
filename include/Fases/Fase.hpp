@@ -45,6 +45,7 @@ namespace Fases {
         virtual void criarPortais() = 0;
         virtual void criarAlienigenas() = 0;
         virtual void criarViajantesMaus() = 0;
+        virtual void criarSuportes() = 0;
         
         virtual void carregarFigura() = 0; 
         void criarCenario();

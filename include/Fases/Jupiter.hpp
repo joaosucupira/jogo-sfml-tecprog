@@ -17,11 +17,11 @@ namespace Fases {
             void carregarFigura();
             void criarBuracosNegros();
             void criarAlienigenas();
-            void criarPilares();
+            void criarSuportes();
             void criarAberracoesEspaciais();
             void criarPlasmas();
             void criarViajantesMaus();
 
-            // void criaAberracoesEspaciais();
+            void colorirPlataformas();
     };
 } using namespace Fases;

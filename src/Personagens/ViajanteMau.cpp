@@ -13,7 +13,7 @@ lerdeza(50)
         SEC_INICIAL_X, SEC_INICIAL_Y
     );
 
-    figura->setCor(Color::Red);
+    // figura->setCor(Color::Red);
     carregarFigura(VIAJANTE_MAU_PATH);
     setTamanhoFigura(TAM_JOGADOR, TAM_JOGADOR);
     setPosicaoFigura(x, y);

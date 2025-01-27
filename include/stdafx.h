@@ -36,11 +36,11 @@ using namespace sf;
 #define KNOCK_BACK 30
 
 /* Macros - Tamanhos*/
-#define TAM_JOGADOR 100.0f
-#define LARG_PLATAFORMA 80.0f
-#define ALT_PLATAFORMA 80.0f
-#define TAM_PORTAL 100.0f
-#define TAM_BURACO_NEGRO 300.0f
+#define TAM_JOGADOR 80.0f
+#define LARG_PLATAFORMA 64.0f
+#define ALT_PLATAFORMA 64.0f
+#define TAM_PORTAL 80.0f
+#define TAM_BURACO_NEGRO 240.0f
 
 
 

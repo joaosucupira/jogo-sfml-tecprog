@@ -15,9 +15,9 @@ recarregando(0)
         SEC_INICIAL_X, SEC_INICIAL_Y
     );
 
-    figura->setCor(Color::Yellow);
+
     carregarFigura(ABERRACAO_ESPACIAL_PATH);
-    setTamanhoFigura(TAM_JOGADOR + 50, TAM_JOGADOR + 50);
+    setTamanhoFigura(TAM_JOGADOR + 150, TAM_JOGADOR + 150);
     setPosicaoFigura(x, y);
 
     velocidade.x = -(VELOCIDADE_ANDAR + 0.5);

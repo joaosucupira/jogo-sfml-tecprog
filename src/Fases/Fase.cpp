@@ -77,11 +77,6 @@ void Fase::criarPlataformas() {
     Vector2f inicio6(0.0f, -ALT_PLATAFORMA);
     construirPlano(LARGURA, inicio6);
 
-    // Vector2f inicio4( LARG_PLATAFORMA * 0, ALTURA - ALT_PLATAFORMA * 5);
-    // construirPlano( largura_plataforma, inicio4);
-
-    // Vector2f inicio5(LARGURA - (LARG_PLATAFORMA * 0 + largura_plataforma), ALTURA - ALT_PLATAFORMA * 5);
-    // construirPlano( largura_plataforma, inicio5);
     
     // paredes
     Vector2f inicio2(0.0f - LARG_PLATAFORMA / 2.0f, 0.0f);
@@ -135,7 +130,7 @@ void Fase::setJogador(Jogador *pJ)
         //     PLATAFORMA_LARGURA + 100.0f,
         //     ALTURA - (TAM_JOGADOR + ALT_PLATAFORMA + 100.0f)
         // );
-        pJ->posicionar(100.0f, 100.0f);
+        pJ->posicionar(LARG_PLATAFORMA * 4, ALTURA - (LARG_PLATAFORMA * 2));
         pJ->setModificadorGravidade(gravidade);
         
         GC.setPJog1(pJ);
