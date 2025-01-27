@@ -2,7 +2,7 @@
 
 int Ente::cont_id(0);
 GerenciadorGrafico* Ente::pGG = GerenciadorGrafico::getInstancia();
-
+float Ente::gravidade(0);
 /* Construtoras/Destrutoras */
 
 Ente::Ente() :
@@ -85,5 +85,4 @@ void Ente::atualizaParaFiguraInicial() {
         figura->setSecaoInicial();
     } else { cout << "Personagem::atualizaParaFiguraInicial() -> figura nula" << endl; }
 }
-
 

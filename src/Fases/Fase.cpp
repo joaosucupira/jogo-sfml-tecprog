@@ -4,7 +4,6 @@ using namespace Fases;
 
 Fase::Fase() :
 ativa(false),
-gravidade(1.0),
 GE(),
 GC()
 // entidades()
@@ -136,7 +135,7 @@ void Fase::setJogador(Jogador *pJ)
         //     ALTURA - (TAM_JOGADOR + ALT_PLATAFORMA + 100.0f)
         // );
         pJ->posicionar(100.0f, 100.0f);
-        pJ->setModificadorGravidade(gravidade);
+        //pJ->setModificadorGravidade(gravidade);
         
         GC.setPJog1(pJ);
         GE.setPJog(pJ);

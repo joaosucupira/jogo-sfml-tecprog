@@ -7,7 +7,6 @@ Entidade::Entidade(float x_inicial, float y_inicial) :
 Ente(),
 x(x_inicial),
 y(y_inicial),
-modificadorGravidade(1),
 sentidos(NULL),
 velocidade(0.0,0.0)
 {
@@ -27,7 +26,7 @@ void Entidade::aplicarGravidade() {
     }
 
     aux = pGG->getDeltaTime();
-    aux *= GRAVIDADE * modificadorGravidade;
+    aux *= gravidade;
 
     velocidade.y += aux;
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "Entidade.hpp"
+#include "Jogador.hpp"
 
 #define PLASMA_PATH "./assets/Obstaculo/plataforma.24x24.png"
 #define PLASMA_TAM_SEC 24
@@ -16,7 +17,8 @@ namespace Entidades {
     {
         
         bool ativo;
-        const float rapidez; //trocar nome -> aceleracao contraria a gravidade
+        const float antiGrav; 
+        const int dano;
 
     public:
         Plasma(float dx, float dy);
@@ -24,16 +26,17 @@ namespace Entidades {
 
         void executar();
         void salvaDataBuffer(){}
+        void queimar(Jogador *pJ);
 
         void setAtivo(bool ativou){ativo = ativou;}
         const bool getAtivo(){return ativo;}
 
-        const float getRapidez(){return rapidez;}
+        const float getRapidez(){return antiGrav;}
         FloatRect hitBox() const {return getLimites();}
 
         void planar();
-
         void deslocar();
+    
         
     };
 

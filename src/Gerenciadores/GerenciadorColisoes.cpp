@@ -4,8 +4,8 @@ GerenciadorColisoes::GerenciadorColisoes() :
 pJog1(NULL),
 pJog2(NULL),
 obstaculos(),
-inimigos()
-
+inimigos(),
+plasmas()
 {
     obstaculos.clear();
     inimigos.clear();
@@ -17,6 +17,7 @@ GerenciadorColisoes::~GerenciadorColisoes() {
     pJog2 = NULL;
     obstaculos.clear();
     inimigos.clear();
+    plasmas.clear();
 }
 
 void GerenciadorColisoes::executar() {
@@ -24,6 +25,8 @@ void GerenciadorColisoes::executar() {
     coliJogObstaculo();
     coliInimObstaculo();
     coliJogInimigo();
+    coliJogPlasma();
+    coliPlasmaObstaculo();
 
 }
 
@@ -86,7 +89,7 @@ void Gerenciadores::GerenciadorColisoes::verificarSentido(Entidade *pE1, Entidad
     resultante.x = -1 * (abs(resultante.x) - (metade1.x + metade2.x));
     resultante.y = -1 * (abs(resultante.y) - (metade1.y + metade2.y));
 
-    const int margem = 2;
+    const int margem = 0;
 
     for (int i = 0; i < 4; i++) {
         sentidos[i] = 0;
@@ -176,13 +179,11 @@ void GerenciadorColisoes::coliJogInimigo(){
             if(verificarColisao(pJog1, inimigos[i]) ){
                 
                 verificarSentido(pJog1, inimigos[i]);
-                // if(dynamic_cast<Alienigena*>(inimigos[i]))
-                //     jogadorAlienigena(pJog1, inimigos[i]); // RESPEITE A PALAVRA DO POLIMORFISSSMOOOOO
+
                 inimigos[i]->setSentidos(sentidos);
                 inimigos[i]->danificar(pJog1);
 
                 cout << "Vida jogador 1: " << pJog1->getVidas() << endl;
-                //danificar ficou dentro da colisao especifica de cada inimigo
             }   
         }
     }
@@ -221,6 +222,73 @@ void GerenciadorColisoes::coliInimObstaculo(){
                     
             }
 
+        }
+    }
+}
+
+void GerenciadorColisoes::coliJogPlasma(){
+
+    long unsigned int i;
+
+    if(!pJog1){
+        // cout << "GerenciadorColisoes::coliJogInimigo() -> pJog1 nulo" << endl;
+        return;
+    }
+
+    if(plasmas.empty()){
+        // cout << "GerenciadorColisoes::coliJogInimigo() -> vector inimigos vazio" << endl;
+        return;
+    }
+
+    if(!pJog1->getVivo()){
+        //cout << "GerenciadorColisoes::coliJogInimigos() -> jog1 morto" << endl;
+        return;
+    }
+
+    for(i=0; i<plasmas.size(); i++){
+
+        if(plasmas[i]->getAtivo()){
+
+            if(verificarColisao(pJog1, plasmas[i]) ){
+                
+                //verificarSentido(pJog1, inimigos[i]);
+
+                //inimigos[i]->setSentidos(sentidos);
+                plasmas[i]->queimar(pJog1);
+                cout << "Vida jogador 1: " << pJog1->getVidas() << endl;
+            }   
+        }
+    }
+}
+
+void GerenciadorColisoes::coliPlasmaObstaculo(){
+    
+    long unsigned int i, j;
+
+    if(plasmas.empty()){
+        // cout << "GerenciadorColisoes::coliJogInimigo() -> vector inimigos vazio" << endl;
+        return;
+    }
+
+    if(obstaculos.empty()){
+        // cout << "GerenciadorColisoes::coliJogInimigo() -> vector inimigos vazio" << endl;
+        return;
+    }
+
+    for(i=0; i<plasmas.size(); i++){
+
+        if(plasmas[i]->getAtivo()){
+
+            for(j = 0; j<obstaculos.size(); j++)
+
+                if(verificarColisao(plasmas[i], obstaculos[i]) ){
+                    
+                    //verificarSentido(pJog1, inimigos[i]);
+
+                    //inimigos[i]->setSentidos(sentidos);
+                    obstaculos[i]->obstacular(plasmas[i]);
+
+                }   
         }
     }
 }

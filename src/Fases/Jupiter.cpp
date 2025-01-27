@@ -4,7 +4,7 @@
 Jupiter::Jupiter() : Fase(),
 maxAberracoesEspaciais(0)
 {
-    gravidade = 1.2f;
+    gravidade = 9.8f;
     figura = new Figura(
         2819, 1589,
         1,1,
@@ -96,7 +96,7 @@ void Fases::Jupiter::criarAlienigenas() {
 void Jupiter::criarAberracoesEspaciais(){
     AberracaoEspacial* pAB = NULL;
 
-    pAB = new AberracaoEspacial(1,1);
+    pAB = new AberracaoEspacial(LARGURA/2,1);
     if(pAB){
         entidades->adiciona(static_cast<Entidade*>(pAB));
         GC.incluirInim(static_cast<Inimigo*>(pAB));

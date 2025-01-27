@@ -18,6 +18,8 @@ protected:
 
     Figura* figura;
     static GerenciadorGrafico* pGG;
+    static float gravidade;
+
 public:
     Ente();
     virtual ~Ente();
@@ -39,6 +41,8 @@ public:
     void atualizaParaFiguraInicial();
     
     void carregarFigura(string pathTextura);
+
+    static const float getGravidade() { return gravidade;}
     
     //virtual FloatRect hitBox() = 0 //entidade
     //sentidos[4]

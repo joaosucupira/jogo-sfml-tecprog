@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include "Jogador.hpp"
 #include "Inimigo.hpp"
+#include "Plasma.hpp"
 
 #include "Entidade.hpp"
 
@@ -21,6 +22,7 @@ namespace Obstaculos{
         // 8/1 - Inclusao do metodo virtual da linhagem de obstaculos
         virtual void obstacular(Jogador* pJ) = 0;
         virtual void obstacular(Inimigo* pI) = 0;
+        virtual void obstacular(Plasma* pP) = 0;
         virtual void executar() = 0;
         // void setSentidos(int* s);
 

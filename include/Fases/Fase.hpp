@@ -21,7 +21,6 @@ namespace Fases {
     {
     protected:
         bool ativa;
-        float gravidade;
         GerenciadorEventos GE;
         GerenciadorColisoes GC;
         ListaEntidades* entidades;

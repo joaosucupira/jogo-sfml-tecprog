@@ -18,7 +18,7 @@ namespace Entidades
         /* Coordenadas em que será desenhada a entidade */
         float x;
         float y; 
-        float modificadorGravidade;
+        //float modificadorGravidade;
         int* sentidos;
         Vector2f velocidade;
         
@@ -39,7 +39,7 @@ namespace Entidades
         const float getY() const { return y; }
         void posicionar(const float x, const float y);
 
-        void setModificadorGravidade(const float mod) {modificadorGravidade = mod;}
+        //void setModificadorGravidade(const float mod) {modificadorGravidade = mod;}
 
         void setVelocidade (Vector2f v) { velocidade = v;}
         void setVelocidadeX(float x){ velocidade.x = x;}

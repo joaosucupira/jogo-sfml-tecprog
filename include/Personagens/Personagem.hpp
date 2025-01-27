@@ -20,7 +20,7 @@ public:
     virtual void mover();
 
     void setVidas(const int vidas) { num_vidas = vidas; }
-    void calcVivo() { vivo = (num_vidas >= 0 ? true : false); }
+    void calcVivo() { vivo = (num_vidas > 0 ? true : false); }
     void setEstaPulando(bool pulou){ estaPulando = pulou;}
     void setEstaAndando(bool andou){ estaAndando = andou;}
 
@@ -32,6 +32,8 @@ public:
     const bool getVivo() const { return vivo;}
     const bool getEstaPulando() const {return estaPulando;}
     const bool getEstaAndando() const {return estaAndando;}
+
+    void parar();
 
     void atualizarFigura();
     virtual FloatRect hitBox() const;

@@ -34,12 +34,13 @@ void Personagem::mover(){
 }
 
 void Personagens::Personagem::operator--() {
-    (num_vidas > 0) ? num_vidas-- : vivo = false;
+    num_vidas--;
+    calcVivo();
 }
 
 void Personagens::Personagem::operator--(const int dano) {
-    (num_vidas > 0) ? num_vidas -= dano : vivo = false;
-  
+    num_vidas -= dano;
+    calcVivo();
 }
 
 void Personagem::atualizarFigura() {
@@ -68,3 +69,10 @@ FloatRect Personagem::hitBox() const {
 
     return lim;
 }
+
+void Personagem::parar() {
+    setVelocidadeX(0);
+    setVelocidadeY(0);
+    setEstaAndando(false);
+}
+

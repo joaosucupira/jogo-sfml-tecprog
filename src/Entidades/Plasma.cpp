@@ -4,7 +4,8 @@
 Plasma::Plasma(float x_inicial, float y_inicial):
 Entidade(x_inicial, y_inicial),
 ativo(false),
-rapidez(7.8)
+antiGrav(4.8),
+dano(3)
 {
     figura = new Figura(
         PLASMA_TAM_SEC, PLASMA_TAM_SEC,
@@ -60,7 +61,15 @@ void Plasma::planar(){
         return;
     }
 
-    aux = rapidez * pGG->getDeltaTime();
+    aux = antiGrav * pGG->getDeltaTime();
 
     velocidade.y -= aux;
+}
+
+void Plasma::queimar(Jogador* pJ){
+
+    pJ->operator--(3);
+    ativo = false;
+    velocidade = Vector2f(0,0);
+
 }

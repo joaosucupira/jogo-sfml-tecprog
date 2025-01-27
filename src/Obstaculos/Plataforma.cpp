@@ -42,14 +42,11 @@ void Obstaculos::Plataforma::obstacular(Jogador *pJ)
     if (sentidos[0]) {
         pJ->setXY(lim2.left + (lim2.width), lim1.top);
         pJ->setVelocidadeX(0);
-        cout << "ESQUERDA" << endl;
-  
     }
     //Colisao a direita do Personagem
     else if (sentidos[1]) {
         pJ->setXY(lim2.left - (lim1.width), lim1.top);
         pJ->setVelocidadeX(0);
-        cout << "DIREITA" << endl;
     }
     
         
@@ -63,9 +60,6 @@ void Obstaculos::Plataforma::obstacular(Jogador *pJ)
     else if(sentidos[3]) {
         pJ->setXY(lim1.left, lim2.top + (lim2.height));
         pJ->setVelocidadeY(0);
-        cout << "CIMA" << endl;
-        
-        
     }
 }
 
@@ -101,6 +95,11 @@ void Obstaculos::Plataforma::obstacular(Inimigo *pI) {
     if(sentidos[3])
         pI->setXY(lim1.left, lim2.top + (lim2.height));
 
+}
+
+void Plataforma::obstacular(Plasma *pP){
+    pP->setAtivo(false);
+    pP->setVelocidade(Vector2f(0,0));
 }
 
 void Obstaculos::Plataforma::salvaDataBuffer() {

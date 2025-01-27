@@ -32,43 +32,46 @@ void Personagens::Alienigena::executar() {
 }
 
 void Alienigena::danificar(Jogador* pJ) {
+
+    bool danifica;
+    const float ajuste =  4 * (TAM_JOGADOR / 5.0f);
+    FloatRect lim2, lim1, hitBox2;
+
     if(!pJ) {
         cout << "Alienigena::danificar(Jogador* pJ) -> ponteiro nulo jogador" << endl;
         return;
     }
 
-    bool danifica = true;
-    const float ajuste = 2 * (TAM_JOGADOR / 5.0f) + KNOCK_BACK;
+    danifica = true;
 
-    FloatRect lim2 = pJ->getLimites();
-    FloatRect lim1 = this->getLimites();
-
+    lim2 = pJ->getLimites();
+    lim1 = this->getLimites();
+    hitBox2 =  hitBox();
 
     //Colisao a esquerda do Jogador
     if(sentidos[0]){
-        pJ->setXY(lim2.left + (lim2.width + KNOCK_BACK), lim1.top); 
+        pJ->setXY(lim2.left + (lim2.width - ajuste + KNOCK_BACK), lim1.top);
         parar();
     }
         
     //Colisao a direita do Jogador
     else if(sentidos[1]){
-        pJ->setXY(lim2.left - (lim1.width + KNOCK_BACK), lim1.top);
+        pJ->setXY(lim2.left - (lim1.width - ajuste + KNOCK_BACK), lim1.top);
         parar();
 
     }
 
     //Colisao a baixo do Jogador
     if(sentidos[2]){
-
-        pJ->setVelocidadeY(-sqrt(2.0 * GRAVIDADE * ALTURA_COLI));
-        pJ->setEstaPulando(true);
         operator--();
         parar();
         
-        pJ->setXY(lim1.left, lim2.top - (lim1.height - ajuste));
+        pJ->setXY(lim1.left, (hitBox2.top) - (lim1.height));
 
         danifica = false;
     }
+
+    pJ->setVelocidadeY(-sqrt(2.0 * gravidade * ALTURA_COLI));
 
     if(danifica)
         pJ->operator--();

@@ -3,7 +3,7 @@
 Lua::Lua() : Fase(),
 maxViajantesMaus(0)
 {
-    gravidade = 0.65f;
+    gravidade = 1.62f;
     figura = new Figura(
         1309, 736, 
         1, 1, 
@@ -13,7 +13,7 @@ maxViajantesMaus(0)
     carregarFigura();
     // criarObstaculos();
     criarAlienigenas();
-    // criarViajantesMaus();
+    criarViajantesMaus();
 }
 
 Lua::~Lua()
@@ -35,7 +35,7 @@ void Fases::Lua::criarPortais() {
 
 void Fases::Lua::criarAlienigenas() {
     Alienigena* pA = NULL;
-    const int max = 4;
+    const int max = 1;
     cout << max << endl;
 
     for (int i = 1; i < max + 1; i++) {

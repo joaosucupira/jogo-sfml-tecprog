@@ -28,6 +28,7 @@ namespace Personagens{
         static Plasma* pPlasma;
         const int tempRecarregar;
         int recarregando;
+        Vector2f nucleo;
 
     public:
 
@@ -42,8 +43,11 @@ namespace Personagens{
         static void setPJog(Jogador* pJ);
         static void setPPlasma(Plasma* pPlas);
 
+        //private
         void planar();
         void atirar();
+        void desenharNucleo();
+        void calcularNucleo();
         
     };
 

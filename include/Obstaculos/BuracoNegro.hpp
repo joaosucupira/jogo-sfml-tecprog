@@ -15,6 +15,7 @@ class BuracoNegro : public Obstaculo {
         
         void obstacular(Jogador* pJ);
         void obstacular(Inimigo* pI) {}
+        void obstacular(Plasma* pP) {}
         void executar();
         void salvaDataBuffer() {}
 };

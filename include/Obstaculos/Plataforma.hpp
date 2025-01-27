@@ -3,6 +3,7 @@
 
 #include "Obstaculo.hpp"
 
+
 #define PLATAFORMA_PATH "./assets/Obstaculo/plataforma.24x24.png"
 #define PLATAFORMA_LARGURA 24
 #define PLATAFORMA_ALTURA 24 
@@ -20,6 +21,7 @@ namespace Obstaculos {
 
         void obstacular(Jogador* pJ);
         void obstacular(Inimigo* pI);
+        void obstacular(Plasma* pP);
         void salvaDataBuffer();
         
         void executar();

@@ -45,16 +45,53 @@ void ViajanteMau::executar() {
 
 void ViajanteMau::danificar(Jogador* pJ) {
     
-    int i;
+    bool danifica;
+    const float ajuste =  4 * (TAM_JOGADOR / 5.0f);
+    FloatRect lim2, lim1, hitBox2;
 
-    if(pJ){
+    if(!pJ) {
+        cout << "Alienigena::danificar(Jogador* pJ) -> ponteiro nulo jogador" << endl;
+        return;
+    }
 
-        for(i=0; i<maldade; i++)
-            pJ->operator--();
+    danifica = true;
+
+    lim2 = pJ->getLimites();
+    lim1 = getLimites();
+    hitBox2 =  hitBox();
+
+    //Colisao a esquerda do Jogador
+    if(sentidos[0]){
+        pJ->setXY(lim2.left + (lim2.width - ajuste + COLISAO), lim1.top);
     }
         
-    else
-        cout << "ViajanteMau::danificar(Jogador* pJ) -> ponteiro nulo jogador" << endl;
+    //Colisao a direita do Jogador
+    else if(sentidos[1]){
+        pJ->setXY(lim2.left - (lim1.width - ajuste + COLISAO), lim1.top);
+    }
+
+    //Colisao a baixo do Jogador
+    if(sentidos[2]){
+
+        pJ->setXY(lim1.left, hitBox2.top - (lim1.height));
+
+        operator--();
+        danifica = false;
+    }
+
+    if(sentidos[3]){
+        
+        pJ->setXY(lim1.left, hitBox2.top + (hitBox2.height));
+        posicionar(x,y-COLISAO);
+    }
+
+    pJ->parar();
+    parar();
+
+    pJ->setEstaPulando(false);
+
+    if(danifica)
+        pJ->operator--(maldade);
 }
 
 void ViajanteMau::salvaDataBuffer() {
@@ -71,7 +108,7 @@ void ViajanteMau::seguirJogador(){
     }
 
     if(!pJog->getVivo()){
-        cout << "ViajanteMau::seguirJogador() -> Jogador morto" << endl;
+        //cout << "ViajanteMau::seguirJogador() -> Jogador morto" << endl;
         return;
     }
 
@@ -110,7 +147,7 @@ void ViajanteMau::planar(){
         return;
     }
 
-    aux = GRAVIDADE * pGG->getDeltaTime();
+    aux = gravidade * pGG->getDeltaTime();
 
     velocidade.y -= aux;
         
