@@ -9,6 +9,7 @@ class GerenciadorEventos
 private:
     Event evento; // fazer ponteiro e alocar na construtora
     Jogador *pJog;
+    Jogador *pJog2;
 
 public:
     GerenciadorEventos();

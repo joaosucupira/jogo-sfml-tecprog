@@ -17,6 +17,7 @@ private:
     Clock tempo;
     GerenciadorEventos GE;
     Jogador* jog1;
+    Jogador* jog2;
     Lua faseLua;
     Jupiter faseJupiter;
 
@@ -28,6 +29,7 @@ public:
     ~Jogo();
 
     void distribuir();
+    void distribuirJogador(const int id_jogador);
     void executar();
 
 };

@@ -3,6 +3,8 @@
 using namespace Fases;
 
 Fase::Fase() :
+pJog1(NULL),
+pJog2(NULL),
 ativa(false),
 gravidade(1.0),
 GE(),
@@ -17,6 +19,8 @@ GC()
 }
 
 Fase::~Fase() {
+    pJog1 = NULL;
+    pJog2 = NULL;
     entidades->excluiTodos();
     if (entidades) delete entidades;
     entidades = NULL; 
@@ -122,16 +126,50 @@ void Fases::Fase::criarCenario() {
     criarPlataformas();
 }
 
-void Fase::setJogador(Jogador *pJ)
+void Fase::setJogador(Jogador *pJ, const int num_jogador)
 {
     if (pJ) {
-        pJ->posicionar(LARG_PLATAFORMA * 4, ALTURA - (LARG_PLATAFORMA * 2));
-        pJ->setModificadorGravidade(gravidade);
+        if (num_jogador == 1) {
+            pJog1 = pJ;
+        } else {
+            pJog2 = pJ;
+        }
+        configurarJogador(num_jogador);
         
-        GC.setPJog1(pJ);
-        GE.setPJog(pJ);
-        entidades->adiciona(static_cast<Entidade*>(pJ));
-        ViajanteMau::setPJog(pJ);
-        AberracaoEspacial::setPJog(pJ);
     } else { cout << "void Fase::setJogador(Jogador *pJ) -> ponteiro nulo." << endl; }
+}
+
+void Fase::configurarJogador(const int num_jogador) {
+
+    Jogador* pJog = NULL;
+    if (num_jogador == 1) {
+        if (!pJog1) {
+            cout << "void Fase::configurarJogador(const int num_jogador, Vector2f posicao) -> jogador 1 nao configurado" << endl;
+            return;
+        }
+        pJog = pJog1;
+
+    } else {
+        if(!pJog2) {
+            cout << "void Fase::configurarJogador(const int num_jogador, Vector2f posicao) -> jogador 2 nao configurado" << endl;
+            return;
+        }
+        pJog = pJog2;
+    }
+
+
+    if (num_jogador == 1) {
+        pJog->posicionar(LARG_PLATAFORMA * 4, ALTURA - (LARG_PLATAFORMA * 2));
+    } else {
+        pJog->posicionar(LARG_PLATAFORMA * 5, ALTURA - (LARG_PLATAFORMA * 2));
+    }
+
+    pJog->setModificadorGravidade(gravidade);
+    
+    GC.setPJog1(pJog);
+    GE.setPJog(pJog);
+    entidades->adiciona(static_cast<Entidade*>(pJog));
+    ViajanteMau::setPJog(pJog);
+    AberracaoEspacial::setPJog(pJog);
+    
 }
