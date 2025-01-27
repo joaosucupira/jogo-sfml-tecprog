@@ -30,7 +30,7 @@ void Fases::Lua::criarSuportes() {
 
 
 
-    if (rand() % 2) {
+    if (false) {
         Vector2f inicio(0.0f, ALTURA - ALT_PLATAFORMA * 5);
         construirPlano(largura_plataforma, inicio);
 
@@ -38,8 +38,11 @@ void Fases::Lua::criarSuportes() {
         construirPlano(largura_plataforma, inicio2);
 
     } else {
-        Vector2f inicio( LARGURA / 3.0f, ALTURA - ALT_PLATAFORMA * 5);
+        Vector2f inicio( LARGURA / 2.5f, ALTURA - ALT_PLATAFORMA * 5);
         construirPlano( largura_plataforma, inicio);
+
+        Vector2f inicio2((LARGURA) / 2.0f, ALTURA - ALT_PLATAFORMA * 4);
+        construirParede(largura_plataforma, inicio2);
     }
 
 

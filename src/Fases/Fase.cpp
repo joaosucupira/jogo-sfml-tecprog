@@ -56,7 +56,8 @@ void Fase::gerenciarColisoes() {
 void Fase::executar() { 
 
     ativa = true;
-    pGG->desenharEnte(this);
+    // pGG->desenharEnte(this);
+    desenhar();
 
     gerenciarColisoes();
 
