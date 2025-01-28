@@ -18,10 +18,9 @@ namespace Entidades
         /* Coordenadas em que será desenhada a entidade */
         float x;
         float y; 
-        //float modificadorGravidade;
         int* sentidos;
         Vector2f velocidade;
-        
+        static float gravidade;
         // ostream buffer;
 
     public:
@@ -35,11 +34,11 @@ namespace Entidades
         /* Métodos set e get*/
 
         void setXY(const float novoX, const float novoY);
+        void setX(const float novoX){x = novoX;}
+        void setY(const float novoY){y = novoY;}
         const float getX() const { return x; }
         const float getY() const { return y; }
         void posicionar(const float x, const float y);
-
-        //void setModificadorGravidade(const float mod) {modificadorGravidade = mod;}
 
         void setVelocidade (Vector2f v) { velocidade = v;}
         void setVelocidadeX(float x){ velocidade.x = x;}
@@ -47,6 +46,8 @@ namespace Entidades
         void atualizaVelocidade(Vector2f num) {velocidade.x *= num.x; velocidade.y *= num.y;}
 
         Vector2f getVelocidade() const { return velocidade;}
+        static void setGravidade(float g){gravidade = g;}
+        const float getGravidade() const { return gravidade;} 
 
         void aplicarGravidade();
 

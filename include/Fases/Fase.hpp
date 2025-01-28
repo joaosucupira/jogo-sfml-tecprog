@@ -50,6 +50,7 @@ namespace Fases {
         virtual void criarSuportes() = 0;
         
         virtual void carregarFigura() = 0; 
+        virtual void definirGravidade() = 0;
         void criarCenario();
         void setJogador(Jogador* pJ, const int num_jogador);
         void configurarJogador(const int num_jogador);

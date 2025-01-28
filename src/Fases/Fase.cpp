@@ -8,7 +8,6 @@ pJog2(NULL),
 ativa(false),
 GE(),
 GC()
-// entidades()
 {
     srand(time(NULL));
     entidades = new ListaEntidades();
@@ -162,8 +161,6 @@ void Fase::configurarJogador(const int num_jogador) {
     } else {
         pJog->posicionar(LARG_PLATAFORMA * 5, ALTURA - (LARG_PLATAFORMA * 2));
     }
-
-    pJog->setModificadorGravidade(gravidade);
     
     GC.setPJog1(pJog);
     GE.setPJog(pJog);

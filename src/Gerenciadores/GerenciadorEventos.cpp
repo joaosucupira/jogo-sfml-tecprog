@@ -75,7 +75,7 @@ void Gerenciadores::GerenciadorEventos::lerTeclado() {
     if (Keyboard::isKeyPressed(Keyboard::Space)) {
         if (!pJog->getEstaPulando()) {
             pJog->setEstaPulando(true);
-            pJog->setVelocidadeY(-sqrt(2.0 * Ente::getGravidade() * ALTURA_PULO));
+            pJog->setVelocidadeY(-sqrt(2.0 * pJog->getGravidade() * ALTURA_PULO));
         }
     }
 

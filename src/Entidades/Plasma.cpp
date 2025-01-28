@@ -4,7 +4,7 @@
 Plasma::Plasma(float x_inicial, float y_inicial):
 Entidade(x_inicial, y_inicial),
 ativo(false),
-antiGrav(4.8),
+antiGrav(7.8),
 dano(3)
 {
     figura = new Figura(
@@ -71,7 +71,7 @@ void Plasma::planar(){
 void Plasma::queimar(Jogador* pJ){
 
     pJ->operator--(3);
-    ativo = false;
     velocidade = Vector2f(0,0);
-
+    x = -LARG_PLASMA;
+    y = -ALTURA;
 }

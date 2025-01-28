@@ -51,19 +51,7 @@ void Gerenciadores::GerenciadorGrafico::desenharEnte(Ente *pE) {
         return;
     }
 
-    pP = dynamic_cast<Personagem*>(pE);
-
-    if (pP)
-    {
-        if (!pP->getVivo())
-            return;
-        
-        pJanela->draw(pP->getFigura()->getSprite());
-
-    } else {
-        pJanela->draw(pE->getFigura()->getSprite());
-    }
-    
+    pJanela->draw(pE->getFigura()->getSprite());
     
 }
 

@@ -39,7 +39,7 @@ using namespace sf;
 #define LARG_PLATAFORMA 64.0f
 #define ALT_PLATAFORMA 64.0f
 #define TAM_PORTAL 80.0f
-#define TAM_BURACO_NEGRO 240.0f
+#define TAM_BURACO_NEGRO 140.0f
 
 
 

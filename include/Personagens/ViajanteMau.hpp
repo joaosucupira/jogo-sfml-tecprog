@@ -18,6 +18,7 @@
 #define SEC_FINAL_Y_VM 0
 
 #define V_VIAJANTE 0.7
+#define TAM_VIAJANTE 80.0f
 
 namespace Personagens{
 
@@ -25,6 +26,7 @@ namespace Personagens{
 
         static Jogador* pJog;
         const int lerdeza;
+        bool planando;
 
     public:
 
@@ -37,8 +39,12 @@ namespace Personagens{
         
         void seguirJogador();
         static void setPJog(Jogador* pJ);
+        void setPlanando(bool planou){ planando = planou;}
+
         void planar();
         void mover();
+
+        FloatRect hitBox() const;
         
     };
 

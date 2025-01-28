@@ -6,8 +6,8 @@ Jogo::Jogo() :
 GE(),
 jog1(new Jogador()),
 jog2(new Jogador()),
-faseLua(),
-faseJupiter()
+faseJupiter(),
+faseLua()
 {
     distribuir();
     executar();
@@ -31,6 +31,7 @@ void Jogo::distribuirJogador(const int id_jogador) {
 
     if (id_jogador == 1) {
         faseJupiter.setJogador(jog1, 1);
+        faseJupiter.definirGravidade();
     } else {
         faseJupiter.setJogador(jog2, 2);
     }
@@ -56,8 +57,8 @@ void Jogo::executar() {
         pGG->limparJanela();
         // execucoes
 
-        // faseLua.executar();
         faseJupiter.executar();
+        //faseJupiter.executar();
         
         pGG->exibirNaJanela();
     }

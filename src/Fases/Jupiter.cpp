@@ -4,7 +4,6 @@
 Jupiter::Jupiter() : Fase(),
 maxAberracoesEspaciais(0)
 {
-    gravidade = 9.8f;
     figura = new Figura(
         2819, 1589,
         1,1,
@@ -139,7 +138,7 @@ void Jupiter::criarPlasmas() {
 
 void Jupiter::criarViajantesMaus(){
     ViajanteMau* pVM = NULL;
-    const int max = rand() % 5 + 3;
+    const int max = rand() % 2 + 3;
     const float distancia = 80.0f;
 
     for (int i = 1; i < max + 1; i++) {
@@ -175,4 +174,8 @@ void Fases::Jupiter::criarSuportes() {
             construirPlano(tamanho_plano, Vector2f(i * 380.0f, ALTURA - (ALT_PLATAFORMA) * j));
         }
     }
+}
+
+void Jupiter::definirGravidade(){
+    Entidade::setGravidade(9.8f);
 }

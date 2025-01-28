@@ -3,6 +3,8 @@ using namespace Entidades;
 
 /* Construtoras/Destrutoras */
 
+float Entidade::gravidade = 0;
+
 Entidade::Entidade(float x_inicial, float y_inicial) :
 Ente(),
 x(x_inicial),
