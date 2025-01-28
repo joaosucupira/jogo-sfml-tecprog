@@ -21,7 +21,6 @@ namespace Obstaculos {
 
         void obstacular(Jogador* pJ);
         void obstacular(Inimigo* pI);
-        void obstacular(Plasma* pP);
         void salvaDataBuffer();
         
         void executar();

@@ -42,7 +42,6 @@ namespace Gerenciadores{
         void coliJogInimigo();
         void coliJogPlasma();
         void coliInimObstaculo();
-        void coliPlasmaObstaculo();
 
 
     };

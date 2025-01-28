@@ -20,7 +20,7 @@ recarregando(rand()%120)
     setTamanhoFigura(TAM_ABERRACAO, TAM_ABERRACAO);
     setPosicaoFigura(x, y);
 
-    velocidade.x = -(VELOCIDADE_ANDAR + 0.5);
+    velocidade.x = -(V_ABERRACAO);
 
     estaAndando = true;
     num_vidas = 5;
@@ -73,8 +73,10 @@ void AberracaoEspacial::mover(){
     aux = pGG->getDeltaTime();
     aux *= PIXEL_METRO;
 
-    x += velocidade.x * aux;
-    y += velocidade.y * aux;
+    x += (velocidade.x * aux);
+    y += (velocidade.y * aux);
+
+    cout << "x: " << x << "y: " << y << endl;
 
     setPosicaoFigura(x,y);
 

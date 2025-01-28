@@ -43,8 +43,6 @@ GerenciadorGrafico::~GerenciadorGrafico()
 /* MÉTODOS PRINCIPAIS */
 
 void Gerenciadores::GerenciadorGrafico::desenharEnte(Ente *pE) {
-    
-    Personagem* pP = NULL;
 
     if (pE == NULL) {
         cout << "Gerenciadores::GerenciadorGrafico::desenharEnte(Ente *pE) -> ponteiro nulo" << endl;

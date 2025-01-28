@@ -18,7 +18,7 @@
 #define SEC_FINAL_X_AE 144
 #define SEC_FINAL_Y_AE 0
 
-#define V_ABERRACAO 0.8
+#define V_ABERRACAO 1.5
 #define TAM_ABERRACAO 230
 
 namespace Personagens{

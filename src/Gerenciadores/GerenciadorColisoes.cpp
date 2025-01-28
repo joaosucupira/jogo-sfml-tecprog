@@ -26,7 +26,6 @@ void GerenciadorColisoes::executar() {
     coliInimObstaculo();
     coliJogInimigo();
     coliJogPlasma();
-    coliPlasmaObstaculo();
 
 }
 
@@ -276,55 +275,36 @@ void GerenciadorColisoes::coliJogPlasma(){
         return;
     }
 
-    if(!pJog1->getVivo()){
-        //cout << "GerenciadorColisoes::coliJogInimigos() -> jog1 morto" << endl;
-        return;
-    }
+    if(pJog1->getVivo()){
 
-    for(i=0; i<plasmas.size(); i++){
+        for(i=0; i<plasmas.size(); i++){
 
-        if(plasmas[i]->getAtivo()){
+            if(plasmas[i]->getAtivo()){
 
-            if(verificarColisao(pJog1, plasmas[i]) ){
-                
-                //verificarSentido(pJog1, inimigos[i]);
-
-                //inimigos[i]->setSentidos(sentidos);
-                plasmas[i]->queimar(pJog1);
-                cout << "Vida jogador 1: " << pJog1->getVidas() << endl;
-            }   
+                if(verificarColisao(pJog1, plasmas[i]) ){
+                    plasmas[i]->queimar(pJog1);
+                    cout << "Vida jogador 1: " << pJog1->getVidas() << endl;
+                }   
+            }
         }
     }
-}
 
-void GerenciadorColisoes::coliPlasmaObstaculo(){
-    
-    long unsigned int i, j;
-
-    if(plasmas.empty()){
-        // cout << "GerenciadorColisoes::coliJogInimigo() -> vector inimigos vazio" << endl;
+    if(!pJog2){
+        // cout << "GerenciadorColisoes::coliJogInimigo() -> pJog2 nulo" << endl;
         return;
     }
 
-    if(obstaculos.empty()){
-        // cout << "GerenciadorColisoes::coliJogInimigo() -> vector inimigos vazio" << endl;
-        return;
-    }
+    if(pJog2->getVivo()){
 
-    for(i=0; i<plasmas.size(); i++){
+        for(i=0; i<plasmas.size(); i++){
 
-        if(plasmas[i]->getAtivo()){
+            if(plasmas[i]->getAtivo()){
 
-            for(j = 0; j<obstaculos.size(); j++)
-
-                if(verificarColisao(plasmas[i], obstaculos[i]) ){
-                    
-                    //verificarSentido(pJog1, inimigos[i]);
-
-                    //inimigos[i]->setSentidos(sentidos);
-                    obstaculos[i]->obstacular(plasmas[i]);
-
+                if(verificarColisao(pJog2, plasmas[i])){
+                    plasmas[i]->queimar(pJog2);
+                    cout << "Vida jogador 2: " << pJog2->getVidas() << endl;
                 }   
+            }
         }
     }
 }
