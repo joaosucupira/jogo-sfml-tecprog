@@ -36,6 +36,8 @@ namespace Fases {
         void renderizarEntidades();
         void gerenciarEventos();
         void gerenciarColisoes();
+        void atualizaPerseguido();
+        void configurarPerseguido();
         void executar();
         void criarPlataformas();
 

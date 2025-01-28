@@ -37,6 +37,15 @@ void GerenciadorColisoes::setPJog1(Jogador *pJ1) {
         { cout << "GerenciadorColisoes::setPJogador(Jogador *pJ1) -> ponteiro nulo." << endl; };
 }
 
+void Gerenciadores::GerenciadorColisoes::setPJog2(Jogador *pJ2) {
+    if (pJ2) {
+        pJog2 = pJ2;
+    } else {
+        { cout << "GerenciadorColisoes::setPJog2(Jogador *pJ2) -> ponteiro nulo." << endl; };
+
+    }
+}
+
 void GerenciadorColisoes::incluirObst(Obstaculo* pObst){
     if(pObst)
         obstaculos.push_back(pObst);
@@ -133,22 +142,30 @@ void GerenciadorColisoes::coliJogObstaculo(){
         return;
     }
 
-    if(!pJog1->getVivo()){
-        // cout << "GerenciadorColisoes::coliJogObstaculo() -> jog1 morto" << endl;
-        return;
+    if(pJog1->getVivo()) {
+
+        for(i = 0; i < obstaculos.size(); i++) {
+            if(verificarColisao(pJog1, obstaculos[i])) {
+                verificarSentido(pJog1, obstaculos[i]);
+
+                obstaculos[i]->setSentidos(sentidos);
+
+                obstaculos[i]->obstacular(pJog1);
+
+            }
+        }
     }
 
-    for(i = 0; i < obstaculos.size(); i++){
 
-        // Verificação das colisoes
 
-        if(verificarColisao(pJog1, obstaculos[i])) {
-            verificarSentido(pJog1, obstaculos[i]);
+    if (pJog2 && pJog2->getVivo()) {
+        for (i = 0; i < obstaculos.size(); i++) {
+            if (verificarColisao(pJog2, obstaculos[i])) {
+                verificarSentido(pJog2, obstaculos[i]);
 
-            obstaculos[i]->setSentidos(sentidos);
-
-            obstaculos[i]->obstacular(pJog1);
-
+                obstaculos[i]->setSentidos(sentidos);
+                obstaculos[i]->obstacular(pJog2);
+            }
         }
     }
 }
@@ -157,8 +174,8 @@ void GerenciadorColisoes::coliJogInimigo(){
 
     long unsigned int i;
 
-    if(!pJog1){
-        // cout << "GerenciadorColisoes::coliJogInimigo() -> pJog1 nulo" << endl;
+    if(!(pJog1 || pJog2)){
+        cout << "GerenciadorColisoes::coliJogInimigo() -> nenhum jogador configurado" << endl;
         return;
     }
 
@@ -167,26 +184,45 @@ void GerenciadorColisoes::coliJogInimigo(){
         return;
     }
 
-    if(!pJog1->getVivo()){
-        //cout << "GerenciadorColisoes::coliJogInimigos() -> jog1 morto" << endl;
-        return;
-    }
+    if(pJog1->getVivo()) {
+        
+        for(i=0; i<inimigos.size(); i++){
 
-    for(i=0; i<inimigos.size(); i++){
+            if(inimigos[i]->getVivo()){
 
-        if(inimigos[i]->getVivo()){
+                if(verificarColisao(pJog1, inimigos[i]) ){
+                    
+                    verificarSentido(pJog1, inimigos[i]);
 
-            if(verificarColisao(pJog1, inimigos[i]) ){
-                
-                verificarSentido(pJog1, inimigos[i]);
+                    inimigos[i]->setSentidos(sentidos);
+                    inimigos[i]->danificar(pJog1);
 
-                inimigos[i]->setSentidos(sentidos);
-                inimigos[i]->danificar(pJog1);
-
-                cout << "Vida jogador 1: " << pJog1->getVidas() << endl;
-            }   
+                    cout << "Vida jogador 1: " << pJog1->getVidas() << endl;
+                }   
+            }
         }
     }
+
+    if (pJog2 && pJog2->getVivo()) {
+
+        for(i=0; i<inimigos.size(); i++){
+
+            if(inimigos[i]->getVivo()){
+
+                if(verificarColisao(pJog2, inimigos[i]) ){
+                    
+                    verificarSentido(pJog2, inimigos[i]);
+
+                    inimigos[i]->setSentidos(sentidos);
+                    inimigos[i]->danificar(pJog2);
+
+                    cout << "Vida jogador 2: " << pJog2->getVidas() << endl;
+                }   
+            }
+        }
+    }
+
+
 }
 
 void GerenciadorColisoes::coliInimObstaculo(){

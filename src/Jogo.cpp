@@ -23,17 +23,24 @@ void Jogo::distribuir()
 {
     GE.setPJog(jog1);
     distribuirJogador(1);
+    GE.setPJog(jog2);
+    distribuirJogador(2);
+
 
 }
 
 void Jogo::distribuirJogador(const int id_jogador) {
-
+    
+    Fase* rFase = &faseJupiter;
 
     if (id_jogador == 1) {
-        faseJupiter.setJogador(jog1, 1);
+        (*rFase).setJogador(jog1, 1);
+        (*rFase).configurarJogador(1);
     } else {
-        faseJupiter.setJogador(jog2, 2);
+        (*rFase).setJogador(jog2, 2);
+        (*rFase).configurarJogador(2);
     }
+
 }
 
 void Jogo::executar() {

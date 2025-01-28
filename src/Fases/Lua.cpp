@@ -3,7 +3,7 @@
 Lua::Lua() : Fase(),
 maxViajantesMaus(0)
 {
-    gravidade = 0.75f;
+    Ente::gravidade = 0.75f;
     figura = new Figura(
         1309, 736, 
         1, 1, 
@@ -35,17 +35,17 @@ void Fases::Lua::criarSuportes() {
 
 
     if (rand() % 2) {
-        Vector2f inicio(0.0f, ALTURA - ALT_PLATAFORMA * 5);
+        Vector2f inicio(0.0f, ALTURA - ALT_PLATAFORMA * 4);
         construirPlano(largura_plataforma, inicio);
 
-        Vector2f inicio2(LARGURA - largura_plataforma, ALTURA - ALT_PLATAFORMA * 5);
+        Vector2f inicio2(LARGURA - largura_plataforma, ALTURA - ALT_PLATAFORMA * 4);
         construirPlano(largura_plataforma, inicio2);
 
     } else {
-        Vector2f inicio( LARGURA / 2.5f, ALTURA - ALT_PLATAFORMA * 5);
+        Vector2f inicio( LARGURA / 2.5f, ALTURA - ALT_PLATAFORMA * 4);
         construirPlano( largura_plataforma, inicio);
 
-        Vector2f inicio2((LARGURA) / 2.0f, ALTURA - ALT_PLATAFORMA * 4);
+        Vector2f inicio2((LARGURA) / 2.0f, ALTURA - ALT_PLATAFORMA * 3);
         construirParede(largura_plataforma, inicio2);
     }
 

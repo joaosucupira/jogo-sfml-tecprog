@@ -17,6 +17,7 @@ public:
   
     void monitorarJogador();
     void lerTeclado();
+    void lerTecladoJog2();
     void executar();
 
     Event* getEvento() { return &evento; }
