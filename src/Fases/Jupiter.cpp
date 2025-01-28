@@ -28,6 +28,7 @@ void Fases::Jupiter::criarInimigos() {
 }
 
 void Fases::Jupiter::criarObstaculos() {
+    criarCenario();
     criarSuportes();
     criarBuracosNegros();
     colorirPlataformas();

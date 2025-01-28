@@ -26,7 +26,7 @@ void Entidade::aplicarGravidade() {
     }
 
     aux = pGG->getDeltaTime();
-    aux *= gravidade;
+    aux *= Ente::gravidade;
 
     velocidade.y += aux;
 

@@ -51,6 +51,7 @@ void GerenciadorEventos::monitorarJogador() {
     /* Inicializar a posicao como 0 aqui impede que seja travada */
     pJog->setVelocidadeX(0.0f);
     pJog->setEstaAndando(false);
+    
     if (pJog2) {
         pJog2->setVelocidadeX(0.0f);
         pJog2->setEstaAndando(false);
@@ -64,8 +65,10 @@ void GerenciadorEventos::monitorarJogador() {
     if (pJog->getVelocidade().x == 0) {
         pJog->getFigura()->setSecaoInicial();
     }
-    if (pJog2->getVelocidade().x == 0) {
-        pJog2->getFigura()->setSecaoInicial();
+    if (pJog2) {
+        if (pJog2->getVelocidade().x == 0) {
+            pJog2->getFigura()->setSecaoInicial();
+        }
     }
 
 }

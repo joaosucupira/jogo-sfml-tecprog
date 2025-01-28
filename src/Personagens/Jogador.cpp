@@ -10,7 +10,7 @@ pontos(0),
 joga1(cont == 0),
 lentidao(0.0f)
 {
-    //A verificação é feita na hora de construir o objeto?
+
     if (cont < 2) {
         figura = new Figura(
             TAM_SECAO, TAM_SECAO, 
@@ -18,7 +18,7 @@ lentidao(0.0f)
             SEC_FINAL_X, SEC_FINAL_Y,
             SEC_INICIAL_X, SEC_INICIAL_Y
         );
-        // escolheCor();
+        escolheCor();
         carregarFigura(JOGADOR_PATH);
         setTamanhoFigura(TAM_JOGADOR, TAM_JOGADOR);
         setPosicaoFigura(x, y);
@@ -26,7 +26,9 @@ lentidao(0.0f)
         num_vidas = 5;
         cont++;
         
-    } else { cout << endl << "Jogador::Jogador() -> Apenas dois jogadores permitidos." << endl; }
+    } else {
+        cout << endl << "Jogador::Jogador() -> Apenas dois jogadores permitidos." << endl;
+    }
     
 }
 
@@ -35,7 +37,7 @@ Jogador::~Jogador() {
 }
 
 void Personagens::Jogador::escolheCor() {
-    Color cor = (joga1 ? Color::Green : Color::Blue);
+    Color cor = (joga1 ? Color::Yellow : Color::Cyan);
     setCorFigura(cor);
 }
 

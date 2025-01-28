@@ -13,7 +13,6 @@ GC()
     srand(time(NULL));
     entidades = new ListaEntidades();
     entidades->excluiTodos();
-    criarCenario();
     
 }
 
@@ -57,9 +56,11 @@ void Fase::gerenciarColisoes() {
 }
 
 void Fases::Fase::atualizaPerseguido() {
-    if (!pJog1->getVivo() && pJog2->getVivo()) {
-        AberracaoEspacial::setPJog(pJog2);
-        ViajanteMau::setPJog(pJog2);
+    if (pJog2) {
+        if (!pJog1->getVivo() && pJog2->getVivo()) {
+            AberracaoEspacial::setPJog(pJog2);
+            ViajanteMau::setPJog(pJog2);
+        }
     }
 }
 
@@ -84,6 +85,7 @@ void Fase::executar() {
 }
 
 void Fase::criarPlataformas() {
+
     
     // chao e teto
     Vector2f inicio(0.0f, ALTURA - ALT_PLATAFORMA);

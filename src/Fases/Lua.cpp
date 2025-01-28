@@ -22,6 +22,7 @@ Lua::~Lua()
 void Fases::Lua::criarObstaculos() {
     criarPortais();
     criarSuportes();
+    criarCenario();
 }
 
 void Fases::Lua::criarInimigos() {
@@ -35,10 +36,10 @@ void Fases::Lua::criarSuportes() {
 
 
     if (rand() % 2) {
-        Vector2f inicio(0.0f, ALTURA - ALT_PLATAFORMA * 4);
+        Vector2f inicio(LARG_PLATAFORMA / 2.0f, ALTURA - ALT_PLATAFORMA * 4.6);
         construirPlano(largura_plataforma, inicio);
 
-        Vector2f inicio2(LARGURA - largura_plataforma, ALTURA - ALT_PLATAFORMA * 4);
+        Vector2f inicio2(LARGURA - (largura_plataforma + LARG_PLATAFORMA), ALTURA - ALT_PLATAFORMA * 4.6);
         construirPlano(largura_plataforma, inicio2);
 
     } else {
