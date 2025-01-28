@@ -31,14 +31,17 @@ void Jogo::distribuir()
 
 void Jogo::distribuirJogador(const int id_jogador) {
     
-    Fase* rFase = &faseLua;
+    Fase* rFase = &faseJupiter;
 
     if (id_jogador == 1) {
         (*rFase).setJogador(jog1, 1);
         (*rFase).configurarJogador(1);
+        (*rFase).definirGravidade();
     } else {
         (*rFase).setJogador(jog2, 2);
         (*rFase).configurarJogador(2);
+        (*rFase).definirGravidade();
+
     }
 
 }
@@ -63,8 +66,8 @@ void Jogo::executar() {
         pGG->limparJanela();
         // execucoes
 
-        faseLua.executar();
-        // faseJupiter.executar();
+        // faseLua.executar();
+        faseJupiter.executar();
         
         pGG->exibirNaJanela();
     }

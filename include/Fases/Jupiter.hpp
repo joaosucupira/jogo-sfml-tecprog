@@ -24,5 +24,6 @@ namespace Fases {
             void criarViajantesMaus();
 
             void colorirPlataformas();
+            void definirGravidade();
     };
 } using namespace Fases;

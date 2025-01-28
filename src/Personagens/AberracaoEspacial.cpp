@@ -6,8 +6,7 @@ Plasma* AberracaoEspacial::pPlasma = NULL;
 AberracaoEspacial::AberracaoEspacial(const float x_inicial, const float y_inicial):
 Inimigo(x_inicial, y_inicial),
 tempRecarregar(240),
-recarregando(0),
-nucleo(0,0)
+recarregando(rand()%120)
 {
     figura = new Figura(
         TAM_SECAO_AE, TAM_SECAO_AE, 
@@ -18,7 +17,7 @@ nucleo(0,0)
 
 
     carregarFigura(ABERRACAO_ESPACIAL_PATH);
-    setTamanhoFigura(TAM_JOGADOR + 150, TAM_JOGADOR + 150);
+    setTamanhoFigura(TAM_ABERRACAO, TAM_ABERRACAO);
     setPosicaoFigura(x, y);
 
     velocidade.x = -(VELOCIDADE_ANDAR + 0.5);
@@ -49,12 +48,15 @@ void AberracaoEspacial::setPPlasma(Plasma* pPlas){
 
 
 void AberracaoEspacial::executar() {
-    aplicarGravidade();
-    mover();
-    atirar();
-    atualizarFigura();
-    desenhar();
-    desenharNucleo();
+    if(vivo){
+        aplicarGravidade();
+        mover();
+        atirar();
+        recarregar();
+        atualizarFigura();
+        desenhar();
+        desenharZonaSegura();
+    }
 }
 
 void AberracaoEspacial::mover(){
@@ -82,62 +84,56 @@ void AberracaoEspacial::mover(){
 
 void AberracaoEspacial::danificar(Jogador* pJ) {
 
-    bool danifica, pular;
-    const float ajuste =  4 * (TAM_JOGADOR / 5.0f);
-    FloatRect lim2, lim1, hitBox1, hitBox2;
+    bool pular;
+    const float ajusteJogador = TAM_JOGADOR / 5.0f;
+    FloatRect hitBoxAb, hitBoxJog;
 
     if(!pJ) {
         cout << "Alienigena::danificar(Jogador* pJ) -> ponteiro nulo jogador" << endl;
         return;
     }
 
-    danifica = true;
     pular = true;
 
-    lim2 = pJ->getLimites();
-    lim1 = getLimites();
-
-    hitBox2 =  hitBox();
-    hitBox1 = pJ->hitBox();
+    
+    hitBoxAb =  hitBox();
+    hitBoxJog = pJ->hitBox();
 
     //Colisao a esquerda do Jogador
     if(sentidos[0]){
-        pJ->setXY(lim2.left + (lim2.width - ajuste + KNOCK_BACK), lim1.top);
+        pJ->setX(hitBoxAb.left  + (hitBoxAb.width - ajusteJogador + KNOCK_BACK));
+        atualizaVelocidade(Vector2f(-1.0,1.0));
     }
         
     //Colisao a direita do Jogador
     else if(sentidos[1]){
-        pJ->setXY(lim2.left - (lim1.width - ajuste + KNOCK_BACK), lim1.top);
+        pJ->setX(hitBoxAb.left - (hitBoxJog.width + ajusteJogador + KNOCK_BACK));
+        atualizaVelocidade(Vector2f(-1.0,1.0));
     }
 
     //Colisao a baixo do Jogador
     if(sentidos[2]){
-        pJ->setXY(lim1.left, hitBox2.top - (lim1.height));
+        pJ->setY(hitBoxAb.top - (hitBoxJog.height + ajusteJogador));
     }
 
     if(sentidos[3]){
         
-        pJ->setXY(lim1.left, hitBox2.top + (hitBox2.height));
-
-        if(hitBox1.contains(nucleo)){
-            operator--();
-            danifica = false;
-        }
+        pJ->setY(hitBoxAb.top + (hitBoxAb.height - ajusteJogador));
+        
+        operator--();
+        cout << "Vida Aberracao: " << num_vidas << endl;
 
         pular = false;
         
     }
 
     pJ->parar();
-    parar();
 
+    
     if(pular){
         pJ->setVelocidadeY(-sqrt(2.0 * gravidade * ALTURA_COLI));
         pJ->setEstaPulando(true);
     }
-
-    if(danifica)
-        pJ->operator--(maldade);
 }
 
 void AberracaoEspacial::salvaDataBuffer() {
@@ -182,11 +178,6 @@ void AberracaoEspacial::atirar(){
     
     if(pPlasma->getAtivo())
         return;
-
-    if(recarregando < tempRecarregar){
-        recarregando++;
-        return;
-    }
         
     
     limAb = getLimites();
@@ -202,31 +193,51 @@ void AberracaoEspacial::atirar(){
 
     tempo = sqrt(2*distancia.y / (gravidade - pPlasma->getRapidez()));
 
+    if(tempo < 0.75)
+        tempo = 0.75;
+
     pPlasma->setVelocidadeX(distancia.x/tempo);
     pPlasma->setAtivo(true);
-    recarregando = 0;
 
 }
 
-void AberracaoEspacial::desenharNucleo(){
-
-    CircleShape circulo;
-    int raio;
-
-    raio = 5;
-
-    calcularNucleo();
-
-    circulo.setRadius(raio);
-    circulo.setPosition(nucleo.x - 2*raio, nucleo.y-2*raio);
-    circulo.setFillColor(Color::Red);
-
-    pGG->getPJanela()->draw(circulo);
+void AberracaoEspacial::recarregar()
+{
+    recarregando++;
+    if(recarregando > tempRecarregar){
+        pPlasma->setAtivo(false);
+        pPlasma->setVelocidade(Vector2f(0,0));
+        recarregando = 0;
+    }
 }
 
-void AberracaoEspacial::calcularNucleo(){
+void AberracaoEspacial::desenharZonaSegura(){
+    
+    RectangleShape zonaSegura;
+    FloatRect lim;
 
-    FloatRect bound =  getLimites();
+    if(!vivo)
+        return;
 
-    nucleo = Vector2f(bound.left + bound.width/2, bound.top + bound.height);
+    lim = hitBox();
+
+    zonaSegura.setPosition(lim.left, lim.top + lim.height);
+    zonaSegura.setSize(Vector2f(lim.width,0.5));
+    zonaSegura.setFillColor(Color::Green);
+
+    pGG->getPJanela()->draw(zonaSegura);
+}
+
+FloatRect AberracaoEspacial::hitBox() const
+{
+    FloatRect lim = getLimites();
+    const float ajuste = TAM_ABERRACAO / 3;
+    
+
+    lim.left += ajuste;
+    lim.width -= 2 * ajuste;
+    lim.top += ajuste;
+    lim.height -= 2*ajuste;
+
+    return lim;
 }

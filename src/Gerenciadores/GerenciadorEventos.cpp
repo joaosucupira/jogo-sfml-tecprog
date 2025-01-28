@@ -88,7 +88,7 @@ void Gerenciadores::GerenciadorEventos::lerTeclado() {
     if (Keyboard::isKeyPressed(Keyboard::Up)) {
         if (!pJog->getEstaPulando()) {
             pJog->setEstaPulando(true);
-            pJog->setVelocidadeY(-sqrt(2.0 * Ente::getGravidade() * ALTURA_PULO));
+            pJog->setVelocidadeY(-sqrt(2.0 * pJog->getGravidade() * ALTURA_PULO));
         }
     }
 
@@ -108,7 +108,7 @@ void Gerenciadores::GerenciadorEventos::lerTecladoJog2() {
     if (Keyboard::isKeyPressed(Keyboard::W)) {
         if (!pJog2->getEstaPulando()) {
             pJog2->setEstaPulando(true);
-            pJog2->setVelocidadeY(-sqrt(2.0 * Ente::getGravidade() * ALTURA_PULO));
+            pJog2->setVelocidadeY(-sqrt(2.0 * pJog->getGravidade() * ALTURA_PULO));
         }
     }
 }

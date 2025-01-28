@@ -3,7 +3,6 @@
 Lua::Lua() : Fase(),
 maxViajantesMaus(0)
 {
-    Ente::gravidade = 0.75f;
     figura = new Figura(
         1309, 736, 
         1, 1, 
@@ -119,4 +118,9 @@ void Fases::Lua::carregarFigura() {
 
     figura->carregarTextura(LUA_PATH);
 
+}
+
+void Lua::definirGravidade()
+{
+    Entidade::setGravidade(1.5f);
 }

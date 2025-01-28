@@ -21,6 +21,7 @@ namespace Fases {
         void criarViajantesMaus();
         void carregarFigura();
 
+        void definirGravidade();
     };
 
 

@@ -4,7 +4,8 @@ Jogador* ViajanteMau::pJog = NULL;
 
 ViajanteMau::ViajanteMau(const float x_inicial, const float y_inicial) :
 Inimigo(x_inicial, y_inicial),
-lerdeza(50)
+lerdeza(50),
+planando(true)
 {
     figura = new Figura(
         TAM_SECAO_VM, TAM_SECAO_VM, 
@@ -15,7 +16,7 @@ lerdeza(50)
 
     // figura->setCor(Color::Red);
     carregarFigura(VIAJANTE_MAU_PATH);
-    setTamanhoFigura(TAM_JOGADOR, TAM_JOGADOR);
+    setTamanhoFigura(TAM_VIAJANTE, TAM_VIAJANTE);
     setPosicaoFigura(x, y);
 
     estaAndando = true;
@@ -37,61 +38,67 @@ void ViajanteMau::setPJog(Jogador *pJ){
 
 
 void ViajanteMau::executar() {
-    aplicarGravidade();
-    mover();  
-    atualizarFigura();
-    desenhar();
+    if(vivo){
+        aplicarGravidade();
+        mover();  
+        atualizarFigura();
+        desenhar();
+    }
 }
 
 void ViajanteMau::danificar(Jogador* pJ) {
     
-    bool danifica;
-    const float ajuste =  4 * (TAM_JOGADOR / 5.0f);
-    FloatRect lim2, lim1, hitBox2;
+    bool pular, danifica;
+    const float ajusteJogador = TAM_JOGADOR / 5.0f;
+    FloatRect hitBoxAb, hitBoxJog;
 
     if(!pJ) {
         cout << "Alienigena::danificar(Jogador* pJ) -> ponteiro nulo jogador" << endl;
         return;
     }
 
+    pular = true;
     danifica = true;
-
-    lim2 = pJ->getLimites();
-    lim1 = getLimites();
-    hitBox2 =  hitBox();
+    
+    hitBoxAb =  hitBox();
+    hitBoxJog = pJ->hitBox();
 
     //Colisao a esquerda do Jogador
     if(sentidos[0]){
-        pJ->setXY(lim2.left + (lim2.width - ajuste + COLISAO), lim1.top);
+        pJ->setX(hitBoxAb.left  + (hitBoxAb.width - ajusteJogador + COLISAO));
+        posicionar(x-COLISAO,y);
     }
         
     //Colisao a direita do Jogador
     else if(sentidos[1]){
-        pJ->setXY(lim2.left - (lim1.width - ajuste + COLISAO), lim1.top);
+        pJ->setX(hitBoxAb.left - (hitBoxJog.width + ajusteJogador + COLISAO));
+        posicionar(x+COLISAO,y);
     }
 
     //Colisao a baixo do Jogador
     if(sentidos[2]){
-
-        pJ->setXY(lim1.left, hitBox2.top - (lim1.height));
-
+        pJ->setY(hitBoxAb.top - (hitBoxJog.height + ajusteJogador));
         operator--();
         danifica = false;
     }
 
     if(sentidos[3]){
-        
-        pJ->setXY(lim1.left, hitBox2.top + (hitBox2.height));
+        pJ->setY(hitBoxAb.top + (hitBoxAb.height - ajusteJogador));
         posicionar(x,y-COLISAO);
+        pJ->setVelocidadeY(0);
+        pular = false;
     }
 
     pJ->parar();
     parar();
 
-    pJ->setEstaPulando(false);
+    if(pular)
+        pJ->setEstaPulando(false);
 
     if(danifica)
         pJ->operator--(maldade);
+
+    planando = false;
 }
 
 void ViajanteMau::salvaDataBuffer() {
@@ -147,6 +154,9 @@ void ViajanteMau::planar(){
         return;
     }
 
+    if(!planando)
+        return;
+
     aux = gravidade * pGG->getDeltaTime();
 
     velocidade.y -= aux;
@@ -177,3 +187,17 @@ void ViajanteMau::mover(){
     velocidade.x = 0;
 }
 
+FloatRect ViajanteMau::hitBox() const
+{
+    
+    FloatRect lim = getLimites();
+    const float ajuste = TAM_VIAJANTE / 6;
+    
+
+    lim.left += ajuste;
+    lim.width -= 2 * ajuste;
+    lim.top += 2*ajuste;
+    lim.height -=  2* ajuste;
+
+    return lim;
+}

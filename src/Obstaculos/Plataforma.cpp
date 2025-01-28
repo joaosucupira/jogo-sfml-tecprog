@@ -98,8 +98,8 @@ void Obstaculos::Plataforma::obstacular(Inimigo *pI) {
 }
 
 void Plataforma::obstacular(Plasma *pP){
-    pP->setAtivo(false);
-    pP->setVelocidade(Vector2f(0,0));
+    //pP->setAtivo(false);
+    //pP->setVelocidade(Vector2f(0,0));
 }
 
 void Obstaculos::Plataforma::salvaDataBuffer() {

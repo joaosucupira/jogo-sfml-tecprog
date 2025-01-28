@@ -19,6 +19,7 @@
 #define SEC_FINAL_Y_AE 0
 
 #define V_ABERRACAO 0.8
+#define TAM_ABERRACAO 230
 
 namespace Personagens{
 
@@ -28,7 +29,6 @@ namespace Personagens{
         static Plasma* pPlasma;
         const int tempRecarregar;
         int recarregando;
-        Vector2f nucleo;
 
     public:
 
@@ -46,8 +46,10 @@ namespace Personagens{
         //private
         void planar();
         void atirar();
-        void desenharNucleo();
-        void calcularNucleo();
+        void recarregar();
+        
+        void desenharZonaSegura();
+        FloatRect hitBox() const;
         
     };
 
