@@ -7,6 +7,7 @@
 #include "Alienigena.hpp"
 #include "Lua.hpp"
 #include "Jupiter.hpp"
+#include "Menu.hpp"
 #include "stdafx.h"
 
 
@@ -14,6 +15,7 @@ class Jogo
 {
 private:
 
+    Menu menu;
     Clock tempo;
     GerenciadorEventos GE;
     Jogador* jog1;

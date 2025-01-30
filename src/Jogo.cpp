@@ -3,6 +3,7 @@
 GerenciadorGrafico* Jogo::pGG = GerenciadorGrafico::getInstancia();
 
 Jogo::Jogo() :
+menu(),
 GE(),
 jog1(new Jogador()),
 jog2(new Jogador()),
@@ -21,12 +22,12 @@ Jogo::~Jogo() {
 
 void Jogo::distribuir()
 {
+    menu.setJogo(this);
+
     GE.setPJog(jog1);
     distribuirJogador(1);
     GE.setPJog(jog2);
     distribuirJogador(2);
-
-
 }
 
 void Jogo::distribuirJogador(const int id_jogador) {
@@ -67,7 +68,8 @@ void Jogo::executar() {
         // execucoes
 
         // faseLua.executar();
-        faseJupiter.executar();
+        // faseJupiter.executar();
+        menu.executar();
         
         pGG->exibirNaJanela();
     }

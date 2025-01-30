@@ -23,26 +23,20 @@ public:
     Ente();
     virtual ~Ente();
     virtual void executar() = 0;
-    
     virtual void atualizarFigura();
 
     void desenhar();
     void setGGrafico() { pGG = GerenciadorGrafico::getInstancia(); }
     void setId(const int i) { id = i; }
-
     const int getId() const { return id; }
     Figura* getFigura() { return figura; }
     FloatRect getLimites() const; //sprite
-
     void setPosicaoFigura(const float x, const float y);
     void setTamanhoFigura(const float x, const float y);
     void setCorFigura(const Color& cor);
-    void atualizaParaFiguraInicial();
-    
+    void atualizaParaFiguraInicial();   
     void carregarFigura(string pathTextura);
     
-    //virtual FloatRect hitBox() = 0 //entidade
-    //sentidos[4]
 
 };
 
