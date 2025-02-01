@@ -9,13 +9,11 @@ Entidade::Entidade(float x_inicial, float y_inicial) :
 Ente(),
 x(x_inicial),
 y(y_inicial),
-sentidos(NULL),
 velocidade(0.0,0.0)
 {
 }
 
 Entidade::~Entidade() {
-    sentidos = NULL;
 }
 
 void Entidade::aplicarGravidade() {
@@ -39,28 +37,9 @@ void Entidade::setXY(const float novoX, const float novoY){
     y = novoY;
 }
 
-void Entidade::posicionar(const float x, const float y) {
-    setXY(x, y);
-    setPosicaoFigura(x, y);
-}
-
-void Entidade::exibirHitbox(FloatRect &lim) {
-    // 10/1 - Verificando o que pode estar comprometendo detecção de colisões
-
-    RectangleShape hitbox;
-
-    hitbox.setPosition(lim.left, lim.top);
-    hitbox.setSize(sf::Vector2f(lim.width, lim.height));
-    hitbox.setFillColor(sf::Color::Transparent); // Sem preenchimento
-    hitbox.setOutlineColor(sf::Color::Red);      // Cor da borda
-    hitbox.setOutlineThickness(1.0f); 
-
-    // pGG->getPJanela()->draw(hitbox);
-}
-
-
-void Entidades::Entidade::setSentidos(int *s) {
+void Entidades::Entidade::setSentidos(int s[4]) {
     if (s) {
-        sentidos = s;
+        for(int i=0; i<4; i++)
+            sentidos[i] = s[i];
     }
 }

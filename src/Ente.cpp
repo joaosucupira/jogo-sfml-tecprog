@@ -1,11 +1,11 @@
 #include "Ente.hpp"
 
-int Ente::cont_id(0);
+//int Ente::cont_id(0);
 GerenciadorGrafico* Ente::pGG = GerenciadorGrafico::getInstancia();
 /* Construtoras/Destrutoras */
 
 Ente::Ente() :
-id(cont_id++),
+//id(cont_id++),
 figura(NULL)
 {
     setGGrafico();
@@ -29,6 +29,27 @@ void Ente::desenhar() {
         cout << "Ente::desenhar() -> ponteiro gGrafico nulo" << endl;
 }
 
+void Ente::atualizarFigura(){
+
+    if(figura)
+        figura->atualizarSecao();
+    else
+        cout << "Ente::atualizarFigura() -> ponteiro figura nulo!" << endl;
+}
+
+void Ente::atualizaParaFiguraInicial() {
+    if (figura) {
+        figura->setSecaoInicial();
+    } else { cout << "Personagem::atualizaParaFiguraInicial() -> figura nula" << endl; }
+}
+
+void Ente::carregarFigura(string pathTextura){
+    if(figura)
+        figura->carregarTextura(pathTextura);
+    else
+        cout << "Ente::carregarFigura(string pathTextura) -> ponteiro figura nulo!";
+}
+
 FloatRect Ente::getLimites() const{
 
     if(!figura){
@@ -48,7 +69,7 @@ void Ente::setPosicaoFigura(const float x, const float y) {
         cout << "Ente::setPosicaoFigura(const float x, const float y) -> ponteiro figura nulo!" << endl;
 }
 
-void Ente::setTamanhoFigura(const float tX, const float tY) { //em Ente faz mais sentido
+void Ente::setTamanhoFigura(const float tX, const float tY) {
 
     if(figura)
         figura->setTamanho(tX, tY);
@@ -56,32 +77,10 @@ void Ente::setTamanhoFigura(const float tX, const float tY) { //em Ente faz mais
         cout << "Ente::setTamanhoFigura(const float tX, const float tY) -> ponteiro figura nulo!" << endl;
 }
 
-void Ente::setCorFigura(const Color &cor) { //em Ente faz mais sentido
+void Ente::setCorFigura(const Color &cor) { 
 
     if(figura)
         figura->setCor(cor);
     else
         cout << "Ente::setCorFigura(const Color &cor) -> ponteiro figura nulo!";
 }
-
-void Ente::carregarFigura(string pathTextura){
-    if(figura)
-        figura->carregarTextura(pathTextura);
-    else
-        cout << "Ente::carregarFigura(string pathTextura) -> ponteiro figura nulo!";
-}
-
-void Ente::atualizarFigura(){
-
-    if(figura)
-        figura->atualizarSecao();
-    else
-        cout << "Ente::atualizarFigura() -> ponteiro figura nulo!" << endl;
-}
-
-void Ente::atualizaParaFiguraInicial() {
-    if (figura) {
-        figura->setSecaoInicial();
-    } else { cout << "Personagem::atualizaParaFiguraInicial() -> figura nula" << endl; }
-}
-

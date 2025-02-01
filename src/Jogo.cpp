@@ -9,7 +9,6 @@ jog2(new Jogador()),
 faseLua(),
 faseJupiter()
 {
-    distribuir();
     executar();
 }
 
@@ -26,28 +25,26 @@ void Jogo::distribuir()
     GE.setPJog(jog2);
     distribuirJogador(2);
 
-
+    faseJupiter.setPGEventos(&GE);
 }
 
 void Jogo::distribuirJogador(const int id_jogador) {
     
-    Fase* rFase = &faseJupiter;
+    Fase* fase = static_cast<Fase*>(&faseJupiter);
 
     if (id_jogador == 1) {
-        (*rFase).setJogador(jog1, 1);
-        (*rFase).configurarJogador(1);
-        (*rFase).definirGravidade();
+        fase->setJogador(jog1, 1);
     } else {
-        (*rFase).setJogador(jog2, 2);
-        (*rFase).configurarJogador(2);
-        (*rFase).definirGravidade();
-
+        fase->setJogador(jog2, 2);
     }
 
 }
 
 void Jogo::executar() {
 
+    distribuir();
+    faseJupiter.criar();
+    
     while (pGG->getJanelaAberta()) {
         
         pGG->setDeltaTime(tempo.restart().asSeconds());
@@ -64,13 +61,12 @@ void Jogo::executar() {
 
         }
         pGG->limparJanela();
-        // execucoes
-
-        // faseLua.executar();
+        
         faseJupiter.executar();
         
         pGG->exibirNaJanela();
     }
+    faseJupiter.salvar();
 }
 
 

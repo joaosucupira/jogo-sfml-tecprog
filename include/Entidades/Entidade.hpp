@@ -15,48 +15,49 @@ namespace Entidades
     class Entidade : public Ente {
 
     protected:
-        /* Coordenadas em que será desenhada a entidade */
+    
         float x;
         float y; 
-        int* sentidos;
+        int sentidos[4] = {0};
         Vector2f velocidade;
         static float gravidade;
-        // ostream buffer;
+        ofstream buffer;
 
     public:
+
         Entidade(float x_inicial = 0, float y_inicial = 0);
         virtual ~Entidade();
 
-    
+        /*----------------------------------------------------------------------------*/
         virtual void executar() = 0;
-        virtual void salvaDataBuffer() = 0;
+        virtual void salvar() = 0;
+        virtual FloatRect hitBox() const = 0;
 
-        /* Métodos set e get*/
-
+        /*SET*/
         void setXY(const float novoX, const float novoY);
         void setX(const float novoX){x = novoX;}
         void setY(const float novoY){y = novoY;}
-        const float getX() const { return x; }
-        const float getY() const { return y; }
-        void posicionar(const float x, const float y);
+
+        void setSentidos(int s[4]);
 
         void setVelocidade (Vector2f v) { velocidade = v;}
         void setVelocidadeX(float x){ velocidade.x = x;}
         void setVelocidadeY(float y){ velocidade.y = y;}
         void atualizaVelocidade(Vector2f num) {velocidade.x *= num.x; velocidade.y *= num.y;}
 
-        Vector2f getVelocidade() const { return velocidade;}
         static void setGravidade(float g){gravidade = g;}
-        const float getGravidade() const { return gravidade;} 
+        
+        /*GET*/
+        const float getX() const { return x; }
+        const float getY() const { return y; }
+
+        Vector2f getVelocidade() const { return velocidade;}
+
+        const float getGravidade() const { return gravidade;}
+
+    protected:
 
         void aplicarGravidade();
-
-        void exibirHitbox(FloatRect& lim);
-        
-        virtual FloatRect hitBox() const = 0; //entidade
-        void setSentidos(int* s);
-        // virtual FloatRect getHitBoxAjustada(const float ajuste) const = 0;
-
         
     };
 

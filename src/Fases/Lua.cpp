@@ -3,24 +3,41 @@
 Lua::Lua() : Fase(),
 maxViajantesMaus(0)
 {
-    figura = new Figura(
-        1309, 736, 
-        1, 1, 
-        0, 0,
-        0, 0
-    );
-    carregarFigura();
-    criarObstaculos();
-    criarInimigos();
+    figura = new Figura();
+    carregarFigura(LUA_PATH);
 }
 
 Lua::~Lua()
 {
 }
 
+void Lua::executar(){
+    if(ativa){
+        gerenciarEventos();
+        desenhar();
+        renderizarEntidades();
+        gerenciarColisoes();
+        atualizaPerseguido();
+    }
+}
+
+void Lua::criar(){
+    definirGravidade();
+    criarInimigos();
+    criarObstaculos();
+    configurarJogador();
+    configurarPerseguido();
+    ativa = true;
+}
+
+void Lua::recuperar(){
+
+}
+
+
 void Fases::Lua::criarObstaculos() {
     criarPortais();
-    criarSuportes();
+    criarPlataformas();
     criarCenario();
 }
 
@@ -29,10 +46,9 @@ void Fases::Lua::criarInimigos() {
     criarViajantesMaus();
 }
 
-void Fases::Lua::criarSuportes() {
+void Fases::Lua::criarPlataformas() {
+    
     const float largura_plataforma = LARGURA / 4.0f;
-
-
 
     if (rand() % 2) {
         Vector2f inicio(LARG_PLATAFORMA / 2.0f, ALTURA - ALT_PLATAFORMA * 4.6);
@@ -109,18 +125,19 @@ void Lua::criarViajantesMaus(){
     pVM = NULL;
 }
 
-
-void Fases::Lua::carregarFigura() {
-    if (!figura) {
-        cout << "void Fases::Lua::carregarFigura() -> ponteiro nulo" << endl;
-        return;
-    }
-
-    figura->carregarTextura(LUA_PATH);
-
-}
-
 void Lua::definirGravidade()
 {
     Entidade::setGravidade(1.5f);
+}
+
+void Lua::configurarPerseguido(){
+    ViajanteMau::setPJog(pJog1);
+}
+
+void Lua::atualizaPerseguido() {
+    if (pJog2) {
+        if (!pJog1->getVivo() && pJog2->getVivo()) {
+            ViajanteMau::setPJog(pJog2);
+        }
+    }
 }

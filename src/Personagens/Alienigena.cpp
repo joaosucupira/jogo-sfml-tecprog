@@ -15,7 +15,7 @@ Inimigo(x_inicial, y_inicial)
     setPosicaoFigura(x, y);
 
     velocidade.x = -(VELOCIDADE_ANDAR - 0.3);
-    setEstaAndando(true);
+    andando = true;
 
 }
 
@@ -31,6 +31,20 @@ void Personagens::Alienigena::executar() {
         atualizarFigura();
         desenhar();
     }
+}
+
+void Alienigena::salvar(){
+
+    buffer.open(ALIENIGENA_SALVAR_PATH, std::ios::app);
+
+    if(!buffer){
+        cout << "Alienigena::salvar() -> erro ao abrir arquivo" << endl;
+        return;
+    }
+
+    buffer << x << y << num_vidas << andando << velocidade.x << endl;
+
+    buffer.close();
 }
 
 void Alienigena::danificar(Jogador* pJ) {
@@ -79,8 +93,5 @@ void Alienigena::danificar(Jogador* pJ) {
         pJ->operator--();
                
     
-}
-
-void Personagens::Alienigena::salvaDataBuffer() {
 }
 

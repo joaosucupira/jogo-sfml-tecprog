@@ -22,10 +22,24 @@ Plataforma::~Plataforma()
 {
 }
 
+void Plataforma::executar() {
+    desenhar();  
+}
 
-// obstacular não consideram o ajuste pois ele nao se aplica ao deslocamento pós colisão
+void Plataforma::salvar() {
 
-void Obstaculos::Plataforma::obstacular(Jogador *pJ)
+    buffer = ofstream(PLATAFORMA_SALVAR_PATH,std::ios::app);
+
+    if(!buffer){
+        cout << "Plataforma::salvar()-> Erro ao abrir o arquivo" << endl;
+        return;
+    }
+
+    buffer << x << y << endl;
+    buffer.close();
+}
+
+void Plataforma::obstacular(Jogador *pJ)
 {
     if (!pJ) {
         cout << "void Obstaculos::Plataforma::obstacular(Jogador *pJ) -> ponteiro nulo " << endl;
@@ -54,7 +68,7 @@ void Obstaculos::Plataforma::obstacular(Jogador *pJ)
     if(sentidos[2]) {
         pJ->setXY(lim1.left, lim2.top - (lim1.height));
         pJ->setVelocidadeY(0);
-        pJ->setEstaPulando(false);
+        pJ->setPulando(false);
     }
     //Colisao a cima do Personagem
     else if(sentidos[3]) {
@@ -63,7 +77,7 @@ void Obstaculos::Plataforma::obstacular(Jogador *pJ)
     }
 }
 
-void Obstaculos::Plataforma::obstacular(Inimigo *pI) {
+void Plataforma::obstacular(Inimigo *pI) {
 
     if (!pI) {
         cout << "void Obstaculos::Plataforma::obstacular(Inimigo *pI) -> ponteiro nulo " << endl;
@@ -89,17 +103,9 @@ void Obstaculos::Plataforma::obstacular(Inimigo *pI) {
     if(sentidos[2]){
         pI->setXY(lim1.left, lim2.top - (lim1.height));
         pI->setVelocidadeY(0);
-        pI->setEstaPulando(false);
     } 
     //Colisao a cima do Personagem
     if(sentidos[3])
         pI->setXY(lim1.left, lim2.top + (lim2.height));
 
-}
-
-void Obstaculos::Plataforma::salvaDataBuffer() {
-}
-
-void Obstaculos::Plataforma::executar() {
-    desenhar();  
 }

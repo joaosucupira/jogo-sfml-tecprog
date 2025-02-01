@@ -18,21 +18,33 @@ namespace Entidades {
         
         bool ativo;
         const float antiGrav; 
-        const int dano;
+        int dano;
 
     public:
-        Plasma(float dx, float dy);
+
+        Plasma(float x_inicial, float y_inicial);
         ~Plasma();
 
+        /*----------------------------------------------------------------------------*/
+
         void executar();
-        void salvaDataBuffer(){}
+        void salvar();
         void queimar(Jogador *pJ);
 
+        /*SET*/
+    
         void setAtivo(bool ativou){ativo = ativou;}
-        const bool getAtivo(){return ativo;}
+        void setDano(int d){dano = d;}
 
+        /*GET*/
+
+        const bool getAtivo()const {return ativo;}
+        const int getDano()const {return dano;}
         const float getRapidez(){return antiGrav;}
+
         FloatRect hitBox() const {return getLimites();}
+
+    private:
 
         void planar();
         void deslocar();

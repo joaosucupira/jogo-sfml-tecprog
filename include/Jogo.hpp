@@ -10,8 +10,8 @@
 #include "stdafx.h"
 
 
-class Jogo
-{
+class Jogo {
+
 private:
 
     Clock tempo;
@@ -25,12 +25,17 @@ private:
     static GerenciadorGrafico* pGG;
   
 public:
+
     Jogo();
     ~Jogo();
-
-    void distribuir();
-    void distribuirJogador(const int id_jogador);
+    
+    /*----------------------------------------------------------------------------*/
     void executar();
+    void distribuir();
+    
+private:
+
+    void distribuirJogador(const int id_jogador);
 
 };
 

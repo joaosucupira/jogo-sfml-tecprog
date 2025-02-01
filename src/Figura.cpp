@@ -15,7 +15,6 @@ qntdSecoes(qntdSecaoX,qntdSecaoY),
 secaoFinal(secaoFinalX, secaoFinalY),
 secaoInicial(secaoInicialX, secaoInicialY),
 contAtualizacoes(0)
-// pEnte(NULL)
 {
 }
 
@@ -24,35 +23,17 @@ Figura::~Figura() {
 
 void Figura::carregarTextura(string path_textura)
 {
-    if (!textura.loadFromFile(path_textura))
+    if (!textura.loadFromFile(path_textura)){
         cout << "Figura::carregarTextura(string path_textura) -> Erro ao carregar textura de " << path_textura << endl;
-    else{
-        sprite.setTexture(textura);
-        sprite.setTextureRect(secao);
+        return;
     }
-        
+
+    sprite.setTexture(textura);
+    sprite.setTextureRect(secao);  
 }
 
-
-void Figura::setTamanho(const float tX, const float tY)
-{
-    //sprite.setOrigin(secaoX / 2.0f, secaoY / 2.0f); //Acho q isso só complica as coisas !!!
-    sprite.setScale(tX / secao.width , tY / secao.height);
-    
-}
-
-void Figura::setCor(const Color &cor){
-    sprite.setColor(cor);
-}
-
-void Figura::mostrarDano() {
-
-}
-
-//Quebrar essa funcao em AtualizarSecaoX e AtualizarSecaoY
 void Figura::atualizarSecao() {
 
-    // alterei porque ficou lerdo depois de acrescentar entidades
     if (contAtualizacoes < 5){
         contAtualizacoes++;
         return;
@@ -83,6 +64,11 @@ void Figura::setSecaoInicial() {
     sprite.setTextureRect(secao);
 }
 
-void Figura::virar(const int sentido) {
-    sprite.scale(sentido, 1);
+void Figura::setTamanho(const float tX, const float tY){
+
+    sprite.setScale(tX / secao.width , tY / secao.height);
+}
+
+void Figura::setCor(const Color &cor){
+    sprite.setColor(cor);
 }

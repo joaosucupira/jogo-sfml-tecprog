@@ -7,8 +7,8 @@ int Jogador::cont(0);
 Jogador::Jogador(const float x_inicial, const float y_inicial) :
 Personagem(x_inicial, y_inicial),
 pontos(0),
-joga1(cont == 0),
-lentidao(0.0f)
+ehJog1(cont == 0),
+pulando(false)
 {
 
     if (cont < 2) {
@@ -36,17 +36,7 @@ Jogador::~Jogador() {
     // cout << "estou sendo deletado" << endl;
 }
 
-void Personagens::Jogador::escolheCor() {
-    Color cor = (joga1 ? Color::Yellow : Color::Cyan);
-    setCorFigura(cor);
-}
-
-void Jogador::operator+=(int pts) { pontos += pts; }
-
-void Jogador::salvaDataBuffer() {
-}
-
-void Jogador::executar() {
+void Jogador::executar(){
     if(vivo){
         mover();
         aplicarGravidade();
@@ -54,3 +44,23 @@ void Jogador::executar() {
         desenhar();
     }
 }
+
+void Jogador::salvar(){
+
+    buffer.open(JOGADOR_SALVAR_PATH, std::ios::app);
+    if(!buffer){
+        cout << "Jogador()::salvar -> Erro ao abrir arquivo" << endl;
+    }
+
+    buffer << ehJog1 << pontos << x << y << num_vidas << andando << pulando << velocidade.y << endl;
+    buffer.close();
+}
+
+void Personagens::Jogador::escolheCor() {
+    Color cor = (ehJog1 ? Color::Yellow : Color::Cyan);
+    setCorFigura(cor);
+}
+
+void Jogador::operator+=(int pts) { pontos += pts; }
+
+

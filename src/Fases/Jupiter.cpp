@@ -10,15 +10,37 @@ maxAberracoesEspaciais(0)
         0,0,
         0,0
     );
-    carregarFigura();
+    carregarFigura(JUPITER_PATH);
     figura->setTamanho(1309, 736);
-    criarObstaculos();
-    criarInimigos();
 }
 
-Fases::Jupiter::~Jupiter()
-{
+Fases::Jupiter::~Jupiter(){
 }
+
+void Jupiter::executar(){
+    
+    if(ativa){
+        desenhar();
+        renderizarEntidades();
+        gerenciarColisoes();
+        gerenciarEventos();
+        atualizaPerseguido();
+    }
+}
+
+void Jupiter::criar(){
+    definirGravidade();
+    criarInimigos();
+    criarObstaculos();
+    configurarJogador();
+    configurarPerseguido();
+    ativa = true;
+}
+
+void Jupiter::recuperar(){
+
+}
+
 
 void Fases::Jupiter::criarInimigos() {
     criarViajantesMaus();
@@ -28,9 +50,20 @@ void Fases::Jupiter::criarInimigos() {
 
 void Fases::Jupiter::criarObstaculos() {
     criarCenario();
-    criarSuportes();
+    criarPlataformas();
     criarBuracosNegros();
     colorirPlataformas();
+}
+
+void Jupiter::criarPlataformas() {
+    const int max = rand() % 2 + 1;
+    const float tamanho_plano = LARGURA / 10.0f;
+
+    for (int i = 1; i < max + 1; i++) {
+        for(int j = 0; j < 5; j++) {
+            construirPlano(tamanho_plano, Vector2f(i * 380.0f, ALTURA - (ALT_PLATAFORMA) * j));
+        }
+    }
 }
 
 void Fases::Jupiter::criarPortais() {
@@ -52,12 +85,6 @@ void Fases::Jupiter::criarPortais() {
     }
     if (pP) delete pP;
     pP = NULL;
-}
-
-void Fases::Jupiter::carregarFigura() {
-    if (figura) {
-        figura->carregarTextura(JUPITER_PATH);
-    }
 }
 
 void Fases::Jupiter::criarBuracosNegros(){
@@ -108,6 +135,25 @@ void Fases::Jupiter::criarAlienigenas() {
     pA = NULL;
 }
 
+void Jupiter::criarViajantesMaus(){
+    ViajanteMau* pVM = NULL;
+    const int max = rand() % 2 + 3;
+    const float distancia = 80.0f;
+
+    for (int i = 1; i < max + 1; i++) {
+        pVM = new ViajanteMau(LARGURA - LARG_PLATAFORMA, (i * distancia));
+        if(pVM) {
+            entidades->adiciona(static_cast<Entidade*>(pVM));
+            GC.incluirInim(static_cast<Inimigo*>(pVM));
+        }
+        pVM = NULL;
+    }
+
+    if (pVM) delete pVM;
+    pVM = NULL;
+
+}
+
 void Jupiter::criarAberracoesEspaciais(){
     AberracaoEspacial* pAB = NULL;
 
@@ -137,26 +183,26 @@ void Jupiter::criarPlasmas() {
 
 }
 
-void Jupiter::criarViajantesMaus(){
-    ViajanteMau* pVM = NULL;
-    const int max = rand() % 2 + 3;
-    const float distancia = 80.0f;
-
-    for (int i = 1; i < max + 1; i++) {
-        pVM = new ViajanteMau(LARGURA - LARG_PLATAFORMA, (i * distancia));
-        if(pVM) {
-            entidades->adiciona(static_cast<Entidade*>(pVM));
-            GC.incluirInim(static_cast<Inimigo*>(pVM));
-        }
-        pVM = NULL;
-    }
-
-    if (pVM) delete pVM;
-    pVM = NULL;
-
+void Jupiter::configurarPerseguido(){
+    ViajanteMau::setPJog(pJog1);
+    AberracaoEspacial::setPJog(pJog1);
 }
 
-void Fases::Jupiter::colorirPlataformas() {
+
+void Jupiter::atualizaPerseguido() {
+    if (pJog2) {
+        if (!pJog1->getVivo() && pJog2->getVivo()) {
+            AberracaoEspacial::setPJog(pJog2);
+            ViajanteMau::setPJog(pJog2);
+        }
+    }
+}
+
+void Jupiter::definirGravidade(){
+    Entidade::setGravidade(9.8f);
+}
+
+void Jupiter::colorirPlataformas() {
     Entidade* pE = NULL;
     for (int i = 0; i < entidades->getTamanho(); i++) {
         pE = (*entidades)[i];
@@ -164,19 +210,4 @@ void Fases::Jupiter::colorirPlataformas() {
             pE->setCorFigura(Color::Red);
         } 
     }
-}
-
-void Fases::Jupiter::criarSuportes() {
-    const int max = rand() % 2 + 1;
-    const float tamanho_plano = LARGURA / 10.0f;
-
-    for (int i = 1; i < max + 1; i++) {
-        for(int j = 0; j < 5; j++) {
-            construirPlano(tamanho_plano, Vector2f(i * 380.0f, ALTURA - (ALT_PLATAFORMA) * j));
-        }
-    }
-}
-
-void Jupiter::definirGravidade(){
-    Entidade::setGravidade(9.8f);
 }

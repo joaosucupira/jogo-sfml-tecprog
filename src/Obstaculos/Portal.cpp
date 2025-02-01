@@ -16,8 +16,25 @@ raio(100.0f)
     setPosicaoFigura(x_inicial, y_inicial);
 }
 
-Portal::~Portal()
-{
+Portal::~Portal(){
+}
+
+void Portal::executar() {
+    desenhar();
+    atualizarFigura();
+}
+
+void Portal::salvar(){
+    
+    buffer.open(PORTAL_SALVAR_PATH, std::ios::app);
+
+    if(!buffer){
+        cout << "Portal::salvar()-> Erro ao abrir o arquivo" << endl;
+        return;
+    }
+
+    buffer << x << y << endl;
+    buffer.close();
 }
 
 void Portal::obstacular(Jogador *pJ) {
@@ -30,12 +47,7 @@ void Portal::obstacular(Jogador *pJ) {
         abs(getLimites().top - pJ->getLimites().top <= raio)) {
 
         pJ->operator--();
-        pJ->posicionar(LARG_PLATAFORMA * 2, ALTURA - (LARG_PLATAFORMA * 2));
+        pJ->setXY(LARG_PLATAFORMA * 2, ALTURA - (LARG_PLATAFORMA * 2));
         cout << "Vida Jogador:" << pJ->getVidas() << endl;
     }
-}
-
-void Portal::executar() {
-    desenhar();
-    atualizarFigura();
 }

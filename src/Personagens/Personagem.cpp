@@ -4,8 +4,7 @@
 Personagem::Personagem(const float x,  const float y) :
 Entidade(x,y),
 num_vidas(1),
-estaAndando(false),
-estaPulando(true)
+andando(false)
 {
     calcVivo();
 }
@@ -33,16 +32,6 @@ void Personagem::mover(){
     setPosicaoFigura(x,y);
 }
 
-void Personagens::Personagem::operator--() {
-    num_vidas--;
-    calcVivo();
-}
-
-void Personagens::Personagem::operator--(const int dano) {
-    num_vidas -= dano;
-    calcVivo();
-}
-
 void Personagem::atualizarFigura() {
 
     if(!figura){
@@ -50,7 +39,7 @@ void Personagem::atualizarFigura() {
         return;
     }
     
-    if(estaAndando)
+    if(andando)
         figura->atualizarSecao();
     else
         atualizaParaFiguraInicial();
@@ -73,6 +62,17 @@ FloatRect Personagem::hitBox() const {
 void Personagem::parar() {
     setVelocidadeX(0);
     setVelocidadeY(0);
-    setEstaAndando(false);
+    andando = false;
 }
+
+void Personagens::Personagem::operator--() {
+    num_vidas--;
+    calcVivo();
+}
+
+void Personagens::Personagem::operator--(const int dano) {
+    num_vidas -= dano;
+    calcVivo();
+}
+
 

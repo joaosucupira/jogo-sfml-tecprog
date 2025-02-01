@@ -2,19 +2,18 @@
 
 using namespace Fases;
 
-Fase::Fase() :
+Fase::Fase():
 pJog1(NULL),
 pJog2(NULL),
 ativa(false),
-GE(),
+pGE(NULL),
 GC()
-
 {
     srand(time(NULL));
     entidades = new ListaEntidades();
     entidades->excluiTodos();
-    
 }
+
 
 Fase::~Fase() {
     pJog1 = NULL;
@@ -23,6 +22,34 @@ Fase::~Fase() {
     if (entidades) delete entidades;
     entidades = NULL; 
     ativa = false;
+}
+
+void Fase::salvar(){
+    if(entidades)
+        entidades->salvar();
+    else
+        cout << "Fase::salvar() -> ponteiro nulo entidades" << endl;
+}
+
+void Fase::configurarJogador() {
+
+    if (!pJog1) {
+        cout << "void Fase::configurarJogador(const int num_jogador, Vector2f posicao) -> jogador 1 nao configurado" << endl;
+        return;
+    }
+
+    GC.setPJog1(pJog1);
+    entidades->adiciona(static_cast<Entidade*>(pJog1));
+    pJog1->setXY(LARG_PLATAFORMA * 4.0, ALTURA - (LARG_PLATAFORMA * 2));
+
+    if(!pJog2) {
+        cout << "void Fase::configurarJogador(const int num_jogador, Vector2f posicao) -> jogador 2 nao configurado" << endl;
+        return;
+    }
+
+    GC.setPJog2(pJog2);
+    entidades->adiciona(static_cast<Entidade*>(pJog2));
+    pJog2->setXY(LARG_PLATAFORMA * 5.0, ALTURA - (LARG_PLATAFORMA * 2));
 }
 
 void Fase::renderizarEntidades()
@@ -47,7 +74,10 @@ void Fase::renderizarEntidades()
 
 void Fase::gerenciarEventos()
 {
-    GE.executar();
+    if(pGE)
+        pGE->executar();
+    else
+        cout << "Fase::gerenciarEventos() -> ponteiro nulo" << endl;
 }
 
 void Fase::gerenciarColisoes() {
@@ -55,36 +85,7 @@ void Fase::gerenciarColisoes() {
     GC.executar();
 }
 
-void Fases::Fase::atualizaPerseguido() {
-    if (pJog2) {
-        if (!pJog1->getVivo() && pJog2->getVivo()) {
-            AberracaoEspacial::setPJog(pJog2);
-            ViajanteMau::setPJog(pJog2);
-        }
-    }
-}
-
-void Fases::Fase::configurarPerseguido() {
-    ViajanteMau::setPJog(pJog1);
-    AberracaoEspacial::setPJog(pJog1);
-
-}
-
-void Fase::executar() {
-    ativa = true;
-
-    desenhar();
-
-    gerenciarColisoes();
-
-    gerenciarEventos();
-
-    renderizarEntidades();
-
-    atualizaPerseguido();
-}
-
-void Fase::criarPlataformas() {
+void Fase::criarCenario() {
 
     
     // chao e teto
@@ -105,8 +106,7 @@ void Fase::criarPlataformas() {
 
 }
 
-
-void Fases::Fase::construirPlano(const float tamanho, Vector2f inicio) {
+void Fase::construirPlano(const float tamanho, Vector2f inicio) {
     Plataforma* pP = NULL;
 
 
@@ -120,7 +120,8 @@ void Fases::Fase::construirPlano(const float tamanho, Vector2f inicio) {
     if (pP) delete pP;
     pP = NULL;
 }
-void Fases::Fase::construirParede(const float tamanho, Vector2f inicio) {
+
+void Fase::construirParede(const float tamanho, Vector2f inicio) {
     Plataforma* pP = NULL;
 
 
@@ -135,10 +136,6 @@ void Fases::Fase::construirParede(const float tamanho, Vector2f inicio) {
     pP = NULL;
 }
 
-void Fases::Fase::criarCenario() {
-    criarPlataformas();
-}
-
 void Fase::setJogador(Jogador *pJ, const int num_jogador)
 {
     if (pJ) {
@@ -151,43 +148,10 @@ void Fase::setJogador(Jogador *pJ, const int num_jogador)
     } else { cout << "void Fase::setJogador(Jogador *pJ) -> ponteiro nulo." << endl; }
 }
 
-void Fase::configurarJogador(const int num_jogador) {
-
-    Jogador* pJog = NULL;
-    if (num_jogador == 1) {
-        if (!pJog1) {
-            cout << "void Fase::configurarJogador(const int num_jogador, Vector2f posicao) -> jogador 1 nao configurado" << endl;
-            return;
-        }
-        pJog = pJog1;
-
-    } else {
-        if(!pJog2) {
-            cout << "void Fase::configurarJogador(const int num_jogador, Vector2f posicao) -> jogador 2 nao configurado" << endl;
-            return;
-        }
-        pJog = pJog2;
-    }
-
-
-
-    // pJog->setModificadorGravidade(gravidade);
-    
-    if (num_jogador == 1) {
-        GC.setPJog1(pJog);
-    } else {
-        GC.setPJog2(pJog);
-    }
-
-    GE.setPJog(pJog);
-
-    if (num_jogador == 1) {
-        pJog->posicionar(LARG_PLATAFORMA * 4, ALTURA - (LARG_PLATAFORMA * 2));
-    } else {
-        pJog->posicionar(LARG_PLATAFORMA * 5, ALTURA - (LARG_PLATAFORMA * 2));
-    }
-
-    entidades->adiciona(static_cast<Entidade*>(pJog));
-    configurarPerseguido();
-    
+void Fase::setPGEventos(GerenciadorEventos *pG)
+{
+    if(pG)
+        pGE = pG;
+    else
+        cout << "Fase::setPGEventos(GerenciadorEventos *pG) -> ponteiro nulo" << endl;
 }

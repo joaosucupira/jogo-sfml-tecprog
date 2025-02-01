@@ -7,6 +7,7 @@
 
 // TROCAR PARA SPRITE DE AberracaoEspacial
 #define ABERRACAO_ESPACIAL_PATH "./assets/Inimigo/fly-eye_48x48.png"
+#define ABERRACAO_ESPACIAL_SALVAR_PATH "./data/aberracao_espacial.txt"
 
 #define TAM_SECAO_AE 48
 #define QNTD_SECAO_X_AE 4
@@ -35,21 +36,24 @@ namespace Personagens{
         AberracaoEspacial(const float x_inicial, const float y_inicial);
         ~AberracaoEspacial();
 
+        /*----------------------------------------------------------------------------*/
         void danificar(Jogador* pJ);
         void executar();
-        void salvaDataBuffer();
-        void mover();
+        void salvar();
+        FloatRect hitBox() const;
         
+        /*SET*/
         static void setPJog(Jogador* pJ);
         static void setPPlasma(Plasma* pPlas);
 
-        //private
+    private:
+
+        void mover();
         void planar();
         void atirar();
         void recarregar();
-        
+
         void desenharZonaSegura();
-        FloatRect hitBox() const;
         
     };
 

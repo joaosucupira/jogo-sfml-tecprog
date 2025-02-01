@@ -23,15 +23,17 @@ namespace Gerenciadores{
     public:
         GerenciadorColisoes();
         ~GerenciadorColisoes();
-        
-        void executar();
 
-        void setPJog1(Jogador *pJ1);
-        void setPJog2(Jogador *pJ2);
+        /*----------------------------------------------------------------------------*/
+        void executar();
 
         void incluirObst(Obstaculo* pObst);
         void incluirInim(Inimigo* pInim);
         void incluirPlas(Plasma* pPlas);
+
+        /*SET*/
+        void setPJog1(Jogador *pJ1);
+        void setPJog2(Jogador *pJ2);
 
     private:
 

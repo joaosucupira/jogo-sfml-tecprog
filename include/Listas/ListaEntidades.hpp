@@ -14,21 +14,29 @@
 using namespace Entidades;
 
 namespace Listas {
-class ListaEntidades {
-    private:
-        Lista<Entidade> LE;
-    
-    public:
-        ListaEntidades();
-        ~ListaEntidades();
 
-        void adiciona(Entidade* pE);
-        void exclui(Entidade* pE);
-        void excluiTodos();
-        int getTamanho() const { return LE.getTamanho(); }
-        Lista<Entidade>* getLista() { return &LE; }
-        Entidade* operator[](int elem);
-        const bool vazia() const { return LE.getTamanho() <= 0; }
+    class ListaEntidades {
 
-};
+        private:
+            Lista<Entidade> LE;
+        
+        public:
+            ListaEntidades();
+            ~ListaEntidades();
+
+            /*----------------------------------------------------------------------------*/
+            void adiciona(Entidade* pE);
+            void exclui(Entidade* pE);
+            void excluiTodos();
+            void salvar();
+
+            /*GET*/
+            int getTamanho() const { return LE.getTamanho(); }
+            Lista<Entidade>* getLista() { return &LE; }
+            const bool vazia() const { return LE.getTamanho() <= 0; }
+
+            /*----------------------------------------------------------------------------*/
+            Entidade* operator[](int elem);
+    };
+
 } using namespace Listas;

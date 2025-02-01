@@ -5,6 +5,7 @@
 
 
 #define PLATAFORMA_PATH "./assets/Obstaculo/plataforma.24x24.png"
+#define PLATAFORMA_SALVAR_PATH "./data/plataforma.txt"
 #define PLATAFORMA_LARGURA 24
 #define PLATAFORMA_ALTURA 24 
 
@@ -19,11 +20,11 @@ namespace Obstaculos {
         Plataforma(const int x_inicial, const int y_inicial);
         ~Plataforma();
 
+        /*----------------------------------------------------------------------------*/
+        void executar();
+        void salvar();
+
         void obstacular(Jogador* pJ);
         void obstacular(Inimigo* pI);
-        void salvaDataBuffer();
-        
-        void executar();
-        
     };
 } using namespace Obstaculos;

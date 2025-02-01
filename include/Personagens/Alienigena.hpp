@@ -6,7 +6,7 @@
 
 // TROCAR PARA SPRITE DE ALIENIGENA
 #define ALIENIGENA_PATH "./assets/Inimigo/Alienigena-24x24.png"
-
+#define ALIENIGENA_SALVAR_PATH "./data/alienigena.txt"
 #define TAM_SECAO_ALI 24
 #define QNTD_SECAO_X_ALI 2
 #define QNTD_SECAO_Y_ALI 3
@@ -27,11 +27,11 @@ namespace Personagens{
 
         Alienigena(const float x_inicial, const float y_inicial);
         ~Alienigena();
-
-
+        
+        /*----------------------------------------------------------------------------*/
         void danificar(Jogador* pJ);
         void executar();
-        void salvaDataBuffer();
+        void salvar();
         
     };
 

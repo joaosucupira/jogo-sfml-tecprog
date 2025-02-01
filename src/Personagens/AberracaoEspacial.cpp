@@ -22,30 +22,14 @@ recarregando(rand()%120)
 
     velocidade.x = -(V_ABERRACAO);
 
-    estaAndando = true;
+    andando = true;
     num_vidas = 5;
     maldade = 3;
 
 }
 
-AberracaoEspacial::~AberracaoEspacial()
-{
+AberracaoEspacial::~AberracaoEspacial(){
 }
-
-void AberracaoEspacial::setPJog(Jogador *pJ){
-    if(pJ)
-        pJog = pJ;
-    else
-        cout << "void AberracaoEspacial::setPJog() -> ponteiro nulo." << endl;
-}
-
-void AberracaoEspacial::setPPlasma(Plasma* pPlas){
-    if(pPlas)
-        pPlasma = pPlas;
-    else
-        cout << "AberracaoEspacial::setPPlasma(Plasma* pPlas) -> ponteiro nulo" << endl;
-}
-
 
 void AberracaoEspacial::executar() {
     if(vivo){
@@ -59,29 +43,18 @@ void AberracaoEspacial::executar() {
     }
 }
 
-void AberracaoEspacial::mover(){
+void AberracaoEspacial::salvar(){
 
-    float aux;
+    buffer.open(ABERRACAO_ESPACIAL_SALVAR_PATH, std::ios::app);
 
-    if(!pGG){
-        cout<< "AberracaoEspacial::mover()-> ponteiro gGrafico nulo" << endl;
+    if(!buffer){
+        cout << "AberracaoEspacial::salvar() -> erro ao abrir arquivo" << endl;
         return;
     }
 
-    planar();
+    buffer << x << y << num_vidas << andando << velocidade.x << recarregando << endl;
 
-    aux = pGG->getDeltaTime();
-    aux *= PIXEL_METRO;
-
-    x += (velocidade.x * aux);
-    y += (velocidade.y * aux);
-
-    cout << "x: " << x << "y: " << y << endl;
-
-    setPosicaoFigura(x,y);
-
-    velocidade.y = 0;
-    
+    buffer.close();
 }
 
 void AberracaoEspacial::danificar(Jogador* pJ) {
@@ -91,7 +64,7 @@ void AberracaoEspacial::danificar(Jogador* pJ) {
     FloatRect hitBoxAb, hitBoxJog;
 
     if(!pJ) {
-        cout << "Alienigena::danificar(Jogador* pJ) -> ponteiro nulo jogador" << endl;
+        cout << "AberracaoEspacial::danificar(Jogador* pJ) -> ponteiro nulo jogador" << endl;
         return;
     }
 
@@ -134,11 +107,31 @@ void AberracaoEspacial::danificar(Jogador* pJ) {
     
     if(pular){
         pJ->setVelocidadeY(-sqrt(2.0 * gravidade * ALTURA_COLI));
-        pJ->setEstaPulando(true);
+        pJ->setPulando(true);
     }
 }
 
-void AberracaoEspacial::salvaDataBuffer() {
+void AberracaoEspacial::mover(){
+
+    float aux;
+
+    if(!pGG){
+        cout<< "AberracaoEspacial::mover()-> ponteiro gGrafico nulo" << endl;
+        return;
+    }
+
+    planar();
+
+    aux = pGG->getDeltaTime();
+    aux *= PIXEL_METRO;
+
+    x += (velocidade.x * aux);
+    y += (velocidade.y * aux);
+
+    setPosicaoFigura(x,y);
+
+    velocidade.y = 0;
+    
 }
 
 void AberracaoEspacial::planar(){
@@ -223,8 +216,8 @@ void AberracaoEspacial::desenharZonaSegura(){
 
     lim = hitBox();
 
-    zonaSegura.setPosition(lim.left, lim.top + lim.height);
-    zonaSegura.setSize(Vector2f(lim.width,0.5));
+    zonaSegura.setPosition(lim.left + 10, lim.top + lim.height);
+    zonaSegura.setSize(Vector2f(lim.width - 10 ,0.5));
     zonaSegura.setFillColor(Color::Green);
 
     pGG->getPJanela()->draw(zonaSegura);
@@ -242,4 +235,18 @@ FloatRect AberracaoEspacial::hitBox() const
     lim.height -= 2*ajuste;
 
     return lim;
+}
+
+void AberracaoEspacial::setPJog(Jogador *pJ){
+    if(pJ)
+        pJog = pJ;
+    else
+        cout << "void AberracaoEspacial::setPJog() -> ponteiro nulo." << endl;
+}
+
+void AberracaoEspacial::setPPlasma(Plasma* pPlas){
+    if(pPlas)
+        pPlasma = pPlas;
+    else
+        cout << "AberracaoEspacial::setPPlasma(Plasma* pPlas) -> ponteiro nulo" << endl;
 }

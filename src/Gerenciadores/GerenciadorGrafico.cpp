@@ -7,11 +7,7 @@
 * a uma nova classe janela que existe para facilitar o manejo compartilhado dessa
 * janela do jogo.
 */
-
-#include "GerenciadorGrafico.hpp"
 #include "Ente.hpp"
-#include "GerenciadorEventos.hpp"
-#include "Plataforma.hpp"
 
 using namespace Gerenciadores;
 
@@ -33,8 +29,7 @@ deltaTime(0.0)
     pJanela->setFramerateLimit(TAXA_QUADROS);
 }
 
-GerenciadorGrafico::~GerenciadorGrafico()
-{
+GerenciadorGrafico::~GerenciadorGrafico(){
     if (pJanela) delete pJanela;
     pJanela = NULL;
 }
@@ -42,7 +37,7 @@ GerenciadorGrafico::~GerenciadorGrafico()
 
 /* MÉTODOS PRINCIPAIS */
 
-void Gerenciadores::GerenciadorGrafico::desenharEnte(Ente *pE) {
+void GerenciadorGrafico::desenharEnte(Ente *pE) {
 
     if (pE == NULL) {
         cout << "Gerenciadores::GerenciadorGrafico::desenharEnte(Ente *pE) -> ponteiro nulo" << endl;
@@ -51,29 +46,6 @@ void Gerenciadores::GerenciadorGrafico::desenharEnte(Ente *pE) {
 
     pJanela->draw(pE->getFigura()->getSprite());
     
-}
-
-RenderWindow* GerenciadorGrafico::getPJanela() const {
-
-    if(pJanela){
-        return pJanela;
-    }
-    cout << "GerenciadorGrafico::getPJanela() -> Ponteiro nulo." << endl;
-    return NULL;
-}
-
-void GerenciadorGrafico::executar() {
-
-}
-
-
-const bool GerenciadorGrafico::getJanelaAberta() const
-{
-    if (!pJanela) {
-        cout << "const bool GerenciadorGrafico::getJanelaAberta() const -> ponteiro nulo" << endl;
-        return NULL;
-    }
-    return (pJanela->isOpen() ? true : false);
 }
 
 void GerenciadorGrafico::limparJanela() {
@@ -92,7 +64,7 @@ void Gerenciadores::GerenciadorGrafico::exibirNaJanela() {
     pJanela->display();
 }
 
-void Gerenciadores::GerenciadorGrafico::fecharJanela() {
+void GerenciadorGrafico::fecharJanela() {
     if (!pJanela) {
         cout << "GerenciadorGrafico::fecharJanela() -> ponteiro nulo" << endl;
         return;
@@ -100,18 +72,21 @@ void Gerenciadores::GerenciadorGrafico::fecharJanela() {
     pJanela->close();
 }
 
-// !- ALERTA GAMBIARRA
-void Gerenciadores::GerenciadorGrafico::exibirHitBox(FloatRect lim) {
-    // 10/1 - Verificando o que pode estar comprometendo detecção de colisões
+RenderWindow* GerenciadorGrafico::getPJanela() const {
 
-    RectangleShape hitbox;
+    if(pJanela){
+        return pJanela;
+    }
+    cout << "GerenciadorGrafico::getPJanela() -> Ponteiro nulo." << endl;
+    return NULL;
+}
 
-    hitbox.setPosition(lim.left, lim.top);
-    hitbox.setSize(sf::Vector2f(lim.width, lim.height));
-    hitbox.setFillColor(sf::Color::Transparent); // Sem preenchimento
-    hitbox.setOutlineColor(sf::Color::Red);      // Cor da borda
-    hitbox.setOutlineThickness(1.0f); 
-
-    // pJanela->draw(hitbox);
+const bool GerenciadorGrafico::getJanelaAberta() const
+{
+    if (!pJanela) {
+        cout << "const bool GerenciadorGrafico::getJanelaAberta() const -> ponteiro nulo" << endl;
+        return NULL;
+    }
+    return (pJanela->isOpen() ? true : false);
 }
 
