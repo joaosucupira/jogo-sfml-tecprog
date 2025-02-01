@@ -18,6 +18,7 @@ public:
     void monitorarJogador();
     void lerTeclado();
     void lerTecladoJog2();
+    void encerrar() { evento.type = Event::Closed; }
     void executar();
 
     Event* getEvento() { return &evento; }

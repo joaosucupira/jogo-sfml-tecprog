@@ -14,6 +14,7 @@ private:
     vector<Text> opcoes;
     int opcaoSelecionada;
     Font fonte;
+    Font fonteSelecionada;
     Color corSelecionada;
     Color corNormal;
     Text criarTexto(const string& texto, float x, float y);
@@ -22,12 +23,15 @@ public:
     Menu();
     ~Menu();
     void executar();
+    void carregarFontes();
     void tratarEventos();
     void moverSelecao(int direcao);
     void desenharOpcaos();
     void menuInicial();
     void menuNovoJogo();
+    void menuCarregar();
     void limparOpcoes();
     void tratarSelecao(const int opcao);
     void setJogo(Jogo* pJ);
+
 };

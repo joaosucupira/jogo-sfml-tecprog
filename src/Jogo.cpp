@@ -55,8 +55,8 @@ void Jogo::executar() {
 
         // pollevents
         while(pGG->getPJanela()->pollEvent( *(GE.getEvento()))) {
-            if (Keyboard::isKeyPressed(Keyboard::E)) 
-                GE.getEvento()->type = Event::Closed;
+            if (Keyboard::isKeyPressed(Keyboard::Escape)) 
+                encerrarJogo();
 
             if (GE.getEvento()->type == Event::Closed) {
                 pGG->fecharJanela();

@@ -33,6 +33,7 @@ public:
     void distribuir();
     void distribuirJogador(const int id_jogador);
     void executar();
+    void encerrarJogo() { GE.encerrar(); }
 
 };
 
