@@ -11,6 +11,8 @@ class Jogo;
 class Menu : public Ente {
 private:
     Jogo* pJogo;
+    map<int, string> estados;
+    string estadoAtual;
     vector<Text> opcoes;
     int opcaoSelecionada;
     Font fonte;
@@ -23,6 +25,7 @@ public:
     Menu();
     ~Menu();
     void executar();
+    void inicializaEstados();
     void carregarFontes();
     void tratarEventos();
     void moverSelecao(int direcao);
@@ -30,8 +33,13 @@ public:
     void menuInicial();
     void menuNovoJogo();
     void menuCarregar();
+    void menuLeaderboard();
     void limparOpcoes();
-    void tratarSelecao(const int opcao);
+    void trataPorEstado(const int escolha);
+    void tratarSelecaoInicial(const int opcao);
+    void tratarSelecaoNovoJogo(const int opcao); 
+    void tratarSelecaoCarregar(const int opcao); 
+    void tratarSelecaoLeaderboard(const int opcao); 
     void setJogo(Jogo* pJ);
 
 };
