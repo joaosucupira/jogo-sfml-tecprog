@@ -5,7 +5,6 @@
 
 
 #define PLATAFORMA_PATH "./assets/Obstaculo/plataforma.24x24.png"
-#define PLATAFORMA_SALVAR_PATH "./data/plataforma.txt"
 #define PLATAFORMA_LARGURA 24
 #define PLATAFORMA_ALTURA 24 
 

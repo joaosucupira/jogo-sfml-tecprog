@@ -39,6 +39,95 @@ void Jupiter::criar(){
 
 void Jupiter::recuperar(){
 
+    float x,y,velocidade_x, velocidade_y;
+    int num_vidas, pontos, recarregando;
+    bool andando, pulando, planando, ehJog1;
+
+    Plataforma* pPlat = NULL;
+    BuracoNegro* pBuNegro = NULL;
+    AberracaoEspacial* pAbEsp = NULL;
+    ViajanteMau* pViaMau = NULL;
+
+    ifstream buffer;
+
+    buffer.open(PLATAFORMA_SALVAR_PATH);
+
+    while(buffer >> x >> y){
+        pPlat = new Plataforma(x,y);
+        entidades->adiciona(static_cast<Entidade*>(pPlat));
+        GC.incluirObst(static_cast<Obstaculo*>(pPlat));
+    }
+
+    buffer.close();
+
+    buffer.open(BURACO_NEGRO_SALVAR_PATH);
+
+    while(buffer >> x >> y){
+        pBuNegro = new BuracoNegro(x,y);
+        entidades->adiciona(static_cast<Entidade*>(pBuNegro));
+        GC.incluirObst(static_cast<Obstaculo*>(pBuNegro));
+    }
+
+    buffer.close();
+
+    buffer.open(VIAJANTE_MAU_SALVAR_PATH);
+
+    while(buffer >> x >> y >> num_vidas >> andando >> planando){
+        pViaMau = new ViajanteMau(x,y);
+        pViaMau->setAndando(andando);
+        pViaMau->setVidas(num_vidas);
+        pViaMau->setPlanando(planando);
+
+        entidades->adiciona(static_cast<Entidade*>(pViaMau));
+        GC.incluirInim(static_cast<Inimigo*>(pViaMau));
+    }   
+
+    buffer.close();
+
+    buffer.open(ABERRACAO_ESPACIAL_PATH);
+
+    while(buffer >> x >> y >> num_vidas >> andando >> velocidade_x >> recarregando){
+        pAbEsp = new AberracaoEspacial(x,y);
+        pAbEsp->setVidas(num_vidas);
+        pAbEsp->setAndando(andando);
+        pAbEsp->setVelocidadeX(velocidade_x);
+        pAbEsp->setRecarregando(recarregando);
+        cout << "cheguei" << endl;
+    }
+
+    buffer.close();
+
+    /*
+    buffer.open(JOGADOR_SALVAR_PATH);
+    while(buffer >> ehJog1 >> pontos >> x >> y >> num_vidas >> andando >> pulando >> velocidade_y){
+        if(ehJog1){
+            pJog1 = new Jogador(x,y);
+            pJog1->setPontos(pontos);
+            pJog1->setVidas(num_vidas);
+            pJog1->setAndando(andando);
+            pJog1->setPulando(pulando);
+            pJog1->setVelocidadeY(velocidade_y);
+            
+            entidades->adiciona(static_cast<Entidade*>(pJog1));
+            GC.setPJog1(pJog1);
+        }
+        else{
+            pJog2 = new Jogador(x,y);
+            pJog2->setPontos(pontos);
+            pJog2->setVidas(num_vidas);
+            pJog2->setAndando(andando);
+            pJog2->setPulando(pulando);
+            pJog2->setVelocidadeY(velocidade_y);
+
+            entidades->adiciona(static_cast<Entidade*>(pJog2));
+            GC.setPJog2(pJog2);
+        }     
+    }
+    buffer.close();
+    */
+    configurarJogador();
+    configurarPerseguido();
+    
 }
 
 

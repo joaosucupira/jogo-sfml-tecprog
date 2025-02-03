@@ -35,7 +35,8 @@ void BuracoNegro::salvar(){
         return;
     }
 
-    buffer << x << y << endl;
+    buffer << x << ' '
+    << y << endl;
 
     buffer.close();
 }

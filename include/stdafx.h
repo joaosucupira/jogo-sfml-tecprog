@@ -41,6 +41,14 @@ using namespace sf;
 #define TAM_PORTAL 80.0f
 #define TAM_BURACO_NEGRO 140.0f
 
+/*Macors - path arquivos salvar*/
+#define BURACO_NEGRO_SALVAR_PATH "./data/buraco_negro.txt"
+#define PLATAFORMA_SALVAR_PATH "./data/plataforma.txt"
+#define PORTAL_SALVAR_PATH "./data/portal.txt"
+#define ABERRACAO_ESPACIAL_SALVAR_PATH "./data/aberracao_espacial.txt"
+#define ALIENIGENA_SALVAR_PATH "./data/alienigena.txt"
+#define JOGADOR_SALVAR_PATH "./data/jogador.txt"
+#define VIAJANTE_MAU_SALVAR_PATH "./data/viajante_mau.txt"
 
 
 

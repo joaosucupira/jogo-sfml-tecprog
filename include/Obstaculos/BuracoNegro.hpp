@@ -4,7 +4,6 @@
 #include "Obstaculo.hpp"
 
 #define BURACO_NEGRO_PATH "./assets/Obstaculo/B_Negro_100x100px.png"
-#define BURACO_NEGRO_SALVAR_PATH "./data/buraco_negro.txt"
 #define BURACO_NEGRO_LADO 100
 
 namespace Obstaculos{

@@ -48,7 +48,11 @@ void ViajanteMau::salvar()
         return;
     }
 
-    buffer << x << y << num_vidas << andando << planando << endl;
+    buffer << x << ' '
+    << y << ' '
+    << num_vidas << ' '
+    << andando << ' '
+    << planando << endl;
 
     buffer.close();
 }

@@ -42,7 +42,11 @@ void Alienigena::salvar(){
         return;
     }
 
-    buffer << x << y << num_vidas << andando << velocidade.x << endl;
+    buffer << x << ' '
+    << y << ' '
+    << num_vidas << ' '
+    << andando << ' '
+    << velocidade.x << endl;
 
     buffer.close();
 }

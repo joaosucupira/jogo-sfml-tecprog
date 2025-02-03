@@ -52,7 +52,12 @@ void AberracaoEspacial::salvar(){
         return;
     }
 
-    buffer << x << y << num_vidas << andando << velocidade.x << recarregando << endl;
+    buffer << x << ' ' 
+    << y << ' ' 
+    << num_vidas << ' ' 
+    << andando << ' ' 
+    << velocidade.x << ' ' 
+    << recarregando << endl;
 
     buffer.close();
 }

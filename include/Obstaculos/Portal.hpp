@@ -3,7 +3,6 @@
 #include "Obstaculo.hpp"
 
 #define PORTAL_PATH "./assets/Obstaculo/Ship_portal_32x32.png"
-#define PORTAL_SALVAR_PATH "./data/portal.txt"
 #define PORTAL_LADO 32
 
 namespace Obstaculos{

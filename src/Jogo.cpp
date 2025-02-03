@@ -43,7 +43,7 @@ void Jogo::distribuirJogador(const int id_jogador) {
 void Jogo::executar() {
 
     distribuir();
-    faseJupiter.criar();
+    faseJupiter.recuperar();
     
     while (pGG->getJanelaAberta()) {
         

@@ -3,7 +3,7 @@
 #include "Personagem.hpp"
 
 #define JOGADOR_PATH "./assets/Jogador/player.24x24.png"
-#define JOGADOR_SALVAR_PATH "./data/jogador.txt"
+
 #define TAM_SECAO 24
 #define QNTD_SECAO 3
 

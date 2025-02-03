@@ -52,7 +52,14 @@ void Jogador::salvar(){
         cout << "Jogador()::salvar -> Erro ao abrir arquivo" << endl;
     }
 
-    buffer << ehJog1 << pontos << x << y << num_vidas << andando << pulando << velocidade.y << endl;
+    buffer << ehJog1 << ' '
+    << pontos << ' '
+    << x << ' '
+    << y << ' '
+    << num_vidas << ' '
+    << andando << ' '
+    << pulando << ' '
+    << velocidade.y << endl;
     buffer.close();
 }
 
