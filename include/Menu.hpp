@@ -20,6 +20,7 @@ private:
     Color corSelecionada;
     Color corNormal;
     Text criarTexto(const string& texto, float x, float y);
+    string nomeJogador;
 
 public:
     Menu();
@@ -34,12 +35,17 @@ public:
     void menuNovoJogo();
     void menuCarregar();
     void menuLeaderboard();
+    void menuPause();
     void limparOpcoes();
     void trataPorEstado(const int escolha);
     void tratarSelecaoInicial(const int opcao);
     void tratarSelecaoNovoJogo(const int opcao); 
     void tratarSelecaoCarregar(const int opcao); 
     void tratarSelecaoLeaderboard(const int opcao); 
+    void tratarSelecaoPause(const int opcao); 
     void setJogo(Jogo* pJ);
+    void tratarEntradaTexto();
+    void setEstado(const int estado) { estadoAtual = estados[estado]; }
+    const string& getEstado() const { return estadoAtual; }
 
 };

@@ -76,8 +76,6 @@ void AberracaoEspacial::mover(){
     x += (velocidade.x * aux);
     y += (velocidade.y * aux);
 
-    cout << "x: " << x << "y: " << y << endl;
-
     setPosicaoFigura(x,y);
 
     velocidade.y = 0;

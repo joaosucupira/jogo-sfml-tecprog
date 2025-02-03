@@ -7,6 +7,7 @@ opcaoSelecionada(0),
 corSelecionada(Color::Red), 
 corNormal(Color::White)
 {
+    nomeJogador = "";
     inicializaEstados();
     carregarFontes();
     menuInicial();
@@ -29,7 +30,8 @@ void Menu::inicializaEstados() {
         {2, "Carregar"},
         {3, "Leaderboard"},
         {4, "Jogando"},
-        {5, "Pause"}
+        {5, "Pause"},
+        {6, "Digitando"}
     };
     estadoAtual = estados[0];
 }
@@ -44,6 +46,14 @@ void Menu::carregarFontes() {
 }
 
 void Menu::tratarEventos() {
+    if (estadoAtual == "Digitando") {
+        tratarEntradaTexto();
+    }
+
+    if (estadoAtual == "Jogando") {
+        return;
+    }
+
     static bool teclaAnteriormentePressionada = false; 
 
     bool teclaPressionada = Keyboard::isKeyPressed(Keyboard::Down) || 
@@ -51,6 +61,7 @@ void Menu::tratarEventos() {
                             Keyboard::isKeyPressed(Keyboard::Enter);
 
     if (teclaPressionada && !teclaAnteriormentePressionada) {
+
         if (Keyboard::isKeyPressed(Keyboard::Enter)) {
             trataPorEstado(opcaoSelecionada);
             
@@ -102,7 +113,8 @@ void Menu::menuNovoJogo() {
     opcoes.push_back(criarTexto("Digite seu nome:", 100, 200));
     opcoes.push_back(criarTexto("Escolha uma fase:", 100, 250));
     opcoes.push_back(criarTexto("Quantos jogadores:", 100, 300));
-    opcoes.push_back(criarTexto("Voltar", 100, 350));
+    opcoes.push_back(criarTexto("Jogar", 100, 350));
+    opcoes.push_back(criarTexto("Voltar", 100, 400));
 }
 
 void Menu::menuCarregar() {
@@ -119,8 +131,19 @@ void Menu::menuLeaderboard() {
     opcoes.push_back(criarTexto("Voltar", 100, 250));
 }
 
+void Menu::menuPause() {
+    estadoAtual = estados[5];
+    limparOpcoes();
+    opcaoSelecionada = 0;
+    opcoes.push_back(criarTexto("Continuar", 100, 200));
+    opcoes.push_back(criarTexto("Salvar", 100, 250));
+    opcoes.push_back(criarTexto("Menu inicial", 100, 300));
+}
+
 void Menu::limparOpcoes() {
-    opcoes.clear();
+    if (!opcoes.empty()) {
+        opcoes.clear();
+    }
 }
 
 void Menu::trataPorEstado(const int escolha) {
@@ -135,6 +158,12 @@ void Menu::trataPorEstado(const int escolha) {
 
     } else if (estadoAtual == "Leaderboard") {
         tratarSelecaoLeaderboard(escolha);
+
+    } else if (estadoAtual == "Digitando") {
+        tratarEntradaTexto();
+
+    } else if (estadoAtual == "Pause") {
+        tratarSelecaoPause(escolha);
     }
 }
 
@@ -157,10 +186,10 @@ void Menu::tratarSelecaoInicial(const int opcao) {
 }
 
 void Menu::tratarSelecaoNovoJogo(const int opcao) {
-    limparOpcoes();
+    // limparOpcoes();
     switch (opcao) {
         case 0:
-            // receberNomeJogador();
+            estadoAtual = estados[6];
             break;
         case 1:
             // receberEscolhaFase();
@@ -169,6 +198,10 @@ void Menu::tratarSelecaoNovoJogo(const int opcao) {
             // receberMultiJogador();
             break;
         case 3:
+            //Jogar
+            estadoAtual = estados[4];
+            break;
+        case 4:
             menuInicial();
             break;
         default:
@@ -177,7 +210,7 @@ void Menu::tratarSelecaoNovoJogo(const int opcao) {
 }
 
 void Menu::tratarSelecaoCarregar(const int opcao) {
-    limparOpcoes();
+    // limparOpcoes();
     switch (opcao)
     {
     case 0:
@@ -195,7 +228,7 @@ void Menu::tratarSelecaoCarregar(const int opcao) {
 }
 
 void Menu::tratarSelecaoLeaderboard(const int opcao) {
-    limparOpcoes();
+    // limparOpcoes();
     switch (opcao)
     {
     case 0:
@@ -210,11 +243,63 @@ void Menu::tratarSelecaoLeaderboard(const int opcao) {
     }
 }
 
+void Menu::tratarSelecaoPause(const int opcao) {
+    limparOpcoes();
+    menuPause();
+    switch (opcao)
+    {
+    case 0:
+        estadoAtual = estados[4]; // Jogando
+        break;
+    case 1:
+        // Salvamento
+        break;
+    case 2:
+        menuInicial();
+        break;
+    
+    default:
+        break;
+    }
+}
+
 void Menu::setJogo(Jogo *pJ) {
     if (pJ) {
         pJogo = pJ;
     } else {
         cout << "void Menu::setJogo(Jogo *pJ) -> ponteiro nulo" << endl;
+    }
+}
+
+void Menu::tratarEntradaTexto() {
+
+    // Verifica se uma tecla foi pressionada
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace) && !nomeJogador.empty()) {
+        // Remove o último caractere se Backspace for pressionado
+        nomeJogador.pop_back();
+
+    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+        // Finaliza a entrada de texto (não faz nada além de sair do modo de digitação)
+        opcoes.push_back(criarTexto(nomeJogador, 
+        opcoes[0].getPosition().x + opcoes[0].getGlobalBounds().width + 50,
+        opcoes[0].getPosition().y 
+        ));
+
+        estadoAtual = estados[1];
+        // return;
+    } else {
+        // Adiciona caracteres ao nomeJogador
+        for (int i = sf::Keyboard::A; i <= sf::Keyboard::Z; i++) {
+            if (sf::Keyboard::isKeyPressed(static_cast<sf::Keyboard::Key>(i))) {
+                char letra = 'A' + (i - sf::Keyboard::A); // Converte o código da tecla para caractere
+                nomeJogador += letra;
+            }
+        }
+
+        // Adiciona espaço se a barra de espaço for pressionada
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+            nomeJogador += ' ';
+        }
     }
 }
 
