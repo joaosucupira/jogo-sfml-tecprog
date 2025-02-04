@@ -72,9 +72,9 @@ void Jogo::recuperarJogador()
 
 void Jogo::executar() {
 
-    recuperarJogador();
+    //recuperarJogador();
     distribuir();
-    faseJupiter.recuperar();
+    faseJupiter.criar();
     
     while (pGG->getJanelaAberta()) {
         

@@ -265,7 +265,7 @@ void AberracaoEspacial::desenharZonaSegura(){
     lim = hitBox();
 
     zonaSegura.setPosition(lim.left + 10, lim.top + lim.height);
-    zonaSegura.setSize(Vector2f(lim.width - 10 ,0.5));
+    zonaSegura.setSize(Vector2f(lim.width - 10 ,2));
     zonaSegura.setFillColor(Color::Green);
 
     pGG->getPJanela()->draw(zonaSegura);
