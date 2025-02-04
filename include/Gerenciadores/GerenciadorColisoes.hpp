@@ -4,9 +4,10 @@
 #include "Obstaculo.hpp"
 #include "Inimigo.hpp"
 #include "Plasma.hpp"
+#include "Sujeito.hpp"
 
 namespace Gerenciadores{
-    class GerenciadorColisoes
+    class GerenciadorColisoes : public Sujeito
     {
     private:
     
@@ -33,7 +34,7 @@ namespace Gerenciadores{
         void incluirInim(Inimigo* pInim);
         void incluirPlas(Plasma* pPlas);
 
-        const bool getInimigos() const;
+        const int getInimigosVivos() const;
 
     private:
 

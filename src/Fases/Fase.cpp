@@ -10,6 +10,7 @@ GE(),
 GC(),
 vencida(false)
 {
+    GC.adicionarObservador(this); // Gerenciador de colisoes é observado pela fase
     srand(time(NULL));
     entidades = new ListaEntidades();
     entidades->excluiTodos();
@@ -23,6 +24,7 @@ Fase::~Fase() {
     if (entidades) delete entidades;
     entidades = NULL; 
     ativa = false;
+    GC.removerObservador(this);
 }
 
 void Fase::renderizarEntidades()
@@ -82,6 +84,7 @@ void Fase::executar() {
     renderizarEntidades();
 
     atualizaPerseguido();
+
 }
 
 void Fase::criarPlataformas() {
@@ -190,4 +193,16 @@ void Fase::configurarJogador(const int num_jogador) {
     entidades->adiciona(static_cast<Entidade*>(pJog));
     configurarPerseguido();
     
+}
+// Notificação do observer
+void Fase::notificar() {
+    cout << "Notificacao!!" << endl;
+
+    cout << "inimigos = " << GC.getInimigosVivos() << endl;
+    
+    if (GC.getInimigosVivos() <= 0) {
+        vencida = true;
+        cout << "FASE VENCIDA" << endl;
+    }
+
 }

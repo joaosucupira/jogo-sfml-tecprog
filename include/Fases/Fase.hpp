@@ -13,12 +13,13 @@
 #include "AberracaoEspacial.hpp"
 #include "Plasma.hpp"
 #include "Jogador.hpp"
+#include "Observer.hpp"
 
 #define AJUSTE_CENTRO 250.0f
 
 namespace Fases {
-    
-    class Fase : public Ente
+    // Requisitos: Herança dupla e Observer
+    class Fase : public Ente, Observer 
     {
     protected:
         Jogador* pJog1;
@@ -57,6 +58,7 @@ namespace Fases {
         void criarCenario();
         void setJogador(Jogador* pJ, const int num_jogador);
         void configurarJogador(const int num_jogador);
+        void notificar();
 
     };
 
