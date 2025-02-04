@@ -7,8 +7,8 @@ pJog1(NULL),
 pJog2(NULL),
 ativa(false),
 GE(),
-GC()
-
+GC(),
+vencida(false)
 {
     srand(time(NULL));
     entidades = new ListaEntidades();

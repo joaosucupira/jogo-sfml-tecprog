@@ -34,6 +34,7 @@ lentidao(0.0f)
 
 Jogador::~Jogador() {
     // cout << "estou sendo deletado" << endl;
+    Jogador::cont--;
 }
 
 void Personagens::Jogador::escolheCor() {

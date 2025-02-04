@@ -63,9 +63,11 @@ void Fases::Jupiter::carregarFigura() {
 void Fases::Jupiter::criarBuracosNegros(){
     BuracoNegro* pB = NULL;
     int max = 3;  
+    float dx = LARGURA / 2.25f;
+    float dy = ALTURA - ALT_PLATAFORMA * 2 - 80.0f;
 
     for (int i = 0; i < max; i++) {
-        pB = new BuracoNegro((LARGURA / 2.5f) * i, ALTURA - ALT_PLATAFORMA * 2 - 150.0f);
+        pB = new BuracoNegro(dx * i, dy);
         if (pB) {
             entidades->adiciona(static_cast<Entidade*>(pB));
             GC.incluirObst(static_cast<Obstaculo*>(pB));
@@ -77,7 +79,7 @@ void Fases::Jupiter::criarBuracosNegros(){
 
     max = rand() % 4;
     for (int i = 0; i < max; i++) {
-        pB = new BuracoNegro((LARGURA / 2.5f) * i, ALT_PLATAFORMA * 2 - 150.0f);
+        pB = new BuracoNegro(dx * i, dy);
         if (pB) {
             entidades->adiciona(static_cast<Entidade*>(pB));
             GC.incluirObst(static_cast<Obstaculo*>(pB));
@@ -167,7 +169,7 @@ void Fases::Jupiter::colorirPlataformas() {
 }
 
 void Fases::Jupiter::criarSuportes() {
-    const int max = rand() % 2 + 1;
+    const int max = rand() % 3 + 1;
     const float tamanho_plano = LARGURA / 10.0f;
 
     for (int i = 1; i < max + 1; i++) {

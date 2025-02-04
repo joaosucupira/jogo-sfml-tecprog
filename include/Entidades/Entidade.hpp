@@ -46,7 +46,7 @@ namespace Entidades
         void atualizaVelocidade(Vector2f num) {velocidade.x *= num.x; velocidade.y *= num.y;}
 
         Vector2f getVelocidade() const { return velocidade;}
-        static void setGravidade(float g){gravidade = g;}
+        static void setGravidade(float g) {gravidade = g;}
         const float getGravidade() const { return gravidade;} 
 
         void aplicarGravidade();

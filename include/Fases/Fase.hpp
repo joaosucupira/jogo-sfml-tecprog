@@ -28,6 +28,7 @@ namespace Fases {
         GerenciadorEventos GE;
         GerenciadorColisoes GC;
         ListaEntidades* entidades;
+        bool vencida;
 
     public:
         Fase();

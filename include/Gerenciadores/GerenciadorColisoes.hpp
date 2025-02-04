@@ -33,6 +33,8 @@ namespace Gerenciadores{
         void incluirInim(Inimigo* pInim);
         void incluirPlas(Plasma* pPlas);
 
+        const bool getInimigos() const;
+
     private:
 
         const bool verificarColisao(Entidade* pE1, Entidade* pE2) const;

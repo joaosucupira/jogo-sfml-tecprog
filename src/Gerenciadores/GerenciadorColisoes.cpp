@@ -66,6 +66,10 @@ void GerenciadorColisoes::incluirPlas(Plasma* pPlas){
         cout << "GerenciadorColisoes::incluirPlas(Plasma* pPlas) -> ponteiro plasma nulo" << endl;
 }
 
+const bool Gerenciadores::GerenciadorColisoes::getInimigos() const {
+    return !(obstaculos.empty());
+}
+
 const bool Gerenciadores::GerenciadorColisoes::verificarColisao(Entidade *pE1, Entidade *pE2) const {
     if (pE1 && pE2) {
         return pE1->hitBox().intersects(pE2->hitBox());
