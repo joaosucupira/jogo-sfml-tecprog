@@ -5,8 +5,11 @@ Menu::Menu() :
 pJogo(NULL),
 opcaoSelecionada(0), 
 corSelecionada(Color::Red), 
-corNormal(Color::White)
+corNormal(Color::White),
+logo(),
+rLogo()
 {
+    carregarLogo();
     nomeJogador = "";
     inicializaEstados();
     carregarFontes();
@@ -93,6 +96,10 @@ void Menu::moverSelecao(int direcao) {
 }
 
 void Menu::desenharOpcaos() {
+    if (estadoAtual == "Inicial") {
+        desenharLogo();
+    }
+
     for (const auto& opcao : opcoes) {
         pGG->getPJanela()->draw(opcao);
     }
@@ -335,6 +342,23 @@ void Menu::tratarEntradaTexto() {
             nomeJogador += ' ';
         }
     }
+}
+
+void Menu::desenharLogo() {
+
+    pGG->getPJanela()->draw(rLogo);
+
+}
+
+void Menu::carregarLogo() {
+    logo.loadFromFile(PATH_LOGO);
+    rLogo.setSize(sf::Vector2f(logo.getSize()));
+    rLogo.setTexture(&logo);
+
+    rLogo.setOrigin(logo.getSize().x / 2.0f, logo.getSize().y / 2.0f);
+    rLogo.setScale(0.125f, 0.125f);
+    rLogo.setPosition(LARGURA / 1.8f, ALTURA / 2.0f);
+
 }
 
 Text Menu::criarTexto(const string& texto, float x, float y) {

@@ -5,6 +5,7 @@
 
 #define PATH_FONTE_A "./assets/Fontes/Pixel_Digivolve.otf"
 #define PATH_FONTE_B "./assets/Fontes/Pixel_Digivolve_Italic.otf"
+#define PATH_LOGO "./assets/Outros/ANOMALIA_logo.png"
 
 class Jogo;
 
@@ -21,6 +22,9 @@ private:
     Color corNormal;
     Text criarTexto(const string& texto, float x, float y);
     string nomeJogador;
+    Texture logo;
+    RectangleShape rLogo;
+    
 
 public:
     Menu();
@@ -49,5 +53,7 @@ public:
     void tratarEntradaTexto();
     void setEstado(const int estado) { estadoAtual = estados[estado]; }
     const string& getEstado() const { return estadoAtual; }
+    void desenharLogo();
+    void carregarLogo();
 
 };
