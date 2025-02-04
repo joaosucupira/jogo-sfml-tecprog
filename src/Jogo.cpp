@@ -40,8 +40,39 @@ void Jogo::distribuirJogador(const int id_jogador) {
 
 }
 
+void Jogo::recuperarJogador()
+{
+    float x,y,velocidade_y;
+    int num_vidas, pontos;
+    bool ehJog1, andando, pulando;
+
+    ifstream buffer(JOGADOR_SALVAR_PATH);
+
+    while(buffer >> ehJog1 >> pontos >> x >> y >> num_vidas >> andando >> pulando >> velocidade_y){
+        if(ehJog1){
+            jog1->setXY(x,y);
+            jog1->setPontos(pontos);
+            jog1->setVidas(num_vidas);
+            jog1->setAndando(andando);
+            jog1->setPulando(pulando);
+            jog1->setVelocidadeY(velocidade_y);
+        }
+        else{
+            jog2->setXY(x,y);
+            jog2->setPontos(pontos);
+            jog2->setVidas(num_vidas);
+            jog2->setAndando(andando);
+            jog2->setPulando(pulando);
+            jog2->setVelocidadeY(velocidade_y);
+        }     
+    }
+    buffer.close();
+    
+}
+
 void Jogo::executar() {
 
+    recuperarJogador();
     distribuir();
     faseJupiter.recuperar();
     

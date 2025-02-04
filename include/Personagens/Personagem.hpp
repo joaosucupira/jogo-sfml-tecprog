@@ -33,7 +33,7 @@ namespace Personagens {
         const int getVidas() const { return num_vidas;}
         const bool getVivo() const { return vivo;}
         const bool getAndando() const {return andando;}
-
+       
         /*----------------------------------------------------------------------------*/
         void operator--();
         void operator--(const int dano);

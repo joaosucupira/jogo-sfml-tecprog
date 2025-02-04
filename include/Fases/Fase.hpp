@@ -49,10 +49,14 @@ namespace Fases {
         virtual void criarObstaculos() = 0;
 
         virtual void criarPlataformas() = 0;
-        virtual void criarPortais() = 0;
+        //virtual void criarPortais() = 0;
 
-        virtual void criarAlienigenas() = 0;
+        //virtual void criarAlienigenas() = 0;
         virtual void criarViajantesMaus() = 0;
+
+        virtual void recuperarViajantesMaus();
+        virtual void recuperarPlataformas();
+
         
         virtual void definirGravidade() = 0;
         virtual void configurarPerseguido() = 0;
@@ -61,6 +65,7 @@ namespace Fases {
 
         /*----------------------------------------------------------------------------*/
         void configurarJogador();
+        void recuperarJogador();
         
         void criarCenario();
         void construirPlano(const float tamanho, Vector2f inicio);

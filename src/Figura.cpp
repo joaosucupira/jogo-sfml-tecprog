@@ -72,3 +72,14 @@ void Figura::setTamanho(const float tX, const float tY){
 void Figura::setCor(const Color &cor){
     sprite.setColor(cor);
 }
+
+Vector2f Figura::getTamanho() const
+{
+    Vector2f scale = sprite.getScale();
+
+    scale.x *= secao.width;
+    scale.y *= secao.height;
+
+    return scale;
+
+}

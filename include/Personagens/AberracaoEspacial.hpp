@@ -4,6 +4,7 @@
 #include "Inimigo.hpp"
 #include "Jogador.hpp"
 #include "Plasma.hpp"
+#include <queue>
 
 // TROCAR PARA SPRITE DE AberracaoEspacial
 #define ABERRACAO_ESPACIAL_PATH "./assets/Inimigo/fly-eye_48x48.png"
@@ -26,7 +27,7 @@ namespace Personagens{
     class AberracaoEspacial : public Inimigo {
 
         static Jogador* pJog;
-        static Plasma* pPlasma;
+        static queue<Plasma*> plasmas;
         const int tempRecarregar;
         int recarregando;
 
@@ -43,7 +44,7 @@ namespace Personagens{
         
         /*SET*/
         static void setPJog(Jogador* pJ);
-        static void setPPlasma(Plasma* pPlas);
+        static void incluiPlasma(Plasma* pPlas);
 
         void setRecarregando(const int rec){recarregando = rec;}
 
@@ -52,7 +53,7 @@ namespace Personagens{
         void mover();
         void planar();
         void atirar();
-        void recarregar();
+        Plasma* recarregar();
 
         void desenharZonaSegura();
         

@@ -36,6 +36,7 @@ public:
 private:
 
     void distribuirJogador(const int id_jogador);
+    void recuperarJogador();
 
 };
 

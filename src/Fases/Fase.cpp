@@ -52,6 +52,25 @@ void Fase::configurarJogador() {
     pJog2->setXY(LARG_PLATAFORMA * 5.0, ALTURA - (LARG_PLATAFORMA * 2));
 }
 
+void Fase::recuperarJogador()
+{
+    if (!pJog1) {
+        cout << "void Fase::configurarJogador(const int num_jogador, Vector2f posicao) -> jogador 1 nao configurado" << endl;
+        return;
+    }
+
+    GC.setPJog1(pJog1);
+    entidades->adiciona(static_cast<Entidade*>(pJog1));
+
+    if(!pJog2) {
+        cout << "void Fase::configurarJogador(const int num_jogador, Vector2f posicao) -> jogador 2 nao configurado" << endl;
+        return;
+    }
+
+    GC.setPJog2(pJog2);
+    entidades->adiciona(static_cast<Entidade*>(pJog2));
+}
+
 void Fase::renderizarEntidades()
 {
     if (entidades->vazia()) {
@@ -154,4 +173,55 @@ void Fase::setPGEventos(GerenciadorEventos *pG)
         pGE = pG;
     else
         cout << "Fase::setPGEventos(GerenciadorEventos *pG) -> ponteiro nulo" << endl;
+}
+
+void Fase::recuperarViajantesMaus()
+{
+    float x,y;
+    int num_vidas;
+    bool andando,planando;
+    ifstream buffer(VIAJANTE_MAU_SALVAR_PATH);
+    ViajanteMau* pViaMau = NULL;
+
+    while(buffer >> x >> y >> num_vidas >> andando >> planando){
+
+        pViaMau = new ViajanteMau(x,y);
+
+        pViaMau->setAndando(andando);
+        pViaMau->setVidas(num_vidas);
+        pViaMau->calcVivo();
+        pViaMau->setPlanando(planando);
+
+        entidades->adiciona(static_cast<Entidade*>(pViaMau));
+        GC.incluirInim(static_cast<Inimigo*>(pViaMau));
+
+        pViaMau = NULL;
+    }
+
+    buffer.close();
+}
+
+void Fase::recuperarPlataformas()
+{
+
+    float x,y;
+    Vector2f tam;
+
+    ifstream buffer(PLATAFORMA_SALVAR_PATH);
+    Plataforma* pPlat = NULL;
+
+    while(buffer >> x >> y >> tam.x >> tam.y){
+
+        pPlat = new Plataforma(x,y);
+
+        pPlat->setTamanhoFigura(tam.x,tam.y);
+
+        entidades->adiciona(static_cast<Entidade*>(pPlat));
+        GC.incluirObst(static_cast<Obstaculo*>(pPlat));
+
+        pPlat = NULL;
+
+    }
+
+    buffer.close();
 }

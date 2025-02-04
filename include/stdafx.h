@@ -49,6 +49,7 @@ using namespace sf;
 #define ALIENIGENA_SALVAR_PATH "./data/alienigena.txt"
 #define JOGADOR_SALVAR_PATH "./data/jogador.txt"
 #define VIAJANTE_MAU_SALVAR_PATH "./data/viajante_mau.txt"
+#define PLASMA_SALVAR_PATH "./data/plasma.txt"
 
 
 

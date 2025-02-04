@@ -1,10 +1,11 @@
 #include "Plasma.hpp"
 
+int Plasma::dano = 0;
+
 Plasma::Plasma(float x_inicial, float y_inicial):
 Entidade(x_inicial, y_inicial),
 ativo(false),
-antiGrav(7.8),
-dano(3)
+antiGrav(7.8)
 {
     figura = new Figura(24,24,0,0,0,0,0,0);
     carregarFigura(PLASMA_PATH);
@@ -26,11 +27,26 @@ void Plasma::executar(){
 }
 
 void Plasma::salvar(){
+
+    buffer.open(PLASMA_SALVAR_PATH, std::ios::app);
+
+    if(!buffer){
+        cout << "Plasma::salvar() -> erro ao abrir arquivo" << endl;
+        return;
+    }
+
+    buffer << ativo << ' ' 
+    << x << ' ' 
+    << y << ' ' 
+    << velocidade.x << ' '
+    << velocidade.y << endl;
+
+    buffer.close();
 }
 
 void Plasma::queimar(Jogador* pJ){
 
-    pJ->operator--(3);
+    pJ->operator--(dano);
     velocidade = Vector2f(0,0);
     
     //colocando fora da tela

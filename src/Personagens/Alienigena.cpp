@@ -72,12 +72,14 @@ void Alienigena::danificar(Jogador* pJ) {
     if(sentidos[0]){
         pJ->setXY(lim2.left + (lim2.width - ajuste + KNOCK_BACK), lim1.top);
         parar();
+        x-=COLISAO;
     }
         
     //Colisao a direita do Jogador
     else if(sentidos[1]){
         pJ->setXY(lim2.left - (lim1.width - ajuste + KNOCK_BACK), lim1.top);
         parar();
+        x+= COLISAO;
 
     }
 

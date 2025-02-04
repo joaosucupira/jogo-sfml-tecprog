@@ -3,7 +3,11 @@
 Lua::Lua() : Fase(),
 maxViajantesMaus(0)
 {
-    figura = new Figura();
+    figura = new Figura(
+        1309, 736, 
+        1, 1, 
+        0, 0,
+        0, 0);
     carregarFigura(LUA_PATH);
 }
 
@@ -13,10 +17,10 @@ Lua::~Lua()
 
 void Lua::executar(){
     if(ativa){
-        gerenciarEventos();
         desenhar();
         renderizarEntidades();
         gerenciarColisoes();
+        gerenciarEventos();
         atualizaPerseguido();
     }
 }
@@ -31,7 +35,15 @@ void Lua::criar(){
 }
 
 void Lua::recuperar(){
-
+    recuperarPlataformas();
+    recuperarPortais();
+    recuperarAlienigenas();
+    recuperarViajantesMaus();
+    recuperarJogador();
+    
+    configurarPerseguido();
+    definirGravidade();
+    ativa = true;
 }
 
 
@@ -123,6 +135,49 @@ void Lua::criarViajantesMaus(){
     }
     if (pVM) delete pVM;
     pVM = NULL;
+}
+
+void Lua::recuperarPortais()
+{
+    float x,y;
+    Portal* pPortal = NULL;
+    ifstream buffer(PORTAL_SALVAR_PATH);
+
+    while(buffer >> x >> y){
+        pPortal = new Portal(x,y);
+
+        entidades->adiciona(static_cast<Entidade*>(pPortal));
+        GC.incluirObst(static_cast<Obstaculo*>(pPortal));
+
+        pPortal= NULL;
+    }
+
+    buffer.close();
+}
+
+void Lua::recuperarAlienigenas()
+{
+    float x,y,velocidade_x;
+    int num_vidas;
+    bool andando;
+    ifstream buffer(ALIENIGENA_SALVAR_PATH);
+    Alienigena* pAli = NULL;
+
+    while(buffer >> x >> y >> num_vidas >> andando >> velocidade_x){
+        pAli = new Alienigena(x,y);
+
+        pAli->setVidas(num_vidas);
+        pAli->calcVivo();
+        pAli->setAndando(andando);
+        pAli->setVelocidadeX(velocidade_x);
+
+        entidades->adiciona(static_cast<Entidade*>(pAli));
+        GC.incluirInim(static_cast<Inimigo*>(pAli));
+
+        pAli = NULL;
+    }
+
+    buffer.close();
 }
 
 void Lua::definirGravidade()

@@ -45,6 +45,7 @@ public:
     /*GET*/
     FloatRect getLimites() const{ return sprite.getGlobalBounds();}
     Sprite getSprite() const {return sprite;}
+    Vector2f getTamanho() const;
 
 };
 

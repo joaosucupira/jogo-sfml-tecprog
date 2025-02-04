@@ -34,6 +34,7 @@ namespace Personagens {
 
         /*SET*/
         void setPulando(bool pulou){ pulando = pulou;}
+        void setPontos(const int pts){ pontos = pts;}
 
         /*GET*/
         const int getPontos() const { return pontos; }

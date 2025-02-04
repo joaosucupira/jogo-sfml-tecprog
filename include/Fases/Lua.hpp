@@ -30,6 +30,9 @@ namespace Fases {
         void criarAlienigenas();
         void criarViajantesMaus();
 
+        void recuperarPortais();
+        void recuperarAlienigenas();
+
         void definirGravidade();
         void configurarPerseguido();
         

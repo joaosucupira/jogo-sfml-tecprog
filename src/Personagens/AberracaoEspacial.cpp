@@ -1,12 +1,12 @@
 #include "AberracaoEspacial.hpp"
 
 Jogador* AberracaoEspacial::pJog = NULL;
-Plasma* AberracaoEspacial::pPlasma = NULL;
+queue<Plasma*> AberracaoEspacial::plasmas;
 
 AberracaoEspacial::AberracaoEspacial(const float x_inicial, const float y_inicial):
 Inimigo(x_inicial, y_inicial),
 tempRecarregar(240),
-recarregando(rand()%120)
+recarregando(rand()%240)
 {
     figura = new Figura(
         TAM_SECAO_AE, TAM_SECAO_AE, 
@@ -26,6 +26,8 @@ recarregando(rand()%120)
     num_vidas = 5;
     maldade = 3;
 
+    Plasma::setDano(maldade);
+
 }
 
 AberracaoEspacial::~AberracaoEspacial(){
@@ -36,7 +38,6 @@ void AberracaoEspacial::executar() {
         aplicarGravidade();
         mover();
         atirar();
-        recarregar();
         atualizarFigura();
         desenhar();
         desenharZonaSegura();
@@ -156,6 +157,7 @@ void AberracaoEspacial::planar(){
 
 void AberracaoEspacial::atirar(){
 
+    Plasma* pPlasma;
     Vector2f posPlasma, posJog, distancia;
     FloatRect limJog, limAb;
     float tempo;
@@ -166,7 +168,7 @@ void AberracaoEspacial::atirar(){
         return;
     }
 
-    if(!pPlasma){
+    if(plasmas.empty()){
         cout << "AberracaoEspacial::atirar() -> ponteiro Plasma nulo" << endl;
         return;
     }
@@ -175,9 +177,13 @@ void AberracaoEspacial::atirar(){
         //cout << "AberracaoEspacial::atirar() -> Jogador morto" << endl;
         return;
     }
-    
-    if(pPlasma->getAtivo())
+
+    pPlasma = recarregar();
+
+    if(!pPlasma){
+        //cout << "AberracaoEspacial::atirar() -> Plasma ativo nao encontrado" << endl;
         return;
+    } 
         
     
     limAb = getLimites();
@@ -201,14 +207,51 @@ void AberracaoEspacial::atirar(){
 
 }
 
-void AberracaoEspacial::recarregar()
-{
-    recarregando++;
-    if(recarregando > tempRecarregar){
-        pPlasma->setAtivo(false);
-        pPlasma->setVelocidade(Vector2f(0,0));
-        recarregando = 0;
+Plasma* AberracaoEspacial::recarregar()
+{   
+
+    int tam;
+    Plasma* pPlasma = NULL;
+
+    if(plasmas.empty()){
+        cout << "AberracaoEspacial::recarregar() -> ponteiro Plasma nulo" << endl;
+        return NULL;
     }
+
+    if(recarregando < tempRecarregar){
+        recarregando++;
+        return NULL;
+    }
+        
+    
+    tam = plasmas.size();
+
+    for(int i = 0; i<tam; i++){
+
+        pPlasma = plasmas.front();
+        plasmas.pop();
+        plasmas.push(pPlasma);
+
+        if(!pPlasma->getAtivo()){
+            recarregando = 0;
+            pPlasma->setVelocidade(Vector2f(0,0));
+            return pPlasma;
+        }
+            
+
+        if(pPlasma->getX() < 0 || pPlasma->getY() < 0
+        || pPlasma->getX() > LARGURA || pPlasma->getY() > ALTURA)
+        {
+            recarregando = 0;
+            pPlasma->setVelocidade(Vector2f(0,0));
+            return pPlasma;
+        }
+            
+        pPlasma = NULL;
+    }
+    
+    return pPlasma;
+    
 }
 
 void AberracaoEspacial::desenharZonaSegura(){
@@ -249,9 +292,9 @@ void AberracaoEspacial::setPJog(Jogador *pJ){
         cout << "void AberracaoEspacial::setPJog() -> ponteiro nulo." << endl;
 }
 
-void AberracaoEspacial::setPPlasma(Plasma* pPlas){
+void AberracaoEspacial::incluiPlasma(Plasma* pPlas){
     if(pPlas)
-        pPlasma = pPlas;
+        plasmas.push(pPlas);
     else
-        cout << "AberracaoEspacial::setPPlasma(Plasma* pPlas) -> ponteiro nulo" << endl;
+        cout << "AberracaoEspacial::incluiPlasma(Plasma* pPlas) -> ponteiro nulo" << endl;
 }

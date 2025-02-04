@@ -29,6 +29,7 @@ void Plataforma::executar() {
 void Plataforma::salvar() {
 
     buffer = ofstream(PLATAFORMA_SALVAR_PATH,std::ios::app);
+    Vector2f tamanho = figura->getTamanho();
 
     if(!buffer){
         cout << "Plataforma::salvar()-> Erro ao abrir o arquivo" << endl;
@@ -36,7 +37,9 @@ void Plataforma::salvar() {
     }
 
     buffer << x << ' '
-    << y << endl;
+    << y << ' '
+    << tamanho.x << ' '
+    << tamanho.y << endl;
     buffer.close();
 }
 

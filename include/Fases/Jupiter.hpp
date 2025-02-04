@@ -25,14 +25,20 @@ namespace Fases {
         void criarInimigos();
         void criarObstaculos();
 
-        void criarPortais();
+        //void criarPortais();
         void criarPlataformas();
         void criarBuracosNegros();
 
-        void criarAlienigenas();
+        //void criarAlienigenas();
         void criarViajantesMaus();
         void criarAberracoesEspaciais();
         void criarPlasmas();
+
+        //void recuperarPortais();
+        void recuperarBuracosNegros();
+
+        void recuperarAberracoesEspaciais();
+        void recuperarPlasmas();
 
         void colorirPlataformas();
         void definirGravidade();

@@ -18,7 +18,7 @@ namespace Entidades {
         
         bool ativo;
         const float antiGrav; 
-        int dano;
+        static int dano;
 
     public:
 
@@ -34,7 +34,7 @@ namespace Entidades {
         /*SET*/
     
         void setAtivo(bool ativou){ativo = ativou;}
-        void setDano(int d){dano = d;}
+        static void setDano(int d){dano = d;}
 
         /*GET*/
 

@@ -39,94 +39,18 @@ void Jupiter::criar(){
 
 void Jupiter::recuperar(){
 
-    float x,y,velocidade_x, velocidade_y;
-    int num_vidas, pontos, recarregando;
-    bool andando, pulando, planando, ehJog1;
+    recuperarPlataformas();
+    recuperarBuracosNegros();
+    recuperarViajantesMaus();
+    recuperarAberracoesEspaciais();
+    recuperarPlasmas();
+    recuperarJogador();
 
-    Plataforma* pPlat = NULL;
-    BuracoNegro* pBuNegro = NULL;
-    AberracaoEspacial* pAbEsp = NULL;
-    ViajanteMau* pViaMau = NULL;
-
-    ifstream buffer;
-
-    buffer.open(PLATAFORMA_SALVAR_PATH);
-
-    while(buffer >> x >> y){
-        pPlat = new Plataforma(x,y);
-        entidades->adiciona(static_cast<Entidade*>(pPlat));
-        GC.incluirObst(static_cast<Obstaculo*>(pPlat));
-    }
-
-    buffer.close();
-
-    buffer.open(BURACO_NEGRO_SALVAR_PATH);
-
-    while(buffer >> x >> y){
-        pBuNegro = new BuracoNegro(x,y);
-        entidades->adiciona(static_cast<Entidade*>(pBuNegro));
-        GC.incluirObst(static_cast<Obstaculo*>(pBuNegro));
-    }
-
-    buffer.close();
-
-    buffer.open(VIAJANTE_MAU_SALVAR_PATH);
-
-    while(buffer >> x >> y >> num_vidas >> andando >> planando){
-        pViaMau = new ViajanteMau(x,y);
-        pViaMau->setAndando(andando);
-        pViaMau->setVidas(num_vidas);
-        pViaMau->setPlanando(planando);
-
-        entidades->adiciona(static_cast<Entidade*>(pViaMau));
-        GC.incluirInim(static_cast<Inimigo*>(pViaMau));
-    }   
-
-    buffer.close();
-
-    buffer.open(ABERRACAO_ESPACIAL_PATH);
-
-    while(buffer >> x >> y >> num_vidas >> andando >> velocidade_x >> recarregando){
-        pAbEsp = new AberracaoEspacial(x,y);
-        pAbEsp->setVidas(num_vidas);
-        pAbEsp->setAndando(andando);
-        pAbEsp->setVelocidadeX(velocidade_x);
-        pAbEsp->setRecarregando(recarregando);
-        cout << "cheguei" << endl;
-    }
-
-    buffer.close();
-
-    /*
-    buffer.open(JOGADOR_SALVAR_PATH);
-    while(buffer >> ehJog1 >> pontos >> x >> y >> num_vidas >> andando >> pulando >> velocidade_y){
-        if(ehJog1){
-            pJog1 = new Jogador(x,y);
-            pJog1->setPontos(pontos);
-            pJog1->setVidas(num_vidas);
-            pJog1->setAndando(andando);
-            pJog1->setPulando(pulando);
-            pJog1->setVelocidadeY(velocidade_y);
-            
-            entidades->adiciona(static_cast<Entidade*>(pJog1));
-            GC.setPJog1(pJog1);
-        }
-        else{
-            pJog2 = new Jogador(x,y);
-            pJog2->setPontos(pontos);
-            pJog2->setVidas(num_vidas);
-            pJog2->setAndando(andando);
-            pJog2->setPulando(pulando);
-            pJog2->setVelocidadeY(velocidade_y);
-
-            entidades->adiciona(static_cast<Entidade*>(pJog2));
-            GC.setPJog2(pJog2);
-        }     
-    }
-    buffer.close();
-    */
-    configurarJogador();
+    
     configurarPerseguido();
+    definirGravidade();
+    colorirPlataformas();
+    ativa = true;
     
 }
 
@@ -155,7 +79,7 @@ void Jupiter::criarPlataformas() {
     }
 }
 
-void Fases::Jupiter::criarPortais() {
+/*void Fases::Jupiter::criarPortais() {
     Portal* pP = NULL;
 
     for (int i = 1; i < 4; i++) {
@@ -174,7 +98,7 @@ void Fases::Jupiter::criarPortais() {
     }
     if (pP) delete pP;
     pP = NULL;
-}
+}*/
 
 void Fases::Jupiter::criarBuracosNegros(){
     BuracoNegro* pB = NULL;
@@ -206,7 +130,7 @@ void Fases::Jupiter::criarBuracosNegros(){
     pB = NULL;
 }
 
-void Fases::Jupiter::criarAlienigenas() {
+/*void Fases::Jupiter::criarAlienigenas() {
     Alienigena* pA = NULL;
     const int max = 1;
 
@@ -222,7 +146,7 @@ void Fases::Jupiter::criarAlienigenas() {
     }
     if (pA) delete pA;
     pA = NULL;
-}
+}*/
 
 void Jupiter::criarViajantesMaus(){
     ViajanteMau* pVM = NULL;
@@ -246,37 +170,125 @@ void Jupiter::criarViajantesMaus(){
 void Jupiter::criarAberracoesEspaciais(){
     AberracaoEspacial* pAB = NULL;
 
-    pAB = new AberracaoEspacial(1, 80.0f);
-    if(pAB){
-        entidades->adiciona(static_cast<Entidade*>(pAB));
-        GC.incluirInim(static_cast<Inimigo*>(pAB));
+    const int max = rand() % 2 + 3;
+    const float distancia = 80.0f;
+    int v_inicial = -1;
+
+    for(int i = 0; i<max; i++){
+        pAB = new AberracaoEspacial(i * distancia, distancia);
+        pAB->atualizaVelocidade(Vector2f(v_inicial, 1));
+
+        if(pAB){
+            entidades->adiciona(static_cast<Entidade*>(pAB));
+            GC.incluirInim(static_cast<Inimigo*>(pAB));
+        }
+
+        pAB = NULL;
+        v_inicial *= -1;
     }
-    else
-        cout<< "Fase::criarAberracoesEspaciais() -> Erro na alocacao dinamica" << endl;
+
+    if (pAB) delete pAB;
+    pAB = NULL;
 
 }
 
 void Jupiter::criarPlasmas() {
+    
     Plasma* pPla = NULL;
 
-    pPla = new Plasma(0,0);
+    const int max = rand() % 2 + 1;
 
-    if(pPla){
-        entidades->adiciona(static_cast<Entidade*>(pPla));
-        GC.incluirPlas(pPla);
-        AberracaoEspacial::setPPlasma(pPla);
+    for(int i = 0; i<max; i++){
+        pPla = new Plasma(0,0);
+
+        if(pPla){
+            entidades->adiciona(static_cast<Entidade*>(pPla));
+            GC.incluirPlas(pPla);
+            AberracaoEspacial::incluiPlasma(pPla);
+        }
+
+        pPla = NULL;
+
     }
-    else
-        cout<< "Fase::criarAberracoesEspaciais() -> Erro na alocacao dinamica" << endl;
 
+    if (pPla) delete pPla;
+    pPla = NULL;
 
+}
+
+void Jupiter::recuperarBuracosNegros()
+{
+    float x,y;
+    BuracoNegro* pBuNegro = NULL;
+    ifstream buffer(BURACO_NEGRO_SALVAR_PATH);
+
+    while(buffer >> x >> y){
+        pBuNegro = new BuracoNegro(x,y);
+
+        entidades->adiciona(static_cast<Entidade*>(pBuNegro));
+        GC.incluirObst(static_cast<Obstaculo*>(pBuNegro));
+
+        pBuNegro = NULL;
+    }
+
+    buffer.close();
+}
+
+void Jupiter::recuperarAberracoesEspaciais()
+{
+    float x,y,velocidade_x;
+    int num_vidas, recarregando;
+    bool andando;
+    ifstream buffer(ABERRACAO_ESPACIAL_SALVAR_PATH);
+    AberracaoEspacial* pAbEsp = NULL;
+
+    while(buffer >> x >> y >> num_vidas >> andando >> velocidade_x >> recarregando){
+        pAbEsp = new AberracaoEspacial(x,y);
+
+        pAbEsp->setVidas(num_vidas);
+        pAbEsp->calcVivo();
+        pAbEsp->setAndando(andando);
+        pAbEsp->setVelocidadeX(velocidade_x);
+        pAbEsp->setRecarregando(recarregando);
+
+        entidades->adiciona(static_cast<Entidade*>(pAbEsp));
+        GC.incluirInim(static_cast<Inimigo*>(pAbEsp));
+
+        pAbEsp = NULL;
+    }
+
+    buffer.close();
+}
+
+void Jupiter::recuperarPlasmas()
+{
+    float x, y;
+    bool ativo;
+    Vector2f vel;
+
+    Plasma* pPlasma = NULL;
+    ifstream buffer(PLASMA_SALVAR_PATH);
+
+    while(buffer >> ativo >> x >> y >> vel.x >> vel.y){
+        pPlasma = new Plasma(x,y);
+
+        pPlasma->setAtivo(ativo);
+        pPlasma->setVelocidade(vel);
+
+        entidades->adiciona(static_cast<Entidade*>(pPlasma));
+        GC.incluirPlas(pPlasma);
+        AberracaoEspacial::incluiPlasma(pPlasma);
+
+        pPlasma = NULL;
+    }
+
+    buffer.close();
 }
 
 void Jupiter::configurarPerseguido(){
     ViajanteMau::setPJog(pJog1);
     AberracaoEspacial::setPJog(pJog1);
 }
-
 
 void Jupiter::atualizaPerseguido() {
     if (pJog2) {
