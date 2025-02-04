@@ -22,6 +22,9 @@ private:
     Jogador* jog2;
     Lua faseLua;
     Jupiter faseJupiter;
+    Fase* faseEscolhida;
+
+    bool doisJogadores;
 
     /* Instancia singleton do Gerenciador Grafico */
     static GerenciadorGrafico* pGG;
@@ -34,6 +37,10 @@ public:
     void distribuirJogador(const int id_jogador);
     void executar();
     void encerrarJogo() { GE.encerrar(); }
+    void setDoisJogadores(const bool d) { doisJogadores = d; }
+    void escolherFase(const int id_fase);
+
+    Fase* getFaseEscolhida() const;
 
 };
 

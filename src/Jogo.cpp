@@ -8,41 +8,46 @@ GE(),
 jog1(new Jogador()),
 jog2(new Jogador()),
 faseLua(),
-faseJupiter()
+faseJupiter(),
+faseEscolhida(NULL),
+doisJogadores(false)
 {
-    distribuir();
+    menu.setJogo(this);
+    // distribuir(); // só sabe-se como distribuir depois que o jogador informar fase e multijogador
     executar();
 }
 
 Jogo::~Jogo() {
     jog1 = NULL;
     jog2 = NULL;
+    faseEscolhida = NULL;
 }
 
 
 void Jogo::distribuir()
 {
-    menu.setJogo(this);
-
     GE.setPJog(jog1);
     distribuirJogador(1);
-    GE.setPJog(jog2);
-    distribuirJogador(2);
+
+    if (doisJogadores) {
+        GE.setPJog(jog2);
+        distribuirJogador(2);
+    }
 }
 
 void Jogo::distribuirJogador(const int id_jogador) {
     
-    // Fase* rFase = &faseJupiter;
-    Fase* rFase = &faseLua;
+    Fase* pF = NULL;
+    pF = getFaseEscolhida();
 
     if (id_jogador == 1) {
-        (*rFase).setJogador(jog1, 1);
-        (*rFase).configurarJogador(1);
-        (*rFase).definirGravidade();
+        (*pF).setJogador(jog1, 1);
+        (*pF).configurarJogador(1);
+        (*pF).definirGravidade();
     } else {
-        (*rFase).setJogador(jog2, 2);
-        (*rFase).configurarJogador(2);
-        (*rFase).definirGravidade();
+        (*pF).setJogador(jog2, 2);
+        (*pF).configurarJogador(2);
+        (*pF).definirGravidade();
 
     }
 
@@ -74,14 +79,27 @@ void Jogo::executar() {
         // execucoes
         menu.executar();
         if (menu.getEstado() == "Jogando") {
-            // faseJupiter.executar();
-            faseLua.executar();
+            faseEscolhida->executar();
         }
-        // faseLua.executar();
-        // faseJupiter.executar();
-        
+
         pGG->exibirNaJanela();
     }
 }
 
+void Jogo::escolherFase(const int id_fase) {
+    if (id_fase == 1) {
+        faseEscolhida = &faseLua;
+    } else {
+        faseEscolhida = &faseJupiter;
+    }
+}
 
+Fase *Jogo::getFaseEscolhida() const
+{
+    if (faseEscolhida) {
+        return faseEscolhida;
+    } else {
+        cout << "const Fase *Jogo::getFaseEscolhida() -> nenhuma fase foi escolhida" << endl;
+        return NULL;
+    }
+}

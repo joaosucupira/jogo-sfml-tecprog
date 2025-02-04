@@ -33,6 +33,8 @@ public:
     void desenharOpcaos();
     void menuInicial();
     void menuNovoJogo();
+    void recebeMultijogador();
+    void recebeFaseEscolhida();
     void menuCarregar();
     void menuLeaderboard();
     void menuPause();

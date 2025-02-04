@@ -110,11 +110,23 @@ void Menu::menuInicial() {
 void Menu::menuNovoJogo() {
     limparOpcoes();
     estadoAtual = estados[1];
-    opcoes.push_back(criarTexto("Digite seu nome:", 100, 200));
-    opcoes.push_back(criarTexto("Escolha uma fase:", 100, 250));
-    opcoes.push_back(criarTexto("Quantos jogadores:", 100, 300));
-    opcoes.push_back(criarTexto("Jogar", 100, 350));
-    opcoes.push_back(criarTexto("Voltar", 100, 400));
+    opcoes.push_back(criarTexto("Digite seu nome:", 100, 200)); // 0
+    opcoes.push_back(criarTexto("Escolha uma fase:", 100, 250)); // 1
+    recebeFaseEscolhida(); // 2 e 3
+    opcoes.push_back(criarTexto("Quantos jogadores:", 100, 300)); // 4
+    recebeMultijogador(); // 5 e 6
+    opcoes.push_back(criarTexto("Jogar", 100, 350)); // 7
+    opcoes.push_back(criarTexto("Voltar", 100, 400)); // 8
+}
+
+void Menu::recebeMultijogador() {
+    opcoes.push_back(criarTexto("1J", 400, 300));
+    opcoes.push_back(criarTexto("2J", 450, 300));
+}
+
+void Menu::recebeFaseEscolhida() {
+    opcoes.push_back(criarTexto("Lua", 370, 250));
+    opcoes.push_back(criarTexto("Jupiter", 440, 250));
 }
 
 void Menu::menuCarregar() {
@@ -191,19 +203,40 @@ void Menu::tratarSelecaoNovoJogo(const int opcao) {
         case 0:
             estadoAtual = estados[6];
             break;
-        case 1:
-            // receberEscolhaFase();
-            break;
         case 2:
-            // receberMultiJogador();
+            // escolheu Lua
+            pJogo->escolherFase(1);
+            opcoes[opcaoSelecionada].setFillColor(Color::Green);
+            opcaoSelecionada+=2;
             break;
         case 3:
-            //Jogar
-            estadoAtual = estados[4];
+            // escolheu Jupiter
+            pJogo->escolherFase(2);
+            opcoes[opcaoSelecionada].setFillColor(Color::Green);
+            opcaoSelecionada++;
             break;
-        case 4:
-            menuInicial();
+
+        case 5:
+            pJogo->setDoisJogadores(false);
+            pJogo->distribuir();
+            opcoes[opcaoSelecionada].setFillColor(Color::Green);
+            opcaoSelecionada+=2;
             break;
+        case 6:
+            pJogo->setDoisJogadores(true);
+            pJogo->distribuir();
+            opcoes[opcaoSelecionada].setFillColor(Color::Green);
+            opcaoSelecionada++;
+            break;
+
+        case 7:
+            estadoAtual = estados[4]; //Jogar
+            break;
+
+        case 8:
+            menuInicial(); // Voltar
+            break;
+
         default:
             break;
     }
@@ -266,6 +299,7 @@ void Menu::tratarSelecaoPause(const int opcao) {
 void Menu::setJogo(Jogo *pJ) {
     if (pJ) {
         pJogo = pJ;
+        
     } else {
         cout << "void Menu::setJogo(Jogo *pJ) -> ponteiro nulo" << endl;
     }
