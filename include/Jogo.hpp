@@ -11,8 +11,8 @@
 #include "stdafx.h"
 
 
-class Jogo
-{
+class Jogo {
+
 private:
 
     Menu menu;
@@ -30,15 +30,22 @@ private:
     static GerenciadorGrafico* pGG;
   
 public:
+
     Jogo();
     ~Jogo();
-
-    void distribuir();
-    void distribuirJogador(const int id_jogador);
+    
+    /*----------------------------------------------------------------------------*/
     void executar();
-    void encerrarJogo() { GE.encerrar(); }
-    void setDoisJogadores(const bool d) { doisJogadores = d; }
+    void distribuir();
     void escolherFase(const int id_fase);
+    void setDoisJogadores(const bool d) { doisJogadores = d; }
+
+private:
+
+    void distribuirJogador(const int id_jogador);
+    void recuperarJogador();
+    void encerrarJogo() { GE.encerrar(); }
+    
 
     Fase* getFaseEscolhida() const;
 

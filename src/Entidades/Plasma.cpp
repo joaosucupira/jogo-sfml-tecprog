@@ -1,18 +1,13 @@
 #include "Plasma.hpp"
 
+int Plasma::dano = 0;
 
 Plasma::Plasma(float x_inicial, float y_inicial):
 Entidade(x_inicial, y_inicial),
 ativo(false),
-antiGrav(7.8),
-dano(3)
+antiGrav(7.8)
 {
-    figura = new Figura(
-        PLASMA_TAM_SEC, PLASMA_TAM_SEC,
-        1, 1,
-        0, 0,
-        0, 0
-    );
+    figura = new Figura(24,24,0,0,0,0,0,0);
     carregarFigura(PLASMA_PATH);
     setTamanhoFigura(LARG_PLASMA, ALT_PLASMA);
     setPosicaoFigura(x_inicial, y_inicial);
@@ -20,18 +15,43 @@ dano(3)
     
 }
 
-Plasma::~Plasma()
-{
+Plasma::~Plasma(){
 }
 
-void Plasma::executar()
-{
+void Plasma::executar(){
     if (ativo) {
         aplicarGravidade();
-        atualizarFigura();
         deslocar();
         desenhar();
     }
+}
+
+void Plasma::salvar(){
+
+    buffer.open(PLASMA_SALVAR_PATH, std::ios::app);
+
+    if(!buffer){
+        cout << "Plasma::salvar() -> erro ao abrir arquivo" << endl;
+        return;
+    }
+
+    buffer << ativo << ' ' 
+    << x << ' ' 
+    << y << ' ' 
+    << velocidade.x << ' '
+    << velocidade.y << endl;
+
+    buffer.close();
+}
+
+void Plasma::queimar(Jogador* pJ){
+
+    pJ->operator--(dano);
+    velocidade = Vector2f(0,0);
+    
+    //colocando fora da tela
+    x = -LARG_PLASMA;
+    y = -ALTURA;
 }
 
 void Plasma::deslocar(){
@@ -66,12 +86,4 @@ void Plasma::planar(){
     aux = antiGrav * pGG->getDeltaTime();
 
     velocidade.y -= aux;
-}
-
-void Plasma::queimar(Jogador* pJ){
-
-    pJ->operator--(3);
-    velocidade = Vector2f(0,0);
-    x = -LARG_PLASMA;
-    y = -ALTURA;
 }

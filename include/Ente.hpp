@@ -13,30 +13,39 @@
 class Ente
 {
 protected:
-    static int cont_id;
-    int id;
 
+    //static int cont_id;
+    //int id;
     Figura* figura;
     static GerenciadorGrafico* pGG;
 
 public:
+
     Ente();
     virtual ~Ente();
-    virtual void executar() = 0;
-    virtual void atualizarFigura();
 
-    void desenhar();
+    /*----------------------------------------------------------------------------*/
+    virtual void executar() = 0;
+
+    /*SET*/
     void setGGrafico() { pGG = GerenciadorGrafico::getInstancia(); }
-    void setId(const int i) { id = i; }
-    const int getId() const { return id; }
-    Figura* getFigura() { return figura; }
-    FloatRect getLimites() const; //sprite
+    //void setId(const int i) { id = i; }
     void setPosicaoFigura(const float x, const float y);
     void setTamanhoFigura(const float x, const float y);
     void setCorFigura(const Color& cor);
-    void atualizaParaFiguraInicial();   
+
+    /*GET*/
+    //const int getId() const { return id; }
+    Figura* getFigura() const { return figura; }
+    FloatRect getLimites() const;
+
+protected:
+
+    virtual void atualizarFigura();
+
+    void desenhar();
     void carregarFigura(string pathTextura);
-    
+    void atualizaParaFiguraInicial();
 
 };
 

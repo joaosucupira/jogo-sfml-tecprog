@@ -23,7 +23,12 @@ GerenciadorEventos::~GerenciadorEventos()
     pJog2 = NULL;
 }
 
-/* Métodos auxiliares */
+
+void GerenciadorEventos::executar() {
+    
+    monitorarJogador();
+    
+}
 
 void GerenciadorEventos::setPJog(Jogador* pJ) {
     if(pJ)
@@ -50,11 +55,11 @@ void GerenciadorEventos::monitorarJogador() {
 
     /* Inicializar a posicao como 0 aqui impede que seja travada */
     pJog->setVelocidadeX(0.0f);
-    pJog->setEstaAndando(false);
+    pJog->setAndando(false);
     
     if (pJog2) {
         pJog2->setVelocidadeX(0.0f);
-        pJog2->setEstaAndando(false);
+        pJog2->setAndando(false);
     }
     
     lerTeclado();
@@ -76,18 +81,18 @@ void GerenciadorEventos::monitorarJogador() {
 void Gerenciadores::GerenciadorEventos::lerTeclado() {
 
     if (Keyboard::isKeyPressed(Keyboard::Left)) {
-        pJog->setEstaAndando(true);
+        pJog->setAndando(true);
         pJog->setVelocidadeX(-VELOCIDADE_ANDAR);
     }
 
     if (Keyboard::isKeyPressed(Keyboard::Right)) {
-        pJog->setEstaAndando(true);
+        pJog->setAndando(true);
         pJog->setVelocidadeX(VELOCIDADE_ANDAR);
     }
 
     if (Keyboard::isKeyPressed(Keyboard::Up)) {
-        if (!pJog->getEstaPulando()) {
-            pJog->setEstaPulando(true);
+        if (!pJog->getPulando()) {
+            pJog->setPulando(true);
             pJog->setVelocidadeY(-sqrt(2.0 * pJog->getGravidade() * ALTURA_PULO));
         }
     }
@@ -96,25 +101,19 @@ void Gerenciadores::GerenciadorEventos::lerTeclado() {
 
 void Gerenciadores::GerenciadorEventos::lerTecladoJog2() {
     if (Keyboard::isKeyPressed(Keyboard::A)) {
-        pJog2->setEstaAndando(true);
+        pJog2->setAndando(true);
         pJog2->setVelocidadeX(-VELOCIDADE_ANDAR);
     }
 
     if (Keyboard::isKeyPressed(Keyboard::D)) {
-        pJog2->setEstaAndando(true);
+        pJog2->setAndando(true);
         pJog2->setVelocidadeX(VELOCIDADE_ANDAR);
     }
 
     if (Keyboard::isKeyPressed(Keyboard::W)) {
-        if (!pJog2->getEstaPulando()) {
-            pJog2->setEstaPulando(true);
+        if (!pJog2->getPulando()) {
+            pJog2->setPulando(true);
             pJog2->setVelocidadeY(-sqrt(2.0 * pJog->getGravidade() * ALTURA_PULO));
         }
     }
-}
-
-void GerenciadorEventos::executar() {
-    
-    monitorarJogador();
-    
 }

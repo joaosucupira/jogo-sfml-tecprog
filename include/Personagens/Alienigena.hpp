@@ -27,11 +27,11 @@ namespace Personagens{
 
         Alienigena(const float x_inicial, const float y_inicial);
         ~Alienigena();
-
-
+        
+        /*----------------------------------------------------------------------------*/
         void danificar(Jogador* pJ);
         void executar();
-        void salvaDataBuffer();
+        void salvar();
         
     };
 

@@ -14,21 +14,13 @@ private:
     Sprite sprite;
     Texture textura;
     IntRect secao;
-
     Vector2i qntdSecoes;
     Vector2i secaoFinal;
     Vector2i secaoInicial;
-
     int contAtualizacoes;
 
 public:
 
-    /*Klug: Se todas as sprites que tem animacao tiverem um padrao na 
-    secao final , inicial e qntd de secoes dá para usar macro em vez de 
-    colocar parametro na construtora. Se for assim dá pra criar um booleano animacao
-    na construtora para colocar os valores default, caso seja falso
-    Sucupira: Genial
-    */
     Figura(
         const int tamSecaoX = 1, const int tamSecaoY = 1,
         const int qntdSecaoX = 0, const int qntdSecaoY = 0,
@@ -37,20 +29,23 @@ public:
     );
 
     ~Figura();
- 
+
+    /*----------------------------------------------------------------------------*/
     void carregarTextura(string path_textura);
-
-    void setPosicao(const float x, const float y){ sprite.setPosition(x,y); }
     void atualizarSecao();
-
     void setSecaoInicial();
-    void virar(const int sentido);
+    //void virar(const int sentido);
+    //void mostrarDano();
 
+    /*SET*/
+    void setPosicao(const float x, const float y){ sprite.setPosition(x,y); }
     void setTamanho(const float tX, const float tY);
     void setCor(const Color &cor);
-    void mostrarDano();
-
+    
+    /*GET*/
     FloatRect getLimites() const{ return sprite.getGlobalBounds();}
     Sprite getSprite() const {return sprite;}
+    Vector2f getTamanho() const;
+
 };
 

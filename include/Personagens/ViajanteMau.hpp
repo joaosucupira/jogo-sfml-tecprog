@@ -6,7 +6,6 @@
 
 // TROCAR PARA SPRITE DE ViajanteMau
 #define VIAJANTE_MAU_PATH "./assets/Inimigo/mini_demon_48x48.png"
-
 #define TAM_SECAO_VM 48
 #define QNTD_SECAO_X_VM 4
 #define QNTD_SECAO_Y_VM 1
@@ -33,18 +32,21 @@ namespace Personagens{
         ViajanteMau(const float x_inicial, const float y_inicial);
         ~ViajanteMau();
 
+        /*----------------------------------------------------------------------------*/
         void danificar(Jogador* pJ);
         void executar();
-        void salvaDataBuffer();
-        
-        void seguirJogador();
+        void salvar();
+        FloatRect hitBox() const;
+
+        /*SET*/
         static void setPJog(Jogador* pJ);
         void setPlanando(bool planou){ planando = planou;}
 
-        void planar();
-        void mover();
+    private:
 
-        FloatRect hitBox() const;
+        void mover();
+        void seguirJogador();
+        void planar();
         
     };
 

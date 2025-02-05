@@ -19,11 +19,11 @@ namespace Obstaculos {
         Plataforma(const int x_inicial, const int y_inicial);
         ~Plataforma();
 
+        /*----------------------------------------------------------------------------*/
+        void executar();
+        void salvar();
+
         void obstacular(Jogador* pJ);
         void obstacular(Inimigo* pI);
-        void salvaDataBuffer();
-        
-        void executar();
-        
     };
 } using namespace Obstaculos;

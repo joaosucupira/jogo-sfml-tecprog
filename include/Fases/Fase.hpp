@@ -26,7 +26,7 @@ namespace Fases {
         Jogador* pJog2;
 
         bool ativa;
-        GerenciadorEventos GE;
+        GerenciadorEventos* pGE;
         GerenciadorColisoes GC;
         ListaEntidades* entidades;
         bool vencida;
@@ -35,31 +35,49 @@ namespace Fases {
         Fase();
         virtual ~Fase();
 
+        /*----------------------------------------------------------------------------*/
+        virtual void executar() = 0;
+        virtual void criar() = 0;
+        virtual void recuperar() = 0;
+        
+        void notificar();
+        void salvar();
+        /*SET*/
+        void setJogador(Jogador* pJ, const int num_jogador);
+        void setPGEventos(GerenciadorEventos* pG);
+
+    protected:
+
+        virtual void criarInimigos() = 0;
+        virtual void criarObstaculos() = 0;
+
+        virtual void criarPlataformas() = 0;
+        //virtual void criarPortais() = 0;
+
+        //virtual void criarAlienigenas() = 0;
+        virtual void criarViajantesMaus() = 0;
+
+        virtual void recuperarViajantesMaus();
+        virtual void recuperarPlataformas();
+
+        
+        virtual void definirGravidade() = 0;
+        virtual void configurarPerseguido() = 0;
+
+        virtual void atualizaPerseguido() = 0;
+
+        /*----------------------------------------------------------------------------*/
+        void configurarJogador();
+        void recuperarJogador();
+        
+        void criarCenario();
+        void construirPlano(const float tamanho, Vector2f inicio);
+        void construirParede(const float tamanho, Vector2f inicio);
+        
+
         void renderizarEntidades();
         void gerenciarEventos();
         void gerenciarColisoes();
-        void atualizaPerseguido();
-        void configurarPerseguido();
-        void executar();
-        void criarPlataformas();
-
-        void construirPlano(const float tamanho, Vector2f inicio);
-        void construirParede(const float tamanho, Vector2f inicio);
-    
-        virtual void criarInimigos() = 0;
-        virtual void criarObstaculos() = 0;
-        virtual void criarPortais() = 0;
-        virtual void criarAlienigenas() = 0;
-        virtual void criarViajantesMaus() = 0;
-        virtual void criarSuportes() = 0;
-        
-        virtual void carregarFigura() = 0; 
-        virtual void definirGravidade() = 0;
-        void criarCenario();
-        void setJogador(Jogador* pJ, const int num_jogador);
-        void configurarJogador(const int num_jogador);
-        void notificar();
-
     };
 
 } using namespace Fases;

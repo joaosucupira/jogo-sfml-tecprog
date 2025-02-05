@@ -6,16 +6,24 @@
 #define BURACO_NEGRO_PATH "./assets/Obstaculo/B_Negro_100x100px.png"
 #define BURACO_NEGRO_LADO 100
 
-class BuracoNegro : public Obstaculo {
-    private:
+namespace Obstaculos{
+
+    class BuracoNegro : public Obstaculo {
+        
         float forca;
+
     public:
+
         BuracoNegro(const float x_inicial, const float y_inicial);
         ~BuracoNegro();
+
+        /*----------------------------------------------------------------------------*/
+        void executar();
+        void salvar();
         
         void obstacular(Jogador* pJ);
         void obstacular(Inimigo* pI) {}
         void obstacular(Plasma* pP) {}
-        void executar();
-        void salvaDataBuffer() {}
-};
+        
+    };
+} using namespace Obstaculos;

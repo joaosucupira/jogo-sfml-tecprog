@@ -21,6 +21,26 @@ BuracoNegro::~BuracoNegro()
 {
 }
 
+void BuracoNegro::executar() {
+    desenhar();
+    atualizarFigura();
+}
+
+void BuracoNegro::salvar(){
+
+    buffer.open(BURACO_NEGRO_SALVAR_PATH,std::ios::app);
+    
+    if(!buffer){
+        cout << "BuracoNegro::salvar() -> Erro ao abrir arquivo" << endl;
+        return;
+    }
+
+    buffer << x << ' '
+    << y << endl;
+
+    buffer.close();
+}
+
 void BuracoNegro::obstacular(Jogador *pJ) {
     if (!pJ) {
         cout << "void BuracoNegro::obstacular(Jogador *pJ) -> ponteiro nulo" << endl;
@@ -56,9 +76,4 @@ void BuracoNegro::obstacular(Jogador *pJ) {
         cout << "Vida jogador: " << pJ->getVidas() << endl;
     }
     
-}
-
-void BuracoNegro::executar() {
-    desenhar();
-    atualizarFigura();
 }

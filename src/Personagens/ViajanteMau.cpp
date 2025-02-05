@@ -19,21 +19,14 @@ planando(true)
     setTamanhoFigura(TAM_VIAJANTE, TAM_VIAJANTE);
     setPosicaoFigura(x, y);
 
-    estaAndando = true;
-    num_vidas = 0;
+    andando = true;
+    num_vidas = 1;
     maldade = 1;
 
 }
 
 ViajanteMau::~ViajanteMau()
 {
-}
-
-void ViajanteMau::setPJog(Jogador *pJ){
-    if(pJ)
-        pJog = pJ;
-    else
-        cout << "void ViajanteMau::setPJog() -> ponteiro nulo." << endl;
 }
 
 
@@ -44,6 +37,24 @@ void ViajanteMau::executar() {
         atualizarFigura();
         desenhar();
     }
+}
+
+void ViajanteMau::salvar()
+{
+    buffer.open(VIAJANTE_MAU_SALVAR_PATH, std::ios::app);
+
+    if(!buffer){
+        cout << "Erro ao abrir arquivo: " << VIAJANTE_MAU_SALVAR_PATH << endl;
+        return;
+    }
+
+    buffer << x << ' '
+    << y << ' '
+    << num_vidas << ' '
+    << andando << ' '
+    << planando << endl;
+
+    buffer.close();
 }
 
 void ViajanteMau::danificar(Jogador* pJ) {
@@ -66,13 +77,13 @@ void ViajanteMau::danificar(Jogador* pJ) {
     //Colisao a esquerda do Jogador
     if(sentidos[0]){
         pJ->setX(hitBoxAb.left  + (hitBoxAb.width - ajusteJogador + COLISAO));
-        posicionar(x-COLISAO,y);
+        x-= COLISAO;
     }
         
     //Colisao a direita do Jogador
     else if(sentidos[1]){
         pJ->setX(hitBoxAb.left - (hitBoxJog.width + ajusteJogador + COLISAO));
-        posicionar(x+COLISAO,y);
+        x+= COLISAO;
     }
 
     //Colisao a baixo do Jogador
@@ -84,24 +95,22 @@ void ViajanteMau::danificar(Jogador* pJ) {
 
     if(sentidos[3]){
         pJ->setY(hitBoxAb.top + (hitBoxAb.height - ajusteJogador));
-        posicionar(x,y-COLISAO);
         pJ->setVelocidadeY(0);
         pular = false;
+
+        y-=COLISAO;
     }
 
     pJ->parar();
     parar();
 
     if(pular)
-        pJ->setEstaPulando(false);
+        pJ->setPulando(false);
 
     if(danifica)
         pJ->operator--(maldade);
 
     planando = false;
-}
-
-void ViajanteMau::salvaDataBuffer() {
 }
 
 void ViajanteMau::seguirJogador(){
@@ -119,7 +128,7 @@ void ViajanteMau::seguirJogador(){
         return;
     }
 
-    if(!estaAndando)
+    if(!andando)
         return;
 
     //Aplicando relação bionivica de ponto e vetor
@@ -200,4 +209,11 @@ FloatRect ViajanteMau::hitBox() const
     lim.height -=  2* ajuste;
 
     return lim;
+}
+
+void ViajanteMau::setPJog(Jogador *pJ){
+    if(pJ)
+        pJog = pJ;
+    else
+        cout << "void ViajanteMau::setPJog() -> ponteiro nulo." << endl;
 }

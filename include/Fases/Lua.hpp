@@ -13,15 +13,31 @@ namespace Fases {
     public:
         Lua();
         ~Lua();
-        void criarObstaculos();
+
+        /*----------------------------------------------------------------------------*/
+        void executar();
+        void criar();
+        void recuperar();
+
+    private:
+        
         void criarInimigos();
-        void criarSuportes();
+        void criarObstaculos();
+
+        void criarPlataformas();
         void criarPortais();
+
         void criarAlienigenas();
         void criarViajantesMaus();
-        void carregarFigura();
+
+        void recuperarPortais();
+        void recuperarAlienigenas();
 
         void definirGravidade();
+        void configurarPerseguido();
+        
+        void atualizaPerseguido();
+
     };
 
 

@@ -7,20 +7,49 @@ maxViajantesMaus(0)
         1309, 736, 
         1, 1, 
         0, 0,
-        0, 0
-    );
-    carregarFigura();
-    criarObstaculos();
-    criarInimigos();
+        0, 0);
+    carregarFigura(LUA_PATH);
 }
 
 Lua::~Lua()
 {
 }
 
+void Lua::executar(){
+    if(ativa){
+        desenhar();
+        renderizarEntidades();
+        gerenciarColisoes();
+        gerenciarEventos();
+        atualizaPerseguido();
+    }
+}
+
+void Lua::criar(){
+    definirGravidade();
+    criarInimigos();
+    criarObstaculos();
+    configurarJogador();
+    configurarPerseguido();
+    ativa = true;
+}
+
+void Lua::recuperar(){
+    recuperarPlataformas();
+    recuperarPortais();
+    recuperarAlienigenas();
+    recuperarViajantesMaus();
+    recuperarJogador();
+    
+    configurarPerseguido();
+    definirGravidade();
+    ativa = true;
+}
+
+
 void Fases::Lua::criarObstaculos() {
     criarPortais();
-    criarSuportes();
+    criarPlataformas();
     criarCenario();
 }
 
@@ -29,10 +58,9 @@ void Fases::Lua::criarInimigos() {
     criarViajantesMaus();
 }
 
-void Fases::Lua::criarSuportes() {
+void Fases::Lua::criarPlataformas() {
+    
     const float largura_plataforma = LARGURA / 4.0f;
-
-
 
     if (rand() % 2) {
         Vector2f inicio(LARG_PLATAFORMA / 2.0f, ALTURA - ALT_PLATAFORMA * 4.6);
@@ -109,18 +137,62 @@ void Lua::criarViajantesMaus(){
     pVM = NULL;
 }
 
+void Lua::recuperarPortais()
+{
+    float x,y;
+    Portal* pPortal = NULL;
+    ifstream buffer(PORTAL_SALVAR_PATH);
 
-void Fases::Lua::carregarFigura() {
-    if (!figura) {
-        cout << "void Fases::Lua::carregarFigura() -> ponteiro nulo" << endl;
-        return;
+    while(buffer >> x >> y){
+        pPortal = new Portal(x,y);
+
+        entidades->adiciona(static_cast<Entidade*>(pPortal));
+        GC.incluirObst(static_cast<Obstaculo*>(pPortal));
+
+        pPortal= NULL;
     }
 
-    figura->carregarTextura(LUA_PATH);
+    buffer.close();
+}
 
+void Lua::recuperarAlienigenas()
+{
+    float x,y,velocidade_x;
+    int num_vidas;
+    bool andando;
+    ifstream buffer(ALIENIGENA_SALVAR_PATH);
+    Alienigena* pAli = NULL;
+
+    while(buffer >> x >> y >> num_vidas >> andando >> velocidade_x){
+        pAli = new Alienigena(x,y);
+
+        pAli->setVidas(num_vidas);
+        pAli->calcVivo();
+        pAli->setAndando(andando);
+        pAli->setVelocidadeX(velocidade_x);
+
+        entidades->adiciona(static_cast<Entidade*>(pAli));
+        GC.incluirInim(static_cast<Inimigo*>(pAli));
+
+        pAli = NULL;
+    }
+
+    buffer.close();
 }
 
 void Lua::definirGravidade()
 {
     Entidade::setGravidade(1.5f);
+}
+
+void Lua::configurarPerseguido(){
+    ViajanteMau::setPJog(pJog1);
+}
+
+void Lua::atualizaPerseguido() {
+    if (pJog2) {
+        if (!pJog1->getVivo() && pJog2->getVivo()) {
+            ViajanteMau::setPJog(pJog2);
+        }
+    }
 }
