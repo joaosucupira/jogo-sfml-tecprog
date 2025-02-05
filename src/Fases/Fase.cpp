@@ -34,27 +34,6 @@ void Fase::salvar(){
         cout << "Fase::salvar() -> ponteiro nulo entidades" << endl;
 }
 
-void Fase::configurarJogador() {
-
-    if (!pJog1) {
-        cout << "void Fase::configurarJogador(const int num_jogador, Vector2f posicao) -> jogador 1 nao configurado" << endl;
-        return;
-    }
-
-    GC.setPJog1(pJog1);
-    entidades->adiciona(static_cast<Entidade*>(pJog1));
-    pJog1->setXY(LARG_PLATAFORMA * 4.0, ALTURA - (LARG_PLATAFORMA * 2));
-
-    if(!pJog2) {
-        cout << "void Fase::configurarJogador(const int num_jogador, Vector2f posicao) -> jogador 2 nao configurado" << endl;
-        return;
-    }
-
-    GC.setPJog2(pJog2);
-    entidades->adiciona(static_cast<Entidade*>(pJog2));
-    pJog2->setXY(LARG_PLATAFORMA * 5.0, ALTURA - (LARG_PLATAFORMA * 2));
-}
-
 void Fase::recuperarJogador()
 {
     if (!pJog1) {

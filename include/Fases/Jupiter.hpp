@@ -40,6 +40,8 @@ namespace Fases {
         void recuperarAberracoesEspaciais();
         void recuperarPlasmas();
 
+        void configurarJogador();
+
         void colorirPlataformas();
         void definirGravidade();
         void configurarPerseguido();

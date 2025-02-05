@@ -287,6 +287,30 @@ void Jupiter::recuperarPlasmas()
     buffer.close();
 }
 
+void Jupiter::configurarJogador()
+{
+    if (!pJog1) {
+        cout << "void Fase::configurarJogador(const int num_jogador, Vector2f posicao) -> jogador 1 nao configurado" << endl;
+        return;
+    }
+
+    GC.setPJog1(pJog1);
+    entidades->adiciona(static_cast<Entidade*>(pJog1));
+    pJog1->setXY(LARG_PLATAFORMA * 4.0, ALTURA - (LARG_PLATAFORMA * 2));
+    pJog1->setIdFase(2);
+
+    if(!pJog2) {
+        cout << "void Fase::configurarJogador(const int num_jogador, Vector2f posicao) -> jogador 2 inexistente" << endl;
+        return;
+    }
+
+    GC.setPJog2(pJog2);
+    entidades->adiciona(static_cast<Entidade*>(pJog2));
+    pJog2->setXY(LARG_PLATAFORMA * 5.0, ALTURA - (LARG_PLATAFORMA * 2));
+    pJog2->setIdFase(2);
+    
+}
+
 void Jupiter::configurarPerseguido(){
     ViajanteMau::setPJog(pJog1);
     AberracaoEspacial::setPJog(pJog1);

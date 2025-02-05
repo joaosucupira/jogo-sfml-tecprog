@@ -8,7 +8,8 @@ Jogador::Jogador(const float x_inicial, const float y_inicial) :
 Personagem(x_inicial, y_inicial),
 pontos(0),
 ehJog1(cont == 0),
-pulando(false)
+pulando(false),
+idFase(-1)
 {
 
     if (cont < 2) {
@@ -53,7 +54,8 @@ void Jogador::salvar(){
         cout << "Jogador()::salvar -> Erro ao abrir arquivo" << endl;
     }
 
-    buffer << ehJog1 << ' '
+    buffer << idFase << ' '
+    << ehJog1 << ' '
     << pontos << ' '
     << x << ' '
     << y << ' '

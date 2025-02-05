@@ -1,8 +1,8 @@
 #include "ListaEntidades.hpp"
 #include "stdafx.h"
-#include <filesystem>
+
 using namespace Listas;
-using namespace std::filesystem;
+
 
 ListaEntidades::ListaEntidades() : LE()
 {
@@ -47,11 +47,19 @@ void ListaEntidades::salvar()
 
     try{
         for(const auto &entrada : directory_iterator(pasta))
-            remove(entrada.path());
+            remove_all(entrada.path());
     }catch(const filesystem_error &erro){
-        cout << "Erro ao limpar arquivos de salvamento" << erro.what() <<endl;
+        cout << " ListaEntidades::salvar -> Erro ao limpar arquivos de salvamento" << erro.what() <<endl;
         return;
     }
+    
+    try{
+        create_directory("./data/salvamento");
+    }catch(const filesystem_error &erro){
+        cout << " ListaEntidades::salvar-> Erro ao criar diretorio salvamento" << erro.what() <<endl;
+        return;
+    }
+    
 
     for(int i = 0; i<tam; i++){
         LE[i]->salvar();

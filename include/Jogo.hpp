@@ -36,14 +36,15 @@ public:
     
     /*----------------------------------------------------------------------------*/
     void executar();
-    void distribuir();
     void escolherFase(const int id_fase);
     void setDoisJogadores(const bool d) { doisJogadores = d; }
     const bool criarFaseEscolhida();
+    const bool recuperarFase();
 
+    void salvarFaseEscolhida();
+    
 private:
 
-    void distribuirJogador(const int id_jogador);
     void recuperarJogador();
     void encerrarJogo() { GE.encerrar(); }
     

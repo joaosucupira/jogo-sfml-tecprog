@@ -33,6 +33,8 @@ namespace Fases {
         void recuperarPortais();
         void recuperarAlienigenas();
 
+        void configurarJogador();
+        
         void definirGravidade();
         void configurarPerseguido();
         

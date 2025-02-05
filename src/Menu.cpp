@@ -194,7 +194,10 @@ void Menu::tratarSelecaoInicial(const int opcao) {
             menuNovoJogo();
             break;
         case 1:
-            menuCarregar();
+            if(pJogo->recuperarFase())
+                estadoAtual = estados[4]; //Jogando
+            else
+                menuCarregar();
             break;
         case 2:
             menuLeaderboard();
@@ -225,13 +228,11 @@ void Menu::tratarSelecaoNovoJogo(const int opcao) {
 
         case 5:
             pJogo->setDoisJogadores(false);
-            pJogo->distribuir();
             opcoes[opcaoSelecionada].setFillColor(Color::Green);
             opcaoSelecionada+=2;
             break;
         case 6:
             pJogo->setDoisJogadores(true);
-            pJogo->distribuir();
             opcoes[opcaoSelecionada].setFillColor(Color::Green);
             opcaoSelecionada++;
             break;
@@ -296,7 +297,8 @@ void Menu::tratarSelecaoPause(const int opcao) {
         estadoAtual = estados[4]; // Jogando
         break;
     case 1:
-        // Salvamento
+        pJogo->salvarFaseEscolhida();// Salvamento
+        opcoes[opcaoSelecionada].setFillColor(Color::Green);
         break;
     case 2:
         menuInicial();

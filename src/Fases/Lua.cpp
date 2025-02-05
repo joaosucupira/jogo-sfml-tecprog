@@ -180,6 +180,30 @@ void Lua::recuperarAlienigenas()
     buffer.close();
 }
 
+void Lua::configurarJogador()
+{
+    if (!pJog1) {
+        cout << "void Fase::configurarJogador(const int num_jogador, Vector2f posicao) -> jogador 1 nao configurado" << endl;
+        return;
+    }
+
+    GC.setPJog1(pJog1);
+    entidades->adiciona(static_cast<Entidade*>(pJog1));
+    pJog1->setXY(LARG_PLATAFORMA * 4.0, ALTURA - (LARG_PLATAFORMA * 2));
+    pJog1->setIdFase(1);
+
+    if(!pJog2) {
+        cout << "void Fase::configurarJogador(const int num_jogador, Vector2f posicao) -> jogador 2 inexistente" << endl;
+        return;
+    }
+
+    GC.setPJog2(pJog2);
+    entidades->adiciona(static_cast<Entidade*>(pJog2));
+    pJog2->setXY(LARG_PLATAFORMA * 5.0, ALTURA - (LARG_PLATAFORMA * 2));
+    pJog2->setIdFase(1);
+    
+}
+
 void Lua::definirGravidade()
 {
     Entidade::setGravidade(1.5f);

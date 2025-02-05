@@ -16,10 +16,12 @@
 #include <list>
 #include <vector>
 #include <math.h>
+#include <filesystem>
 
 /* Namespaces */
 using namespace std;
 using namespace sf;
+using namespace std::filesystem;
 
 /* Macros */
 #define TAXA_QUADROS 60
@@ -42,14 +44,14 @@ using namespace sf;
 #define TAM_BURACO_NEGRO 140.0f
 
 /*Macors - path arquivos salvar*/
-#define BURACO_NEGRO_SALVAR_PATH "./data/buraco_negro.txt"
-#define PLATAFORMA_SALVAR_PATH "./data/plataforma.txt"
-#define PORTAL_SALVAR_PATH "./data/portal.txt"
-#define ABERRACAO_ESPACIAL_SALVAR_PATH "./data/aberracao_espacial.txt"
-#define ALIENIGENA_SALVAR_PATH "./data/alienigena.txt"
-#define JOGADOR_SALVAR_PATH "./data/jogador.txt"
-#define VIAJANTE_MAU_SALVAR_PATH "./data/viajante_mau.txt"
-#define PLASMA_SALVAR_PATH "./data/plasma.txt"
+#define BURACO_NEGRO_SALVAR_PATH "./data/salvamento/buraco_negro.txt"
+#define PLATAFORMA_SALVAR_PATH "./data/salvamento/plataforma.txt"
+#define PORTAL_SALVAR_PATH "./data/salvamento/portal.txt"
+#define ABERRACAO_ESPACIAL_SALVAR_PATH "./data/salvamento/aberracao_espacial.txt"
+#define ALIENIGENA_SALVAR_PATH "./data/salvamento/alienigena.txt"
+#define JOGADOR_SALVAR_PATH "./data/salvamento/jogador.txt"
+#define VIAJANTE_MAU_SALVAR_PATH "./data/salvamento/viajante_mau.txt"
+#define PLASMA_SALVAR_PATH "./data/salvamento/plasma.txt"
 
 
 

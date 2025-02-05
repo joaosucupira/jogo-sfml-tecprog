@@ -67,7 +67,6 @@ namespace Fases {
         virtual void atualizaPerseguido() = 0;
 
         /*----------------------------------------------------------------------------*/
-        void configurarJogador();
         void recuperarJogador();
         
         void criarCenario();
