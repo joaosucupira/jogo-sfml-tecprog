@@ -237,7 +237,11 @@ void Menu::tratarSelecaoNovoJogo(const int opcao) {
             break;
 
         case 7:
-            estadoAtual = estados[4]; //Jogar
+            if (pJogo->criarFaseEscolhida()) {
+                estadoAtual = estados[4]; // Jogar
+            } else {
+                opcoes.push_back(criarTexto("Por favor, pelo menos escolha a fase!", 100, 500));
+            }
             break;
 
         case 8:

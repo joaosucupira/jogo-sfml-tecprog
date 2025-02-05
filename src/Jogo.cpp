@@ -22,7 +22,6 @@ Jogo::~Jogo() {
     faseEscolhida = NULL;
 }
 
-
 void Jogo::distribuir()
 {
     GE.setPJog(jog1);
@@ -118,6 +117,28 @@ void Jogo::escolherFase(const int id_fase) {
     }
 }
 
+const bool Jogo::criarFaseEscolhida() {
+    if (!faseEscolhida) {
+        cout << "void Jogo::criarFaseEscolhida() -> fase ou numero de jogadores nao escolhido -> escolha" << endl;
+        return false; // nao foi possivel criar
+    } 
+
+    // j1
+    GE.setPJog(jog1);
+    faseEscolhida->setJogador(jog1, 1);
+
+    if (doisJogadores) {
+        // j2
+        GE.setPJog(jog2);
+        faseEscolhida->setJogador(jog2, 2);
+    }
+    
+    faseEscolhida->setPGEventos(&GE);
+    faseEscolhida->criar();
+
+    return true;
+}
+
 Fase *Jogo::getFaseEscolhida() const
 {
     if (faseEscolhida) {
@@ -127,3 +148,4 @@ Fase *Jogo::getFaseEscolhida() const
         return NULL;
     }
 }
+
