@@ -51,8 +51,8 @@ void Jogo::executar() {
             faseEscolhida->executar();
 
             if (faseEscolhida->getVencida()) {
-                menu.setEstado(0); // Fase vencida
-                menu.menuInicial();
+                menu.setEstado(8); // Fase vencida
+                menu.menuFaseVencida();
             }
         }
 
@@ -87,13 +87,15 @@ void Jogo::limparJogo()
 void Jogo::notificar() {
     if (doisJogadores) {
         if (!(jog1->getVivo() || jog2->getVivo())) {
-            menu.setEstado(0); // Game over
-            menu.menuInicial();
+            menu.setEstado(7); // Game over
+            menu.menuGameOver();
+            // menu.menuInicial();
         }
     } else {
         if (!jog1->getVivo()) {
-            menu.setEstado(0); // Game over
-            menu.menuInicial();
+            menu.setEstado(7); // Game over
+            menu.menuGameOver();
+            // menu.menuInicial();
         }
     }
 }

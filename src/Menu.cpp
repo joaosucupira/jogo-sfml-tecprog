@@ -34,7 +34,9 @@ void Menu::inicializaEstados() {
         {3, "Leaderboard"},
         {4, "Jogando"},
         {5, "Pause"},
-        {6, "Digitando"}
+        {6, "Digitando"},
+        {7, "Game Over"},
+        {8, "Fase Vencida"}
     };
     estadoAtual = estados[0];
 }
@@ -99,6 +101,16 @@ void Menu::desenharOpcaos() {
     if (estadoAtual == "Inicial") {
         desenharLogo();
     }
+
+    if (estadoAtual == "Game Over") {
+        desenharGameOver();
+    }
+
+    if (estadoAtual == "Fase Vencida") {
+        desenharFaseVencida();
+    }
+
+    
 
     for (const auto& opcao : opcoes) {
         pGG->getPJanela()->draw(opcao);
@@ -165,6 +177,24 @@ void Menu::menuPause() {
     opcoes.push_back(criarTexto("Menu inicial", 100, 300));
 }
 
+void Menu::menuGameOver() {
+    limparOpcoes();
+    opcaoSelecionada = 0;
+    estadoAtual = estados[7];
+
+    opcoes.push_back(criarTexto("Tentar novamente",100,200));
+    opcoes.push_back(criarTexto("Menu inicial",100,250));
+}
+
+void Menu::menuFaseVencida() {
+    limparOpcoes();
+    opcaoSelecionada = 0;
+    estadoAtual = estados[8];
+
+    opcoes.push_back(criarTexto("Ver ranking",100,200));
+    opcoes.push_back(criarTexto("Menu inicial",100,250));
+}
+
 void Menu::limparOpcoes() {
     if (!opcoes.empty()) {
         opcoes.clear();
@@ -189,6 +219,12 @@ void Menu::trataPorEstado(const int escolha) {
 
     } else if (estadoAtual == "Pause") {
         tratarSelecaoPause(escolha);
+
+    } else if (estadoAtual == "Game Over") {
+        tratarSelecaoGameOver(escolha);
+
+    } else if (estadoAtual == "Fase Vencida") {
+        tratarSelecaoFaseVencida(escolha);
     }
 }
 
@@ -317,14 +353,6 @@ void Menu::tratarSelecaoPause(const int opcao) {
     }
 }
 
-void Menu::setJogo(Jogo *pJ) {
-    if (pJ) {
-        pJogo = pJ;
-        
-    } else {
-        cout << "void Menu::setJogo(Jogo *pJ) -> ponteiro nulo" << endl;
-    }
-}
 
 void Menu::tratarEntradaTexto() {
     nomeJogador = "";
@@ -357,11 +385,71 @@ void Menu::tratarEntradaTexto() {
     }
 }
 
+void Menu::tratarSelecaoGameOver(const int opcao) {
+    limparOpcoes();
+    opcaoSelecionada = 0;
+    menuGameOver();
+
+    switch (opcao)
+    {
+    case 0:
+        pJogo->limparJogo();
+        menuNovoJogo();
+        break;
+    case 1:
+        menuInicial();
+        break;
+    
+    default:
+        break;
+    }
+}
+
+void Menu::tratarSelecaoFaseVencida(const int opcao) {
+    limparOpcoes();
+    opcaoSelecionada = 0;
+    menuFaseVencida();
+
+    switch (opcao)
+    {
+    case 0:
+        // menuLeaderboard();
+        break;
+    case 1:
+        menuInicial();
+        break;
+    
+    default:
+        break;
+    }
+}
+
+void Menu::setJogo(Jogo *pJ) {
+    if (pJ) {
+        pJogo = pJ;
+        
+    } else {
+        cout << "void Menu::setJogo(Jogo *pJ) -> ponteiro nulo" << endl;
+    }
+}
+
 
 void Menu::desenharLogo() {
 
     pGG->getPJanela()->draw(rLogo);
 
+}
+
+void Menu::desenharGameOver() {
+    Text gameover = criarTexto("GAME OVER", 500, 300);
+    gameover.setCharacterSize(64);
+    pGG->getPJanela()->draw(gameover);
+}
+
+void Menu::desenharFaseVencida() {
+    Text sucesso = criarTexto("SUCESSO!", 500, 300);
+    sucesso.setCharacterSize(64);
+    pGG->getPJanela()->draw(sucesso);
 }
 
 void Menu::carregarLogo() {
