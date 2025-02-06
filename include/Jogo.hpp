@@ -20,8 +20,8 @@ private:
     GerenciadorEventos GE;
     Jogador* jog1;
     Jogador* jog2;
-    Lua faseLua;
-    Jupiter faseJupiter;
+    Lua* faseLua;
+    Jupiter* faseJupiter;
     Fase* faseEscolhida;
 
     bool doisJogadores;

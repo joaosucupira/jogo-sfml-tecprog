@@ -45,6 +45,8 @@ namespace Personagens{
         /*SET*/
         static void setPJog(Jogador* pJ);
         static void incluiPlasma(Plasma* pPlas);
+        static void limparPlasmas();
+        static void limparJog(){pJog = NULL;}
 
         void setRecarregando(const int rec){recarregando = rec;}
 

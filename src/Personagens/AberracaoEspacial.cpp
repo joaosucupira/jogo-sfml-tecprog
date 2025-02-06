@@ -296,3 +296,9 @@ void AberracaoEspacial::incluiPlasma(Plasma* pPlas){
     else
         cout << "AberracaoEspacial::incluiPlasma(Plasma* pPlas) -> ponteiro nulo" << endl;
 }
+
+void Personagens::AberracaoEspacial::limparPlasmas()
+{
+    while(!plasmas.empty())
+        plasmas.pop();
+}

@@ -38,6 +38,7 @@ namespace Personagens{
         void salvar();
         FloatRect hitBox() const;
 
+        static void limparJog(){pJog = NULL;}
         /*SET*/
         static void setPJog(Jogador* pJ);
         void setPlanando(bool planou){ planando = planou;}

@@ -7,8 +7,8 @@ menu(),
 GE(),
 jog1(NULL),
 jog2(NULL),
-faseLua(),
-faseJupiter(),
+faseLua(NULL),
+faseJupiter(NULL),
 faseEscolhida(NULL),
 doisJogadores(false)
 {
@@ -60,17 +60,30 @@ void Jogo::limparJogo()
     jog1 = NULL;
     jog2 = NULL;
     faseEscolhida = NULL;
-    faseJupiter.limpar();
-    faseLua.limpar();
+
+    if(faseJupiter){
+        delete faseJupiter;
+        faseJupiter = NULL;
+    }
+        
+    if(faseLua){
+        delete faseLua;
+        faseLua = NULL;
+    }
+       
+
     GE.limparJog();
     srand(time(NULL));
 }
 
 void Jogo::escolherFase(const int id_fase) {
     if (id_fase == 1) {
-        faseEscolhida = &faseLua;
+        faseLua = new Lua();
+        faseEscolhida = static_cast<Fase*>(faseLua);
+
     } else if (id_fase == 2){
-        faseEscolhida = &faseJupiter;
+        faseJupiter = new Jupiter();
+        faseEscolhida = static_cast<Fase*>(faseJupiter);
     }
 }
 

@@ -10,6 +10,9 @@ maxAberracoesEspaciais(0)
 }
 
 Fases::Jupiter::~Jupiter(){
+    AberracaoEspacial::limparPlasmas();
+    AberracaoEspacial::limparJog();
+    ViajanteMau::limparJog();
 }
 
 void Jupiter::executar(){

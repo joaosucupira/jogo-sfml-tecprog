@@ -66,15 +66,6 @@ void GerenciadorColisoes::incluirPlas(Plasma* pPlas){
         cout << "GerenciadorColisoes::incluirPlas(Plasma* pPlas) -> ponteiro plasma nulo" << endl;
 }
 
-void GerenciadorColisoes::limparListas()
-{
-    obstaculos.clear();
-    inimigos.clear();
-    plasmas.clear();
-    pJog1 = NULL;
-    pJog2 = NULL;
-}
-
 const int GerenciadorColisoes::getInimigosVivos() const {
     int cont = 0;
     for (int i = 0; i < (int) inimigos.size(); i++) {
@@ -236,6 +227,7 @@ void GerenciadorColisoes::coliJogInimigo(){
 
                     inimigos[i]->setSentidos(sentidos);
                     inimigos[i]->danificar(pJog2);
+                    notificarObservadores();
 
                     cout << "Vida jogador 2: " << pJog2->getVidas() << endl;
                 }   

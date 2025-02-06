@@ -42,7 +42,6 @@ namespace Fases {
         
         void notificar();
         void salvar();
-        void limpar();
 
         /*SET*/
         void setJogador(Jogador* pJ, const int num_jogador);

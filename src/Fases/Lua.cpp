@@ -9,6 +9,7 @@ maxViajantesMaus(0)
 
 Lua::~Lua()
 {
+    ViajanteMau::limparJog();
 }
 
 void Lua::executar(){
