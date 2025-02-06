@@ -89,6 +89,7 @@ void Jogo::executar() {
         pGG->limparJanela();
         // execucoes
         menu.executar();
+        
         if (menu.getEstado() == "Jogando") {
             faseEscolhida->executar();
         }
