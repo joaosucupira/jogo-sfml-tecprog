@@ -1,10 +1,11 @@
 #pragma once
 #include "stdafx.h"
 #include "Jogador.hpp"
+#include "Sujeito.hpp"
 
 namespace Gerenciadores {
 
-class GerenciadorEventos
+class GerenciadorEventos : public Sujeito
 {
 private:
     Event evento;

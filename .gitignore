@@ -15,3 +15,6 @@ obj/
 
 # Ignorar outros arquivos específicos de compilação
 *.o
+
+# Ignorar arquivos de salvamento
+*.txt
