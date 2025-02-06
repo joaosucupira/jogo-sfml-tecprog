@@ -9,7 +9,8 @@ Personagem(x_inicial, y_inicial),
 pontos(0),
 ehJog1(cont == 0),
 pulando(false),
-idFase(-1)
+idFase(-1),
+nome()
 {
 
     if (cont < 2) {

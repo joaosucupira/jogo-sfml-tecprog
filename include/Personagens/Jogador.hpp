@@ -22,6 +22,7 @@ namespace Personagens {
         bool ehJog1;
         bool pulando;
         int idFase;
+        String nome;
 
     public:
 
@@ -37,11 +38,13 @@ namespace Personagens {
         void setPulando(bool pulou){ pulando = pulou;}
         void setPontos(const int pts){ pontos = pts;}
         void setIdFase(const int idFs){idFase = idFs;}
+        void setNome(const String n){ nome = n;}
 
         /*GET*/
         const int getPontos() const { return pontos; }
         const bool getPulando() const {return pulando;}
         const int getIdFase() const {return idFase;}
+        const String getNome() const {return nome;}
 
         /*----------------------------------------------------------------------------*/
         void operator+=(int pts);

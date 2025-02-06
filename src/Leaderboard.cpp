@@ -3,15 +3,15 @@
 Leaderboard::Leaderboard() :
 pontuacoes()
 {
-    pontuacoes.emplace(10, "joao");
-    pontuacoes.emplace(25, "klug");
-    pontuacoes.emplace(30, "fulano");
-    pontuacoes.emplace(20, "sucupira");
-
+    recuperar();
 }
 
 Leaderboard::~Leaderboard()
 {
+    salvar();
+    
+    while(!pontuacoes.empty())
+        pontuacoes.pop();
 }
 
 void Leaderboard::executar()
@@ -21,4 +21,28 @@ void Leaderboard::executar()
         std::cout << "Prioridade: " << top.first << ", Valor: " << top.second << '\n';
         pontuacoes.pop();
     }
+}
+
+void Leaderboard::recuperar()
+{
+
+    int pontos;
+    String nome;
+    ifstream buffer(LEADER_BOARD_PATH);
+
+
+
+}
+
+void Leaderboard::salvar()
+{
+    int pontos;
+    String nome;
+    ofstream(LEADER_BOARD_PATH, std::ios::out);
+
+}
+
+void Leaderboard::adicionarJogador(Jogador *pJog)
+{
+    pontuacoes.emplace(pJog->getPontos(), pJog->getNome());
 }

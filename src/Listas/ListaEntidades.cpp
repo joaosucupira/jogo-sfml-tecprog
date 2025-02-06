@@ -42,12 +42,12 @@ void ListaEntidades::excluiTodos()
 void ListaEntidades::salvar()
 {
 
-    path pasta("./data");
+    path pasta("./data/salvamento");
     const int tam = LE.getTamanho();
 
     try{
         for(const auto &entrada : directory_iterator(pasta))
-            remove_all(entrada.path());
+            remove(entrada.path());
     }catch(const filesystem_error &erro){
         cout << " ListaEntidades::salvar -> Erro ao limpar arquivos de salvamento" << erro.what() <<endl;
         return;
