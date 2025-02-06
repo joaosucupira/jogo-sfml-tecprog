@@ -111,6 +111,7 @@ void Menu::desenharOpcaos() {
 
 void Menu::menuInicial() {
     limparOpcoes();
+    opcaoSelecionada = 0; // impede o segfault
     estadoAtual = estados[0];
     opcoes.push_back(criarTexto("Novo Jogo", 100, 200));
     opcoes.push_back(criarTexto("Carregar", 100, 250));

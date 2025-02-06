@@ -24,17 +24,11 @@ GerenciadorEventos::~GerenciadorEventos()
 }
 
 
-void GerenciadorEventos::executar() {
-    
+void GerenciadorEventos::executar() {   
     monitorarJogador();
     
 }
 
-void Gerenciadores::GerenciadorEventos::digitarNome() {
-    if (evento.type == Event::TextEntered) {
-        cout << "Digitando" << endl;
-    }
-}
 
 void Gerenciadores::GerenciadorEventos::limparJog()
 {

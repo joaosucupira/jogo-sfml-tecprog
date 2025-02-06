@@ -8,10 +8,11 @@
 #include "Lua.hpp"
 #include "Jupiter.hpp"
 #include "Menu.hpp"
+#include "Observer.hpp"
 #include "stdafx.h"
 
 
-class Jogo {
+class Jogo : public Observer{
 
 private:
 
@@ -43,6 +44,7 @@ public:
 
     void salvarFaseEscolhida();
     void limparJogo();
+    void notificar();
     
     
 private:

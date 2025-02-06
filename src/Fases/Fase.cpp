@@ -209,8 +209,6 @@ void Fase::recuperarPlataformas()
 }
 // Notificação do observer
 void Fase::notificar() {
-    // cout << "Notificacao!!" << endl;
-    // cout << "inimigos = " << GC.getInimigosVivos() << endl;
     
     if (GC.getInimigosVivos() <= 0) {
         vencida = true;

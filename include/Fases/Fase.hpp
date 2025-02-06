@@ -19,7 +19,7 @@
 
 namespace Fases {
     // Requisitos: Herança dupla e Observer
-    class Fase : public Ente, Observer 
+    class Fase : public Ente, public Observer 
     {
     protected:
         Jogador* pJog1;
@@ -42,6 +42,7 @@ namespace Fases {
         
         void notificar();
         void salvar();
+        const bool getVencida() const { return vencida; }
 
         /*SET*/
         void setJogador(Jogador* pJ, const int num_jogador);

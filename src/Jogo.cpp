@@ -49,7 +49,13 @@ void Jogo::executar() {
         menu.executar();
         if (menu.getEstado() == "Jogando") {
             faseEscolhida->executar();
+
+            if (faseEscolhida->getVencida()) {
+                menu.setEstado(0); // Fase vencida
+                menu.menuInicial();
+            }
         }
+
 
         pGG->exibirNaJanela();
     }
@@ -76,6 +82,22 @@ void Jogo::limparJogo()
     srand(time(NULL));
 }
 
+// Jogador em operator()-- notifica jogo que perdeu vida logo devemos avaliar se ambos morreram
+//  ! - mudar o estado certo
+void Jogo::notificar() {
+    if (doisJogadores) {
+        if (!(jog1->getVivo() || jog2->getVivo())) {
+            menu.setEstado(0); // Game over
+            menu.menuInicial();
+        }
+    } else {
+        if (!jog1->getVivo()) {
+            menu.setEstado(0); // Game over
+            menu.menuInicial();
+        }
+    }
+}
+
 void Jogo::escolherFase(const int id_fase) {
     if (id_fase == 1) {
         faseLua = new Lua();
@@ -96,11 +118,13 @@ const bool Jogo::criarFaseEscolhida() {
     jog1 = new Jogador();
     GE.setPJog(jog1);
     faseEscolhida->setJogador(jog1, 1);
+    jog1->adicionarObservador(this);
 
     if (doisJogadores) {
         jog2 = new Jogador();
         GE.setPJog(jog2);
         faseEscolhida->setJogador(jog2, 2);
+        jog2->adicionarObservador(this);
     }
     
     faseEscolhida->setPGEventos(&GE);
@@ -129,6 +153,7 @@ void Jogo::recuperarJogador()
             jog1->setPulando(pulando);
             jog1->setVelocidadeY(velocidade_y);
             jog1->setIdFase(idFase);
+            jog1->adicionarObservador(this);
             contJogs++;
         }
         else{
@@ -140,6 +165,7 @@ void Jogo::recuperarJogador()
             jog2->setPulando(pulando);
             jog2->setVelocidadeY(velocidade_y);
             jog2->setIdFase(idFase);
+            jog2->adicionarObservador(this);
             contJogs++;
         }     
     }
@@ -176,6 +202,7 @@ const bool Jogo::recuperarFase()
 
     GE.setPJog(jog1);
     faseEscolhida->setJogador(jog1, 1);
+
 
     if (doisJogadores) {
         GE.setPJog(jog2);

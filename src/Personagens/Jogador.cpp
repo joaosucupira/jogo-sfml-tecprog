@@ -73,4 +73,12 @@ void Personagens::Jogador::escolheCor() {
 
 void Jogador::operator+=(int pts) { pontos += pts; }
 
+void Jogador::operator--() {
+    Personagem::operator--();
+    notificarObservadores();
+}
 
+void Personagens::Jogador::operator--(const int dano) {
+    Personagem::operator--();
+    notificarObservadores();
+}

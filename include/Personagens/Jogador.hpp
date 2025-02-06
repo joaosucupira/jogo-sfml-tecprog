@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include "Personagem.hpp"
+#include "Sujeito.hpp"
 
 #define JOGADOR_PATH "./assets/Jogador/player.24x24.png"
 
@@ -15,7 +16,7 @@
 
 namespace Personagens {
 
-    class Jogador : public Personagem {
+    class Jogador : public Personagem, public Sujeito {
 
         static int cont;
         int pontos;
@@ -45,6 +46,8 @@ namespace Personagens {
 
         /*----------------------------------------------------------------------------*/
         void operator+=(int pts);
+        void operator--();
+        void operator--(const int dano);
 
     };
 } using namespace Personagens;

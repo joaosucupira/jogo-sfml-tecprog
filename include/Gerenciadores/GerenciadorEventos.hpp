@@ -19,7 +19,6 @@ public:
     /*----------------------------------------------------------------------------*/
     void executar();
     void encerrar() { evento.type = Event::Closed; }
-    void digitarNome();
     
     void limparJog();
     /*SET*/
