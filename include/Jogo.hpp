@@ -44,6 +44,7 @@ public:
     void salvarFaseEscolhida();
     void limparJogo();
     
+    
 private:
 
     void recuperarJogador();

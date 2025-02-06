@@ -103,6 +103,10 @@ void Menu::desenharOpcaos() {
     for (const auto& opcao : opcoes) {
         pGG->getPJanela()->draw(opcao);
     }
+
+    if (nomeJogador != "" && estadoAtual == "Novo Jogo") {
+        pGG->getPJanela()->draw(criarTexto(nomeJogador, 350, 200));
+    }
 }
 
 void Menu::menuInicial() {
@@ -116,6 +120,7 @@ void Menu::menuInicial() {
 
 void Menu::menuNovoJogo() {
     limparOpcoes();
+
     estadoAtual = estados[1];
     opcoes.push_back(criarTexto("Digite seu nome:", 100, 200)); // 0
     opcoes.push_back(criarTexto("Escolha uma fase:", 100, 250)); // 1
@@ -210,6 +215,7 @@ void Menu::tratarSelecaoInicial(const int opcao) {
 
 void Menu::tratarSelecaoNovoJogo(const int opcao) {
     // limparOpcoes();
+
     switch (opcao) {
         case 0:
             estadoAtual = estados[6];
@@ -320,36 +326,36 @@ void Menu::setJogo(Jogo *pJ) {
 }
 
 void Menu::tratarEntradaTexto() {
+    nomeJogador = "";
 
-    // Verifica se uma tecla foi pressionada
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace) && !nomeJogador.empty()) {
-        // Remove o último caractere se Backspace for pressionado
-        nomeJogador.pop_back();
+    Event evento;
+    while (estadoAtual == "Digitando") {
+        while (pGG->getPJanela()->pollEvent(evento)) {
 
-    } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-        // Finaliza a entrada de texto (não faz nada além de sair do modo de digitação)
-        opcoes.push_back(criarTexto(nomeJogador, 
-        opcoes[0].getPosition().x + opcoes[0].getGlobalBounds().width + 50,
-        opcoes[0].getPosition().y 
-        ));
-
-        estadoAtual = estados[1];
-        // return;
-    } else {
-        // Adiciona caracteres ao nomeJogador
-        for (int i = sf::Keyboard::A; i <= sf::Keyboard::Z; i++) {
-            if (sf::Keyboard::isKeyPressed(static_cast<sf::Keyboard::Key>(i))) {
-                char letra = 'A' + (i - sf::Keyboard::A); // Converte o código da tecla para caractere
-                nomeJogador += letra;
+            if (evento.type == Event::KeyPressed && evento.key.code == Keyboard::Enter) {
+                estadoAtual = estados[1]; // Novo jogo
             }
-        }
 
-        // Adiciona espaço se a barra de espaço for pressionada
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-            nomeJogador += ' ';
+            if (evento.type == Event::TextEntered) { 
+                if (evento.text.unicode < 32) {
+                    // Backspace
+                    if (evento.text.unicode == 8 && !nomeJogador.empty()) {
+                        nomeJogador.pop_back();
+                    }
+                } else if (
+                    evento.text.unicode >= 32 &&
+                    evento.text.unicode < 128 &&
+                    evento.text.unicode != 58 && 
+                    nomeJogador.size() < 150) {
+
+                    nomeJogador += static_cast<char>(evento.text.unicode);
+                    desenharOpcaos();
+                }
+            }
         }
     }
 }
+
 
 void Menu::desenharLogo() {
 
@@ -367,6 +373,7 @@ void Menu::carregarLogo() {
     rLogo.setPosition(LARGURA / 1.8f, ALTURA / 2.0f);
 
 }
+
 
 Text Menu::criarTexto(const string& texto, float x, float y) {
     Text txt;

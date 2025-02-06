@@ -7,6 +7,9 @@ debug/
 # Ignorar binários e arquivos de saída
 bin/
 
+# Ignorar arquivos de salvamento
+data/
+
 # Ignorar objetos de compilação
 obj/
 
@@ -16,5 +19,3 @@ obj/
 # Ignorar outros arquivos específicos de compilação
 *.o
 
-# Ignorar arquivos de salvamento
-*.txt

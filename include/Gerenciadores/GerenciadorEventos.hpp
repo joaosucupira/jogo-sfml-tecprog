@@ -5,7 +5,7 @@
 
 namespace Gerenciadores {
 
-class GerenciadorEventos : public Sujeito
+class GerenciadorEventos
 {
 private:
     Event evento;
@@ -19,7 +19,8 @@ public:
     /*----------------------------------------------------------------------------*/
     void executar();
     void encerrar() { evento.type = Event::Closed; }
-
+    void digitarNome();
+    
     void limparJog();
     /*SET*/
     void setPJog(Jogador* pJ);
@@ -32,6 +33,7 @@ private:
     void monitorarJogador();
     void lerTeclado();
     void lerTecladoJog2();
+
 
 };
 
