@@ -10,7 +10,8 @@ jog2(new Jogador()),
 faseLua(),
 faseJupiter(),
 faseEscolhida(NULL),
-doisJogadores(false)
+doisJogadores(false),
+ranking()
 {
     menu.setJogo(this);
     executar();
@@ -89,7 +90,7 @@ void Jogo::executar() {
         pGG->limparJanela();
         // execucoes
         menu.executar();
-        
+
         if (menu.getEstado() == "Jogando") {
             faseEscolhida->executar();
         }

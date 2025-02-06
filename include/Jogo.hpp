@@ -8,6 +8,7 @@
 #include "Lua.hpp"
 #include "Jupiter.hpp"
 #include "Menu.hpp"
+#include "Leaderboard.hpp"
 #include "stdafx.h"
 
 
@@ -28,6 +29,7 @@ private:
 
     /* Instancia singleton do Gerenciador Grafico */
     static GerenciadorGrafico* pGG;
+    Leaderboard ranking;
   
 public:
 
