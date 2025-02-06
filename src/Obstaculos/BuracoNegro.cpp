@@ -63,6 +63,13 @@ void BuracoNegro::obstacular(Jogador *pJ) {
     }
 
     pJ->setXY(pJ->getX() + fX, pJ->getY() + fY);
+    
+    puxar(pJ, dt);
+
+    
+}
+
+void BuracoNegro::puxar(Jogador *pJ, float dt) {
 
     // Temporizador acumulado para controlar o dano
     static float tempoAcumulado = 0.0f; // Mantém o tempo entre chamadas
@@ -75,5 +82,4 @@ void BuracoNegro::obstacular(Jogador *pJ) {
         tempoAcumulado = 0.0f; // Reiniciar o temporizador
         cout << "Vida jogador: " << pJ->getVidas() << endl;
     }
-    
 }

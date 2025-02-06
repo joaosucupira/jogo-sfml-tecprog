@@ -24,6 +24,8 @@ namespace Obstaculos{
         void obstacular(Jogador* pJ);
         void obstacular(Inimigo* pI) {}
         void obstacular(Plasma* pP) {}
+
+        void puxar(Jogador* pJ, float dt);
         
     };
 } using namespace Obstaculos;

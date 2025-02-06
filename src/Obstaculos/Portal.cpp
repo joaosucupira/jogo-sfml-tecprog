@@ -48,7 +48,16 @@ void Portal::obstacular(Jogador *pJ) {
         abs(getLimites().top - pJ->getLimites().top <= raio)) {
 
         pJ->operator--();
-        pJ->setXY(LARG_PLATAFORMA * 2, ALTURA - (LARG_PLATAFORMA * 2));
+        teletransportar(pJ);
         cout << "Vida Jogador:" << pJ->getVidas() << endl;
     }
+}
+
+void Portal::teletransportar(Jogador* pJ) {
+    if (!pJ) {
+        cout << "void Portal::teletransportar(Jogador * pJ) -> ponteiro nulo" << endl;
+        return;
+    }
+
+    pJ->setXY(LARG_PLATAFORMA * 2, ALTURA - (LARG_PLATAFORMA * 2));
 }

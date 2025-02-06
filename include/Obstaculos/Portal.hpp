@@ -21,5 +21,6 @@ namespace Obstaculos{
         void obstacular(Jogador* pJ);
         void obstacular(Inimigo* pI) {}
         void obstacular(Plasma* pP) {}
+        void teletransportar(Jogador* pJ);
     };
 } using namespace Obstaculos;
