@@ -34,6 +34,16 @@ void Fase::salvar(){
         cout << "Fase::salvar() -> ponteiro nulo entidades" << endl;
 }
 
+void Fase::limpar()
+{
+    entidades->excluiTodos();
+    GC.limparListas();
+
+    pGE = NULL;
+    pJog1 = NULL;
+    pJog2 = NULL;
+}
+
 void Fase::recuperarJogador()
 {
     if (!pJog1) {

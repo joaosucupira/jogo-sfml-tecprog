@@ -1,13 +1,12 @@
 #include "Plasma.hpp"
 
-int Plasma::dano = 0;
-
 Plasma::Plasma(float x_inicial, float y_inicial):
 Entidade(x_inicial, y_inicial),
 ativo(false),
-antiGrav(7.8)
+antiGrav(7.8),
+dano(0)
 {
-    figura = new Figura(24,24,0,0,0,0,0,0);
+    figura = new Figura(24,24);
     carregarFigura(PLASMA_PATH);
     setTamanhoFigura(LARG_PLASMA, ALT_PLASMA);
     setPosicaoFigura(x_inicial, y_inicial);
@@ -39,7 +38,8 @@ void Plasma::salvar(){
     << x << ' ' 
     << y << ' ' 
     << velocidade.x << ' '
-    << velocidade.y << endl;
+    << velocidade.y << ' '
+    << dano << endl;
 
     buffer.close();
 }

@@ -3,11 +3,7 @@
 Lua::Lua() : Fase(),
 maxViajantesMaus(0)
 {
-    figura = new Figura(
-        1309, 736, 
-        1, 1, 
-        0, 0,
-        0, 0);
+    figura = new Figura(1309, 736);
     carregarFigura(LUA_PATH);
 }
 
@@ -26,6 +22,7 @@ void Lua::executar(){
 }
 
 void Lua::criar(){
+
     definirGravidade();
     criarInimigos();
     criarObstaculos();
@@ -35,6 +32,7 @@ void Lua::criar(){
 }
 
 void Lua::recuperar(){
+
     recuperarPlataformas();
     recuperarPortais();
     recuperarAlienigenas();

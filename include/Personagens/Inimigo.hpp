@@ -20,5 +20,8 @@ namespace Personagens {
         /*----------------------------------------------------------------------------*/
         virtual void executar() = 0;
         virtual void danificar(Jogador* pJ) = 0;
+
+        /*GET*/
+        const int getMaldade() const {return maldade;}
     };
 } using namespace Personagens;

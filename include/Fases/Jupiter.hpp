@@ -32,7 +32,7 @@ namespace Fases {
         //void criarAlienigenas();
         void criarViajantesMaus();
         void criarAberracoesEspaciais();
-        void criarPlasmas();
+        void criarPlasmas(const int dano);
 
         //void recuperarPortais();
         void recuperarBuracosNegros();

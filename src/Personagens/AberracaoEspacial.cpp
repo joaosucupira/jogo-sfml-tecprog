@@ -20,13 +20,11 @@ recarregando(rand()%240)
     setTamanhoFigura(TAM_ABERRACAO, TAM_ABERRACAO);
     setPosicaoFigura(x, y);
 
-    velocidade.x = -(V_ABERRACAO);
+    velocidade.x = V_ABERRACAO;
 
     andando = true;
     num_vidas = 5;
     maldade = 3;
-
-    Plasma::setDano(maldade);
 
 }
 

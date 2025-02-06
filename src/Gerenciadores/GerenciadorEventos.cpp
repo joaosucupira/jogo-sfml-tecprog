@@ -30,7 +30,14 @@ void GerenciadorEventos::executar() {
     
 }
 
-void GerenciadorEventos::setPJog(Jogador* pJ) {
+void Gerenciadores::GerenciadorEventos::limparJog()
+{
+    pJog = NULL;
+    pJog2 = NULL;
+}
+
+void GerenciadorEventos::setPJog(Jogador *pJ)
+{
     if(pJ)
         if (!pJog) {
             pJog = pJ;

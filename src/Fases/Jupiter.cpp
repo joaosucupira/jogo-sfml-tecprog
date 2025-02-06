@@ -4,12 +4,7 @@
 Jupiter::Jupiter() : Fase(),
 maxAberracoesEspaciais(0)
 {
-    figura = new Figura(
-        2819, 1589,
-        1,1,
-        0,0,
-        0,0
-    );
+    figura = new Figura(2819, 1589);
     carregarFigura(JUPITER_PATH);
     figura->setTamanho(1309, 736);
 }
@@ -28,7 +23,8 @@ void Jupiter::executar(){
     }
 }
 
-void Jupiter::criar(){
+void Jupiter::criar(){        
+
     definirGravidade();
     criarInimigos();
     criarObstaculos();
@@ -58,7 +54,6 @@ void Jupiter::recuperar(){
 void Fases::Jupiter::criarInimigos() {
     criarViajantesMaus();
     criarAberracoesEspaciais();
-    criarPlasmas();
 }
 
 void Fases::Jupiter::criarObstaculos() {
@@ -173,28 +168,28 @@ void Jupiter::criarAberracoesEspaciais(){
     AberracaoEspacial* pAB = NULL;
 
     const int max = rand() % 2 + 3;
-    const float distancia = 80.0f;
+    const float distancia = 100.0f;
     int v_inicial = -1;
 
-    for(int i = 0; i<max; i++){
-        pAB = new AberracaoEspacial(i * distancia, distancia);
-        pAB->atualizaVelocidade(Vector2f(v_inicial, 1));
+    for(int i = 1; i<=max; i++){
+        pAB = new AberracaoEspacial(i * distancia, 80.0f);
+        
 
         if(pAB){
             entidades->adiciona(static_cast<Entidade*>(pAB));
             GC.incluirInim(static_cast<Inimigo*>(pAB));
+            pAB->atualizaVelocidade(Vector2f(v_inicial, 1));
         }
 
-        pAB = NULL;
         v_inicial *= -1;
     }
 
-    if (pAB) delete pAB;
+    criarPlasmas(pAB->getMaldade());
+    
     pAB = NULL;
-
 }
 
-void Jupiter::criarPlasmas() {
+void Jupiter::criarPlasmas(const int dano) {
     
     Plasma* pPla = NULL;
 
@@ -207,13 +202,13 @@ void Jupiter::criarPlasmas() {
             entidades->adiciona(static_cast<Entidade*>(pPla));
             GC.incluirPlas(pPla);
             AberracaoEspacial::incluiPlasma(pPla);
+            pPla->setDano(dano);
         }
 
         pPla = NULL;
 
     }
 
-    if (pPla) delete pPla;
     pPla = NULL;
 
 }
@@ -267,15 +262,17 @@ void Jupiter::recuperarPlasmas()
     float x, y;
     bool ativo;
     Vector2f vel;
+    int dano;
 
     Plasma* pPlasma = NULL;
     ifstream buffer(PLASMA_SALVAR_PATH);
 
-    while(buffer >> ativo >> x >> y >> vel.x >> vel.y){
+    while(buffer >> ativo >> x >> y >> vel.x >> vel.y >> dano){
         pPlasma = new Plasma(x,y);
 
         pPlasma->setAtivo(ativo);
         pPlasma->setVelocidade(vel);
+        pPlasma->setDano(dano);
 
         entidades->adiciona(static_cast<Entidade*>(pPlasma));
         GC.incluirPlas(pPlasma);

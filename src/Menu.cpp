@@ -189,6 +189,7 @@ void Menu::trataPorEstado(const int escolha) {
 // modificar para usar mapa de estados
 void Menu::tratarSelecaoInicial(const int opcao) {
     limparOpcoes();
+    pJogo->limparJogo();
     switch (opcao) {
         case 0:
             menuNovoJogo();

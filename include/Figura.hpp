@@ -34,8 +34,6 @@ public:
     void carregarTextura(string path_textura);
     void atualizarSecao();
     void setSecaoInicial();
-    //void virar(const int sentido);
-    //void mostrarDano();
 
     /*SET*/
     void setPosicao(const float x, const float y){ sprite.setPosition(x,y); }

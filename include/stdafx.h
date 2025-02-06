@@ -53,6 +53,7 @@ using namespace std::filesystem;
 #define VIAJANTE_MAU_SALVAR_PATH "./data/salvamento/viajante_mau.txt"
 #define PLASMA_SALVAR_PATH "./data/salvamento/plasma.txt"
 
+#define LEADERBOARD_PATH "./data/leaderBoard/leaderBoard.txt"
 
 
 

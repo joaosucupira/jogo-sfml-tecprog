@@ -42,6 +42,7 @@ public:
     const bool recuperarFase();
 
     void salvarFaseEscolhida();
+    void limparJogo();
     
 private:
 

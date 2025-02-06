@@ -36,7 +36,7 @@ void ListaEntidades::exclui(Entidade *pE)
 
 void ListaEntidades::excluiTodos()
 {
-    if (getLista()) LE.limpaLista();
+    if (getLista() && !vazia()) LE.limpaLista();
 }
 
 void ListaEntidades::salvar()

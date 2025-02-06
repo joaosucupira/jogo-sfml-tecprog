@@ -32,6 +32,8 @@ namespace Gerenciadores{
         void incluirInim(Inimigo* pInim);
         void incluirPlas(Plasma* pPlas);
 
+        void limparListas();
+
         const int getInimigosVivos() const;
 
         /*SET*/

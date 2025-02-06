@@ -19,6 +19,7 @@ public:
     void executar();
     void encerrar() { evento.type = Event::Closed; }
 
+    void limparJog();
     /*SET*/
     void setPJog(Jogador* pJ);
     

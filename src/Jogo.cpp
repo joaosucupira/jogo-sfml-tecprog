@@ -5,8 +5,8 @@ GerenciadorGrafico* Jogo::pGG = GerenciadorGrafico::getInstancia();
 Jogo::Jogo() :
 menu(),
 GE(),
-jog1(new Jogador()),
-jog2(new Jogador()),
+jog1(NULL),
+jog2(NULL),
 faseLua(),
 faseJupiter(),
 faseEscolhida(NULL),
@@ -20,48 +20,6 @@ Jogo::~Jogo() {
     jog1 = NULL;
     jog2 = NULL;
     faseEscolhida = NULL;
-}
-
-void Jogo::recuperarJogador()
-{
-    float x,y,velocidade_y;
-    int num_vidas, pontos, idFase, contJogs;
-    bool ehJog1, andando, pulando;
-
-    ifstream buffer(JOGADOR_SALVAR_PATH);
-
-    contJogs = 0;
-
-    while(buffer >> idFase >> ehJog1 >> pontos >> x >> y >> num_vidas >> andando >> pulando >> velocidade_y){
-        if(ehJog1){
-            jog1->setXY(x,y);
-            jog1->setPontos(pontos);
-            jog1->setVidas(num_vidas);
-            jog1->setAndando(andando);
-            jog1->setPulando(pulando);
-            jog1->setVelocidadeY(velocidade_y);
-            jog1->setIdFase(idFase);
-            contJogs++;
-        }
-        else{
-            jog2->setXY(x,y);
-            jog2->setPontos(pontos);
-            jog2->setVidas(num_vidas);
-            jog2->setAndando(andando);
-            jog2->setPulando(pulando);
-            jog2->setVelocidadeY(velocidade_y);
-            jog2->setIdFase(idFase);
-            contJogs++;
-        }     
-    }
-
-    if(contJogs == 2)
-        doisJogadores = true;
-    else
-        doisJogadores = false;
-
-    buffer.close();
-    
 }
 
 void Jogo::executar() {
@@ -97,6 +55,17 @@ void Jogo::executar() {
     }
 }
 
+void Jogo::limparJogo()
+{
+    jog1 = NULL;
+    jog2 = NULL;
+    faseEscolhida = NULL;
+    faseJupiter.limpar();
+    faseLua.limpar();
+    GE.limparJog();
+    srand(time(NULL));
+}
+
 void Jogo::escolherFase(const int id_fase) {
     if (id_fase == 1) {
         faseEscolhida = &faseLua;
@@ -111,12 +80,12 @@ const bool Jogo::criarFaseEscolhida() {
         return false; // nao foi possivel criar
     } 
 
-    // j1
+    jog1 = new Jogador();
     GE.setPJog(jog1);
     faseEscolhida->setJogador(jog1, 1);
 
     if (doisJogadores) {
-        // j2
+        jog2 = new Jogador();
         GE.setPJog(jog2);
         faseEscolhida->setJogador(jog2, 2);
     }
@@ -125,6 +94,50 @@ const bool Jogo::criarFaseEscolhida() {
     faseEscolhida->criar();
 
     return true;
+}
+
+void Jogo::recuperarJogador()
+{
+    float x,y,velocidade_y;
+    int num_vidas, pontos, idFase, contJogs;
+    bool ehJog1, andando, pulando;
+
+    ifstream buffer(JOGADOR_SALVAR_PATH);
+
+    contJogs = 0;
+
+    while(buffer >> idFase >> ehJog1 >> pontos >> x >> y >> num_vidas >> andando >> pulando >> velocidade_y){
+        if(ehJog1){
+            jog1 = new Jogador(x,y);
+            jog1->setPontos(pontos);
+            jog1->setVidas(num_vidas);
+            jog1->calcVivo();
+            jog1->setAndando(andando);
+            jog1->setPulando(pulando);
+            jog1->setVelocidadeY(velocidade_y);
+            jog1->setIdFase(idFase);
+            contJogs++;
+        }
+        else{
+            jog2 = new Jogador(x,y);
+            jog2->setPontos(pontos);
+            jog2->setVidas(num_vidas);
+            jog2->calcVivo();
+            jog2->setAndando(andando);
+            jog2->setPulando(pulando);
+            jog2->setVelocidadeY(velocidade_y);
+            jog2->setIdFase(idFase);
+            contJogs++;
+        }     
+    }
+
+    if(contJogs == 2)
+        doisJogadores = true;
+    else
+        doisJogadores = false;
+
+    buffer.close();
+    
 }
 
 void Jogo::salvarFaseEscolhida()
