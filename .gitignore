@@ -17,4 +17,4 @@ obj/
 *.o
 
 # Ignorar arquivos de salvamento
-*.txt
+data/salvamento
