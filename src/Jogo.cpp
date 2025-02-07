@@ -97,6 +97,11 @@ void Jogo::executar() {
 
         pGG->exibirNaJanela();
     }
+
+    if(jog1)
+        ranking.adicionarJogador(jog1);
+        
+    ranking.executar();
 }
 
 void Jogo::escolherFase(const int id_fase) {

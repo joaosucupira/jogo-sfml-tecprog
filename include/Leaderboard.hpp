@@ -3,11 +3,11 @@
 #include "stdafx.h"
 #include "Jogador.hpp"
 
-#define LEADER_BOARD_PATH "./data/leaderboard/leaderboard.txt"
+#define LEADER_BOARD_PATH "./data/leaderBoard/leaderboard.txt"
 
 class Leaderboard {
     private:
-        priority_queue<pair<int, string>> pontuacoes;
+        priority_queue<pair<int, std::string>> pontuacoes;
 
     public:
         Leaderboard();
@@ -19,5 +19,10 @@ class Leaderboard {
         void salvar();
 
         void adicionarJogador(Jogador* pJog);
+
+    private:
+
+        const bool leString(ifstream& arquivo, string* str);
+        const bool gravaString(ofstream& arquivo, string str);
 
 };
