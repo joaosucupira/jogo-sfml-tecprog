@@ -80,6 +80,6 @@ void BuracoNegro::puxar(Jogador *pJ, float dt) {
     if (tempoAcumulado >= cadencia) {
         pJ->operator--();
         tempoAcumulado = 0.0f; // Reiniciar o temporizador
-        cout << "Vida jogador: " << pJ->getVidas() << endl;
+        // cout << "Vida jogador: " << pJ->getVidas() << endl;
     }
 }

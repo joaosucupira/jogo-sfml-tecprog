@@ -209,7 +209,7 @@ void GerenciadorColisoes::coliJogInimigo(){
                     inimigos[i]->danificar(pJog1);
                     notificarObservadores(); // Padrãp observer
 
-                    cout << "Vida jogador 1: " << pJog1->getVidas() << endl;
+                    // cout << "Vida jogador 1: " << pJog1->getVidas() << endl;
                 }   
             }
         }
@@ -229,7 +229,7 @@ void GerenciadorColisoes::coliJogInimigo(){
                     inimigos[i]->danificar(pJog2);
                     notificarObservadores();
 
-                    cout << "Vida jogador 2: " << pJog2->getVidas() << endl;
+                    // cout << "Vida jogador 2: " << pJog2->getVidas() << endl;
                 }   
             }
         }
@@ -297,7 +297,7 @@ void GerenciadorColisoes::coliJogPlasma(){
 
                 if(verificarColisao(pJog1, plasmas[i]) ){
                     plasmas[i]->queimar(pJog1);
-                    cout << "Vida jogador 1: " << pJog1->getVidas() << endl;
+                    // cout << "Vida jogador 1: " << pJog1->getVidas() << endl;
                 }   
             }
         }
@@ -316,7 +316,7 @@ void GerenciadorColisoes::coliJogPlasma(){
 
                 if(verificarColisao(pJog2, plasmas[i])){
                     plasmas[i]->queimar(pJog2);
-                    cout << "Vida jogador 2: " << pJog2->getVidas() << endl;
+                    // cout << "Vida jogador 2: " << pJog2->getVidas() << endl;
                 }   
             }
         }

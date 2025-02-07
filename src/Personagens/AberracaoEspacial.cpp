@@ -100,7 +100,7 @@ void AberracaoEspacial::danificar(Jogador* pJ) {
         pJ->setY(hitBoxAb.top + (hitBoxAb.height - ajusteJogador));
         
         operator--();
-        cout << "Vida Aberracao: " << num_vidas << endl;
+        // cout << "Vida Aberracao: " << num_vidas << endl;
 
         pular = false;
         

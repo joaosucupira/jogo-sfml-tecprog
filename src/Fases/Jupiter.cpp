@@ -290,7 +290,7 @@ void Jupiter::recuperarPlasmas()
 void Jupiter::configurarJogador()
 {
     if (!pJog1) {
-        cout << "void Fase::configurarJogador(const int num_jogador, Vector2f posicao) -> jogador 1 nao configurado" << endl;
+        // cout << "void Fase::configurarJogador(const int num_jogador, Vector2f posicao) -> jogador 1 nao configurado" << endl;
         return;
     }
 
@@ -300,7 +300,7 @@ void Jupiter::configurarJogador()
     pJog1->setIdFase(2);
 
     if(!pJog2) {
-        cout << "void Fase::configurarJogador(const int num_jogador, Vector2f posicao) -> jogador 2 inexistente" << endl;
+        // cout << "void Fase::configurarJogador(const int num_jogador, Vector2f posicao) -> jogador 2 inexistente" << endl;
         return;
     }
 
