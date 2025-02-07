@@ -34,7 +34,8 @@ void Jogo::executar() {
             if (Keyboard::isKeyPressed(Keyboard::Escape)) 
                 encerrarJogo();
 
-            if (GE.getEvento()->type == Event::Closed) {
+            if (GE.getEvento()->type == Event::Closed ||
+                menu.getEstado() == "Fechar") {
                 pGG->fecharJanela();
             }
 
@@ -65,7 +66,7 @@ void Jogo::executar() {
         pGG->exibirNaJanela();
     }
 
-    ranking.executar();
+    // ranking.executar();
 }
 
 void Jogo::limparJogo()

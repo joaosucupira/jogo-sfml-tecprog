@@ -36,7 +36,8 @@ void Menu::inicializaEstados() {
         {5, "Pause"},
         {6, "Digitando"},
         {7, "Game Over"},
-        {8, "Fase Vencida"}
+        {8, "Fase Vencida"},
+        {9, "Fechar"}
     };
     estadoAtual = estados[0];
 }
@@ -230,6 +231,9 @@ void Menu::trataPorEstado(const int escolha) {
 
     } else if (estadoAtual == "Fase Vencida") {
         tratarSelecaoFaseVencida(escolha);
+
+    } else if (estadoAtual == "Fechar") {
+        pJogo->encerrarJogo();
     }
 }
 
@@ -249,6 +253,9 @@ void Menu::tratarSelecaoInicial(const int opcao) {
             break;
         case 2:
             menuLeaderboard();
+            break;
+        case 3:
+            estadoAtual = estados[9]; // Fechar jogo
             break;
         default:
             break;
@@ -326,10 +333,8 @@ void Menu::tratarSelecaoLeaderboard(const int opcao) {
     // limparOpcoes();
     switch (opcao)
     {
+
     case 0:
-        // vai ter uma lista de nomes e pontuacoes num set/multiset
-        break;
-    case 1:
         menuInicial();
         break;
     

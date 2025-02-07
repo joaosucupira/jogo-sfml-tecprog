@@ -50,12 +50,12 @@ public:
     void nomearJogador(const string nJogador);
 
     const Leaderboard* getRanking() const { return &ranking; }
+    void encerrarJogo() { pGG->fecharJanela(); }
     
     
 private:
 
     void recuperarJogador();
-    void encerrarJogo() { GE.encerrar(); }
     
 
     Fase* getFaseEscolhida() const;
