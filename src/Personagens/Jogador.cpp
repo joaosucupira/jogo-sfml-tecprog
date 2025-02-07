@@ -6,10 +6,11 @@ int Jogador::cont(0);
 
 Jogador::Jogador(const float x_inicial, const float y_inicial) :
 Personagem(x_inicial, y_inicial),
-pontos(0),
+pontos(10),
 ehJog1(cont == 0),
 pulando(false),
-idFase(-1)
+idFase(-1),
+nome("Joao")
 {
 
     if (cont < 2) {

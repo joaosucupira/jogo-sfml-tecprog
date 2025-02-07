@@ -17,6 +17,8 @@
 #include <vector>
 #include <math.h>
 #include <filesystem>
+#include <queue>
+#include <utility>
 
 /* Namespaces */
 using namespace std;

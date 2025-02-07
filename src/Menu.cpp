@@ -341,8 +341,8 @@ void Menu::tratarSelecaoPause(const int opcao) {
         estadoAtual = estados[4]; // Jogando
         break;
     case 1:
+        opcoes[opcaoSelecionada+1].setFillColor(Color::Green);
         pJogo->salvarFaseEscolhida();// Salvamento
-        opcoes[opcaoSelecionada].setFillColor(Color::Green);
         break;
     case 2:
         menuInicial();
