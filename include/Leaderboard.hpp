@@ -15,14 +15,16 @@ class Leaderboard {
 
         void executar();
 
-        void recuperar();
-        void salvar();
 
         void adicionarJogador(Jogador* pJog);
+        priority_queue<pair<int, std::string>> getRanking() const { return pontuacoes; }
+
 
     private:
 
         const bool leString(ifstream& arquivo, string* str);
         const bool gravaString(ofstream& arquivo, string str);
+        void recuperar();
+        void salvar();
 
 };

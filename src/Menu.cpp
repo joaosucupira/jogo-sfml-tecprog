@@ -110,6 +110,10 @@ void Menu::desenharOpcaos() {
         desenharFaseVencida();
     }
 
+    if (estadoAtual == "Leaderboard") {
+        desenharRanking();
+    }
+
     
 
     for (const auto& opcao : opcoes) {
@@ -163,8 +167,9 @@ void Menu::menuCarregar() {
 
 void Menu::menuLeaderboard() {
     limparOpcoes();
+    opcaoSelecionada = 0;
     estadoAtual = estados[3];
-    opcoes.push_back(criarTexto("Nao ha registros de jogador algum.", 100, 200));
+    // opcoes.push_back(criarTexto("Nao ha registros de jogador algum.", 100, 200));
     opcoes.push_back(criarTexto("Voltar", 100, 250));
 }
 
@@ -283,6 +288,7 @@ void Menu::tratarSelecaoNovoJogo(const int opcao) {
 
         case 7:
             if (pJogo->criarFaseEscolhida()) {
+                pJogo->nomearJogador(nomeJogador);
                 estadoAtual = estados[4]; // Jogar
             } else {
                 opcoes.push_back(criarTexto("Por favor, pelo menos escolha a fase!", 100, 500));
@@ -362,6 +368,7 @@ void Menu::tratarEntradaTexto() {
         while (pGG->getPJanela()->pollEvent(evento)) {
 
             if (evento.type == Event::KeyPressed && evento.key.code == Keyboard::Enter) {
+                // pJogo->nomearJogador();
                 estadoAtual = estados[1]; // Novo jogo
             }
 
@@ -413,7 +420,7 @@ void Menu::tratarSelecaoFaseVencida(const int opcao) {
     switch (opcao)
     {
     case 0:
-        // menuLeaderboard();
+        menuLeaderboard();
         break;
     case 1:
         menuInicial();
@@ -450,6 +457,27 @@ void Menu::desenharFaseVencida() {
     Text sucesso = criarTexto("SUCESSO!", 500, 300);
     sucesso.setCharacterSize(64);
     pGG->getPJanela()->draw(sucesso);
+}
+
+void Menu::desenharRanking() {
+    priority_queue<pair<int, std::string>> listaRanking = pJogo->getRanking()->getRanking();
+
+
+    pair<int,std::string> dado;
+    int i = 1;
+    string aux = "";
+    Text registro;
+    while (!listaRanking.empty()) {
+        dado = listaRanking.top();
+        aux = dado.second + " - " + to_string(dado.first) + " pontos.";
+        registro = criarTexto(aux, 500, 100 + i * 30);
+        registro.setCharacterSize(16);
+        pGG->getPJanela()->draw(registro);
+        listaRanking.pop();
+        i++;
+    }
+
+
 }
 
 void Menu::carregarLogo() {

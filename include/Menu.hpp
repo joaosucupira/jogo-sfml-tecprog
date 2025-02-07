@@ -68,6 +68,7 @@ public:
     void desenharLogo();
     void desenharGameOver();
     void desenharFaseVencida();
+    void desenharRanking();
     void carregarLogo();
 
 

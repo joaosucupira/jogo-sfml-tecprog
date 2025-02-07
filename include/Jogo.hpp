@@ -47,6 +47,9 @@ public:
     void salvarFaseEscolhida();
     void limparJogo();
     void notificar();
+    void nomearJogador(const string nJogador);
+
+    const Leaderboard* getRanking() const { return &ranking; }
     
     
 private:

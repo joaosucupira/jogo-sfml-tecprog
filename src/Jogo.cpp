@@ -53,6 +53,9 @@ void Jogo::executar() {
             faseEscolhida->executar();
 
             if (faseEscolhida->getVencida()) {
+                if (jog1->getVivo()) ranking.adicionarJogador(jog1);
+                else if (jog2->getVivo()) ranking.adicionarJogador(jog2);
+
                 menu.setEstado(8); // Fase vencida
                 menu.menuFaseVencida();
             }
@@ -62,9 +65,6 @@ void Jogo::executar() {
         pGG->exibirNaJanela();
     }
 
-    if(jog1)
-        ranking.adicionarJogador(jog1);
-        
     ranking.executar();
 }
 
@@ -106,6 +106,20 @@ void Jogo::notificar() {
         }
     }
 }
+
+void Jogo::nomearJogador(const string nJogador) {
+    if (!jog1) {
+        cout << "void Jogo::nomearJogador(const string nJogador) -> jogador ainda nao pronto" << endl;
+        return;
+    }
+
+    jog1->setNome(nJogador);
+
+    if (doisJogadores && jog2) {
+        jog2->setNome(nJogador);
+    }
+}
+
 
 void Jogo::escolherFase(const int id_fase) {
     if (id_fase == 1) {
