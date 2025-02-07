@@ -2,11 +2,11 @@
 #include "Entidade.hpp"
 #include "Jogador.hpp"
 
-#define PLASMA_PATH "./assets/Obstaculo/plataforma.24x24.png"
-#define PLASMA_TAM_SEC 24
-#define PLASMA_ALTURA 24
+#define PLASMA_PATH "./assets/Projeteis/bolt1_strip.png"
+#define PLASMA_TAM_SEC 10
+#define PLASMA_ALTURA 10
 
-#define LARG_PLASMA 10
+#define LARG_PLASMA 20
 #define ALT_PLASMA 20
 
 #define V_PLASMA 15

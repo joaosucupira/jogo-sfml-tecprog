@@ -115,6 +115,7 @@ void Fases::Jupiter::criarBuracosNegros(){
         pB = NULL;
     }
 
+    dy = 80.0f;
     max = rand() % 4;
     for (int i = 0; i < max; i++) {
         pB = new BuracoNegro(dx * i, dy);

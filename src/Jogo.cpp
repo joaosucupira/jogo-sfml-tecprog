@@ -60,6 +60,8 @@ void Jogo::executar() {
                 menu.setEstado(8); // Fase vencida
                 menu.menuFaseVencida();
             }
+
+            menu.desenharVidaJogadores();
         }
 
 
@@ -238,6 +240,10 @@ const bool Jogo::recuperarFase()
     faseEscolhida->recuperar();
 
     return true;
+}
+
+const int Jogo::getVidaJogador(const int num_jog) const {
+    return (num_jog == 1 ? jog1->getVidas() : jog2->getVidas());
 }
 
 Fase *Jogo::getFaseEscolhida() const
