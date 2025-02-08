@@ -9,6 +9,8 @@ bin/
 
 # Ignorar arquivos de salvamento
 data/
+data/salvamento
+data/leaderBoard
 
 # Ignorar objetos de compilação
 obj/

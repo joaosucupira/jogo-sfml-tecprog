@@ -61,16 +61,18 @@ void GerenciadorColisoes::incluirInim(Inimigo* pInim){
 
 void GerenciadorColisoes::incluirPlas(Plasma* pPlas){
     if(pPlas)
-        plasmas.push_back(pPlas);
+        plasmas.insert(pPlas);
     else
         cout << "GerenciadorColisoes::incluirPlas(Plasma* pPlas) -> ponteiro plasma nulo" << endl;
 }
 
-const int GerenciadorColisoes::getInimigosVivos() const {
+const int GerenciadorColisoes::getInimigosVivos() {
     int cont = 0;
-    for (int i = 0; i < (int) inimigos.size(); i++) {
-        if (inimigos[i]) {
-            if (inimigos[i]->getVivo()) {
+    list<Inimigo*>::iterator it;
+    
+    for(it = inimigos.begin(); it != inimigos.end(); it++){
+        if ((*it)) {
+            if ((*it)->getVivo()) {
                 cont++;
             }
         }
@@ -115,32 +117,58 @@ void Gerenciadores::GerenciadorColisoes::verificarSentido(Entidade *pE1, Entidad
         sentidos[i] = 0;
     }
 
-    // Verificação do sentido de colisão mais relevante
+    //Verificação do sentido de colisão em realcao ao personagem
     if (resultante.x < resultante.y && resultante.x > margem) {
-        if ( pos1.x > pos2.x ) {
-            sentidos[0] = 1; // Personagem a direita
-            //cout << resultante.x << '\n' << endl;
-        } else if ( pos1.x < pos2.x ) {
-        // } else {
-            sentidos[1] = 1; // Personagem a esquerda
-            //cout << resultante.x << '\n' << endl;
-        }
+
+        if ( pos1.x > pos2.x )
+            sentidos[0] = 1; //Esquerda do Personagem
+        else if ( pos1.x < pos2.x )
+            sentidos[1] = 1; //Direita do Personagem
+
     }
 
     else if( resultante.y < resultante.x) {
-        if ( pos1.y > pos2.y) {
-            sentidos[3] = 1; // Personagem a cima
-            
-        } else if(pos1.y < pos2.y) {
-            sentidos[2] = 1; // Personagem a baixo
-            //cout << "SIMM" << endl;
-        }
+
+        if ( pos1.y > pos2.y)
+            sentidos[3] = 1; //Baixo do Personagem
+
+        else if(pos1.y < pos2.y)
+            sentidos[2] = 1; //Cima do Personagem
+        
     }
+}
+
+void Gerenciadores::GerenciadorColisoes::separarEntidades(Entidade *pE1, Entidade *pE2)
+{
+    const float ajuste = pE2->getAjuste();
+
+    FloatRect hitBox1, hitBox2;
+
+    hitBox1 = pE1->hitBox();
+    hitBox2 = pE2->hitBox();
+
+    //Esquerda do Personagem
+    if(sentidos[0])
+        pE2->setX(hitBox1.left  + (hitBox1.width - ajuste + COLISAO));
+    
+    //Direita do Personagem
+    if(sentidos[1])
+        pE2->setX(hitBox1.left - (hitBox2.width + ajuste + COLISAO));
+
+    //Baixo do Personagem
+    if(sentidos[2])
+        pE2->setY(hitBox1.top - (hitBox2.height + ajuste));
+
+    //Cima do Personagem
+    if(sentidos[3])
+        pE2->setY(hitBox1.top + (hitBox1.height - ajuste));
+    
 }
 
 void GerenciadorColisoes::coliJogObstaculo(){
     
-    long unsigned int i;
+    unsigned int i;
+    const unsigned int tam = obstaculos.size();
     //Acoplar segundo jogador depois
 
     if(!pJog1){
@@ -155,7 +183,7 @@ void GerenciadorColisoes::coliJogObstaculo(){
 
     if(pJog1->getVivo()) {
 
-        for(i = 0; i < obstaculos.size(); i++) {
+        for(i = 0; i < tam; i++) {
             if(verificarColisao(pJog1, obstaculos[i])) {
                 verificarSentido(pJog1, obstaculos[i]);
 
@@ -170,7 +198,8 @@ void GerenciadorColisoes::coliJogObstaculo(){
 
 
     if (pJog2 && pJog2->getVivo()) {
-        for (i = 0; i < obstaculos.size(); i++) {
+
+        for (i = 0; i < tam; i++) {
             if (verificarColisao(pJog2, obstaculos[i])) {
                 verificarSentido(pJog2, obstaculos[i]);
 
@@ -183,9 +212,9 @@ void GerenciadorColisoes::coliJogObstaculo(){
 
 void GerenciadorColisoes::coliJogInimigo(){
 
-    long unsigned int i;
+    list<Inimigo*>::iterator it;
 
-    if(!(pJog1 || pJog2)){
+    if(!pJog1 && !pJog2){
         cout << "GerenciadorColisoes::coliJogInimigo() -> nenhum jogador configurado" << endl;
         return;
     }
@@ -197,16 +226,16 @@ void GerenciadorColisoes::coliJogInimigo(){
 
     if(pJog1->getVivo()) {
         
-        for(i=0; i<inimigos.size(); i++){
+        for(it = inimigos.begin(); it != inimigos.end(); it++){
 
-            if(inimigos[i]->getVivo()){
+            if((*it)->getVivo()){
 
-                if(verificarColisao(pJog1, inimigos[i]) ){
+                if(verificarColisao(static_cast<Entidade*>(pJog1), static_cast<Entidade*>(*it)) ){
                     
-                    verificarSentido(pJog1, inimigos[i]);
+                    verificarSentido(static_cast<Entidade*>(pJog1), static_cast<Entidade*>(*it));
 
-                    inimigos[i]->setSentidos(sentidos);
-                    inimigos[i]->danificar(pJog1);
+                    (*it)->setSentidos(sentidos);
+                    (*it)->danificar(pJog1);
                     notificarObservadores(); // Padrãp observer
 
                     cout << "Vida jogador 1: " << pJog1->getVidas() << endl;
@@ -217,16 +246,16 @@ void GerenciadorColisoes::coliJogInimigo(){
 
     if (pJog2 && pJog2->getVivo()) {
 
-        for(i=0; i<inimigos.size(); i++){
+        for(it = inimigos.begin(); it != inimigos.end(); it++){
 
-            if(inimigos[i]->getVivo()){
+            if((*it)->getVivo()){
 
-                if(verificarColisao(pJog2, inimigos[i]) ){
+                if(verificarColisao(static_cast<Entidade*>(pJog2), static_cast<Entidade*>(*it)) ){
                     
-                    verificarSentido(pJog2, inimigos[i]);
+                    verificarSentido(static_cast<Entidade*>(pJog2), static_cast<Entidade*>(*it));
 
-                    inimigos[i]->setSentidos(sentidos);
-                    inimigos[i]->danificar(pJog2);
+                    (*it)->setSentidos(sentidos);
+                    (*it)->danificar(pJog2);
                     notificarObservadores();
 
                     cout << "Vida jogador 2: " << pJog2->getVidas() << endl;
@@ -240,7 +269,9 @@ void GerenciadorColisoes::coliJogInimigo(){
 
 void GerenciadorColisoes::coliInimObstaculo(){
     
-    long unsigned int i, j;
+    unsigned int i;
+    const unsigned int tamObs = obstaculos.size();
+    list<Inimigo*>::iterator it;
 
     //Acoplar segundo jogador depois
 
@@ -254,18 +285,18 @@ void GerenciadorColisoes::coliInimObstaculo(){
         return;
     }
 
-    for(i = 0; i < inimigos.size(); i++){
+    for(it = inimigos.begin(); it != inimigos.end(); it++){
         
-        if(inimigos[i]->getVivo()){
+        if((*it)->getVivo()){
 
-            for(j = 0; j < obstaculos.size(); j++){
+            for(i = 0; i < tamObs; i++){
 
 
-                if(verificarColisao( inimigos[i] , obstaculos[j] )) {
-                    verificarSentido(inimigos[i], obstaculos[j]);
+                if(verificarColisao( static_cast<Entidade*>(*it) , static_cast<Entidade*>(obstaculos[i]) ) ) {
+                    verificarSentido(static_cast<Entidade*>(*it), static_cast<Entidade*>(obstaculos[i]));
 
-                    obstaculos[j]->setSentidos(sentidos);
-                    obstaculos[j]->obstacular(inimigos[i]);
+                    obstaculos[i]->setSentidos(sentidos);
+                    obstaculos[i]->obstacular((*it));
 
                 }
                     
@@ -277,7 +308,7 @@ void GerenciadorColisoes::coliInimObstaculo(){
 
 void GerenciadorColisoes::coliJogPlasma(){
 
-    long unsigned int i;
+    set<Plasma*>::iterator it;
 
     if(!pJog1){
         // cout << "GerenciadorColisoes::coliJogInimigo() -> pJog1 nulo" << endl;
@@ -291,12 +322,12 @@ void GerenciadorColisoes::coliJogPlasma(){
 
     if(pJog1->getVivo()){
 
-        for(i=0; i<plasmas.size(); i++){
+        for(it = plasmas.begin(); it != plasmas.end(); it++){
 
-            if(plasmas[i]->getAtivo()){
+            if((*it)->getAtivo()){
 
-                if(verificarColisao(pJog1, plasmas[i]) ){
-                    plasmas[i]->queimar(pJog1);
+                if(verificarColisao(static_cast<Entidade*>(pJog1), static_cast<Entidade*>(*it))){
+                    (*it)->queimar(pJog1);
                     cout << "Vida jogador 1: " << pJog1->getVidas() << endl;
                 }   
             }
@@ -310,13 +341,13 @@ void GerenciadorColisoes::coliJogPlasma(){
 
     if(pJog2->getVivo()){
 
-        for(i=0; i<plasmas.size(); i++){
+        for(it = plasmas.begin(); it != plasmas.end(); it++){
 
-            if(plasmas[i]->getAtivo()){
+            if((*it)->getAtivo()){
 
-                if(verificarColisao(pJog2, plasmas[i])){
-                    plasmas[i]->queimar(pJog2);
-                    cout << "Vida jogador 2: " << pJog2->getVidas() << endl;
+                if(verificarColisao(static_cast<Entidade*>(pJog1), static_cast<Entidade*>(*it))){
+                    (*it)->queimar(pJog2);
+                    cout << "Vida jogador 1: " << pJog2->getVidas() << endl;
                 }   
             }
         }

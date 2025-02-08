@@ -6,11 +6,11 @@ int Jogador::cont(0);
 
 Jogador::Jogador(const float x_inicial, const float y_inicial) :
 Personagem(x_inicial, y_inicial),
-pontos(10),
+pontos(0),
 ehJog1(cont == 0),
 pulando(false),
 idFase(-1),
-nome("Joao")
+nome()
 {
 
     if (cont < 2) {
@@ -24,6 +24,7 @@ nome("Joao")
         carregarFigura(JOGADOR_PATH);
         setTamanhoFigura(TAM_JOGADOR, TAM_JOGADOR);
         setPosicaoFigura(x, y);
+        figura->setAjuste(TAM_JOGADOR / 5.0f);
 
         num_vidas = 30;
         cont++;
@@ -50,12 +51,20 @@ void Jogador::executar(){
 
 void Jogador::salvar(){
 
+    size_t tam;
+
     buffer.open(JOGADOR_SALVAR_PATH, std::ios::app);
+
     if(!buffer){
         cout << "Jogador()::salvar -> Erro ao abrir arquivo" << endl;
-    }
+    }  
+    
+    tam = nome.size();
+    
+    buffer << tam;
+    buffer.write((char*) &nome[0], tam);
 
-    buffer << idFase << ' '
+    buffer << ' ' << idFase << ' '
     << ehJog1 << ' '
     << pontos << ' '
     << x << ' '
@@ -64,6 +73,7 @@ void Jogador::salvar(){
     << andando << ' '
     << pulando << ' '
     << velocidade.y << endl;
+
     buffer.close();
 }
 
@@ -82,4 +92,18 @@ void Jogador::operator--() {
 void Personagens::Jogador::operator--(const int dano) {
     Personagem::operator--();
     notificarObservadores();
+}
+
+FloatRect Jogador::hitBox() const {
+    
+    FloatRect lim = getLimites();
+    const float ajuste = figura->getAjuste();
+    
+
+    lim.left += ajuste;
+    lim.width -= 2 * ajuste;
+    lim.top += ajuste;
+    lim.height -= ajuste;
+
+    return lim;
 }

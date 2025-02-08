@@ -18,6 +18,7 @@ private:
     Vector2i secaoFinal;
     Vector2i secaoInicial;
     int contAtualizacoes;
+    float ajuste;
 
 public:
 
@@ -39,11 +40,13 @@ public:
     void setPosicao(const float x, const float y){ sprite.setPosition(x,y); }
     void setTamanho(const float tX, const float tY);
     void setCor(const Color &cor);
+    void setAjuste(const float ajs){ajuste = ajs;}
     
     /*GET*/
     FloatRect getLimites() const{ return sprite.getGlobalBounds();}
     Sprite getSprite() const {return sprite;}
     Vector2f getTamanho() const;
+    const float getAjuste() const {return ajuste;}
 
 };
 

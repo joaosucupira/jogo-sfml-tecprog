@@ -19,7 +19,7 @@ namespace Personagens {
 
         /*----------------------------------------------------------------------------*/
         virtual void executar() = 0;
-        virtual FloatRect hitBox() const;
+        virtual FloatRect hitBox() const = 0;
 
         /*----------------------------------------------------------------------------*/
         void calcVivo() { vivo = (num_vidas > 0 ? true : false); }

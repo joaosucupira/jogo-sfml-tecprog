@@ -15,8 +15,8 @@ namespace Gerenciadores{
         Jogador* pJog2;
 
         vector<Obstaculo*> obstaculos;
-        vector<Inimigo*> inimigos;
-        vector<Plasma*> plasmas;
+        list<Inimigo*> inimigos;
+        set<Plasma*> plasmas;
                 
         int sentidos[4] = {0};
 
@@ -32,7 +32,7 @@ namespace Gerenciadores{
         void incluirInim(Inimigo* pInim);
         void incluirPlas(Plasma* pPlas);
 
-        const int getInimigosVivos() const;
+        const int getInimigosVivos();
 
         /*SET*/
         void setPJog1(Jogador *pJ1);
@@ -42,6 +42,7 @@ namespace Gerenciadores{
 
         const bool verificarColisao(Entidade* pE1, Entidade* pE2) const;
         void verificarSentido(Entidade* pE1, Entidade* pE2);
+        void separarEntidades(Entidade* pE1, Entidade* pE2);
 
         void coliJogObstaculo();
         void coliJogInimigo();

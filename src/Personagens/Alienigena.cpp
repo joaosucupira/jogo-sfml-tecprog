@@ -13,6 +13,7 @@ Inimigo(x_inicial, y_inicial)
     carregarFigura(ALIENIGENA_PATH);
     setTamanhoFigura(TAM_JOGADOR, TAM_JOGADOR);
     setPosicaoFigura(x, y);
+    figura->setAjuste(TAM_ALIENIGENA/5.0f);
 
     velocidade.x = -(VELOCIDADE_ANDAR - 0.3);
     andando = true;
@@ -54,7 +55,7 @@ void Alienigena::salvar(){
 void Alienigena::danificar(Jogador* pJ) {
 
     bool danifica;
-    const float ajuste =  4 * (TAM_JOGADOR / 5.0f);
+    const float ajuste =  4 * (pJ->getAjuste());
     FloatRect lim2, lim1, hitBox2;
 
     if(!pJ) {
@@ -101,3 +102,16 @@ void Alienigena::danificar(Jogador* pJ) {
     
 }
 
+FloatRect Alienigena::hitBox() const {
+    
+    FloatRect lim = getLimites();
+    const float ajuste = figura->getAjuste();
+    
+
+    lim.left += ajuste;
+    lim.width -= 2 * ajuste;
+    lim.top += ajuste;
+    lim.height -= ajuste;
+
+    return lim;
+}

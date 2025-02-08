@@ -162,14 +162,42 @@ void Jogo::recuperarJogador()
     float x,y,velocidade_y;
     int num_vidas, pontos, idFase, contJogs;
     bool ehJog1, andando, pulando;
+    size_t tam;
+    string nome;
 
     ifstream buffer(JOGADOR_SALVAR_PATH);
 
+    if(!buffer)
+        return;
+
     contJogs = 0;
 
-    while(buffer >> idFase >> ehJog1 >> pontos >> x >> y >> num_vidas >> andando >> pulando >> velocidade_y){
+    while(!buffer.eof()){
+
+        buffer >> tam;
+
+        nome.resize(tam);
+        buffer.read((char*)&nome[0], tam);
+
+        buffer >> idFase
+        >> ehJog1
+        >> pontos
+        >> x
+        >> y
+        >> num_vidas
+        >> andando
+        >> pulando
+        >> velocidade_y;
+
+        if(!buffer){
+            cout << "Jogo::recuperarJogador() -> Erro ao recuperar jogador" << endl;
+            return;
+        }
+            
+
         if(ehJog1){
             jog1 = new Jogador(x,y);
+            jog1->setNome(nome);
             jog1->setPontos(pontos);
             jog1->setVidas(num_vidas);
             jog1->calcVivo();
@@ -178,10 +206,10 @@ void Jogo::recuperarJogador()
             jog1->setVelocidadeY(velocidade_y);
             jog1->setIdFase(idFase);
             jog1->adicionarObservador(this);
-            contJogs++;
         }
         else{
             jog2 = new Jogador(x,y);
+            jog2->setNome(nome);
             jog2->setPontos(pontos);
             jog2->setVidas(num_vidas);
             jog2->calcVivo();
@@ -190,8 +218,9 @@ void Jogo::recuperarJogador()
             jog2->setVelocidadeY(velocidade_y);
             jog2->setIdFase(idFase);
             jog2->adicionarObservador(this);
-            contJogs++;
-        }     
+        }
+
+        contJogs++;
     }
 
     if(contJogs == 2)

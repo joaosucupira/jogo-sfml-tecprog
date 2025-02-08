@@ -45,20 +45,6 @@ void Personagem::atualizarFigura() {
         atualizaParaFiguraInicial();
 }
 
-FloatRect Personagem::hitBox() const {
-    
-    FloatRect lim = getLimites();
-    const float ajuste = TAM_JOGADOR / 5.0f;
-    
-
-    lim.left += ajuste;
-    lim.width -= 2 * ajuste;
-    lim.top += ajuste;
-    lim.height -= ajuste;
-
-    return lim;
-}
-
 void Personagem::parar() {
     setVelocidadeX(0);
     setVelocidadeY(0);

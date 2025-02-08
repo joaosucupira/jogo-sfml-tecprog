@@ -34,6 +34,7 @@ namespace Personagens {
         void executar();
         void salvar();
         void escolheCor();
+        FloatRect hitBox() const;
 
         /*SET*/
         void setPulando(bool pulou){ pulando = pulou;}

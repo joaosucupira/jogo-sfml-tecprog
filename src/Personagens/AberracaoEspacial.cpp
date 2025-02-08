@@ -19,6 +19,7 @@ recarregando(rand()%240)
     carregarFigura(ABERRACAO_ESPACIAL_PATH);
     setTamanhoFigura(TAM_ABERRACAO, TAM_ABERRACAO);
     setPosicaoFigura(x, y);
+    figura->setAjuste(TAM_ABERRACAO / 3);
 
     velocidade.x = V_ABERRACAO;
 
@@ -64,7 +65,7 @@ void AberracaoEspacial::salvar(){
 void AberracaoEspacial::danificar(Jogador* pJ) {
 
     bool pular;
-    const float ajusteJogador = TAM_JOGADOR / 5.0f;
+    const float ajusteJogador = pJ->getAjuste();
     FloatRect hitBoxAb, hitBoxJog;
 
     if(!pJ) {
@@ -272,7 +273,7 @@ void AberracaoEspacial::desenharZonaSegura(){
 FloatRect AberracaoEspacial::hitBox() const
 {
     FloatRect lim = getLimites();
-    const float ajuste = TAM_ABERRACAO / 3;
+    const float ajuste = figura->getAjuste();
     
 
     lim.left += ajuste;

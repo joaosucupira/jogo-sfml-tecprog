@@ -14,6 +14,7 @@ raio(100.0f)
     carregarFigura(PORTAL_PATH);
     setTamanhoFigura(TAM_PORTAL, TAM_PORTAL),
     setPosicaoFigura(x_inicial, y_inicial);
+    figura->setAjuste(ALT_PLATAFORMA / 10.0f);
 }
 
 Portal::~Portal(){

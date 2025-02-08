@@ -12,7 +12,7 @@ Obstaculo::~Obstaculo() {
 FloatRect Obstaculo::hitBox() const {
     
     FloatRect lim = getLimites();
-    const float ajuste = ALT_PLATAFORMA / 10.0f;
+    const float ajuste = figura->getAjuste();
         
 
     lim.left -= ajuste;

@@ -17,6 +17,8 @@
 #define SEC_FINAL_X_ALI 24
 #define SEC_FINAL_Y_ALI 48
 
+#define TAM_ALIENIGENA 80.0f
+
 namespace Personagens{
 
     class Alienigena : public Inimigo {
@@ -32,6 +34,7 @@ namespace Personagens{
         void danificar(Jogador* pJ);
         void executar();
         void salvar();
+        FloatRect hitBox() const;
         
     };
 

@@ -14,6 +14,7 @@ altura(0)
     carregarFigura(PLATAFORMA_PATH);
     setTamanhoFigura(LARG_PLATAFORMA, ALT_PLATAFORMA);
     setPosicaoFigura(x_inicial, y_inicial);
+    figura->setAjuste(ALT_PLATAFORMA / 10.0f);
 
 }
 

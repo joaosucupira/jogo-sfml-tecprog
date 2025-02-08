@@ -60,7 +60,7 @@ void ViajanteMau::salvar()
 void ViajanteMau::danificar(Jogador* pJ) {
     
     bool pular, danifica;
-    const float ajusteJogador = TAM_JOGADOR / 5.0f;
+    const float ajusteJogador = pJ->getAjuste();
     FloatRect hitBoxAb, hitBoxJog;
 
     if(!pJ) {

@@ -61,6 +61,16 @@ FloatRect Ente::getLimites() const{
 
 }
 
+const float Ente::getAjuste() const
+{
+    if(!figura){
+        cout << "Ente::getAjuste() -> ponteiro figura nulo" << endl;
+        return 0;
+    }
+
+    return figura->getAjuste();
+}
+
 void Ente::setPosicaoFigura(const float x, const float y) {
 
     if (figura) 

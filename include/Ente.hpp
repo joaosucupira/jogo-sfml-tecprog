@@ -38,6 +38,7 @@ public:
     //const int getId() const { return id; }
     Figura* getFigura() const { return figura; }
     FloatRect getLimites() const;
+    const float getAjuste() const;
 
 protected:
 

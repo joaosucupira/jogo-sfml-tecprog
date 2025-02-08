@@ -15,6 +15,8 @@ forca(200.0f)
     setTamanhoFigura(TAM_BURACO_NEGRO, TAM_BURACO_NEGRO);
     setPosicaoFigura(x_inicial, y_inicial);
     figura->setCor(Color::Magenta);
+    figura->setAjuste(ALT_PLATAFORMA / 10.0f);
+    
 }
 
 BuracoNegro::~BuracoNegro() 
