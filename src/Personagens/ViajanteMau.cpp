@@ -4,7 +4,7 @@ Jogador* ViajanteMau::pJog = NULL;
 
 ViajanteMau::ViajanteMau(const float x_inicial, const float y_inicial) :
 Inimigo(x_inicial, y_inicial),
-lerdeza(50),
+lerdeza(20),
 planando(true)
 {
     figura = new Figura(

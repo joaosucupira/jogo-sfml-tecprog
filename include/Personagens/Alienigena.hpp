@@ -23,7 +23,7 @@ namespace Personagens{
 
     class Alienigena : public Inimigo {
 
-        float raio;
+        const float ricochete;
 
     public:
 

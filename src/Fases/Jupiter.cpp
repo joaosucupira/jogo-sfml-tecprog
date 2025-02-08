@@ -199,13 +199,13 @@ void Jupiter::criarPlasmas(const int dano) {
     const int max = rand() % 2 + 1;
 
     for(int i = 0; i<max; i++){
-        pPla = new Plasma(0,0);
+        pPla = new Plasma(dano);
+        cout << dano << endl;
 
         if(pPla){
             entidades->adiciona(static_cast<Entidade*>(pPla));
             GC.incluirPlas(pPla);
             AberracaoEspacial::incluiPlasma(pPla);
-            pPla->setDano(dano);
         }
 
         pPla = NULL;

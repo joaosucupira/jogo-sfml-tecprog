@@ -1,7 +1,8 @@
 #include "Alienigena.hpp"
 
 Personagens::Alienigena::Alienigena(const float x_inicial, const float y_inicial) :
-Inimigo(x_inicial, y_inicial)
+Inimigo(x_inicial, y_inicial),
+ricochete(ALTURA_COLI)
 {
     figura = new Figura(
         TAM_SECAO_ALI, TAM_SECAO_ALI, 
@@ -94,7 +95,7 @@ void Alienigena::danificar(Jogador* pJ) {
         danifica = false;
     }
 
-    pJ->setVelocidadeY(-sqrt(2.0 * gravidade * ALTURA_COLI));
+    pJ->setVelocidadeY(-sqrt(2.0 * gravidade * ricochete));
 
     if(danifica)
         pJ->operator--();

@@ -90,7 +90,7 @@ void Jogador::operator--() {
 }
 
 void Personagens::Jogador::operator--(const int dano) {
-    Personagem::operator--();
+    Personagem::operator--(dano);
     notificarObservadores();
 }
 

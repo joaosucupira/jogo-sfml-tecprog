@@ -14,6 +14,19 @@ dano(0)
     
 }
 
+Plasma::Plasma(const int dano):
+Entidade(-1, -1),
+ativo(false),
+antiGrav(7.8),
+dano(dano)
+{
+    figura = new Figura(24,24);
+    carregarFigura(PLASMA_PATH);
+    setTamanhoFigura(LARG_PLASMA, ALT_PLASMA);
+    setPosicaoFigura(-1, -1);
+    setCorFigura(Color::Green);
+}
+
 Plasma::~Plasma(){
 }
 

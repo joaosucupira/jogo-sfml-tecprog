@@ -23,6 +23,7 @@ namespace Entidades {
     public:
 
         Plasma(float x_inicial, float y_inicial);
+        Plasma(const int dano = 0);
         ~Plasma();
 
         /*----------------------------------------------------------------------------*/
