@@ -1,3 +1,7 @@
+/**CREDITOS: Os calculos de verificação dos sentidos das colisões inspirado no conteúdo 
+ * do youtube do antigo monitor de Técnicas de Programaçao Matheus Burda **/
+
+
 #pragma once
 #include "stdafx.h"
 #include "Jogador.hpp"

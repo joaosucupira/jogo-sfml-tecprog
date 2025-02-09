@@ -193,7 +193,7 @@ void Jogo::recuperarJogador()
         >> velocidade_y;
 
         if(!buffer){
-            cout << "Jogo::recuperarJogador() -> Erro ao recuperar jogador" << endl;
+            //cout << "Jogo::recuperarJogador() -> Erro ao recuperar jogador" << endl;
             return;
         }
             

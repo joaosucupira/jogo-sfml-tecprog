@@ -1,3 +1,8 @@
+/**CREDITOS: Inspirado no trabalho do antigo monitor de Técnicas de Programaçao
+ * Matheus Burda, principalmente no que tange o uso do padrao de projeto
+ * Single-ton**/
+
+
 #pragma once
 #include "stdafx.h"
 

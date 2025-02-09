@@ -328,7 +328,7 @@ void GerenciadorColisoes::coliJogPlasma(){
 
                 if(verificarColisao(static_cast<Entidade*>(pJog1), static_cast<Entidade*>(*it))){
                     (*it)->queimar(pJog1);
-                    cout << "Vida jogador 1: " << pJog1->getVidas() << endl;
+                    //cout << "Vida jogador 1: " << pJog1->getVidas() << endl;
                 }   
             }
         }
@@ -347,7 +347,7 @@ void GerenciadorColisoes::coliJogPlasma(){
 
                 if(verificarColisao(static_cast<Entidade*>(pJog2), static_cast<Entidade*>(*it))){
                     (*it)->queimar(pJog2);
-                    cout << "Vida jogador 2: " << pJog2->getVidas() << endl;
+                    //cout << "Vida jogador 2: " << pJog2->getVidas() << endl;
                 }   
             }
         }

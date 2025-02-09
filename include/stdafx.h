@@ -1,5 +1,6 @@
 // ARQUIVO COM TODAS AS BIBLIOTECAS E MACROS NECESCESSÁRIAS
 // ! -> .h  ao invés de .hpp para identificar um arquivo biblioteca ou gabarito
+//Fonte das Imagens: itch.io
 
 #pragma once
 

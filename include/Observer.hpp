@@ -1,3 +1,5 @@
+/**REFERENCIAS: Livro do GOF, Design Patterns */
+
 #pragma once
 
 class Observer {

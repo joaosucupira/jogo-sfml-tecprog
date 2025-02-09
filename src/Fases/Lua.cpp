@@ -48,8 +48,8 @@ void Lua::recuperar(){
 
 void Fases::Lua::criarObstaculos() {
     criarPortais();
-    criarCenario();
     criarPlataformas();
+    criarCenario();
 }
 
 void Fases::Lua::criarInimigos() {
