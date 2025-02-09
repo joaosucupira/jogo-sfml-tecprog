@@ -50,7 +50,7 @@ void Portal::obstacular(Jogador *pJ) {
 
         pJ->operator--();
         teletransportar(pJ);
-        cout << "Vida Jogador:" << pJ->getVidas() << endl;
+        // cout << "Vida Jogador:" << pJ->getVidas() << endl;
     }
 }
 

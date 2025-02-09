@@ -6,11 +6,11 @@ ativo(false),
 antiGrav(7.8),
 dano(0)
 {
-    figura = new Figura(24,24);
+    figura = new Figura(10,10,2,1,10, 0, 0, 0);
     carregarFigura(PLASMA_PATH);
     setTamanhoFigura(LARG_PLASMA, ALT_PLASMA);
     setPosicaoFigura(x_inicial, y_inicial);
-    setCorFigura(Color::Green);
+    // setCorFigura(Color::Green);
     
 }
 

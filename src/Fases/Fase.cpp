@@ -37,7 +37,7 @@ void Fase::salvar(){
 void Fase::recuperarJogador()
 {
     if (!pJog1) {
-        cout << "void Fase::configurarJogador(const int num_jogador, Vector2f posicao) -> jogador 1 nao configurado" << endl;
+        // cout << "void Fase::configurarJogador(const int num_jogador, Vector2f posicao) -> jogador 1 nao configurado" << endl;
         return;
     }
 
@@ -45,7 +45,7 @@ void Fase::recuperarJogador()
     entidades->adiciona(static_cast<Entidade*>(pJog1));
 
     if(!pJog2) {
-        cout << "void Fase::configurarJogador(const int num_jogador, Vector2f posicao) -> jogador 2 nao configurado" << endl;
+        // cout << "void Fase::configurarJogador(const int num_jogador, Vector2f posicao) -> jogador 2 nao configurado" << endl;
         return;
     }
 

@@ -48,8 +48,8 @@ void Lua::recuperar(){
 
 void Fases::Lua::criarObstaculos() {
     criarPortais();
-    criarPlataformas();
     criarCenario();
+    criarPlataformas();
 }
 
 void Fases::Lua::criarInimigos() {
@@ -65,15 +65,15 @@ void Fases::Lua::criarPlataformas() {
         Vector2f inicio(LARG_PLATAFORMA / 2.0f, ALTURA - ALT_PLATAFORMA * 4.6);
         construirPlano(largura_plataforma, inicio);
 
-        Vector2f inicio2(LARGURA - (largura_plataforma + LARG_PLATAFORMA), ALTURA - ALT_PLATAFORMA * 4.6);
+        Vector2f inicio2(LARGURA - (largura_plataforma), ALTURA - ALT_PLATAFORMA * 4.6);
         construirPlano(largura_plataforma, inicio2);
 
     } else {
-        Vector2f inicio( LARGURA / 2.5f, ALTURA - ALT_PLATAFORMA * 4);
-        construirPlano( largura_plataforma, inicio);
-
         Vector2f inicio2((LARGURA) / 2.0f, ALTURA - ALT_PLATAFORMA * 3);
         construirParede(largura_plataforma, inicio2);
+
+        Vector2f inicio( LARGURA / 2.5f, ALTURA - ALT_PLATAFORMA * 4);
+        construirPlano( largura_plataforma, inicio);
     }
 
 

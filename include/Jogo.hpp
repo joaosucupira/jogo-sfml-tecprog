@@ -43,6 +43,8 @@ public:
     void setDoisJogadores(const bool d) { doisJogadores = d; }
     const bool criarFaseEscolhida();
     const bool recuperarFase();
+    const bool getDoisJogadores() const { return doisJogadores; }
+    const int getVidaJogador(const int num_jog) const;
 
     void salvarFaseEscolhida();
     void limparJogo();

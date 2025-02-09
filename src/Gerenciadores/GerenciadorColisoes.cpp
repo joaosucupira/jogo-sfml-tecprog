@@ -238,7 +238,7 @@ void GerenciadorColisoes::coliJogInimigo(){
                     (*it)->danificar(pJog1);
                     notificarObservadores(); // Padrãp observer
 
-                    cout << "Vida jogador 1: " << pJog1->getVidas() << endl;
+                    // cout << "Vida jogador 1: " << pJog1->getVidas() << endl;
                 }   
             }
         }
@@ -258,7 +258,7 @@ void GerenciadorColisoes::coliJogInimigo(){
                     (*it)->danificar(pJog2);
                     notificarObservadores();
 
-                    cout << "Vida jogador 2: " << pJog2->getVidas() << endl;
+                    // cout << "Vida jogador 2: " << pJog2->getVidas() << endl;
                 }   
             }
         }
