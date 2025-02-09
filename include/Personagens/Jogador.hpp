@@ -49,9 +49,12 @@ namespace Personagens {
         const string getNome() const {return nome;}
 
         /*----------------------------------------------------------------------------*/
+        void atualizaVidas(const int vida){ num_vidas += vida;}
+
         void operator+=(int pts);
         void operator--();
         void operator--(const int dano);
+        void operator*=(const int multi);
 
     };
 } using namespace Personagens;

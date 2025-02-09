@@ -54,8 +54,8 @@ void Jogo::executar() {
             faseEscolhida->executar();
 
             if (faseEscolhida->getVencida()) {
-                if (jog1->getVivo()) ranking.adicionarJogador(jog1);
-                else if (jog2->getVivo()) ranking.adicionarJogador(jog2);
+                
+                calcularPontuacao();
 
                 menu.setEstado(8); // Fase vencida
                 menu.menuFaseVencida();
@@ -94,7 +94,8 @@ void Jogo::limparJogo()
 //  ! - mudar o estado certo
 void Jogo::notificar() {
     if (doisJogadores) {
-        if (!(jog1->getVivo() || jog2->getVivo())) {
+        if (!jog1->getVivo() && !jog2->getVivo()) {
+            
             menu.setEstado(7); // Game over
             menu.menuGameOver();
             // menu.menuInicial();
@@ -231,6 +232,41 @@ void Jogo::recuperarJogador()
     buffer.close();
     
 }
+
+void Jogo::calcularPontuacao()
+{   
+
+    //1 jogador
+    if(!doisJogadores){
+        jog1->operator*=(jog1->getVidas());
+        ranking.adicionarJogador(jog1);
+        return;
+    }
+
+    //2 jogadores e só o primeiro vivo
+    if(!jog2->getVivo()){     
+        jog1->operator+=(jog2->getPontos());
+        jog1->operator*=(jog1->getVidas()/2);
+        ranking.adicionarJogador(jog1);
+    }
+
+    //2 jogadores e só o segundo vivo
+    if (!jog1->getVivo()){
+        jog2->operator+=(jog1->getPontos());
+        jog2->operator*=(jog2->getVidas()/2);
+        ranking.adicionarJogador(jog2);
+        return;
+    }
+    
+    //2 jogadores e os dois vivos
+    jog1->atualizaVidas(jog2->getVidas());
+    jog1->operator+=(jog2->getPontos());
+    jog1->operator*=(jog1->getVidas()/2);
+    ranking.adicionarJogador(jog1);
+
+
+}
+
 
 void Jogo::salvarFaseEscolhida()
 {

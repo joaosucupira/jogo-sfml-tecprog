@@ -26,7 +26,7 @@ nome()
         setPosicaoFigura(x, y);
         figura->setAjuste(TAM_JOGADOR / 5.0f);
 
-        num_vidas = 30;
+        num_vidas = 20;
         cont++;
         
     } else {
@@ -77,7 +77,7 @@ void Jogador::salvar(){
     buffer.close();
 }
 
-void Personagens::Jogador::escolheCor() {
+void Jogador::escolheCor() {
     Color cor = (ehJog1 ? Color::Yellow : Color::Cyan);
     setCorFigura(cor);
 }
@@ -89,9 +89,15 @@ void Jogador::operator--() {
     notificarObservadores();
 }
 
-void Personagens::Jogador::operator--(const int dano) {
+void Jogador::operator--(const int dano) {
     Personagem::operator--(dano);
     notificarObservadores();
+}
+
+void Jogador::operator*=(const int multi)
+{
+    if(multi!= 0)
+        pontos *= (multi * idFase);
 }
 
 FloatRect Jogador::hitBox() const {

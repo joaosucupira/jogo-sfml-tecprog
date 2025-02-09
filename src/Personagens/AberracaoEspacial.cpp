@@ -24,7 +24,7 @@ recarregando(rand()%240)
     velocidade.x = V_ABERRACAO;
 
     andando = true;
-    num_vidas = 5;
+    num_vidas = 3;
     maldade = 3;
 
 }
@@ -114,6 +114,10 @@ void AberracaoEspacial::danificar(Jogador* pJ) {
         pJ->setVelocidadeY(-sqrt(2.0 * gravidade * ALTURA_COLI));
         pJ->setPulando(true);
     }
+
+    if(!vivo)
+       (*pJ)+= maldade;
+
 }
 
 void AberracaoEspacial::mover(){

@@ -200,7 +200,6 @@ void Jupiter::criarPlasmas(const int dano) {
 
     for(int i = 0; i<max; i++){
         pPla = new Plasma(dano);
-        cout << dano << endl;
 
         if(pPla){
             entidades->adiciona(static_cast<Entidade*>(pPla));

@@ -18,7 +18,8 @@ ricochete(ALTURA_COLI)
 
     velocidade.x = -(VELOCIDADE_ANDAR - 0.3);
     andando = true;
-
+    maldade = 1;
+    
 }
 
 Alienigena::~Alienigena()
@@ -99,6 +100,10 @@ void Alienigena::danificar(Jogador* pJ) {
 
     if(danifica)
         pJ->operator--();
+
+
+    if(!vivo)
+       (*pJ)+= maldade;
                
     
 }

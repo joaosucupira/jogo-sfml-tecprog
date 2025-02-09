@@ -21,7 +21,7 @@ planando(true)
 
     andando = true;
     num_vidas = 1;
-    maldade = 1;
+    maldade = 2;
 
 }
 
@@ -111,6 +111,9 @@ void ViajanteMau::danificar(Jogador* pJ) {
         pJ->operator--(maldade);
 
     planando = false;
+
+    if(!vivo)
+       (*pJ)+= maldade;
 }
 
 void ViajanteMau::seguirJogador(){
