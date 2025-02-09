@@ -9,6 +9,8 @@
 
 class Jogo;
 
+namespace Interface {
+
 class Menu : public Ente {
 private:
     Jogo* pJogo;
@@ -74,3 +76,5 @@ public:
 
 
 };
+
+} using namespace Interface;

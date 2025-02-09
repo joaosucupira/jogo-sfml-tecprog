@@ -5,6 +5,9 @@
 
 #define LEADER_BOARD_PATH "./data/leaderBoard/leaderboard.txt"
 
+
+namespace Interface {
+
 class Leaderboard {
     private:
         priority_queue<pair<int, std::string>> pontuacoes;
@@ -28,3 +31,5 @@ class Leaderboard {
         void salvar();
 
 };
+
+} using namespace Interface;

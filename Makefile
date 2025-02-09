@@ -6,7 +6,7 @@ OBJ_DIR = obj
 
 BIN = $(BIN_DIR)/Jogo
 
-INCLUDEs = -Iinclude -Iinclude/Entidades -Iinclude/Fases -Iinclude/Gerenciadores -Iinclude/Listas -Iinclude/Personagens -Iinclude/Obstaculos
+INCLUDEs = -Iinclude -Iinclude/Entidades -Iinclude/Fases -Iinclude/Gerenciadores -Iinclude/Interface -Iinclude/Listas -Iinclude/Personagens -Iinclude/Obstaculos
 CPPs = $(shell find $(SRC_DIR) -name '*.cpp')
 OBJs = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(CPPs))
 
