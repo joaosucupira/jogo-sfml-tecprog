@@ -2,7 +2,10 @@
 #include "Jupiter.hpp"
 
 Jupiter::Jupiter() : Fase(),
-maxAberracoesEspaciais(0)
+maxAberracoesEspaciais(rand() % 2 + 3),
+maxBuracosNegros(rand() % 4 + 3),
+maxPlasmas(rand() % 2 + 1),
+maxViajantesMaus(rand() % 2 + 3)
 {
     figura = new Figura(2819, 1589);
     carregarFigura(JUPITER_PATH);
@@ -101,11 +104,11 @@ void Jupiter::criarPlataformas() {
 
 void Fases::Jupiter::criarBuracosNegros(){
     BuracoNegro* pB = NULL;
-    int max = 3;  
+    const int min = 3;  
     float dx = LARGURA / 2.25f;
     float dy = ALTURA - ALT_PLATAFORMA * 2 - 80.0f;
 
-    for (int i = 0; i < max; i++) {
+    for (int i = 0; i < min; i++) {
         pB = new BuracoNegro(dx * i, dy);
         if (pB) {
             entidades->adiciona(static_cast<Entidade*>(pB));
@@ -117,8 +120,7 @@ void Fases::Jupiter::criarBuracosNegros(){
     }
 
     dy = 80.0f;
-    max = rand() % 4;
-    for (int i = 0; i < max; i++) {
+    for (int i = 0; i < maxAberracoesEspaciais - min; i++) {
         pB = new BuracoNegro(dx * i, dy);
         if (pB) {
             entidades->adiciona(static_cast<Entidade*>(pB));
@@ -152,10 +154,10 @@ void Fases::Jupiter::criarBuracosNegros(){
 
 void Jupiter::criarViajantesMaus(){
     ViajanteMau* pVM = NULL;
-    const int max = rand() % 2 + 3;
+    
     const float distancia = 80.0f;
 
-    for (int i = 1; i < max + 1; i++) {
+    for (int i = 1; i < maxViajantesMaus + 1; i++) {
         pVM = new ViajanteMau(LARGURA - LARG_PLATAFORMA, (i * distancia));
         if(pVM) {
             entidades->adiciona(static_cast<Entidade*>(pVM));
@@ -172,11 +174,10 @@ void Jupiter::criarViajantesMaus(){
 void Jupiter::criarAberracoesEspaciais(){
     AberracaoEspacial* pAB = NULL;
 
-    const int max = rand() % 2 + 3;
     const float distancia = 100.0f;
     int v_inicial = -1;
 
-    for(int i = 1; i<=max; i++){
+    for(int i = 1; i<=maxAberracoesEspaciais; i++){
         pAB = new AberracaoEspacial(i * distancia, 80.0f);
         
 
@@ -198,9 +199,8 @@ void Jupiter::criarPlasmas(const int dano) {
     
     Plasma* pPla = NULL;
 
-    const int max = rand() % 2 + 1;
 
-    for(int i = 0; i<max; i++){
+    for(int i = 0; i<maxPlasmas; i++){
         pPla = new Plasma(dano);
 
         if(pPla){

@@ -10,6 +10,10 @@ namespace Fases {
     class Jupiter : public Fase {
 
         const int maxAberracoesEspaciais;
+        const int maxBuracosNegros;
+        const int maxPlasmas;
+        const int maxViajantesMaus;
+
 
     public:
         Jupiter();

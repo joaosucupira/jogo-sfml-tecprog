@@ -9,6 +9,8 @@ namespace Fases {
     class Lua : public Fase {
         
         const int maxViajantesMaus;
+        const int maxAlienigenas;
+        const int maxPortais;
 
     public:
         Lua();

@@ -1,7 +1,9 @@
 #include "Lua.hpp"
 
 Lua::Lua() : Fase(),
-maxViajantesMaus(0)
+maxViajantesMaus(rand() % 3 + 3),
+maxAlienigenas(rand() % 5 + 3),
+maxPortais(rand() % 3 + 3)
 {
     figura = new Figura(1309, 736);
     carregarFigura(LUA_PATH);
@@ -85,10 +87,10 @@ void Fases::Lua::criarPlataformas() {
 
 void Fases::Lua::criarPortais() {
     Portal* pP = NULL;
-    const int max = rand() % 3 + 3;
+    //const int max = rand() % 3 + 3;
     const float distancia = 150.0f;
 
-    for (int i = 1; i < max + 1; i++) {
+    for (int i = 1; i < maxPortais + 1; i++) {
         pP = new Portal(distancia * i, 80.0f);
         if (pP) {
             entidades->adiciona(static_cast<Entidade*>(pP));
@@ -103,9 +105,9 @@ void Fases::Lua::criarPortais() {
 
 void Fases::Lua::criarAlienigenas() {
     Alienigena* pA = NULL;
-    const int max = rand() % 5 + 3;
+    //const int max = rand() % 5 + 3;
 
-    for (int i = 1; i < max + 1; i++) {
+    for (int i = 1; i < maxAlienigenas + 1; i++) {
         pA = new Alienigena(
             LARGURA - (PLATAFORMA_LARGURA + TAM_JOGADOR) - i * 60.0f,
             ALTURA - (TAM_JOGADOR + ALT_PLATAFORMA)
@@ -121,10 +123,9 @@ void Fases::Lua::criarAlienigenas() {
 
 void Lua::criarViajantesMaus(){
     ViajanteMau* pVM = NULL;
-    const int max = rand() % 3 + 3;
+    //const int max = rand() % 3 + 3;
 
-
-    for (int i = 1; i < max + 1; i++) {
+    for (int i = 1; i < maxViajantesMaus + 1; i++) {
         pVM = new ViajanteMau(
             LARGURA - (PLATAFORMA_LARGURA + TAM_JOGADOR) - i * 60.0f,
             (TAM_JOGADOR + ALT_PLATAFORMA)
