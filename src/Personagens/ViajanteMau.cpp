@@ -169,7 +169,7 @@ void ViajanteMau::planar(){
     if(!planando)
         return;
 
-    aux = gravidade * pGG->getDeltaTime();
+    aux = antiGrav * pGG->getDeltaTime();
 
     velocidade.y -= aux;
         

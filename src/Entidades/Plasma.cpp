@@ -3,26 +3,25 @@
 Plasma::Plasma(float x_inicial, float y_inicial):
 Entidade(x_inicial, y_inicial),
 ativo(false),
-antiGrav(7.8),
 dano(0)
 {
     figura = new Figura(10,10,2,1,10, 0, 0, 0);
     carregarFigura(PLASMA_PATH);
     setTamanhoFigura(LARG_PLASMA, ALT_PLASMA);
     setPosicaoFigura(x_inicial, y_inicial);
-    
+    antiGrav = gravidade - 0.8;
 }
 
 Plasma::Plasma(const int dano):
 Entidade(-1, -1),
 ativo(false),
-antiGrav(7.8),
 dano(dano)
 {
     figura = new Figura(10,10,2,1,10, 0, 0, 0);
     carregarFigura(PLASMA_PATH);
     setTamanhoFigura(LARG_PLASMA, ALT_PLASMA);
     setPosicaoFigura(-1, -1);
+    antiGrav = gravidade - 0.8;
 }
 
 Plasma::~Plasma(){
@@ -83,18 +82,4 @@ void Plasma::deslocar(){
     y += velocidade.y *  aux;
 
     setPosicaoFigura(x,y);
-}
-
-void Plasma::planar(){
-    
-    float aux;
-
-    if(!pGG){
-        cout << "AberracaoEspacial::planar() -> ponteiro gGrafico nulo" << endl;
-        return;
-    }
-
-    aux = antiGrav * pGG->getDeltaTime();
-
-    velocidade.y -= aux;
 }

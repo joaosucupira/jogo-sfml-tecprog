@@ -50,23 +50,19 @@ namespace Fases {
 
     protected:
 
+        virtual void definirGravidade() = 0;
+        virtual void configurarJogador() = 0;
+
         virtual void criarInimigos() = 0;
         virtual void criarObstaculos() = 0;
 
         virtual void criarPlataformas() = 0;
-        //virtual void criarPortais() = 0;
 
-        //virtual void criarAlienigenas() = 0;
-        virtual void criarViajantesMaus() = 0;
-
-        virtual void recuperarViajantesMaus();
         virtual void recuperarPlataformas();
-
         
-        virtual void definirGravidade() = 0;
-        virtual void configurarPerseguido() = 0;
+        virtual void configurarPerseguido(){}
 
-        virtual void atualizaPerseguido() = 0;
+        virtual void atualizaPerseguido(){}
 
         /*----------------------------------------------------------------------------*/
         void recuperarJogador();

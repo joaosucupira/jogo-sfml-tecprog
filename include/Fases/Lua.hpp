@@ -32,6 +32,7 @@ namespace Fases {
 
         void recuperarPortais();
         void recuperarAlienigenas();
+        void recuperarViajantesMaus();
 
         void configurarJogador();
         

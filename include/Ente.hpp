@@ -14,8 +14,8 @@ class Ente
 {
 protected:
 
-    //static int cont_id;
-    //int id;
+    static int cont_id;
+    int id;
     Figura* figura;
     static GerenciadorGrafico* pGG;
 
@@ -29,13 +29,13 @@ public:
 
     /*SET*/
     void setGGrafico() { pGG = GerenciadorGrafico::getInstancia(); }
-    //void setId(const int i) { id = i; }
+    void setId(const int i) { id = i; }
     void setPosicaoFigura(const float x, const float y);
     void setTamanhoFigura(const float x, const float y);
     void setCorFigura(const Color& cor);
 
     /*GET*/
-    //const int getId() const { return id; }
+    const int getId() const { return id; }
     Figura* getFigura() const { return figura; }
     FloatRect getLimites() const;
     const float getAjuste() const;

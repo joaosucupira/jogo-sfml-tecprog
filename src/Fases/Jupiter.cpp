@@ -38,6 +38,8 @@ void Jupiter::criar(){
 
 void Jupiter::recuperar(){
 
+    definirGravidade();
+    
     recuperarPlataformas();
     recuperarBuracosNegros();
     recuperarViajantesMaus();
@@ -47,7 +49,6 @@ void Jupiter::recuperar(){
 
     
     configurarPerseguido();
-    definirGravidade();
     colorirPlataformas();
     ativa = true;
     
@@ -229,6 +230,32 @@ void Jupiter::recuperarBuracosNegros()
         GC.incluirObst(static_cast<Obstaculo*>(pBuNegro));
 
         pBuNegro = NULL;
+    }
+
+    buffer.close();
+}
+
+void Jupiter::recuperarViajantesMaus()
+{
+    float x,y;
+    int num_vidas;
+    bool andando,planando;
+    ifstream buffer(VIAJANTE_MAU_SALVAR_PATH);
+    ViajanteMau* pViaMau = NULL;
+
+    while(buffer >> x >> y >> num_vidas >> andando >> planando){
+
+        pViaMau = new ViajanteMau(x,y);
+
+        pViaMau->setAndando(andando);
+        pViaMau->setVidas(num_vidas);
+        pViaMau->calcVivo();
+        pViaMau->setPlanando(planando);
+
+        entidades->adiciona(static_cast<Entidade*>(pViaMau));
+        GC.incluirInim(static_cast<Inimigo*>(pViaMau));
+
+        pViaMau = NULL;
     }
 
     buffer.close();

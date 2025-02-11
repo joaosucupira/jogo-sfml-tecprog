@@ -23,6 +23,7 @@ Portal::~Portal(){
 void Portal::executar() {
     desenhar();
     atualizarFigura();
+    gravitar();
 }
 
 void Portal::salvar(){

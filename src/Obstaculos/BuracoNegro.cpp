@@ -26,6 +26,7 @@ BuracoNegro::~BuracoNegro()
 void BuracoNegro::executar() {
     desenhar();
     atualizarFigura();
+    gravitar();
 }
 
 void BuracoNegro::salvar(){

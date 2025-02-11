@@ -22,7 +22,7 @@ namespace Obstaculos{
 
         /*----------------------------------------------------------------------------*/
         virtual void executar() = 0;
-        virtual void salvar() = 0;
+        virtual void salvar() = 0; 
 
         // 8/1 - Inclusao do metodo virtual da linhagem de obstaculos
         virtual void obstacular(Jogador* pJ) = 0;
@@ -30,6 +30,10 @@ namespace Obstaculos{
         
         /*----------------------------------------------------------------------------*/
         FloatRect hitBox() const;
+
+    protected:
+
+        virtual void gravitar();
         
     };
 } using namespace Obstaculos;

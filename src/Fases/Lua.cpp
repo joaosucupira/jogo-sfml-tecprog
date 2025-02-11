@@ -34,6 +34,7 @@ void Lua::criar(){
 
 void Lua::recuperar(){
 
+    definirGravidade();
     recuperarPlataformas();
     recuperarPortais();
     recuperarAlienigenas();
@@ -41,7 +42,6 @@ void Lua::recuperar(){
     recuperarJogador();
     
     configurarPerseguido();
-    definirGravidade();
     ativa = true;
 }
 
@@ -178,6 +178,32 @@ void Lua::recuperarAlienigenas()
         GC.incluirInim(static_cast<Inimigo*>(pAli));
 
         pAli = NULL;
+    }
+
+    buffer.close();
+}
+
+void Lua::recuperarViajantesMaus()
+{
+    float x,y;
+    int num_vidas;
+    bool andando,planando;
+    ifstream buffer(VIAJANTE_MAU_SALVAR_PATH);
+    ViajanteMau* pViaMau = NULL;
+
+    while(buffer >> x >> y >> num_vidas >> andando >> planando){
+
+        pViaMau = new ViajanteMau(x,y);
+
+        pViaMau->setAndando(andando);
+        pViaMau->setVidas(num_vidas);
+        pViaMau->calcVivo();
+        pViaMau->setPlanando(planando);
+
+        entidades->adiciona(static_cast<Entidade*>(pViaMau));
+        GC.incluirInim(static_cast<Inimigo*>(pViaMau));
+
+        pViaMau = NULL;
     }
 
     buffer.close();

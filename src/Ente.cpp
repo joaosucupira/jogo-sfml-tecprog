@@ -1,11 +1,11 @@
 #include "Ente.hpp"
 
-//int Ente::cont_id(0);
+int Ente::cont_id(0);
 GerenciadorGrafico* Ente::pGG = GerenciadorGrafico::getInstancia();
 /* Construtoras/Destrutoras */
 
 Ente::Ente() :
-//id(cont_id++),
+id(cont_id++),
 figura(NULL)
 {
     setGGrafico();
@@ -13,6 +13,8 @@ figura(NULL)
 
 Ente::~Ente()
 {
+    Ente::cont_id--;
+    
     if (figura != NULL) {
         delete figura;
     }

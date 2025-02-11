@@ -24,7 +24,8 @@ Plataforma::~Plataforma()
 }
 
 void Plataforma::executar() {
-    desenhar();  
+    desenhar();
+    gravitar();
 }
 
 void Plataforma::salvar() {

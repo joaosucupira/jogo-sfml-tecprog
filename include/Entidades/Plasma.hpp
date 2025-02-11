@@ -16,8 +16,7 @@ namespace Entidades {
     class Plasma : public Entidade
     {
         
-        bool ativo;
-        const float antiGrav; 
+        bool ativo; 
         int dano;
 
     public:
@@ -47,7 +46,6 @@ namespace Entidades {
 
     private:
 
-        void planar();
         void deslocar();
     
         

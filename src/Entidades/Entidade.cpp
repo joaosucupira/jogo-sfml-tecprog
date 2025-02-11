@@ -9,7 +9,9 @@ Entidade::Entidade(float x_inicial, float y_inicial) :
 Ente(),
 x(x_inicial),
 y(y_inicial),
-velocidade(0.0,0.0)
+velocidade(0.0,0.0),
+buffer(),
+antiGrav(0)
 {
 }
 
@@ -30,6 +32,21 @@ void Entidade::aplicarGravidade() {
 
     velocidade.y += aux;
 
+}
+
+void Entidade::planar()
+{
+    float aux;
+
+    if(!pGG){
+        cout << "AberracaoEspacial::planar() -> ponteiro gGrafico nulo" << endl;
+        return;
+    }
+
+    aux = antiGrav * pGG->getDeltaTime();
+
+    velocidade.y -= aux;
+        
 }
 
 void Entidade::setXY(const float novoX, const float novoY){

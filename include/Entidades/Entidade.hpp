@@ -22,6 +22,7 @@ namespace Entidades
         Vector2f velocidade;
         static float gravidade;
         ofstream buffer;
+        float antiGrav;
 
     public:
 
@@ -58,6 +59,7 @@ namespace Entidades
     protected:
 
         void aplicarGravidade();
+        virtual void planar();
         
     };
 

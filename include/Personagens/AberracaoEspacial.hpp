@@ -53,7 +53,6 @@ namespace Personagens{
     private:
 
         void mover();
-        void planar();
         void atirar();
         Plasma* recarregar();
 

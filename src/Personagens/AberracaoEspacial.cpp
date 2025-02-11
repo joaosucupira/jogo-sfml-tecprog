@@ -143,21 +143,6 @@ void AberracaoEspacial::mover(){
     
 }
 
-void AberracaoEspacial::planar(){
-
-    float aux;
-
-    if(!pGG){
-        cout << "AberracaoEspacial::planar() -> ponteiro gGrafico nulo" << endl;
-        return;
-    }
-
-    aux = gravidade * pGG->getDeltaTime();
-
-    velocidade.y -= aux;
-        
-}
-
 void AberracaoEspacial::atirar(){
 
     Plasma* pPlasma;
