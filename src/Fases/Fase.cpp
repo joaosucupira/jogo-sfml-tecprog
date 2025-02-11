@@ -146,7 +146,7 @@ void Fase::setJogador(Jogador *pJ, const int num_jogador)
             pJog2 = pJ;
         }
         
-    } else { cout << "void Fase::setJogador(Jogador *pJ) -> ponteiro nulo." << endl; }
+    } else { cout << "void Fase::setJogador(Jogador *pJ) -> ponteiro nulo. " << num_jogador <<endl; }
 }
 
 void Fase::setPGEventos(GerenciadorEventos *pG)

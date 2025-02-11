@@ -86,7 +86,8 @@ void Jogo::limparJogo()
         delete faseLua;
         faseLua = NULL;
     }
-       
+
+    doisJogadores = false;
 
     GE.limparJog();
     srand(time(NULL));
@@ -292,6 +293,7 @@ const bool Jogo::recuperarFase()
     escolherFase(jog1->getIdFase());
 
     GE.setPJog(jog1);
+
     faseEscolhida->setJogador(jog1, 1);
 
 

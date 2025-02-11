@@ -33,6 +33,7 @@ void Leaderboard::executar()
 
 void Leaderboard::recuperar()
 {
+
     int pontos;
     std::string nome;
     ifstream buffer(LEADER_BOARD_PATH);
@@ -53,6 +54,12 @@ void Leaderboard::recuperar()
 
 void Leaderboard::salvar()
 {
+    path dir("data/leaderBoard");
+
+    if(!is_directory(dir)){
+        create_directories(dir);
+    }
+    
     int pontos;
     std::string nome;
     pair<int,std::string> dado;
