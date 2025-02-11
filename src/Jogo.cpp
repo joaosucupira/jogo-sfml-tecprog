@@ -195,7 +195,7 @@ void Jogo::recuperarJogador()
 
         if(!buffer){
             //cout << "Jogo::recuperarJogador() -> Erro ao recuperar jogador" << endl;
-            return;
+            break;
         }
             
 
