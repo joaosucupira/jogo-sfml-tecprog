@@ -8,7 +8,7 @@ debug/
 bin/
 
 # Ignorar arquivos de salvamento
-data/salvamento
+#data/salvamento
 data/leaderBoard
 
 
