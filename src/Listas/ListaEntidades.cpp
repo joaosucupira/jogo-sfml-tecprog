@@ -43,6 +43,11 @@ void ListaEntidades::salvar()
 {
 
     path pasta("./data/salvamento");
+
+    if(!is_directory(pasta)){
+        create_directories(pasta);
+    }
+    
     const int tam = LE.getTamanho();
 
     try{
