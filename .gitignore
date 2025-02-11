@@ -8,14 +8,14 @@ debug/
 bin/
 
 # Ignorar arquivos de salvamento
-data/salvamento/buraco_negro.txt
-data/salvamento/plataforma.txt
-data/salvamento/portal.txt
-data/salvamento/aberracao_espacial.txt
-data/salvamento/alienigena.txt
-data/salvamento/jogador.txt
-data/salvamento/viajante_mau.txt
-data/salvamento/plasma.txt
+#data/salvamento/buraco_negro.txt
+#data/salvamento/plataforma.txt
+#data/salvamento/portal.txt
+#data/salvamento/aberracao_espacial.txt
+#data/salvamento/alienigena.txt
+#data/salvamento/jogador.txt
+#data/salvamento/viajante_mau.txt
+#data/salvamento/plasma.txt
 
 # Ignorar objetos de compilação
 obj/
@@ -27,4 +27,4 @@ obj/
 *.o
 
 # Ignorar arquivos de texto
-*.txt
+#*.txt
