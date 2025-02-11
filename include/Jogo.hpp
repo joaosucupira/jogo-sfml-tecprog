@@ -59,9 +59,6 @@ private:
 
     void recuperarJogador();
     void calcularPontuacao();
-    
-
-    Fase* getFaseEscolhida() const;
 
 };
 

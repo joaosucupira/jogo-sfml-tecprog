@@ -311,13 +311,3 @@ const int Jogo::getVidaJogador(const int num_jog) const {
     return (num_jog == 1 ? jog1->getVidas() : jog2->getVidas());
 }
 
-Fase *Jogo::getFaseEscolhida() const
-{
-    if (faseEscolhida) {
-        return faseEscolhida;
-    } else {
-        cout << "const Fase *Jogo::getFaseEscolhida() -> nenhuma fase foi escolhida" << endl;
-        return NULL;
-    }
-}
-

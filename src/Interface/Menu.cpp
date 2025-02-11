@@ -493,7 +493,7 @@ void Menu::desenharVidaJogadores() {
     string t_vida1 = "J1: "; 
     t_vida1 += to_string(pJogo->getVidaJogador(1));
     Text vida_j1 = criarTexto(t_vida1, 100, 50);
-    vida_j1.setColor(Color::Yellow);
+    vida_j1.setFillColor(Color::Yellow);
     vida_j1.setCharacterSize(40);
     pGG->getPJanela()->draw(vida_j1);
 
@@ -501,7 +501,7 @@ void Menu::desenharVidaJogadores() {
         string t_vida2 = "J2: "; 
         t_vida2 += to_string(pJogo->getVidaJogador(2));
         Text vida_j2 = criarTexto(t_vida2, LARGURA - 200, 50);
-        vida_j2.setColor(Color::Cyan);
+        vida_j2.setFillColor(Color::Cyan);
         vida_j2.setCharacterSize(40);
         pGG->getPJanela()->draw(vida_j2);
     }

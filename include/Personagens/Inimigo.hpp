@@ -19,6 +19,7 @@ namespace Personagens {
         
         /*----------------------------------------------------------------------------*/
         virtual void executar() = 0;
+        virtual void salvar() = 0;
         virtual void danificar(Jogador* pJ) = 0;
         virtual FloatRect hitBox() const = 0;
 
